@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Box xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+	
+	<mx:List id="myListNav" height="100%" width="40" styleName="fseTree" selectedIndex="{currentView}"
+		dataProvider="{views}" change="changeView()" />
+	
+	
+	
+<mx:Script>
+	<![CDATA[
+		
+		import mx.events.FlexEvent;
+		
+		[Bindable]
+		public var views:Array = [
+		 	{icon:"application", label:""},
+		 	{icon:"accordion", label:""},
+		 	{icon:"applicationControlBar", label:""},
+		 	{icon:"button", label:""},
+		 	{icon:"buttonBar", label:""},
+		 	{icon:"checkBox", label:""},
+		 	{icon:"colorPicker", label:""},
+		 	{icon:"comboBox", label:""},
+		 	{icon:"dataGrid", label:""},
+		 	{icon:"dateChooser", label:""},
+		 	{icon:"hDividedBox", label:""},
+		 	{icon:"hRule", label:""},
+		 	{icon:"hScrollBar", label:""},
+		 	{icon:"hSlider", label:""},
+		 	{icon:"linkBar", label:""},
+		 	{icon:"linkButton", label:""},
+		 	{icon:"list", label:""},
+		 	{icon:"menuBar", label:""},
+		 	{icon:"numericStepper", label:""},
+		 	{icon:"panel", label:""},
+		 	{icon:"button", label:""},
+		 	{icon:"progressBar", label:""},
+		 	{icon:"radioButton", label:""},
+		 	{icon:"tabNavigator", label:""},
+		 	{icon:"textArea", label:""},
+		 	{icon:"textInput", label:""},
+		 	{icon:"toggleButtonBar", label:""},
+		 	{icon:"toolTipIcon", label:""},
+		 	{icon:"tree", label:""},
+		 	{icon:"vDividedBox", label:""},
+		 	{icon:"vRule", label:""},
+		 	{icon:"vScrollBar", label:""},
+		 	{icon:"vSlider", label:""}
+		];
+	
+		[Bindable]
+		public var currentView:Number = 0;
+		
+		      [Bindable]
+		[Embed(source="/assets/TreeIcons/application.png")]
+		public var application:Class;
+        
+        [Bindable]
+		[Embed(source="/assets/TreeIcons/Accordion.png")]
+		public var accordion:Class;
+		
+		[Bindable]
+		[Embed(source="/assets/TreeIcons/ApplicationControlBar.png")]
+		public var applicationControlBar:Class;
+		
+		[Bindable]
+		[Embed(source="/assets/TreeIcons/Button.png")]
+		public var button:Class;
+		
+		[Bindable]
+		[Embed(source="/assets/TreeIcons/CheckBox.png")]
+		public var checkBox:Class;
+		
+		[Bindable]
+		[Embed(source="/assets/TreeIcons/ComboBox.png")]
+		public var comboBox:Class;
+		
+		[Bindable]
+		[Embed(source="/assets/TreeIcons/DataGrid.png")]
+		public var dataGrid:Class;
+		
+		[Bindable]
+		[Embed(source="/assets/TreeIcons/DateChooser.png")]
+		public var dateChooser:Class;
+		
+		[Bindable]
+		[Embed(source="/assets/TreeIcons/HRule.png")]
+		public var hRule:Class;
+		
+		[Bindable]
+		[Embed(source="/assets/TreeIcons/HScrollBar.png")]
+		public var hScrollBar:Class;
+		
+		[Bindable]
+		[Embed(source="/assets/TreeIcons/HSlider.png")]
+		public var hSlider:Class;
+		
+		[Bindable]
+		[Embed(source="/assets/TreeIcons/LinkBar.png")]
+		public var linkBar:Class;
+		
+		[Bindable]
+		[Embed(source="/assets/TreeIcons/List.png")]
+		public var list:Class;
+		
+		[Bindable]
+		[Embed(source="/assets/TreeIcons/MenuBar.png")]
+		public var menuBar:Class;
+		
+		[Bindable]
+		[Embed(source="/assets/TreeIcons/NumericStepper.png")]
+		public var numericStepper:Class;
+		
+		[Bindable]
+		[Embed(source="/assets/TreeIcons/Panel.png")]
+		public var panel:Class;
+		
+		[Bindable]
+		[Embed(source="/assets/TreeIcons/TabNavigator.png")]
+		public var tabNavigator:Class;
+
+		[Bindable]
+		[Embed(source="/assets/TreeIcons/TextArea.png")]
+		public var textArea:Class;
+	
+		[Bindable]
+		[Embed(source="/assets/TreeIcons/TextInput.png")]
+		public var textInput:Class;
+		
+		[Bindable]
+		[Embed(source="/assets/TreeIcons/Tree.png")]
+		public var tree:Class;
+
+		[Bindable]
+		[Embed(source="/assets/TreeIcons/VRule.png")]
+		public var vRule:Class;
+	
+		[Bindable]
+		[Embed(source="/assets/TreeIcons/VScrollBar.png")]
+		public var vScrollBar:Class;
+		
+		[Bindable]
+		[Embed(source="/assets/TreeIcons/VSlider.png")]
+		public var vSlider:Class;
+		
+		[Bindable]
+		[Embed(source="/assets/TreeIcons/RadioButton.png")]
+		public var radioButton:Class;
+		
+		[Bindable]
+		[Embed(source="/assets/TreeIcons/ProgressBar.png")]
+		public var progressBar:Class;
+		
+		[Bindable]
+		[Embed(source="/assets/TreeIcons/ToolTip.png")]
+		public var toolTipIcon:Class;
+		
+		[Bindable]
+		[Embed(source="/assets/TreeIcons/ToggleButtonBar.png")]
+		public var toggleButtonBar:Class;
+		
+		[Bindable]
+		[Embed(source="/assets/TreeIcons/ButtonBar.png")]
+		public var buttonBar:Class;
+		
+		[Bindable]
+		[Embed(source="/assets/TreeIcons/LinkButton.png")]
+		public var linkButton:Class;
+		
+		[Bindable]
+		[Embed(source="/assets/TreeIcons/HDividedBox.png")]
+		public var hDividedBox:Class;
+		
+		[Bindable]
+		[Embed(source="/assets/TreeIcons/VDividedBox.png")]
+		public var vDividedBox:Class;
+		
+		[Bindable]
+		[Embed(source="/assets/TreeIcons/ColorPicker.png")]
+		public var colorPicker:Class;
+		
+        
+         private function changeView():void {
+        	  currentView = myListNav.selectedIndex; 
+        	  this.dispatchEvent( new Event("change") );
+        }
+		 
+		
+	]]>
+</mx:Script>	
+
+<mx:Metadata>
+        [Event("change")]
+    </mx:Metadata>
+
+</mx:Box>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:HBox width="100%" height="100%" xmlns:mx="http://www.adobe.com/2006/mxml" name="Tree"
+	xmlns:head="layout.*"  xmlns:components="components.*" >
+	<!-- 
+	//********************//
+	//   STYLE CONTROLS   //
+	//********************//
+	-->
+	
+	<mx:VBox height="100%" width="380" styleName="glassPods"  >
+		
+		<head:GlassHeaders headerTitle="STYLE CONTROLS"/>
+		<mx:Canvas width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollBarStyleName="fseVerticalScrollBar">
+	
+		<mx:VBox x="10" width="350">
+				
+			<mx:Form width="100%"  >
+			
+				<components:borderStylePicker id="myborderStyletree" styleValue="solid"
+					dataChange="setStringValue('borderStyle', event.target.styleValue, 'tree') " />
+			
+				<mx:Box styleName="conditionalBox" width="100%" visible="{myborderStyletree.styleValue == 'solid'}"
+					height="{myborderStyletree.styleValue == 'solid'?(80):0}" >			
+			
+					<mx:Form styleName="conditionalForm"  width="100%" paddingLeft="35">
+				
+						<components:textSliders 
+							sliderLabel="Border Thickness" min="0" max="20" value="1" id="myborderThicknesstree" 
+							dataChange="setValue('borderThickness', event.target.value, 'number', 'tree')"	/>	
+					
+						<components:textSliders 
+								sliderLabel="Corner Radius" min="0" max="20" value="0" id="mycornerRadiustree" 
+								dataChange="setValue('cornerRadius', event.target.value, 'number', 'tree')"	/>	
+						
+						<components:colorPicker dataProvider="{swatches}" 
+							pickerLabel="Border Color" selectedColor="0xB7BABC" id="myborderColortree"
+							dataChange="setValue('borderColor', event.target.selectedColor, 'color', 'tree')"  />
+						
+					</mx:Form>
+				</mx:Box>
+				
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Background Color" selectedColor="0xFFFFFF" id="mybackgroundColortree"
+					dataChange="setValue('backgroundColor', event.target.selectedColor, 'color', 'tree')"  />
+				
+				<components:doubleColorPicker dataProvider="{swatches}" pickerLabel="Alternating Item Colors" styleValue="[0xFFFFFF, 0xFFFFFF]" id="myalternatingItemColorstree"
+					dataChange="setArrayValue('alternatingItemColors', event.target.styleValue, 'color', 'tree')" />
+		
+				<components:quadColorPicker dataProvider="{swatches}" pickerLabel="Depth Colors" styleValue="[0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF]" id="mydepthColorstree"
+					dataChange="setQuadArrayValue('depthColors', event.target.styleValue, 'color', 'tree')" />
+				
+				<components:trueFalsePicker pickerLabel="Use Roll Over" stateLabel="True" id="myuseRollOvertree"
+					styleValue="true" dataChange="setBooleanValue('useRollOver', event.target.styleValue, 'tree')" />
+		
+				<mx:Box styleName="conditionalBox" width="100%" horizontalAlign="left" visible="{myuseRollOvertree.styleValue == true}" 
+					height="{myuseRollOvertree.styleValue==true?(60):0}" >			
+					
+						<mx:Form styleName="conditionalForm" paddingLeft="18" >
+							
+							<components:colorPicker dataProvider="{swatches}" 
+								pickerLabel="Roll Over Color" selectedColor="0xAADEFF" id="myrollOverColortree"
+								dataChange="setValue('rollOverColor', event.target.selectedColor, 'color', 'tree')"  />
+						
+							<components:colorPicker dataProvider="{swatches}" 
+								pickerLabel="Text Roll Over Color" selectedColor="0x2B333C" id="mytextRollOverColortree"
+								dataChange="setValue('textRollOverColor', event.target.selectedColor, 'color', 'tree')"  />
+						
+						</mx:Form>
+				</mx:Box>
+				
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Selection Color" selectedColor="0x7FCEFF" id="myselectionColortree"
+					dataChange="setValue('selectionColor', event.target.selectedColor, 'color', 'tree')"  />
+				
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Color" selectedColor="0x2B333C" id="mycolortree"
+					dataChange="setValue('color', event.target.selectedColor, 'color', 'tree')"  />
+			
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Text Selected Color" selectedColor="0x2B333C" id="mytextSelectedColortree"
+					dataChange="setValue('textSelectedColor', event.target.selectedColor, 'color', 'tree')"  />
+			
+				<components:textSliders snapInt=".01"
+					sliderLabel="Background Alpha" min="0" max="1" value="1" id="mybackgroundAlphatree" 
+					dataChange="setValue('backgroundAlpha', event.target.value, 'number', 'tree')"	/>	
+			
+				<components:textSliders 
+					sliderLabel="Text Indent" min="0" max="50" value="0" id="mytextIndenttree" 
+					dataChange="setValue('textIndent', event.target.value, 'number', 'tree')"	/>	
+				
+				<components:textSliders 
+					sliderLabel="Letter Spacing" min="0" max="10" value="0" id="myletterSpacingtree" 
+					dataChange="setValue('letterSpacing', event.target.value, 'number', 'tree')"	/>	
+				
+				<components:textSliders 
+					sliderLabel="Indentation" min="0" max="50" value="15" id="myindentationtree" 
+					dataChange="setValue('indentation', event.target.value, 'number', 'tree')"	/>	
+				
+				<components:textSliders textWidth="40"
+					sliderLabel="Open Duration" min="0" max="1000" value="250" id="myopenDurationtree" 
+					dataChange="setValue('openDuration', event.target.value, 'number', 'tree')"	/>	
+				
+				<components:textSliders textWidth="40"
+					sliderLabel="Selection Duration" min="0" max="3000" value="250" id="myselectionDurationtree" 
+					dataChange="setValue('selectionDuration', event.target.value, 'number', 'tree')"	/>	
+				
+				<components:fontPicker id="myfontFamilytree" dataChange="setStringValue('fontFamily', event.target.styleValue, 'tree')" />
+			
+				<components:fontSizePicker id="myfontSizetree" dataChange="setStringValue('fontSize', event.target.styleValue, 'tree')" />
+				
+				<components:textFormattingPicker id="mytextFormattree" dataChange="setTextFormat(event.target.styleValue, 'tree');" />
+				
+				<components:trueFalsePicker pickerLabel="Drop Shadow" stateLabel="Enabled" id="mydropShadowEnabledtree"
+						styleValue="false" dataChange="setBooleanValue('dropShadowEnabled', event.target.styleValue, 'tree')" />
+					
+				<mx:Box styleName="conditionalBox" width="345" visible="{mydropShadowEnabledtree.styleValue == true}">			
+		
+					<mx:Form styleName="conditionalForm" width="100%" paddingLeft="25" >
+						
+						<components:textSliders padRight="0"
+							sliderLabel="Shadow Distance" min="-20" max="20" value="2" id="myshadowDistancetree" 
+							dataChange="setValue('shadowDistance', event.target.value, 'number', 'tree')"	/>	
+						
+						<components:shadowDirectionPicker id="myshadowDirectiontree" 
+							dataChange="setStringValue('shadowDirection', event.target.styleValue, 'tree') " />
+						
+						<components:colorPicker dataProvider="{swatches}" 
+							pickerLabel="Drop Shadow Color" selectedColor="0x000000" id="mydropShadowColortree"
+							dataChange="setValue('dropShadowColor', event.target.selectedColor, 'color', 'tree')"  />
+			
+					</mx:Form>
+				</mx:Box>
+			
+			 
+			
+			
+			</mx:Form>	
+			
+			
+			<mx:Box height="20" />
+		
+			<mx:Spacer height="100%" />
+			
+		
+		
+		</mx:VBox>
+		</mx:Canvas>
+		<mx:Box width="100%"  paddingRight="5" paddingBottom="5"  horizontalAlign="right">
+				<mx:LinkButton label="Restore Defaults" 
+					click="restoreItemDefaults('tree')" styleName="undoLink" />
+			</mx:Box>
+		</mx:VBox>
+		
+		
+		
+	
+	<!-- 
+	//********************//
+	//   SANDBOX          //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="100%" styleName="glassPods" >
+		<head:GlassHeaders headerTitle="SANDBOX" />
+		
+		<mx:Tree height="200" left="10" top="30" right="10" id="mytree" 
+			showRoot="false" creationComplete="openTree()" labelField="@label" dataProvider="{myxml}"/>
+           
+        	
+	</mx:Canvas>
+	
+	<!-- 
+	//********************//
+	//   CSS VIEW         //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="250" styleName="glassPods" >
+		<head:GlassHeaders headerTitle="CSS"/>
+		<mx:TextArea text="{myCSS}" left="10" right="10" top="30" bottom="10" styleName="cssTextArea" />
+	</mx:Canvas>
+	<mx:Script source="../as/tree.as" />
+
+	<mx:XML id="myxml">
+        <Company label="Adobe">
+            <Branch label="Newton">
+                <Department label="Adobe Consulting">
+                    <Title label="User Experience">
+                        <Name label="Peter Baird"></Name>
+                    </Title>
+                </Department>
+            </Branch>
+        </Company>
+    </mx:XML>
+    
+
+
+</mx:HBox>
+
+
+
+

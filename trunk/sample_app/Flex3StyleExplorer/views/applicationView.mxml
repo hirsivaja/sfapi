@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:HBox width="100%" height="100%" xmlns:mx="http://www.adobe.com/2006/mxml" name="H Rule"
+	xmlns:head="layout.*"  xmlns:components="components.*" >
+	<!-- 
+	//********************//
+	//   STYLE CONTROLS   //
+	//********************//
+	-->
+	
+	<mx:VBox height="100%" width="400" styleName="glassPods"  >
+		
+		<head:GlassHeaders headerTitle="STYLE CONTROLS"/>
+		<mx:Canvas width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollBarStyleName="fseVerticalScrollBar">
+	
+		<mx:VBox x="10" width="380">
+				
+			<mx:Form width="100%"  >
+			
+				<mx:FormItem label="Background Image">
+					<mx:ComboBox id="mybackgroundImageapplication" rowCount="8" creationComplete="init()" />
+				</mx:FormItem>
+			
+				<components:colorPicker dataProvider="{swatches}" pickerLabel="Background Color" selectedColor="0x869CA7" id="mybackgroundColorapplication"
+					dataChange="setValue('backgroundColor', event.target.selectedColor, 'color', 'application')"  />
+				
+				<components:doubleColorPicker dataProvider="{swatches}" pickerLabel="Background Gradient Colors"  styleValue="[0x9BAFB9, 0x68808C]" id="mybackgroundGradientColorsapplication"
+					dataChange="setArrayValue('backgroundGradientColors', event.target.styleValue, 'color', 'application')" />
+				
+				<components:doubleTextSliders padRight="0" sliderLabel="Background Gradient Alphas" min="0" max="1" 
+					styleValue="[1, 1]" id="mybackgroundGradientAlphasapplication" snapInt=".01" liveDrag="false"
+					dataChange="setArrayValue('backgroundGradientAlphas', event.target.styleValue, 'number', 'application')" />	
+			
+				<components:colorPicker dataProvider="{swatches}" pickerLabel="Theme Color" selectedColor="0x009DFF" id="mythemeColorapplication"
+					dataChange="setValue('themeColor', event.target.selectedColor, 'color', 'application')"  />
+				
+				<components:colorPicker dataProvider="{swatches}" pickerLabel="Text Color" selectedColor="0x0B333C" id="mycolorapplication"
+					dataChange="setValue('color', event.target.selectedColor, 'color', 'application')"  />
+			
+			
+			</mx:Form>	
+			
+			
+			<mx:Box height="20" />
+		
+			<mx:Spacer height="100%" />
+			
+		
+		
+		</mx:VBox>
+		</mx:Canvas>
+		<mx:Box width="100%"  paddingRight="5" paddingBottom="5"  horizontalAlign="right">
+				<mx:LinkButton label="Restore Defaults" 
+					click="restoreItemDefaults('application')" styleName="undoLink" />
+			</mx:Box>
+		</mx:VBox>
+		
+		
+		
+	
+	<!-- 
+	//********************//
+	//   SANDBOX          //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="100%" styleName="glassPods" horizontalScrollBarStyleName="fseVerticalScrollBar" >
+		<head:GlassHeaders headerTitle="SANDBOX" />
+		
+		<mx:Panel title="Application"  id="myapplication" left="10" top="30" right="10" height="300" >
+			<mx:VDividedBox paddingRight="10" paddingLeft="10" paddingTop="10" paddingBottom="10" width="100%" height="100%" >
+					<mx:Accordion height="50%" width="100%" paddingRight="0" paddingLeft="0" paddingTop="0" paddingBottom="0"
+						  borderThickness="1" id="myAccordion">
+						<mx:Box label="Ice Cream" width="100%" height="100%" paddingRight="0" paddingTop="0" paddingBottom="0" paddingLeft="0" borderThickness="0">
+							<mx:List id="icecream" rowCount="5" paddingRight="0" paddingLeft="0" paddingTop="0" paddingBottom="0" width="100%" borderThickness="0"
+								change="myFlavor.text=event.target.selectedItem.label" selectedIndex="0" >
+								<mx:dataProvider>
+									<mx:Array>
+										 <mx:Object label="Vanilla" />
+										<mx:Object label="Chocolate" />
+										<mx:Object label="Strawberry" />
+										<mx:Object label="Peanut Butter" />
+										<mx:Object label="Coffee" />
+									</mx:Array>
+								</mx:dataProvider>
+							</mx:List>
+						</mx:Box>
+						<mx:Box label="Sherbert"  height="100%" width="100%" paddingRight="0" paddingTop="0" paddingBottom="0" paddingLeft="0" borderThickness="0">
+							<mx:List change="myFlavor.text=event.target.selectedItem.label" id="sherbert"
+								paddingRight="0" paddingLeft="0" rowCount="5" paddingTop="0" paddingBottom="0" width="100%" borderThickness="0">
+								<mx:dataProvider>
+									<mx:Array>
+										<mx:Object label="Orange" />
+										<mx:Object label="Raspberry" />
+										<mx:Object label="Lemon" />
+										<mx:Object label="Lime"/>
+										<mx:Object label="Grapefruit" />
+									</mx:Array>
+								</mx:dataProvider>
+							</mx:List>
+						</mx:Box>
+					</mx:Accordion>
+					<mx:HBox width="100%">
+						<mx:Text id="myFlavor" text="Vanilla" width="100%" height="18" fontWeight="bold"/>
+						<mx:ComboBox width="60">
+							<mx:dataProvider>
+								<mx:Array>
+									<mx:Object label="SM" />
+									<mx:Object label="M" />
+									<mx:Object label="L" />
+								</mx:Array>
+							</mx:dataProvider>
+						</mx:ComboBox>
+						<mx:ComboBox width="60">
+							<mx:dataProvider>
+								<mx:Array>
+									<mx:Object label="cone" />
+									<mx:Object label="cup" />
+								</mx:Array>
+							</mx:dataProvider>
+						</mx:ComboBox>
+						</mx:HBox>
+					</mx:VDividedBox>
+					<mx:ControlBar horizontalAlign="right" paddingTop="3" paddingBottom="3" paddingRight="3">
+						<mx:Button label="Buy" />
+					</mx:ControlBar>
+					</mx:Panel>
+		
+		
+			
+	</mx:Canvas>
+	
+	<!-- 
+	//********************//
+	//   CSS VIEW         //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="250" styleName="glassPods" >
+		<head:GlassHeaders headerTitle="CSS"/>
+		<mx:TextArea text="{myCSS}" left="10" right="10" top="30" bottom="10" styleName="cssTextArea" />
+	</mx:Canvas>
+	<mx:Script source="../as/application.as" />
+
+
+
+
+</mx:HBox>
+
+
+
+

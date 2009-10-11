@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:HBox width="100%" height="100%" xmlns:mx="http://www.adobe.com/2006/mxml" name="Text Input"
+	xmlns:head="layout.*"  xmlns:components="components.*" >
+	<!-- 
+	//********************//
+	//   STYLE CONTROLS   //
+	//********************//
+	-->
+	
+	<mx:VBox height="100%" width="380" styleName="glassPods"  >
+		
+		<head:GlassHeaders headerTitle="STYLE CONTROLS"/>
+		<mx:Canvas width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollBarStyleName="fseVerticalScrollBar">
+	
+		<mx:VBox x="10" width="350">
+				
+			<mx:Form width="100%" paddingLeft="10" >
+			
+				<components:borderStylePicker id="myborderStyletextInput" styleValue="inset"
+					dataChange="setStringValue('borderStyle', event.target.styleValue, 'textInput') " />
+			
+				<mx:Box styleName="conditionalBox" width="100%" visible="{myborderStyletextInput.styleValue != 'none'}" verticalScrollPolicy="off"
+					height="{myborderStyletextInput.styleValue != 'none'?(myborderStyletextInput.styleValue == 'solid'?(82):36):0}">			
+				
+					<mx:Form styleName="conditionalForm"  width="100%" >
+				
+						<components:colorPicker dataProvider="{swatches}" 
+							pickerLabel="Border Color" selectedColor="0xB7BABC" id="myborderColortextInput"
+							dataChange="setValue('borderColor', event.target.selectedColor, 'color', 'textInput')"  />
+						
+						<components:textSliders padRight="0"
+							sliderLabel="Border Thickness" min="0" max="20" value="1" id="myborderThicknesstextInput" visible="{myborderStyletextInput.styleValue == 'solid'}"
+							dataChange="setValue('borderThickness', event.target.value, 'number', 'textInput')"	/>	
+					
+						<components:textSliders padRight="0"
+							sliderLabel="Corner Radius" min="0" max="20" value="0" id="mycornerRadiustextInput" visible="{myborderStyletextInput.styleValue == 'solid'}"
+							dataChange="setValue('cornerRadius', event.target.value, 'number', 'textInput')"	/>	
+						
+					</mx:Form>
+				
+				</mx:Box>
+					
+				<components:textSliders
+					sliderLabel="Letter Spacing" min="0" max="10" value="0" id="myletterSpacingtextInput" 
+					dataChange="setValue('letterSpacing', event.target.value, 'number', 'textInput')"	/>	
+				
+				<components:textSliders
+					sliderLabel="Padding Left" min="0" max="20" value="0" id="mypaddingLefttextInput" 
+					dataChange="setValue('paddingLeft', event.target.value, 'number', 'textInput')"	/>	
+				
+				<components:textSliders
+					sliderLabel="Padding Right" min="0" max="20" value="0" id="mypaddingRighttextInput" 
+					dataChange="setValue('paddingRight', event.target.value, 'number', 'textInput')"	/>	
+				
+				<components:textSliders 
+					sliderLabel="Background Alpha" min="0" max="1" value="1" id="mybackgroundAlphatextInput" snapInt=".01"
+					dataChange="setValue('backgroundAlpha', event.target.value, 'number', 'textInput')"	/>	
+			
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Background Color" selectedColor="0xFFFFFF" id="mybackgroundColortextInput"
+					dataChange="setValue('backgroundColor', event.target.selectedColor, 'color', 'textInput')"  />
+			
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Color" selectedColor="0x0B333C" id="mycolortextInput"
+					dataChange="setValue('color', event.target.selectedColor, 'color', 'textInput')"  />
+				
+				<components:textAlign id="mytextAligntextInput" dataChange="setStringValue('textAlign', event.target.styleValue, 'textInput') " />
+					
+				<components:fontPicker id="myfontFamilytextInput" dataChange="setStringValue('fontFamily', event.target.styleValue, 'textInput')" />
+			
+				<components:fontSizePicker id="myfontSizetextInput" dataChange="setStringValue('fontSize', event.target.styleValue, 'textInput')" />
+			
+				<components:textFormattingPicker id="mytextFormattextInput" dataChange="setTextFormat(event.target.styleValue, 'textInput');" />
+				
+				<components:trueFalsePicker pickerLabel="Drop Shadow" stateLabel="Enabled" id="mydropShadowEnabledtextInput"
+					styleValue="false" dataChange="setBooleanValue('dropShadowEnabled', event.target.styleValue, 'textInput')" />
+		
+			</mx:Form>	
+				
+			
+			<mx:Box styleName="conditionalBox" width="100%"  visible="{mydropShadowEnabledtextInput.styleValue == true}"  >			
+		
+				<mx:Form styleName="conditionalForm" width="100%" >
+				
+					<components:shadowDirectionPicker id="myshadowDirectiontextInput" 
+						dataChange="setStringValue('shadowDirection', event.target.styleValue, 'textInput') " />
+						
+					<components:textSliders
+						sliderLabel="Shadow Distance" min="-20" max="20" value="2" id="myshadowDistancetextInput" padRight="0"
+						dataChange="setValue('shadowDistance', event.target.value, 'number', 'textInput')"	/>	
+					
+					<components:colorPicker dataProvider="{swatches}" 
+						pickerLabel="Drop Shadow Color" selectedColor="0x000000" id="mydropShadowColortextInput"
+						dataChange="setValue('dropShadowColor', event.target.selectedColor, 'color', 'textInput')"  />
+					
+				</mx:Form>
+			
+			</mx:Box>
+				
+			
+			
+			
+			<mx:Box height="20" />
+		
+			<mx:Spacer height="100%" />
+			
+		
+		
+		</mx:VBox>
+		</mx:Canvas>
+		<mx:Box width="100%"  paddingRight="5" paddingBottom="5"  horizontalAlign="right">
+				<mx:LinkButton label="Restore Defaults" 
+					click="restoreItemDefaults('textInput')" styleName="undoLink" />
+			</mx:Box>
+		</mx:VBox>
+		
+		
+		
+	
+	<!-- 
+	//********************//
+	//   SANDBOX          //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="100%" styleName="glassPods" >
+		<head:GlassHeaders headerTitle="SANDBOX" />
+		<mx:TextInput id="mytextInput" left="10" top="30" text="Text Input" />
+			
+	</mx:Canvas>
+	
+	<!-- 
+	//********************//
+	//   CSS VIEW         //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="250" styleName="glassPods" >
+		<head:GlassHeaders headerTitle="CSS"/>
+		<mx:TextArea text="{myCSS}" left="10" right="10" top="30" bottom="10" styleName="cssTextArea" />
+	</mx:Canvas>
+	<mx:Script source="../as/textInput.as" />
+
+
+
+
+</mx:HBox>
+
+
+
+

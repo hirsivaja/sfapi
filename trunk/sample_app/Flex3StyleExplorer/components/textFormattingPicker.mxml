@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:FormItem xmlns:mx="http://www.adobe.com/2006/mxml" label="{formItemLabel}" width="100%" creationComplete="init()">
+	
+	<mx:ButtonBar id="formattingBar" styleName="fseToggleButtons" itemClick="clickHandler(event);" >
+		<mx:dataProvider>
+			<mx:Array>
+				<mx:Object icon="{boldIcon}" />                   
+				<mx:Object icon="{italicsIcon}" />
+				<mx:Object icon="{underlineIcon}" />
+        	</mx:Array>
+		</mx:dataProvider>
+	</mx:ButtonBar>
+	
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.events.ItemClickEvent; 
+			import mx.events.FlexEvent;
+			import mx.controls.*;
+			include "../as/assets.as";
+			
+			[Bindable]
+			public var formItemLabel:String = "Text Formatting";
+			
+			[Bindable]
+			public var styleValue:Array = [false, false, false] ;
+						
+			private function dispatchMyEvent():void {
+                this.dispatchEvent( new Event("dataChange") );
+            }
+           
+           public function restoreDefault():void {
+           		styleValue = [false, false, false];
+           		for (var i:Number = 0; i < 3; i++) {
+           			Button(formattingBar.getChildAt(i)).setStyle('fillColors', [0xFFFFFF, 0x000000, 0xFFFFFF, 0x000000]);
+             		Button(formattingBar.getChildAt(i)).setStyle('highlightAlphas', [0.5, 0]);
+           		}
+           }
+           
+           private function init():void {
+           		Button(formattingBar.getChildAt(0)).setStyle('fontWeight', 'bold');
+           		Button(formattingBar.getChildAt(1)).setStyle('fontWeight', 'normal');
+           		Button(formattingBar.getChildAt(1)).setStyle('fontStyle', 'italic');
+           		Button(formattingBar.getChildAt(2)).setStyle('fontWeight', 'normal');
+           		Button(formattingBar.getChildAt(2)).setStyle('textDecoration', 'underline');
+           }
+           
+           private function clickHandler(event:ItemClickEvent):void {
+             	if (styleValue[event.index] == false) {
+             		styleValue[event.index] = true;
+             		Button(formattingBar.getChildAt(event.index)).setStyle('fillColors', [0x000000, 0x000000, 0x000000, 0x000000]);
+             		Button(formattingBar.getChildAt(event.index)).setStyle('highlightAlphas', [0, 0]);
+             	} else {
+             		styleValue[event.index] = false;
+             		Button(formattingBar.getChildAt(event.index)).setStyle('fillColors', [0xFFFFFF, 0x000000, 0xFFFFFF, 0x000000]);
+             		Button(formattingBar.getChildAt(event.index)).setStyle('highlightAlphas', [0.5, 0]);
+             	}
+               dispatchMyEvent();
+            }
+           
+            
+           
+		]]>
+	</mx:Script>
+	
+	<mx:Metadata>
+        [Event("dataChange")]
+    </mx:Metadata>
+   
+</mx:FormItem>

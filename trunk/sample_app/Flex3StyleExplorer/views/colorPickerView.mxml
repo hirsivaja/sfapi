@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:HBox width="100%" height="100%" xmlns:mx="http://www.adobe.com/2006/mxml" name="Color Picker"
+	xmlns:head="layout.*"  xmlns:components="components.*" >
+	<!-- 
+	//********************//
+	//   STYLE CONTROLS   //
+	//********************//
+	-->
+	
+	<mx:VBox height="100%" width="430" styleName="glassPods"  >
+		
+		<head:GlassHeaders headerTitle="STYLE CONTROLS"/>
+		<mx:Canvas width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollBarStyleName="fseVerticalScrollBar">
+	
+		<mx:VBox x="10" width="400">
+				
+			<mx:Form width="100%"  >
+				
+				<components:textSliders 
+					sliderLabel="Column Count" min="1" max="60" value="20" id="mycolumnCountcolorPicker"
+					dataChange="setValue('columnCount', event.target.value, 'number', 'colorPicker')"	/>
+				
+				<components:textSliders 
+					sliderLabel="Horizontal Gap" min="0" max="20" value="0" id="myhorizontalGapcolorPicker"
+					dataChange="setValue('horizontalGap', event.target.value, 'number', 'colorPicker')"	/>
+				
+				<components:textSliders 
+					sliderLabel="Vertical Gap" min="0" max="20" value="0" id="myverticalGapcolorPicker"
+					dataChange="setValue('verticalGap', event.target.value, 'number', 'colorPicker')"	/>
+				
+				<components:textSliders 
+					sliderLabel="Preview Height" min="0" max="40" value="22" id="mypreviewHeightcolorPicker"
+					dataChange="setValue('previewHeight', event.target.value, 'number', 'colorPicker')"	/>
+				
+				<components:textSliders 
+					sliderLabel="Preview Width" min="0" max="100" value="45" id="mypreviewWidthcolorPicker"
+					dataChange="setValue('previewWidth', event.target.value, 'number', 'colorPicker')"	/>
+				
+				<components:textSliders 
+					sliderLabel="Swatch Width" min="0" max="40" value="12" id="myswatchWidthcolorPicker"
+					dataChange="setValue('swatchWidth', event.target.value, 'number', 'colorPicker')"	/>
+				
+				<components:textSliders 
+					sliderLabel="Swatch Height" min="0" max="40" value="12" id="myswatchHeightcolorPicker"
+					dataChange="setValue('swatchHeight', event.target.value, 'number', 'colorPicker')"	/>
+				
+				<components:textSliders 
+					sliderLabel="Text Field Width" min="0" max="300" value="72" id="mytextFieldWidthcolorPicker"
+					dataChange="setValue('textFieldWidth', event.target.value, 'number', 'colorPicker')"	/>
+				
+				<components:textSliders 
+					sliderLabel="Padding Top" min="0" max="30" value="5" id="mypaddingTopcolorPicker"
+					dataChange="setValue('paddingTop', event.target.value, 'number', 'colorPicker')"	/>
+				
+				<components:textSliders 
+					sliderLabel="Padding Bottom" min="0" max="30" value="5" id="mypaddingBottomcolorPicker"
+					dataChange="setValue('paddingBottom', event.target.value, 'number', 'colorPicker')"	/>
+				
+				<components:textSliders 
+					sliderLabel="Padding Left" min="0" max="30" value="5" id="mypaddingLeftcolorPicker"
+					dataChange="setValue('paddingLeft', event.target.value, 'number', 'colorPicker')"	/>
+				
+				<components:textSliders 
+					sliderLabel="Padding Right" min="0" max="30" value="5" id="mypaddingRightcolorPicker"
+					dataChange="setValue('paddingRight', event.target.value, 'number', 'colorPicker')"	/>
+				
+				<components:textSliders 
+					sliderLabel="Swatch Border Size" min="0" max="10" value="1" id="myswatchBorderSizecolorPicker"
+					dataChange="setValue('swatchBorderSize', event.target.value, 'number', 'colorPicker')"	/>
+				
+				<components:textSliders 
+					sliderLabel="Swatch Grid Border Size" min="0" max="10" value="0" id="myswatchGridBorderSizecolorPicker"
+					dataChange="setValue('swatchGridBorderSize', event.target.value, 'number', 'colorPicker')"	/>
+				
+				<components:textSliders 
+					sliderLabel="Swatch Highlight Size" min="0" max="10" value="1" id="myswatchHighlightSizecolorPicker"
+					dataChange="setValue('swatchHighlightSize', event.target.value, 'number', 'colorPicker')"	/>
+				
+				<components:textSliders 
+					sliderLabel="Close Duration" min="1" max="2000" value="250" id="mycloseDurationcolorPicker"
+					dataChange="setValue('closeDuration', event.target.value, 'number', 'colorPicker')"	/>
+				
+				<components:textSliders 
+					sliderLabel="Open Duration" min="1" max="2000" value="250" id="myopenDurationcolorPicker"
+					dataChange="setValue('openDuration', event.target.value, 'number', 'colorPicker')"	/>
+				
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Swatch Border Color" selectedColor="0x000000" id="myswatchBorderColorcolorPicker"
+					dataChange="setValue('swatchBorderColor', event.target.selectedColor, 'color', 'colorPicker')"  />
+			
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Swatch Grid Background Color" selectedColor="0x000000" id="myswatchGridBackgroundColorcolorPicker"
+					dataChange="setValue('swatchGridBackgroundColor', event.target.selectedColor, 'color', 'colorPicker')"  />
+			
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Swatch Highlight Color" selectedColor="0xFFFFFF" id="myswatchHighlightColorcolorPicker"
+					dataChange="setValue('swatchHighlightColor', event.target.selectedColor, 'color', 'colorPicker')"  />
+			
+				
+			
+			</mx:Form>	
+			
+			
+			<mx:Box height="20" />
+		
+			<mx:Spacer height="100%" />
+			
+		
+		
+		</mx:VBox>
+		</mx:Canvas>
+		<mx:Box width="100%"  paddingRight="5" paddingBottom="5"  horizontalAlign="right">
+				<mx:LinkButton label="Restore Defaults" 
+					click="restoreItemDefaults('colorPicker')" styleName="undoLink" />
+			</mx:Box>
+		</mx:VBox>
+		
+		
+		
+	
+	<!-- 
+	//********************//
+	//   SANDBOX          //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="100%" styleName="glassPods" >
+		<head:GlassHeaders headerTitle="SANDBOX" />
+		<mx:ColorPicker id="mycolorPicker" left="10" top="30" />
+		
+			
+	</mx:Canvas>
+	
+	<!-- 
+	//********************//
+	//   CSS VIEW         //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="250" styleName="glassPods" horizontalScrollBarStyleName="fseVerticalScrollBar" >
+		<head:GlassHeaders headerTitle="CSS"/>
+		<mx:TextArea text="{myCSS}" left="10" right="10" top="30" bottom="10" styleName="cssTextArea" />
+	</mx:Canvas>
+	<mx:Script source="../as/colorPicker.as" />
+
+
+
+</mx:HBox>
+
+
+
+

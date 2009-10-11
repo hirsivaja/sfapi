@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:HBox width="100%" height="100%" xmlns:mx="http://www.adobe.com/2006/mxml" name="Application Control Bar"
+	xmlns:head="layout.*"  xmlns:components="components.*" >
+	<!-- 
+	//********************//
+	//   STYLE CONTROLS   //
+	//********************//
+	-->
+	
+	<mx:VBox height="100%" width="380" styleName="glassPods"  >
+		
+		<head:GlassHeaders headerTitle="STYLE CONTROLS"/>
+		<mx:Canvas width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollBarStyleName="fseVerticalScrollBar">
+	
+		<mx:VBox x="10" width="350">
+				
+			<mx:Form width="100%" paddingLeft="50" >
+
+				<components:borderStylePicker id="myborderStylelinkBar" styleValue="none"
+					dataChange="setStringValue('borderStyle', event.target.styleValue, 'linkBar') " />
+				
+			</mx:Form>
+			
+			<mx:Box styleName="conditionalBox" width="100%" visible="{myborderStylelinkBar.styleValue != 'none'}" height="{myborderStylelinkBar.styleValue != 'none'?(myborderStylelinkBar.styleValue == 'solid'?(60):30):0}" >			
+			
+				<mx:Form styleName="conditionalForm" paddingLeft="23" width="100%"  >
+				
+					<components:colorPicker dataProvider="{swatches}" 
+						pickerLabel="Border Color" selectedColor="0xB7BABC" id="myborderColorlinkBar"
+						dataChange="setValue('borderColor', event.target.selectedColor, 'color', 'linkBar')"  />
+					
+					<components:textSliders visible="{myborderStylelinkBar.styleValue == 'solid'}" height="{myborderStylelinkBar.styleValue == 'solid'?(24):0}"
+						sliderLabel="Border Thickness" min="0" max="20" value="1" id="myborderThicknesslinkBar" padRight="0"
+						dataChange="setValue('borderThickness', event.target.value, 'number', 'linkBar')"	/>	
+				
+				</mx:Form>
+			
+			</mx:Box>
+			
+			<mx:Form width="100%" paddingLeft="5">
+			
+				<components:textSliders 
+					sliderLabel="Horizontal Gap" min="0" max="20" value="8" id="myhorizontalGaplinkBar"
+					dataChange="setValue('horizontalGap', event.target.value, 'number', 'linkBar')"	/>	
+				
+				<components:textSliders 
+					sliderLabel="Separator Width" min="0" max="20" value="1" id="myseparatorWidthlinkBar"
+					dataChange="setValue('separatorWidth', event.target.value, 'number', 'linkBar')"	/>	
+				
+				<components:textSliders 
+					sliderLabel="Letter Spacing" min="0" max="10" value="0" id="myletterSpacinglinkBar"
+					dataChange="setValue('letterSpacing', event.target.value, 'number', 'linkBar')"	/>	
+				
+				<components:textSliders 
+					sliderLabel="Corner Radius" min="0" max="20" value="0" id="mycornerRadiuslinkBar"
+					dataChange="setValue('cornerRadius', event.target.value, 'number', 'linkBar')"	/>	
+				
+				<components:textSliders 
+					sliderLabel="Background Alpha" min="0" max="1" value="1" id="mybackgroundAlphalinkBar" snapInt=".01" 
+					dataChange="setValue('backgroundAlpha', event.target.value, 'number', 'linkBar')"	/>	
+				
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Background Color" selectedColor="0xFFFFFF" id="mybackgroundColorlinkBar"
+					dataChange="setValue('backgroundColor', event.target.selectedColor, 'color', 'linkBar')"  />
+				
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Separator Color" selectedColor="0xC4CCCC" id="myseparatorColorlinkBar"
+					dataChange="setValue('separatorColor', event.target.selectedColor, 'color', 'linkBar')"  />
+				
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Roll Over Color" selectedColor="0xAADEFF" id="myrollOverColorlinkBar"
+					dataChange="setValue('rollOverColor', event.target.selectedColor, 'color', 'linkBar')"  />
+				
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Selection Color" selectedColor="0x7FCDFE" id="myselectionColorlinkBar"
+					dataChange="setValue('selectionColor', event.target.selectedColor, 'color', 'linkBar')"  />
+				
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Color" selectedColor="0x2B333C" id="mycolorlinkBar"
+					dataChange="setValue('color', event.target.selectedColor, 'color', 'linkBar')"  />
+				
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Text Roll Over Color" selectedColor="0x2B333C" id="mytextRollOverColorlinkBar"
+					dataChange="setValue('textRollOverColor', event.target.selectedColor, 'color', 'linkBar')"  />
+				
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Text Selected Color" selectedColor="0x2B333C" id="mytextSelectedColorlinkBar"
+					dataChange="setValue('textSelectedColor', event.target.selectedColor, 'color', 'linkBar')"  />
+				
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Disabled Color" selectedColor="0xAAB3B3" id="mydisabledColorlinkBar"
+					dataChange="setValue('disabledColor', event.target.selectedColor, 'color', 'linkBar')"  />
+					
+				<components:fontPicker id="myfontFamilylinkBar" dataChange="setStringValue('fontFamily', event.target.styleValue, 'linkBar')" />
+			
+				<components:fontSizePicker id="myfontSizelinkBar" dataChange="setStringValue('fontSize', event.target.styleValue, 'linkBar')" />
+			
+				<components:textFormattingPicker id="mytextFormatlinkBar" dataChange="setTextFormat(event.target.styleValue, 'linkBar');" />
+			
+				<components:trueFalsePicker pickerLabel="Drop Shadow" stateLabel="Enabled" id="mydropShadowEnabledlinkBar"
+					styleValue="false" dataChange="setBooleanValue('dropShadowEnabled', event.target.styleValue, 'linkBar')" />
+				
+			
+			</mx:Form>	
+			
+				
+			<mx:Box styleName="conditionalBox" visible="{mydropShadowEnabledlinkBar.styleValue == true}" height="{mydropShadowEnabledlinkBar.styleValue == true?(80):0}"  >			
+			
+				<mx:Form styleName="conditionalForm" paddingLeft="15"  width="100%">
+					
+					<components:textSliders 
+						sliderLabel="Shadow Distance" min="-20" max="20" value="2" id="myshadowDistancelinkBar" padRight="0"
+						dataChange="setValue('shadowDistance', event.target.value, 'number', 'linkBar')"	/>	
+				
+					<components:shadowDirectionPicker id="myshadowDirectionlinkBar" 
+						dataChange="setStringValue('shadowDirection', event.target.styleValue, 'linkBar') " />
+						
+					<components:colorPicker dataProvider="{swatches}" 
+						pickerLabel="Drop Shadow Color" selectedColor="0x000000" id="mydropShadowColorlinkBar"
+						dataChange="setValue('dropShadowColor', event.target.selectedColor, 'color', 'linkBar')"  />
+				
+					</mx:Form>
+			</mx:Box>
+			
+			<mx:Box height="20" />
+		
+			<mx:Spacer height="100%" />
+			
+		
+		
+		</mx:VBox>
+		</mx:Canvas>
+		<mx:Box width="100%"  paddingRight="5" paddingBottom="5"  horizontalAlign="right">
+				<mx:LinkButton label="Restore Defaults" 
+					click="restoreItemDefaults('linkBar')" styleName="undoLink" />
+			</mx:Box>
+		</mx:VBox>
+		
+		
+		
+	
+	<!-- 
+	//********************//
+	//   SANDBOX          //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="100%" styleName="glassPods" horizontalScrollBarStyleName="fseVerticalScrollBar" >
+		<head:GlassHeaders headerTitle="SANDBOX"/>
+		
+	<mx:LinkBar id="mylinkBar" dataProvider="{linkbarProvider}" left="10" top="30" />
+	<mx:ViewStack id="linkbarProvider" top="60" left="0">
+		<mx:Box label="Link 1" />
+		<mx:Box label="Link 2" />
+		<mx:Box label="Link 3" />
+	</mx:ViewStack>
+	</mx:Canvas>
+	
+	<!-- 
+	//********************//
+	//   CSS VIEW         //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="250" styleName="glassPods" >
+		<head:GlassHeaders headerTitle="CSS"/>
+		<mx:TextArea text="{myCSS}" left="10" right="10" top="30" bottom="10" styleName="cssTextArea" />
+	</mx:Canvas>
+	<mx:Script source="../as/linkBar.as" />
+
+
+
+</mx:HBox>
+
+
+
+

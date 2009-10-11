@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+	<mx:Script>
+		<![CDATA[
+			import mx.events.PropertyChangeEvent;
+			import mx.events.DragEvent;
+			import mx.collections.ArrayCollection;
+			import mx.events.CloseEvent;
+			import mx.controls.Alert;
+			
+			[Bindable]
+			private var gridData:ArrayCollection = new ArrayCollection([
+				{col1: "0", col2: "1", col3: "2"},
+				{col1: "00", col2: "11", col3: "22"},
+				{col1: "000", col2: "111", col3: "222"}
+			]);
+			
+			/* test001 */
+			private function test001Action():void
+			{
+				Alert.show("test001", "test001", Alert.OK, this, test001ActionHandler, null, Alert.OK);
+			}
+			private function test001ActionHandler(eventObj:CloseEvent):void
+			{
+				if (eventObj.detail == Alert.OK) 
+	            {
+	            	testOutput.text = "test001 pass";
+	            }
+			}
+			
+			
+			/* test002 */
+			private function test002Action():void
+			{
+				if(test002CheckBox.selected)
+				{
+					testOutput.text = "test002 pass";
+				}
+			}
+			
+			/* test003 */
+			private function test003Action():void
+			{
+				testOutput.text = "test003 pass";
+			}
+			
+			
+			/* test007 */
+			
+			private function test007aAction(event:Event):void
+			{
+				var mydate:Date = new Date(2009, 2, 8);
+				if(test007aDateField.selectedDate.toDateString() == mydate.toDateString())
+				{
+					testOutput.text = "test007a pass";
+				}
+			}
+			
+			private function test007bAction(event:Event):void
+			{
+				var mydate:Date = new Date(2009, 2, 8);
+				if(test007bDateChooser.selectedDate.toDateString() ==  mydate.toDateString())
+				{
+					testOutput.text = "test007b pass";
+				}
+			}
+			
+			
+			/* test008 */
+			private function test008Action(event:MouseEvent):void
+			{
+				testOutput.text = "test008 pass";
+			}
+			
+			/* test009 */
+			private function test009Action(event:DragEvent):void
+			{
+				if(event.target.id == "test009")
+				{
+					testOutput.text = "test009 pass";
+				}
+			}
+			
+			/* test010 */
+			private function test010Action(event:Event):void
+			{
+				testOutput.text = "test010 pass";
+			}
+			
+			/* test011 */
+			private function test011Action(event:Event):void
+			{
+				testOutput.text = "test011 pass";
+			}
+			
+			/* test012 */
+			private function test012Action(event:Event):void
+			{
+				testOutput.text = "test012 pass";
+			}
+			
+			/* test013 */
+			private function test013Action(event:Event):void
+			{
+				testOutput.text = "test013 pass";
+			}
+			
+			/* test014 */
+			private function test014Action(event:Event):void
+			{
+				testOutput.text = "test014 pass";
+			}
+			
+			/* test015 */
+			private function test015Action(event:Event):void
+			{
+				testOutput.text = "test015 pass";
+			}
+			
+			
+			/* test015 */
+			private function test016Action(event:Event):void
+			{
+				if(test016.label == "test016 - change")
+				{
+					testOutput.text = "test016 pass";
+				}
+			}
+			
+			/* test017 */
+			private function test017Action():void
+			{
+				if(test017.selected)
+				{
+					testOutput.text = "test017 pass";
+				}
+			}
+			
+			/* test018 */
+			[Bindable]
+			private var listData:ArrayCollection = new ArrayCollection([
+				{label: "a", data: 0},
+				{label: "b", data: 1},
+				{label: "c", data: 2},
+				{label: "d", data: 3}
+			]);
+			
+			private function test018Action():void
+			{
+				if(test018List.selectedIndex == 1)
+				{
+					testOutput.text = "test018 pass";
+				}
+				else if(test018List.selectedIndex == 2)
+				{
+					testOutput.text = "test019 pass";
+				}
+			}
+			
+			/* test020 */
+			private function test020Action():void
+			{
+				if(test020.value == 5)
+				{
+					testOutput.text = "test020 pass";
+				}
+			}
+			
+			/* test021 */
+			private function test021Action():void
+			{
+				if(test021.text == "test type")
+				{
+					testOutput.text = "test021 pass";
+				}
+			}
+			
+			/* test022 */
+			private function test022Action():void
+			{
+				if(test022.text == "test type append")
+				{
+					testOutput.text = "test022 pass";
+				}
+			}
+			
+			/* test022 */
+			private function test023Action():void
+			{
+				var test023Child:Button = new Button();
+				test023Child.id = "test023Child";
+				this.addChild(test023Child);
+			}
+			
+			/* test024 */
+			private function test024Action():void
+			{
+				test024Child.visible = true;
+			}
+			
+			/* test024 */
+			private function test025Action():void
+			{
+				test025.toolTip = "";
+			}
+			
+			/* test027 */
+			public var test027:String = "test027 - got it";
+			
+			/* click test */
+			private function clickTestHandler():void
+			{
+				if(testOutput.text == "harri")
+					testOutput.text = "seldon";
+				else
+					testOutput.text = "harri";
+				
+				ExternalInterface.call("doFireFlexClick", "param1", "param2");
+			}
+		]]>
+	</mx:Script>
+	<mx:TextArea x="10" y="10" id="testOutput"/>
+	<mx:Button x="178" y="9" label="test001" id="test001" click="test001Action()"/>
+	<mx:CheckBox id="test002CheckBox" x="178" y="39" label="test002" click="test002Action()"/>
+	<mx:DataGrid x="178" y="69" dataProvider="{gridData}" id="dataGrid">
+		<mx:columns>
+			<mx:DataGridColumn headerText="Column 1" dataField="col1"/>
+			<mx:DataGridColumn headerText="Column 2" dataField="col2"/>
+			<mx:DataGridColumn headerText="Column 3" dataField="col3"/>
+			<mx:DataGridColumn id="test004Column" headerText="test004" width="200">
+				<mx:itemRenderer>
+					<mx:Component>
+						<mx:HBox>
+							<mx:Button id="test004GridButton" label="test004GridButton" click="test004Action(event)" />
+							<mx:Script>
+								<![CDATA[
+									/* test004 */
+									private function test004Action(event:Event):void
+									{
+										outerDocument.testOutput.text = "test004 pass";
+									}
+								]]>
+							</mx:Script>
+						</mx:HBox>
+					</mx:Component>
+				</mx:itemRenderer>
+			</mx:DataGridColumn>
+		</mx:columns>
+	</mx:DataGrid>
+	<mx:Button x="256" y="9" label="test003" id="test003" click="test003Action()"/>
+	<mx:DateField x="178" y="219" id="test007aDateField" change="test007aAction(event)"/>
+	<mx:DateChooser x="276" y="219" id="test007bDateChooser" change="test007bAction(event)"/>
+	<mx:Image x="334" y="10" source="assets/images/test008.gif" id="test008Image" doubleClickEnabled="true" doubleClick="test008Action(event)"/>
+	<mx:Button x="506" y="219" label="test009" id="test009" dragComplete="test009Action(event)"/>
+	<mx:Button x="506" y="249" label="test010" id="test010" mouseDown="test010Action(event)"/>
+	<mx:Button x="506" y="279" label="test011" id="test011" mouseMove="test011Action(event)"/>
+	<mx:Button x="506" y="309" label="test012" id="test012" mouseOver="test012Action(event)"/>
+	<mx:Button x="506" y="339" label="test013" id="test013" rollOut="test013Action(event)"/>
+	<mx:Button x="506" y="369" label="test014" id="test014" rollOver="test014Action(event)" errorString="test036 error string"/>
+	<mx:Button x="506" y="399" label="test015" id="test015" mouseUp="test015Action(event)"/>
+	<mx:Button x="610" y="219" label="test016" id="test016" change="test016Action(event)" />
+	<mx:List id="test018List" dataProvider="{listData}" labelField="label" x="610" y="248" change="test018Action()"></mx:List>
+	<mx:RadioButton x="253" y="39" label="test017" id="test017" change="test017Action()"/>
+	<mx:NumericStepper x="334" y="39" minimum="0" maximum="9" stepSize="1" id="test020" change="test020Action()"/>
+	<mx:TextInput x="400" y="39" id="test021" change="test021Action()"/>
+	<mx:TextInput x="568" y="39" id="test022" text="test type" change="test022Action()"/>
+	<mx:Button x="178" y="267" label="test023" id="test023" click="test023Action()"/>
+	<mx:Button x="178" y="297" label="test024" id="test024" click="test024Action()"/>
+	<mx:Button x="178" y="327" label="test024Child" id="test024Child" visible="false"/>
+	<mx:Button x="178" y="354" label="test025" id="test025" click="test025Action()"/>
+	<mx:Button x="511" y="429" label="Click Test" click="clickTestHandler()"/>
+</mx:Application>

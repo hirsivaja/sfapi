@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:FormItem xmlns:mx="http://www.adobe.com/2006/mxml" label="Border Style" width="100%" creationComplete="setDefault()">
+	
+	<mx:ToggleButtonBar id="togglebar" styleName="fseToggleButtons" itemClick="clickHandler(event);"
+		selectedIndex="{styleValue == 'default'?(0):styleValue == 'none'?(1):2}" >
+		<mx:dataProvider>
+			<mx:Array>
+				<mx:Object icon="{borderPanelDefault}"  toolTip="Default"/>                   
+				<mx:Object icon="{borderNone}" toolTip="None"/>
+				<mx:Object icon="{borderSolid}" toolTip="Solid" />
+        	</mx:Array>
+		</mx:dataProvider>
+	</mx:ToggleButtonBar>
+	
+	<mx:Script>
+		<![CDATA[
+		
+			import mx.events.ItemClickEvent; 
+			import mx.events.FlexEvent;
+			include "../as/assets.as";
+			
+			[Bindable]
+			public var styleValue:String;
+		
+			private function dispatchMyEvent():void {
+                this.dispatchEvent( new Event("dataChange") );
+            }
+            
+             private function clickHandler(event:ItemClickEvent):void {
+             	if (event.index == 0) {
+               		styleValue = 'default';
+               	} else if (event.index == 1) {
+               		styleValue = 'none';
+               	} else if (event.index == 2) {
+               		styleValue = 'solid';
+               	} 
+               dispatchMyEvent();
+            }
+             [Bindable]
+			public var defaultValue:String;
+           
+           public function setDefault():void {
+           		defaultValue = styleValue;
+           }
+           
+           public function restoreDefault():void {
+           		styleValue = defaultValue;
+           }
+           
+		]]>
+	</mx:Script>
+	
+	<mx:Metadata>
+        [Event("dataChange")]
+    </mx:Metadata>
+   
+</mx:FormItem>
