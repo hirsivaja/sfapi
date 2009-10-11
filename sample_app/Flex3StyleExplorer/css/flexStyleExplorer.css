@@ -1,0 +1,356 @@
+Application {
+	paddingRight: 10;
+	paddingLeft: 10;
+	paddingTop: 10;
+	paddingBottom: 0;	
+}
+
+.glassPanel {
+	backgroundSize: "100%";
+	backgroundImage: Embed(source="/assets/header.swf#glassHeader");
+	paddingTop: 7;
+	paddingLeft: 10;
+}
+
+.DropDownStyles {
+	dropShadowEnabled: true;
+	cornerRadius: 0;
+}
+
+.fseVerticalScrollBar {
+	downArrowUpSkin: Embed(source="/assets/downArrow.png");
+	downArrowOverSkin: Embed(source="/assets/downArrow.png");
+	downArrowDownSkin: Embed(source="/assets/downArrow.png");
+	upArrowUpSkin: Embed(source="/assets/upArrow.png");
+	upArrowOverSkin: Embed(source="/assets/upArrow.png");
+	upArrowDownSkin: Embed(source="/assets/upArrow.png");
+	thumbDownSkin: Embed(source="/assets/thumb.png",
+		scaleGridLeft="7", scaleGridTop="5", scaleGridRight="8", scaleGridBottom="7");
+	thumbUpSkin: Embed(source="/assets/thumb.png",
+		scaleGridLeft="7", scaleGridTop="5", scaleGridRight="8", scaleGridBottom="7");
+	thumbOverSkin: Embed(source="/assets/thumb.png",
+		scaleGridLeft="7", scaleGridTop="5", scaleGridRight="8", scaleGridBottom="7");
+	trackSkin: Embed(source="/assets/scrolltrack.png",
+		scaleGridLeft="7", scaleGridTop="4", scaleGridRight="8", scaleGridBottom="6" );	
+	
+}
+
+
+.mySelectedButtonStyle {
+		
+}
+
+.HeaderStyle {
+	fontWeight: bold;
+	fontFamily: Verdana;
+}
+
+.DGHeaderStyle {
+	fontWeight: bold;
+	fontFamily: Verdana;
+}
+
+.fseToggleButtons {
+	buttonHeight: 18;
+	buttonWidth: 20;
+	focusAlpha: 0;
+	themeColor: #FFFFFF;
+	horizontalGap: -1;
+	buttonStyleName: "fseButtonBarStyle";	
+}
+
+.fseButtonBarStyle {
+	highlightAlphas: 0.5, 0;
+	fillAlphas: 0.5, 0.15, 0.7, 0.3;
+    fillColors: #ffffff, #000000, #ffffff, #000000;
+   	borderColor: #ffffff;
+}
+
+
+.glassPods {
+	borderStyle: applicationControlBar;
+	fillColors: #FFFFFF, #FFFFFF;
+	fillAlphas: 0, 0.25;
+	highlightAlphas: 0, 0;
+	backgroundColor: #ffffff;
+	backgroundAlpha: .2;
+	borderThickness: 0;
+	dropShadowEnabled: true;
+	cornerRadius: 8;
+	paddingRight: 0;
+	paddingLeft: 0;
+	paddingTop: 0;
+	paddingBottom: 0;
+	horizontalScrollBarStyleName: fseVerticalScrollBar;
+	verticalScrollBarStyleName: fseVerticalScrollBar;
+}
+
+.myTitleStyle {
+	fontWeight: bold;
+}
+
+.sliderText {
+   backgroundAlpha: 0;
+   backgroundColor: #000000;
+   color: #ffffff;
+   borderStyle: solid;
+   borderColor: #d0d8db;
+   borderThickness: 1;
+   cornerRadius: 7;
+   textIndent: 3;
+   textAlign: right;
+}
+
+.StyledTabs {
+	fontWeight: bold;
+}
+
+.SelectedStyledTabs {
+	fontWeight: bold;
+}
+
+.StyledButtonBar {
+	
+}
+
+.glassLabels {
+	color: #FFFFFF;
+	fontSize: 12;
+	fontWeight: bold;
+	paddingLeft: 0;
+	paddingTop: 0;
+	fontFamily: Myriad;
+}
+
+.cssTextArea {
+	backgroundColor: #FFFFFF;
+	borderStyle: solid;
+	borderThickness: 0;
+	cornerRadius: 8;
+	editable: false;
+	paddingRight: 5;
+	paddingLeft: 5;
+	backgroundAlpha: .4;
+	verticalScrollBarStyleName: "fseVerticalScrollBar";
+}
+
+Form {
+	verticalGap: 0;
+	paddingTop: 0;
+	paddingBottom: 0;
+	paddingLeft: 0;
+	paddingRight: 0;
+}
+
+FormItem {
+	paddingTop: 2;
+	paddingBottom: 1;
+	verticalGap: 0;
+}
+
+.undoLink {
+	textDecoration: underline;
+	fontFamily: Verdana;
+	fontSize: 9;
+	fontWeight: normal;	
+	icon: Embed(source="/assets/undo.png");
+	rollOverColor: #FFFFFF;
+	selectionColor: #FFFFFF;
+	textSelectionColor: #000000;
+}
+
+.fseSliders {
+	showTrackHighlight: true;
+	dataTipStyleName: sliderTips;
+	dataTipOffset: 0;
+	thumbUpSkin: Embed(source="/assets/sliderThumb.png");
+	thumbOverSkin: Embed(source="/assets/sliderThumb_over.png");
+	thumbDownSkin: Embed(source="/assets/sliderThumb_down.png");
+	themeColor: #ffffff;
+}
+
+.sliderTips {
+	backgroundColor: #000000;
+	backgroundAlpha: .60;
+	color: #ffffff;
+	cornerRadius: 5;
+	fontFamily: verdana;
+	fontSize: 10;
+	fontWeight: normal;
+	textDecoration: none;
+	fontStyle: normal;
+}
+
+.styleControlTabNavigator {
+	paddingLeft: 5; 
+	tabWidth: 80; 
+	paddingRight: 5;
+	 backgroundAlpha: 0; 
+	 borderStyle: solid; 
+	 borderColor: #FFFFFF; 
+	 paddingBottom: 10; 
+	 borderThickness: 1; 
+	 cornerRadius: 4;
+	 tabStyleName: "fseTabs";
+}
+
+.fseTabs {
+	cornerRadius: 6;
+	highlightAlphas: 0.4, 0;
+	fillAlphas: 0,0;
+	borderColor: #FFFFFF;
+	themeColor: #ffffff;	
+	paddingLeft: 10;
+	paddingRight: 10;
+	backgroundAlpha: 1;
+	backgroundColor: #FFFFFF;
+	color: #0B333C;
+	textRollOverColor: #0B333C;
+	fontSize: 9;
+}
+
+.fseControlBar {
+   cornerRadius: 8;
+   borderStyle: solid;
+   borderThickness: 0;
+   backgroundColor: #000000;
+   backgroundAlpha: 0.1;
+}
+
+
+.myaccordionHeader {
+   color: #000000;
+}
+
+
+.fseTree {
+	backgroundAlpha: 0;
+	rollOverColor: #c7c7c7;
+	borderStyle: none;
+	selectionColor: #ffffff;
+	indentation: 10;
+	verticalScrollBarStyleName: "fseVerticalScrollBar";
+}	
+	
+RadioButton {
+	fontWeight: bold;
+}
+
+CheckBox {
+	fontWeight: bold;
+}
+
+.componentLinkBar {
+	rollOverColor: #cad5da;
+	selectionColor: #ffffff;
+	disabledColor: #FFFFFF;
+	fontSize: 9;
+}
+
+.conditionalBox {
+	borderStyle: solid;
+	borderThickness: 0;
+	backgroundColor: #FFFFFF;
+	backgroundAlpha: .2;
+	cornerRadius: 6;
+	horizontalAlign: right;
+	showEffect: WipeDown;
+	hideEffect: WipeUp;
+}
+
+.conditionalForm {
+	paddingTop: 4;
+	paddingBottom: 4;
+	paddingRight: 4;
+	paddingLeft: 4;
+}
+
+.noPadding {
+	paddingRight: 0;
+	paddingTop: 0;
+	paddingLeft: 0;
+	paddingBottom: 0;	
+}
+
+.styleExplorerTitle {
+	fontFamily: Myriad;
+	fontSize: 24;
+	color: #FFFFFF;
+	fontWeight: normal;
+}
+
+.footerLink {
+	fontFamily: Verdana;
+	fontSize: 9;
+	fontWeight: normal;
+	color: #FFFFFF;	
+	rollOverColor: #FFFFFF;
+	textRollOverColor: #FFFFFF;
+	selectionColor: #FFFFFF;
+	textSelectionColor: #000000;
+}
+
+.myButtonBarStyleName {
+	fontFamily: Verdana;
+}
+
+.myScrolls { 
+   cornerRadius: 0;
+   borderColor: #ffffff;
+   highlightAlphas: 0.27, 0;
+   fillAlphas: 1, 1, 1, 1;
+   fillColors: #a5b7bf, #a5b7bf, #a5b7bf, #a5b7bf;
+   trackColors: #6d838e, #8b9da6;
+   symbolColor: #ffffff;
+}
+
+.colorPickerPanel {
+   borderThickness: 1;
+   backgroundAlpha: 0;
+   borderAlpha: 0.5;
+   borderThicknessLeft: 0;
+   borderThicknessRight: 0;
+   borderThicknessTop: 0;
+   highlightAlphas: 1, 0.23;
+   borderStyle: solid;
+   headerColors: #ffffff, #ffffff;
+   borderColor: #000000;
+   titleStyleName: "cpHeader";
+}
+
+.cpHeader {
+   color: #000000;
+   fontWeight: bold;
+   }
+
+.myWeekDayStyleName {
+	fontWeight: bold;	
+}
+
+.myHeaderStyleName {
+	fontWeight: bold;	
+}
+
+.myTodayStyleName {
+	fontWeight: bold;
+	color: #FFFFFF;	
+}
+
+@font-face {
+    src: url("../fonts/MyriadWebPro.ttf") ;
+    fontFamily: Myriad;
+    unicodeRange:
+           U+0041-U+005A, /* Upper-Case [A..Z] */
+           U+0061-U+007A, /* Lower-Case a-z */
+           U+0030-U+0039, /* Numbers [0..9] */
+           U+002E-U+002E; /* Period [.] */
+}
+
+@font-face {
+    src: url("../fonts/MyriadWebPro-Bold.ttf") ;
+    fontFamily: Myriad;
+    fontWeight: bold;
+    unicodeRange:
+           U+0041-U+005A; /* Upper-Case [A..Z] */
+}
+

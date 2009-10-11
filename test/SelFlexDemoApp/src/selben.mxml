@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+	creationComplete="initSelben(this)"
+	 xmlns:a="*"
+	>
+
+<mx:Script>
+	<![CDATA[
+		import mx.collections.ArrayCollection;
+		import mx.controls.Alert;
+		
+		import Fruit;
+
+		private var numClicks:int = 0;
+		
+		private function initSelben(app:Object):void {
+			SeleniumFlexAPI.init(app);
+		}
+	
+		private function multiply():void {
+			var n:int = int(num.text);
+			var factor:int = int(factor.text);
+			result.text = "The result is " + String(n * factor);
+		}
+		
+		private function buttonClick(): void {
+			buttonClicks.text = "pushed " + ++numClicks + ((numClicks == 1) ? " time" : " times");
+		}
+		
+		private function comboChange(): void {
+			var fruit:Fruit = Fruit(combo.selectedItem);
+			comboQuote.text = fruit.name + "s are " + fruit.colour;
+		}
+		
+		private function checkBoxChange(): void {
+			checkBoxLabel.text = checkBox.selected ? "checked" : "not checked";
+		}
+		
+		private function dateChange(): void {
+			dateLabel.text = "you chose " + date.selectedDate.getDate() + 
+				"/" + (date.selectedDate.getMonth() + 1) +           
+                "/" + date.selectedDate.getFullYear();
+		}
+		
+		private function gridClick(): void {
+            var fruit:Fruit = Fruit(dataGrid.selectedItem);
+            dataGridLabel.text = fruit.name + "s are " + fruit.colour;
+        }
+
+		private function cheddarClick(): void {
+			cheeseTabText.text = "you chose Cheddar";
+		}
+		
+		private function brieClick(): void {
+			cheeseTabText.text = "you chose Brie";
+		}
+		
+		private var apple:Fruit = new Fruit("apple", "green");
+		private var banana:Fruit = new Fruit("banana", "yellow");
+		private var grape:Fruit = new Fruit("grape", "purple");
+		[Bindable]
+		private var fruits:ArrayCollection = new ArrayCollection([apple, banana, grape]);
+	
+	]]>
+</mx:Script>
+
+<mx:Style>
+Application{
+	font-size: 16px;
+	background-color: #B0C4DE;
+}		
+</mx:Style>
+
+<mx:VBox paddingLeft="150" paddingTop="50">
+
+<mx:Form id="selbenForm">
+
+	<mx:HBox>
+		<mx:FormItem label="Think of a number">
+			<mx:TextInput id="num" text="10" width="100" maxChars="10" change="multiply()"
+				backgroundColor="#ccddee"/>
+		</mx:FormItem>
+		
+		<mx:FormItem label="Multiply by">
+			<mx:TextInput id="factor" text="3" width="100" maxChars="10" change="multiply()"
+				backgroundColor="#ddeeff"/>
+		</mx:FormItem>
+		
+		<mx:Label id="result" text="The result is 30"/>
+	</mx:HBox>
+	
+	<mx:HBox>	
+		<mx:Button id="button" label="Push" click="buttonClick();"/>
+		<mx:Label id="buttonClicks" text=""/>
+	</mx:HBox>
+	
+	<mx:HBox>	
+		<mx:Label id="comboQuote" text="Choose a fruit"/>
+		<mx:ComboBox id="combo" dataProvider="{fruits}" labelField="name" change="comboChange()"/>
+	</mx:HBox>
+		
+	<mx:HBox>
+		<mx:CheckBox id="checkBox" change="checkBoxChange()"/>
+		<mx:Label id="checkBoxLabel" text="Check me"/>
+	</mx:HBox>
+
+	<mx:HBox>
+		<mx:Label id="dateLabel" text="Pick a date"/>
+		<mx:DateField id="date" formatString="DD/MM/YYYY" editable="true" change="dateChange()"/>
+	</mx:HBox>
+	
+	<mx:HBox>
+		<mx:Label id="dataGridLabel" text="Choose more fruit"/>
+		<mx:DataGrid id="dataGrid" dataProvider="{fruits}" itemClick="gridClick()">
+	      <mx:columns>
+	         <mx:DataGridColumn dataField="name" headerText="Fruit"/>
+	         <mx:DataGridColumn dataField="colour" headerText="Colour"/>
+	      </mx:columns> 
+	   </mx:DataGrid>
+	</mx:HBox>
+	
+	<mx:TabNavigator id="tabs" borderStyle="solid" >
+        <mx:VBox label="Fruit" width="300" height="150">
+            <mx:Label id="fruitTabText" text="fruit"/>
+            <mx:RadioButton groupName="apples" id="Pink" label="Pink Lady" click="Alert.show('you chose Pink Lady')"/>
+            <mx:RadioButton groupName="apples" id="Cox" label="Cox's Orange Pippin" click="Alert.show('you chose Cox\'s Orange Pippin')"/>
+        </mx:VBox>
+
+        <mx:VBox label="Veg" width="300" height="150">
+            <mx:Label id="vegTabText" text="veg"/>
+        </mx:VBox>
+
+        <mx:VBox label="Cheese" width="300" height="150">
+            <mx:Label id="cheeseTabText" text="Choose cheese"/>
+            <mx:RadioButton groupName="cheeses" id="Cheddar" label="Cheddar" click="cheddarClick()"/>
+            <mx:RadioButton groupName="cheeses" id="Brie" label="Brie" click="brieClick()"/>
+        </mx:VBox>      
+    </mx:TabNavigator>
+			
+</mx:Form>
+
+</mx:VBox>
+	
+</mx:Application>

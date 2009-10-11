@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:FormItem xmlns:mx="http://www.adobe.com/2006/mxml" label="{sliderLabel}" width="100%" creationComplete="setDefault()"  >
+	<mx:HBox verticalAlign="middle" width="100%" paddingRight="{padRight}">
+		<mx:HSlider
+			width="120"
+			thumbCount="1" 
+			styleName="fseSliders"
+			minimum="{min}"
+			maximum="{max}"
+			value="{value}"
+			dataTipPrecision="{snapInt == 1?(0):2}"
+			snapInterval="{snapInt}"
+			liveDragging="{liveDrag}"
+			id="sliderItem"
+			change="{this.value = event.target.value;  this.dispatchEvent( new Event('dataChange')); }" />
+				
+		<mx:Spacer width="100%" />
+		<mx:TextInput width="{textWidth != 0?(textWidth):snapInt == 1?(30):40}" id="textBox" text="{sliderItem.value}" restrict="0123456789." 
+			change="updateSlider(event.target.text);"
+			styleName="sliderText" height="20" />
+					
+	</mx:HBox>
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			[Bindable]
+			public var sliderLabel:String;
+			
+			[Bindable]
+			public var min:Number;
+			
+			[Bindable]
+			public var textWidth:Number = 0;
+			
+			[Bindable]
+			public var max:Number;
+			
+			[Bindable]
+			public var value:Number;
+				
+			[Bindable]
+			public var snapInt:Number = 1;
+
+			[Bindable]
+			public var liveDrag:Boolean = true;
+			
+			[Bindable]
+			public var padRight:Number = 5;
+			
+            
+            private function updateSlider(value:String):void {
+            	if ( snapInt != 1 && value != '.' && value != '0.' && value != '0.0' && value != '.0') {
+	            	sliderItem.value = Number(value);
+					this.value = sliderItem.value;
+					 this.dispatchEvent( new Event("dataChange") );
+            	} else if (snapInt == 1) {
+            		sliderItem.value = Number(value);
+					this.value = sliderItem.value;
+					 this.dispatchEvent( new Event("dataChange") );
+            	}
+            }
+            
+              [Bindable]
+			public var defaultValue:Number;
+           
+           public function setDefault():void {
+           		defaultValue = value;
+           }
+           
+           public function restoreDefault():void {
+           		value = defaultValue;
+           }
+            
+           
+		]]>
+	</mx:Script>
+	
+	<mx:Metadata>
+        [Event("dataChange")]
+    </mx:Metadata>
+   
+</mx:FormItem>

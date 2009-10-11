@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:HBox width="100%" height="100%" xmlns:mx="http://www.adobe.com/2006/mxml" name="Text Area"
+	xmlns:head="layout.*"  xmlns:components="components.*" >
+	<!-- 
+	//********************//
+	//   STYLE CONTROLS   //
+	//********************//
+	-->
+	
+	<mx:VBox height="100%" width="380" styleName="glassPods"  >
+		
+		<head:GlassHeaders headerTitle="STYLE CONTROLS"/>
+		<mx:Canvas width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollBarStyleName="fseVerticalScrollBar">
+	
+		<mx:VBox x="10" width="350">
+				
+			<mx:Form width="100%" paddingLeft="7" >
+			
+				<components:borderStylePicker id="myborderStyletextArea" styleValue="solid"
+					dataChange="setStringValue('borderStyle', event.target.styleValue, 'textArea') " />
+			
+				<mx:Box styleName="conditionalBox" width="100%" visible="{myborderStyletextArea.styleValue != 'none'}" verticalScrollPolicy="off"
+					height="{myborderStyletextArea.styleValue != 'none'?(myborderStyletextArea.styleValue == 'solid'?(82):36):0}">			
+				
+					<mx:Form styleName="conditionalForm"  width="100%" paddingLeft="5" >
+				
+						<components:colorPicker dataProvider="{swatches}" 
+							pickerLabel="Border Color" selectedColor="0xB7BABC" id="myborderColortextArea"
+							dataChange="setValue('borderColor', event.target.selectedColor, 'color', 'textArea')"  />
+						
+						<components:textSliders padRight="0"
+							sliderLabel="Border Thickness" min="0" max="20" value="1" id="myborderThicknesstextArea" visible="{myborderStyletextArea.styleValue == 'solid'}"
+							dataChange="setValue('borderThickness', event.target.value, 'number', 'textArea')"	/>	
+					
+						<components:textSliders padRight="0"
+							sliderLabel="Corner Radius" min="0" max="20" value="0" id="mycornerRadiustextArea" visible="{myborderStyletextArea.styleValue == 'solid'}"
+							dataChange="setValue('cornerRadius', event.target.value, 'number', 'textArea')"	/>	
+						
+					</mx:Form>
+				
+				</mx:Box>
+			
+				<components:textSliders 
+					sliderLabel="Padding Left" min="0" max="30" value="0" id="mypaddingLefttextArea"
+					dataChange="setValue('paddingLeft', event.target.value, 'number', 'textArea')"	/>	
+				
+				<components:textSliders 
+					sliderLabel="Padding Right" min="0" max="30" value="0" id="mypaddingRighttextArea"
+					dataChange="setValue('paddingRight', event.target.value, 'number', 'textArea')"	/>	
+				
+				<components:textSliders 
+					sliderLabel="Text Indent" min="0" max="30" value="0" id="mytextIndenttextArea"
+					dataChange="setValue('textIndent', event.target.value, 'number', 'textArea')"	/>	
+				
+				<components:textSliders 
+					sliderLabel="Letter Spacing" min="0" max="10" value="0" id="myletterSpacingtextArea"
+					dataChange="setValue('letterSpacing', event.target.value, 'number', 'textArea')"	/>	
+				
+				<components:textSliders 
+					sliderLabel="Leading" min="0" max="20" value="2" id="myleadingtextArea"
+					dataChange="setValue('leading', event.target.value, 'number', 'textArea')"	/>	
+			
+				<components:textSliders 
+					sliderLabel="Background Alpha" min="0" max="1" value="1" id="mybackgroundAlphatextArea" snapInt=".01"
+					dataChange="setValue('backgroundAlpha', event.target.value, 'number', 'textArea')"	/>	
+			
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Background Color" selectedColor="0xFFFFFF" id="mybackgroundColortextArea"
+					dataChange="setValue('backgroundColor', event.target.selectedColor, 'color', 'textArea')"  />
+			
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Font Color" selectedColor="0x0B333C" id="mycolortextArea"
+					dataChange="setValue('color', event.target.selectedColor, 'color', 'textArea')"  />
+			
+				<components:fontPicker id="myfontFamilytextArea" dataChange="setStringValue('fontFamily', event.target.styleValue, 'textArea')" />
+			
+				<components:fontSizePicker id="myfontSizetextArea" dataChange="setStringValue('fontSize', event.target.styleValue, 'textArea')" />
+				
+				<components:textFormattingPicker id="mytextFormattextArea" dataChange="setTextFormat(event.target.styleValue, 'textArea');" />
+				
+				<components:textAlign id="mytextAligntextArea" dataChange="setStringValue('textAlign', event.target.styleValue, 'textArea') " />
+				
+				
+			<components:trueFalsePicker pickerLabel="Drop Shadow" stateLabel="Enabled" id="mydropShadowEnabledtextArea"
+					styleValue="false" dataChange="setBooleanValue('dropShadowEnabled', event.target.styleValue, 'textArea')" />
+		
+			</mx:Form>	
+				
+			
+			<mx:Box styleName="conditionalBox" width="100%"  visible="{mydropShadowEnabledtextArea.styleValue == true}"  >			
+		
+				<mx:Form styleName="conditionalForm" width="100%" >
+				
+					<components:shadowDirectionPicker id="myshadowDirectiontextArea" 
+						dataChange="setStringValue('shadowDirection', event.target.styleValue, 'textArea') " />
+						
+					<components:textSliders
+						sliderLabel="Shadow Distance" min="-20" max="20" value="2" id="myshadowDistancetextArea" padRight="0"
+						dataChange="setValue('shadowDistance', event.target.value, 'number', 'textArea')"	/>	
+					
+					<components:colorPicker dataProvider="{swatches}" 
+						pickerLabel="Drop Shadow Color" selectedColor="0x000000" id="mydropShadowColortextArea"
+						dataChange="setValue('dropShadowColor', event.target.selectedColor, 'color', 'textArea')"  />
+					
+				</mx:Form>
+			
+			</mx:Box>
+			
+			<mx:Box height="20" />
+		
+			<mx:Spacer height="100%" />
+			
+		
+		
+		</mx:VBox>
+		</mx:Canvas>
+		<mx:Box width="100%"  paddingRight="5" paddingBottom="5"  horizontalAlign="right">
+				<mx:LinkButton label="Restore Defaults" 
+					click="restoreItemDefaults('textArea')" styleName="undoLink" />
+			</mx:Box>
+		</mx:VBox>
+		
+		
+		
+	
+	<!-- 
+	//********************//
+	//   SANDBOX          //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="100%" styleName="glassPods" >
+		<head:GlassHeaders headerTitle="SANDBOX" />
+		<mx:TextArea id="mytextArea" left="10" top="30" right="10" bottom="30"
+			text="Enter your own text into this area if you wish to customize the look and feel of your personalized text." editable="true" 
+			/>
+				
+			
+			
+	</mx:Canvas>
+	
+	<!-- 
+	//********************//
+	//   CSS VIEW         //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="250" styleName="glassPods" >
+		<head:GlassHeaders headerTitle="CSS"/>
+		<mx:TextArea text="{myCSS}" left="10" right="10" top="30" bottom="10" styleName="cssTextArea" />
+	</mx:Canvas>
+	<mx:Script source="../as/textArea.as" />
+
+
+
+</mx:HBox>
+
+
+
+

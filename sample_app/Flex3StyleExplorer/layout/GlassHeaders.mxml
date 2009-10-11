@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Box xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="*" 
+		styleName="glassPanel" width="100%" >
+<mx:Script>
+	<![CDATA[
+		[Bindable]
+		public var headerTitle:String;
+	]]>
+</mx:Script>
+	<mx:Label text="{headerTitle}" styleName="glassLabels" />
+</mx:Box>

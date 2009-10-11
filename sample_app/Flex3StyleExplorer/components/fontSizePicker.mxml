@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:FormItem xmlns:mx="http://www.adobe.com/2006/mxml" label="{formItemLabel}" width="100%" >
+	
+	<mx:ComboBox dataProvider="{fontsizes}" id="fPicker" selectedIndex="3" editable="true"
+		change="{this.styleValue = fPicker.text; dispatchMyEvent(); }" rowCount="15"/>
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			[Bindable]
+			public var styleValue:String;
+			
+			[Bindable]
+			public var formItemLabel:String = "Font Size";
+			
+			[Bindable]		
+			public var fontsizes:Array = [ 
+					{label:"8"}, 
+					{label:"9"}, 
+					{label:"10"}, 
+					{label:"11"}, 
+					{label:"12"},
+					{label:"14"},
+					{label:"16"},
+					{label:"18"},
+					{label:"20"},
+					{label:"22"},
+					{label:"24"},
+					{label:"28"},
+					{label:"32"},
+					{label:"48"},
+					{label:"72"}
+					];
+
+			
+			private function dispatchMyEvent():void {
+                this.dispatchEvent( new Event("dataChange") );
+            }
+           
+           public function restoreDefault():void {
+           		fPicker.selectedIndex = 3;
+           }
+            
+           
+		]]>
+	</mx:Script>
+	
+	<mx:Metadata>
+        [Event("dataChange")]
+    </mx:Metadata>
+   
+</mx:FormItem>

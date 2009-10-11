@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:HBox width="100%" height="100%" xmlns:mx="http://www.adobe.com/2006/mxml" name="Data Grid"
+	xmlns:head="layout.*"  xmlns:components="components.*" >
+	<!-- 
+	//********************//
+	//   STYLE CONTROLS   //
+	//********************//
+	-->
+	
+	<mx:VBox height="100%" width="400" styleName="glassPods" paddingLeft="10" paddingRight="10" >
+		
+		<head:GlassHeaders headerTitle="STYLE CONTROLS"/>
+		
+		<mx:TabNavigator width="100%" height="100%" horizontalScrollPolicy="off"
+			 styleName="styleControlTabNavigator" tabWidth="120" verticalScrollBarStyleName="fseVerticalScrollBar">
+		
+		<mx:Canvas width="100%" height="100%" verticalScrollBarStyleName="fseVerticalScrollBar"
+				horizontalScrollPolicy="off" label="DataGrid">
+				
+				<mx:Box x="0" width="350"  >
+				
+			<mx:Form width="100%"  >
+				
+				<components:textSliders 
+					sliderLabel="Background Alpha" min="0" max="1" value="1" id="mybackgroundAlphadataGrid" 
+					snapInt=".01" dataChange="setValue('backgroundAlpha', event.target.value, 'number', 'dataGrid')"	/>	
+				
+				<components:textSliders 
+					sliderLabel="Border Thickness" min="0" max="20" value="1" id="myborderThicknessdataGrid" 
+					dataChange="setValue('borderThickness', event.target.value, 'number', 'dataGrid')"	/>	
+				
+				<components:textSliders 
+					sliderLabel="Text Indent" min="0" max="30" value="0" id="mytextIndentdataGrid" 
+					dataChange="setValue('textIndent', event.target.value, 'number', 'dataGrid')"	/>	
+				
+				<components:textSliders 
+					sliderLabel="Letter Spacing" min="0" max="10" value="0" id="myletterSpacingdataGrid" 
+					dataChange="setValue('letterSpacing', event.target.value, 'number', 'dataGrid')"	/>	
+				
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Background Color" selectedColor="0xFFFFFF" id="mybackgroundColordataGrid"
+					dataChange="setValue('backgroundColor', event.target.selectedColor, 'color', 'dataGrid')"  />
+				
+				<components:doubleColorPicker dataProvider="{swatches}" pickerLabel="Alternating Item Colors" styleValue="[0xFFFFFF, 0xEFF1F2]" id="myalternatingItemColorsdataGrid"
+					dataChange="setArrayValue('alternatingItemColors', event.target.styleValue, 'color', 'dataGrid')" />
+			
+				<components:doubleColorPicker dataProvider="{swatches}" pickerLabel="Header Colors" styleValue="[0xFFFFFF, 0xE6EEEE]" id="myheaderColorsdataGrid"
+					dataChange="setArrayValue('headerColors', event.target.styleValue, 'color', 'dataGrid')" />
+				
+				<components:trueFalsePicker pickerLabel="Horizontal Gridlines" stateLabel="Visible" id="myhorizontalGridLinesdataGrid"
+					styleValue="false" dataChange="setBooleanValue('horizontalGridLines', event.target.styleValue, 'dataGrid')" />
+			
+			</mx:Form>
+					
+			<mx:Box styleName="conditionalBox" horizontalAlign="left"  width="345" visible="{myhorizontalGridLinesdataGrid.styleValue == true}" 
+				height="{myhorizontalGridLinesdataGrid.styleValue == true?(35):0}" >			
+				
+				<mx:Form styleName="conditionalForm" >
+			
+					<components:colorPicker dataProvider="{swatches}" 
+						pickerLabel="Horizontal Gridline Color" selectedColor="0xFFFFFF" id="myhorizontalGridLineColordataGrid"
+						dataChange="setValue('horizontalGridLineColor', event.target.selectedColor, 'color', 'dataGrid')"  />
+			
+				</mx:Form>
+			
+			</mx:Box>
+		
+			<mx:Form paddingLeft="38" >
+		
+				<components:trueFalsePicker pickerLabel="Vertical Gridlines" stateLabel="Visible" id="myverticalGridLinesdataGrid"
+					styleValue="true" dataChange="setBooleanValue('verticalGridLines', event.target.styleValue, 'dataGrid')" />
+		
+			</mx:Form>
+			
+			<mx:Box styleName="conditionalBox" width="345" visible="{myverticalGridLinesdataGrid.styleValue == true}" height="{myverticalGridLinesdataGrid.styleValue == true?(35):0}">			
+				
+				<mx:Form styleName="conditionalForm" width="100%" paddingLeft="8" >
+			
+					<components:colorPicker dataProvider="{swatches}" 
+						pickerLabel="Vertical Gridline Color" selectedColor="0xCCCCCC" id="myverticalGridLineColordataGrid"
+						dataChange="setValue('verticalGridLineColor', event.target.selectedColor, 'color', 'dataGrid')"  />
+					
+				</mx:Form>
+		
+			</mx:Box>
+		
+			<mx:Form paddingLeft="54" paddingRight="0" paddingTop="0" paddingBottom="0">
+			
+				<components:trueFalsePicker pickerLabel="Use Roll Over" stateLabel="True" id="myuseRollOverdataGrid"
+					styleValue="true" dataChange="setBooleanValue('useRollOver', event.target.styleValue, 'dataGrid')" />
+			
+			</mx:Form>
+						
+			<mx:Box styleName="conditionalBox" width="345" visible="{myuseRollOverdataGrid.styleValue == true}"
+				height="{myuseRollOverdataGrid.styleValue == true?(58):0}" horizontalAlign="left">			
+			
+				<mx:Form styleName="conditionalForm"  paddingLeft="13" >
+				
+					<components:colorPicker dataProvider="{swatches}" 
+						pickerLabel="Roll Over Color" selectedColor="0xAADEFF" id="myrollOverColordataGrid"
+						dataChange="setValue('rollOverColor', event.target.selectedColor, 'color', 'dataGrid')"  />
+						
+					<components:colorPicker dataProvider="{swatches}" 
+						pickerLabel="Text Roll Over Color" selectedColor="0x0B333C" id="mytextRollOverColordataGrid"
+						dataChange="setValue('textRollOverColor', event.target.selectedColor, 'color', 'dataGrid')"  />
+				
+				</mx:Form>
+			
+			</mx:Box>
+			
+			<mx:Form  paddingRight="0" paddingLeft="18" paddingTop="0" paddingBottom="0" width="342">
+				
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Border Color" selectedColor="0xB7BABC" id="myborderColordataGrid"
+					dataChange="setValue('borderColor', event.target.selectedColor, 'color', 'dataGrid')"  />
+				
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Icon Color" selectedColor="0x111111" id="myiconColordataGrid"
+					dataChange="setValue('iconColor', event.target.selectedColor, 'color', 'dataGrid')"  />
+				
+				
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Selection Color" selectedColor="0x7FCDFE" id="myselectionColordataGrid"
+					dataChange="setValue('selectionColor', event.target.selectedColor, 'color', 'dataGrid')"  />
+				
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Color" selectedColor="0x0B333C" id="mycolordataGrid"
+					dataChange="setValue('color', event.target.selectedColor, 'color', 'dataGrid')"  />
+			
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Text Selected Color" selectedColor="0x0B333C" id="mytextSelectedColordataGrid"
+					dataChange="setValue('textSelectedColor', event.target.selectedColor, 'color', 'dataGrid')"  />
+			
+				<components:fontPicker id="myfontFamilydataGrid" dataChange="setStringValue('fontFamily', event.target.styleValue, 'dataGrid')" />
+			
+				<components:fontSizePicker id="myfontSizedataGrid" dataChange="setStringValue('fontSize', event.target.styleValue, 'dataGrid')" />
+			
+				<components:textFormattingPicker id="mytextFormatdataGrid" dataChange="setTextFormat(event.target.styleValue, 'dataGrid');" />
+						
+				<components:trueFalsePicker pickerLabel="Drop Shadow" stateLabel="Enabled" id="mydropShadowEnableddataGrid"
+					styleValue="false" dataChange="setBooleanValue('dropShadowEnabled', event.target.styleValue, 'dataGrid')" />
+	
+			</mx:Form>
+			
+			<mx:Box styleName="conditionalBox" width="345" visible="{mydropShadowEnableddataGrid.styleValue == true}"
+				height="{mydropShadowEnableddataGrid.styleValue == true?(80):0}" >			
+				
+				<mx:Form styleName="conditionalForm" width="100%" paddingLeft="22" >
+					
+					<components:textSliders padRight="0"
+						sliderLabel="Shadow Distance" min="-20" max="20" value="2" id="myshadowDistancedataGrid" 
+						dataChange="setValue('shadowDistance', event.target.value, 'number', 'dataGrid')"	/>	
+		
+					<components:shadowDirectionPicker id="myshadowDirectiondataGrid" 
+						dataChange="setStringValue('shadowDirection', event.target.styleValue, 'dataGrid') " />
+					
+					<components:colorPicker dataProvider="{swatches}" 
+						pickerLabel="Drop Shadow Color" selectedColor="0x000000" id="mydropShadowColordataGrid"
+						dataChange="setValue('dropShadowColor', event.target.selectedColor, 'color', 'dataGrid')"  />
+						
+				</mx:Form>
+				
+			</mx:Box>
+			
+			
+			</mx:Box>
+			</mx:Canvas>
+			<mx:Canvas width="100%" height="100%" verticalScrollBarStyleName="fseVerticalScrollBar"
+				horizontalScrollPolicy="off" label="Header Styles">
+			
+				<mx:Box x="10" width="350"  >
+				
+					<mx:Form width="100%">
+					
+						<components:textSliders liveDrag="false"
+							sliderLabel="Letter Spacing" min="0" max="10" value="0" id="myheaderletterSpacingdataGrid" 
+							dataChange="setValue('headerletterSpacing', event.target.value, 'number', 'dataGrid')"	/>	
+						
+					
+						<components:colorPicker dataProvider="{swatches}" 
+							pickerLabel="Color" selectedColor="0x0B333C" id="myheaderColordataGrid"
+							dataChange="setValue('headerColor', event.target.selectedColor, 'color', 'dataGrid')"  />
+				
+				
+						<components:textAlign id="mytextAligndataGrid" dataChange="setStringValue('headertextAlign', event.target.styleValue, 'dataGrid') " />
+					
+				
+						<components:fontPicker id="myheaderfontFamilydataGrid" formItemLabel="Font Family"
+							 dataChange="setStringValue('headerfontFamily', event.target.styleValue, 'dataGrid')" />
+					
+						<components:fontSizePicker id="myheaderfontSizedataGrid" formItemLabel="Font Size"
+							dataChange="setStringValue('headerfontSize', event.target.styleValue, 'dataGrid')" />
+					
+						<components:textFormattingPicker id="myheadertextFormatdataGrid" formItemLabel="Text Format"
+							dataChange="setDGHeaderTextFormat(event.target.styleValue, 'dataGrid');" />
+					
+					</mx:Form>
+				
+				</mx:Box>
+			
+			</mx:Canvas>
+			
+			
+			</mx:TabNavigator>
+		
+		
+		<mx:Box width="100%"  paddingRight="5" paddingBottom="5"  horizontalAlign="right">
+				<mx:LinkButton label="Restore Defaults" 
+					click="restoreItemDefaults('dataGrid')" styleName="undoLink" />
+			</mx:Box>
+		</mx:VBox>
+		
+		
+		
+	
+	<!-- 
+	//********************//
+	//   SANDBOX          //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="100%" styleName="glassPods" >
+		<head:GlassHeaders headerTitle="SANDBOX" />
+		<mx:DataGrid id="mydataGrid" left="10" right="10" top="30" height="130" headerStyleName="DGHeaderStyle">
+			 <mx:dataProvider>
+	            <mx:Array id="arr">
+					<mx:Object Artist="Amos Lee" Album="Amos Lee" Song="Arms of a Woman" Genre="Folk" />
+					<mx:Object Artist="Amos Lee" Album="Amos Lee" Song="Bottom of the Barrel" Genre="Folk/Jazz"/>
+					<mx:Object Artist="Snow Patrol" Album="Final Straw" Song="Chocolate" Genre="Alternative"/>
+					<mx:Object Artist="Snow Patrol" Album="Final Straw" Song="How to Be Dead" Genre="Alternative"/>
+					<mx:Object Artist="Keane" Album="Hopes and Fears" Song="Somewhere Only We Know" Genre="Alternative"/>
+				</mx:Array>
+			</mx:dataProvider>
+		</mx:DataGrid>	
+			
+	</mx:Canvas>
+	
+	<!-- 
+	//********************//
+	//   CSS VIEW         //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="250" styleName="glassPods" horizontalScrollBarStyleName="fseVerticalScrollBar" >
+		<head:GlassHeaders headerTitle="CSS"/>
+		<mx:TextArea text="{myCSS}" left="10" right="10" top="30" bottom="10" styleName="cssTextArea" />
+	</mx:Canvas>
+	<mx:Script source="../as/dataGrid.as" />
+	
+	
+
+
+</mx:HBox>
+
+
+
+

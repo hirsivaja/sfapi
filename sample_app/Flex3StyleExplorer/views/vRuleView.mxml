@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:HBox width="100%" height="100%" xmlns:mx="http://www.adobe.com/2006/mxml" name="V Rule"
+	xmlns:head="layout.*"  xmlns:components="components.*" >
+	<!-- 
+	//********************//
+	//   STYLE CONTROLS   //
+	//********************//
+	-->
+	
+	<mx:VBox height="100%" width="380" styleName="glassPods"  >
+		
+		<head:GlassHeaders headerTitle="STYLE CONTROLS"/>
+		<mx:Canvas width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollBarStyleName="fseVerticalScrollBar">
+	
+		<mx:VBox x="10" width="350">
+				
+			<mx:Form width="100%"  >
+			
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Stroke Color" selectedColor="0xc4cccc" id="mystrokeColorvRule"
+					dataChange="setValue('strokeColor', event.target.selectedColor, 'color', 'vRule')"  />
+			
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Shadow Color" selectedColor="0xeeeeee" id="myshadowColorvRule"
+					dataChange="setValue('shadowColor', event.target.selectedColor, 'color', 'vRule')"  />
+			
+				<components:textSliders 
+					sliderLabel="Stroke Width" min="1" max="20" value="2" id="mystrokeWidthvRule"
+					dataChange="setValue('strokeWidth', event.target.value, 'number', 'vRule')"	/>	
+		
+			
+			</mx:Form>	
+			
+			
+			<mx:Box height="20" />
+		
+			<mx:Spacer height="100%" />
+			
+		
+		
+		</mx:VBox>
+		</mx:Canvas>
+		<mx:Box width="100%"  paddingRight="5" paddingBottom="5"  horizontalAlign="right">
+				<mx:LinkButton label="Restore Defaults" 
+					click="restoreItemDefaults('vRule')" styleName="undoLink" />
+			</mx:Box>
+		</mx:VBox>
+		
+		
+		
+	
+	<!-- 
+	//********************//
+	//   SANDBOX          //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="100%" styleName="glassPods" >
+		<head:GlassHeaders headerTitle="SANDBOX" />
+		<mx:VRule id="myvRule" left="100" top="30" bottom="10" />
+			
+	</mx:Canvas>
+	
+	<!-- 
+	//********************//
+	//   CSS VIEW         //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="250" styleName="glassPods" >
+		<head:GlassHeaders headerTitle="CSS"/>
+		<mx:TextArea text="{myCSS}" left="10" right="10" top="30" bottom="10" styleName="cssTextArea" />
+	</mx:Canvas>
+	<mx:Script source="../as/vRule.as" />
+	
+
+
+</mx:HBox>
+
+
+
+

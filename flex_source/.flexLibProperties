@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flexLibProperties version="1">
+<includeClasses>
+<classEntry path="net.sourceforge.seleniumflexapi.commands.MouseCommands"/>
+<classEntry path="com.adobe.serialization.json.JSONParseError"/>
+<classEntry path="net.sourceforge.seleniumflexapi.commands.Commands"/>
+<classEntry path="SeleniumFlexAPI"/>
+<classEntry path="net.sourceforge.seleniumflexapi.commands.UtilCommands"/>
+<classEntry path="net.sourceforge.seleniumflexapi.commands.TextCommands"/>
+<classEntry path="net.sourceforge.seleniumflexapi.commands.StepperCommands"/>
+<classEntry path="net.sourceforge.seleniumflexapi.commands.WaitForCommands"/>
+<classEntry path="net.sourceforge.seleniumflexapi.commands.RadioButtonCommands"/>
+<classEntry path="net.sourceforge.seleniumflexapi.commands.NotifyCommands"/>
+<classEntry path="com.adobe.serialization.json.JSONToken"/>
+<classEntry path="net.sourceforge.seleniumflexapi.utils.ErrorMessages"/>
+<classEntry path="net.sourceforge.seleniumflexapi.commands.PropertyCommands"/>
+<classEntry path="net.sourceforge.seleniumflexapi.commands.ClickCommands"/>
+<classEntry path="net.sourceforge.seleniumflexapi.utils.ReferenceData"/>
+<classEntry path="net.sourceforge.seleniumflexapi.commands.DateCommands"/>
+<classEntry path="com.adobe.serialization.json.JSONTokenType"/>
+<classEntry path="com.adobe.serialization.json.JSON"/>
+<classEntry path="net.sourceforge.seleniumflexapi.commands.SelectCommands"/>
+<classEntry path="net.sourceforge.seleniumflexapi.commands.DataGridCommands"/>
+<classEntry path="net.sourceforge.seleniumflexapi.commands.AlertCommands"/>
+<classEntry path="net.sourceforge.seleniumflexapi.utils.Tools"/>
+<classEntry path="net.sourceforge.seleniumflexapi.commands.KeyCommands"/>
+<classEntry path="com.adobe.serialization.json.JSONEncoder"/>
+<classEntry path="net.sourceforge.seleniumflexapi.commands.ComboCommands"/>
+<classEntry path="net.sourceforge.seleniumflexapi.utils.RunCommands"/>
+<classEntry path="net.sourceforge.seleniumflexapi.utils.AppTreeParser"/>
+<classEntry path="net.sourceforge.seleniumflexapi.commands.CheckBoxCommands"/>
+<classEntry path="net.sourceforge.seleniumflexapi.utils.AppTreeNode"/>
+<classEntry path="com.adobe.serialization.json.JSONDecoder"/>
+<classEntry path="com.adobe.serialization.json.JSONTokenizer"/>
+</includeClasses>
+<includeResources/>
+<namespaceManifests/>
+</flexLibProperties>

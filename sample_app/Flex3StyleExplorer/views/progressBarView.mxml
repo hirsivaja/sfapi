@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:HBox width="100%" height="100%" xmlns:mx="http://www.adobe.com/2006/mxml" name="H Rule"
+	xmlns:head="layout.*"  xmlns:components="components.*" >
+	<!-- 
+	//********************//
+	//   STYLE CONTROLS   //
+	//********************//
+	-->
+	
+	<mx:VBox height="100%" width="380" styleName="glassPods"  >
+		
+		<head:GlassHeaders headerTitle="STYLE CONTROLS"/>
+		<mx:Canvas width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollBarStyleName="fseVerticalScrollBar">
+	
+		<mx:VBox x="10" width="350">
+				
+			<mx:Form width="100%"  >
+				<mx:Box styleName="conditionalBox" paddingBottom="5" paddingRight="5" paddingLeft="8" width="100%">
+					<mx:HBox width="100%">
+						<mx:Box horizontalAlign="left" paddingLeft="5" paddingTop="5">
+							<mx:Image id="alert2" source="{alertIcon}" />	
+						</mx:Box>
+						<mx:Box width="100%">
+							<mx:Text width="100%" height="45" color="0xFFFFFF" text="Note: This is a property rather than a style, but is included so that you can see the effects on both types of progress bars." />
+						</mx:Box>
+					</mx:HBox>
+					<mx:FormItem label="Indeterminate" width="100%" horizontalAlign="left">
+						<mx:CheckBox id="myIndeterminate" click="if (myIndeterminate.selected == true) { myprogressBar.indeterminate = true;} else {myprogressBar.indeterminate = false}"/>
+					</mx:FormItem>
+				</mx:Box>
+				
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Border Color" selectedColor="0x2B333C" id="myborderColorprogressBar"
+					dataChange="setValue('borderColor', event.target.selectedColor, 'color', 'progressBar')"  />
+			
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Bar Color" selectedColor="0x009DFF" id="mybarColorprogressBar"
+					dataChange="setValue('barColor', event.target.selectedColor, 'color', 'progressBar')"  />
+			
+				<components:doubleColorPicker dataProvider="{swatches}" pickerLabel="Track Colors" styleValue="[0xe6eeee, 0xe6eeee]" id="mytrackColorsprogressBar"
+					dataChange="setArrayValue('trackColors', event.target.styleValue, 'color', 'progressBar')" />
+			
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Color" selectedColor="0x0b333C" id="mycolorprogressBar"
+					dataChange="setValue('color', event.target.selectedColor, 'color', 'progressBar')"  />
+			
+				<components:textSliders 
+					sliderLabel="Padding Left" min="0" max="30" value="3" id="mypaddingLeftprogressBar"
+					dataChange="setValue('paddingLeft', event.target.value, 'number', 'progressBar')"	/>	
+			
+				<components:textSliders 
+					sliderLabel="Padding Right" min="0" max="30" value="3" id="mypaddingRightprogressBar"
+					dataChange="setValue('paddingRight', event.target.value, 'number', 'progressBar')"	/>	
+			
+				<components:textSliders 
+					sliderLabel="Text Indent" min="0" max="30" value="0" id="mytextIndentprogressBar"
+					dataChange="setValue('textIndent', event.target.value, 'number', 'progressBar')"	/>	
+			
+				<components:textSliders 
+					sliderLabel="Letter Spacing" min="0" max="10" value="0" id="myletterSpacingprogressBar"
+					dataChange="setValue('letterSpacing', event.target.value, 'number', 'progressBar')"	/>	
+			
+				<components:textSliders 
+					sliderLabel="Track Height" min="0" max="30" value="3" id="mytrackHeightprogressBar"
+					dataChange="setValue('trackHeight', event.target.value, 'number', 'progressBar')"	/>	
+			
+				<components:textSliders 
+					sliderLabel="Vertical Gap" min="0" max="30" value="6" id="myverticalGapprogressBar"
+					dataChange="setValue('verticalGap', event.target.value, 'number', 'progressBar')"	/>	
+				
+				<components:fontPicker id="myfontFamilyprogressBar" dataChange="setStringValue('fontFamily', event.target.styleValue, 'progressBar')" />
+		
+				<components:fontSizePicker id="myfontSizeprogressBar" dataChange="setStringValue('fontSize', event.target.styleValue, 'progressBar')" />
+		
+				<components:textFormattingPicker id="mytextFormatprogressBar" dataChange="setTextFormat(event.target.styleValue, 'progressBar');" />
+			
+		
+			</mx:Form>	
+			
+			
+			<mx:Box height="20" />
+		
+			<mx:Spacer height="100%" />
+			
+		
+		
+		</mx:VBox>
+		</mx:Canvas>
+		<mx:Box width="100%"  paddingRight="5" paddingBottom="5"  horizontalAlign="right">
+				<mx:LinkButton label="Restore Defaults" 
+					click="restoreItemDefaults('progressBar')" styleName="undoLink" />
+			</mx:Box>
+		</mx:VBox>
+		
+		
+		
+	
+	<!-- 
+	//********************//
+	//   SANDBOX          //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="100%" styleName="glassPods" >
+		<head:GlassHeaders headerTitle="SANDBOX" />
+		
+		<mx:ProgressBar left="10" top="30" right="10" id="myprogressBar" creationComplete="setProgressBar()"
+			maximum="100" minimum="0" mode="manual" labelPlacement="bottom" />
+			
+	</mx:Canvas>
+	
+	<!-- 
+	//********************//
+	//   CSS VIEW         //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="250" styleName="glassPods" >
+		<head:GlassHeaders headerTitle="CSS"/>
+		<mx:TextArea text="{myCSS}" left="10" right="10" top="30" bottom="10" styleName="cssTextArea" />
+	</mx:Canvas>
+	<mx:Script source="../as/progressBar.as" />
+
+
+
+
+</mx:HBox>
+
+
+
+

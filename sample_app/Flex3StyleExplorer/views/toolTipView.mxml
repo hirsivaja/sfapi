@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:HBox width="100%" height="100%" xmlns:mx="http://www.adobe.com/2006/mxml" name="ToolTip"
+	xmlns:head="layout.*"  xmlns:components="components.*" >
+	<!-- 
+	//********************//
+	//   STYLE CONTROLS   //
+	//********************//
+	-->
+	
+	<mx:VBox height="100%" width="380" styleName="glassPods"  >
+		
+		<head:GlassHeaders headerTitle="STYLE CONTROLS"/>
+		<mx:Canvas width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollBarStyleName="fseVerticalScrollBar">
+	
+		<mx:VBox x="10" width="350">
+				
+			<mx:Form width="100%"  >
+			
+					
+				<components:textSliders liveDrag="false"
+					sliderLabel="Background Alpha" min="0" max="1" value="1" id="mybackgroundAlphatoolTip" snapInt="0.01"
+					dataChange="setValue('backgroundAlpha', event.target.value, 'number', 'toolTip')"	/>	
+				
+				<components:textSliders liveDrag="false"
+					sliderLabel="Corner Radius" min="0" max="20" value="6" id="mycornerRadiustoolTip"
+					dataChange="setValue('cornerRadius', event.target.value, 'number', 'toolTip')"	/>	
+			
+				<components:textSliders liveDrag="false"
+					sliderLabel="Padding Left" min="0" max="20" value="0" id="mypaddingLefttoolTip"
+					dataChange="setValue('paddingLeft', event.target.value, 'number', 'toolTip')"	/>	
+				
+				<components:textSliders liveDrag="false"
+					sliderLabel="Padding Right" min="0" max="20" value="0" id="mypaddingRighttoolTip"
+					dataChange="setValue('paddingRight', event.target.value, 'number', 'toolTip')"	/>	
+				
+				<components:textSliders liveDrag="false"
+					sliderLabel="Letter Spacing" min="0" max="10" value="0" id="myletterSpacingtoolTip"
+					dataChange="setValue('letterSpacing', event.target.value, 'number', 'toolTip')"	/>	
+				
+				
+				
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Background Color" selectedColor="0xFFFFCC" id="mybackgroundColortoolTip"
+					dataChange="setValue('backgroundColor', event.target.selectedColor, 'color', 'toolTip')"  />
+				
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Color" selectedColor="0x0b333C" id="mycolortoolTip"
+					dataChange="setValue('color', event.target.selectedColor, 'color', 'toolTip')"  />
+				
+				<components:textAlign id="mytextAligntoolTip" dataChange="setStringValue('textAlign', event.target.styleValue, 'toolTip') " />
+					
+				<components:fontPicker id="myfontFamilytoolTip" dataChange="setStringValue('fontFamily', event.target.styleValue, 'toolTip')" />
+			
+				<components:fontSizePicker id="myfontSizetoolTip" dataChange="setStringValue('fontSize', event.target.styleValue, 'toolTip')" />
+				
+				<components:textFormattingPicker id="mytextFormattoolTip" dataChange="setTextFormat(event.target.styleValue, 'toolTip');" />
+					
+				
+			
+			</mx:Form>	
+			
+			
+			<mx:Box height="20" />
+		
+			<mx:Spacer height="100%" />
+			
+		
+		
+		</mx:VBox>
+		</mx:Canvas>
+		<mx:Box width="100%"  paddingRight="5" paddingBottom="5"  horizontalAlign="right">
+				<mx:LinkButton label="Restore Defaults" 
+					click="restoreItemDefaults('toolTip')" styleName="undoLink" />
+			</mx:Box>
+		</mx:VBox>
+		
+		
+		
+	
+	<!-- 
+	//********************//
+	//   SANDBOX          //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="100%" styleName="glassPods" >
+		<head:GlassHeaders headerTitle="SANDBOX" />
+		<mx:Label id="mytoolTipGenerator" left="17" top="30" text="Roll Over Here to View ToolTip"
+			toolTip="Congratulations! You've found the toolTip.  Give yourself a pat on the back." />
+			
+	</mx:Canvas>
+	
+	<!-- 
+	//********************//
+	//   CSS VIEW         //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="250" styleName="glassPods" >
+		<head:GlassHeaders headerTitle="CSS"/>
+		<mx:TextArea text="{myCSS}" left="10" right="10" top="30" bottom="10" styleName="cssTextArea" />
+	</mx:Canvas>
+	<mx:Script source="../as/toolTip.as" />
+
+
+
+</mx:HBox>
+
+
+
+

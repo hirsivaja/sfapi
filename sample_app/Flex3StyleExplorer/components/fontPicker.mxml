@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:FormItem xmlns:mx="http://www.adobe.com/2006/mxml" label="{formItemLabel}" width="100%" >
+	
+	<mx:ComboBox dataProvider="{fonts}" id="fPicker" selectedIndex="11" editable="true"
+		change="{this.styleValue = fPicker.text; dispatchMyEvent(); }" rowCount="12"/>
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			[Bindable]
+			public var styleValue:String;
+			
+			[Bindable]
+			public var formItemLabel:String = "Font Family";
+			
+			[Bindable]
+			public var fonts:Array = [ 
+				{label:"Arial", data:"arial"}, 
+				{label:"Arial Black", data:"arial black"}, 
+				{label:"Comic Sans MS", data:"comic sans ms"}, 
+				{label:"Courier", data:"courier"}, 
+				{label:"Georgia", data:"georgia"},
+				{label:"Impact", data:"impact"},
+				{label:"Monaco", data:"monaco"},
+				{label:"Palatino", data:"palatino"},
+				{label:"Tahoma", data:"tahoma"},
+				{label:"Times New Roman", data:"times new roman"},
+				{label:"Trebuchet MS", data:"trebuchet ms"},
+				{label:"Verdana", data:"verdana"}];
+			
+			
+			private function dispatchMyEvent():void {
+                this.dispatchEvent( new Event("dataChange") );
+            }
+           
+           public function restoreDefault():void {
+           		fPicker.selectedIndex = 11;
+           }
+            
+           
+		]]>
+	</mx:Script>
+	
+	<mx:Metadata>
+        [Event("dataChange")]
+    </mx:Metadata>
+   
+</mx:FormItem>

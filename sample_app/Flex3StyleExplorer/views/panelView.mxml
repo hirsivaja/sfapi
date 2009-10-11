@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:HBox width="100%" height="100%" xmlns:mx="http://www.adobe.com/2006/mxml" name="Application Control Bar"
+	xmlns:head="layout.*"  xmlns:components="components.*" >
+	<!-- 
+	//********************//
+	//   STYLE CONTROLS   //
+	//********************//
+	-->
+	
+	<mx:VBox height="100%" width="405" styleName="glassPods" paddingLeft="10" paddingRight="10"  >
+		
+		<head:GlassHeaders headerTitle="STYLE CONTROLS"/>
+	
+		<mx:TabNavigator width="100%" height="100%" horizontalScrollPolicy="off"
+			 styleName="styleControlTabNavigator" tabWidth="120" verticalScrollBarStyleName="fseVerticalScrollBar">
+		
+		<mx:Canvas width="100%" height="100%" verticalScrollBarStyleName="fseVerticalScrollBar"
+				horizontalScrollPolicy="off" label="Panel">
+				
+				<mx:Box x="0" width="345" >		
+
+
+				<mx:Form width="100%" paddingLeft="45">
+				
+					<components:panelBorderStylePicker id="myborderStylepanel" styleValue="default"
+						dataChange="setStringValue('borderStyle', event.target.styleValue, 'panel') " />
+				
+				</mx:Form>	
+				
+				<mx:Box width="100%" styleName="conditionalBox"
+					height="{myborderStylepanel.styleValue == 'default'?(125):myborderStylepanel.styleValue == 'solid'?(105):35}" >			
+				
+					<mx:Form styleName="conditionalForm" width="100%" >
+				
+						<components:colorPicker dataProvider="{swatches}" pickerLabel="Border Color" selectedColor="0xB7BABC" id="myborderColorpanel"
+							visible="{myborderStylepanel.styleValue != 'none'}" height="{myborderStylepanel.styleValue != 'none'?(24):0}"
+							dataChange="setValue('borderColor', event.target.selectedColor, 'color', 'panel')"  />
+						
+						<components:textSliders 
+							sliderLabel="Border Alpha" min="0" max="1" value=".4" id="myborderAlphapanel" snapInt=".01" 
+							dataChange="setValue('borderAlpha', event.target.value, 'number', 'panel')" />	
+						
+						<components:textSliders 
+							sliderLabel="Border Thickness" min="0" max="20" value="1" id="myborderThicknesspanel"
+							visible="{myborderStylepanel.styleValue == 'solid'}" height="{myborderStylepanel.styleValue == 'solid'?(24):0}"
+							dataChange="setValue('borderThickness', event.target.value, 'number', 'panel')" />	
+						
+						<components:quadTextSliders visible="{myborderStylepanel.styleValue == 'default'}" height="{myborderStylepanel.styleValue == 'default'?(48):0}"
+							sliderLabel="Border Thicknesses" min="0" max="30" styleValue="[10, 0, 10, 2]" id="myborderThicknessespanel"
+							dataChange="setBorderThicknessesValue('borderThicknesses', event.target.styleValue, 'number', 'panel')" />	
+						
+						<components:trueFalsePicker pickerLabel="Bottom Corners" stateLabel="Rounded" id="myroundedBottomCornerspanel"
+							visible="{myborderStylepanel.styleValue != 'none'}" height="{myborderStylepanel.styleValue != 'none'?(22):0}"
+							styleValue="false" dataChange="setBooleanValue('roundedBottomCorners', event.target.styleValue, 'panel')" />
+						
+					</mx:Form>
+				
+				</mx:Box>
+				
+				<mx:Form paddingLeft="12">
+				
+					<components:textSliders 
+						sliderLabel="Corner Radius" min="0" max="28" value="4" id="mycornerRadiuspanel"
+						dataChange="setValue('cornerRadius', event.target.value, 'number', 'panel')"	/>	
+					
+					<components:textSliders 
+						sliderLabel="Header Height" min="0" max="50" value="28" id="myheaderHeightpanel"
+						dataChange="setValue('headerHeight', event.target.value, 'number', 'panel')" />	
+				
+					<components:textSliders 
+						sliderLabel="Background Alpha" min="0" max="1" value="1" id="mybackgroundAlphapanel" snapInt=".01" 
+						dataChange="setValue('backgroundAlpha', event.target.value, 'number', 'panel')" />	
+				
+					<components:doubleTextSliders 
+						sliderLabel="Highlight Alphas" min="0" max="1" styleValue="[.3, 0]" id="myhighlightAlphaspanel" snapInt=".01" 
+						dataChange="setArrayValue('highlightAlphas', event.target.styleValue, 'number', 'panel')" />	
+				
+					<components:doubleColorPicker dataProvider="{swatches}" pickerLabel="Header Colors" styleValue="[0xe7e7e7, 0xd9d9d9]" id="myheaderColorspanel"
+						dataChange="setArrayValue('headerColors', event.target.styleValue, 'color', 'panel')" />
+				
+					<mx:FormItem label="Control Bar" toolTip="Note: controlBarstyleName is available to set properties of children in the control bar">
+						<mx:CheckBox id="myControlBarpanel" selected="false"  />
+					</mx:FormItem>
+					
+					<components:doubleColorPicker dataProvider="{swatches}" pickerLabel="Footer Colors" styleValue="[0xe7e7e7, 0xc7c7c7]" id="myfooterColorspanel"
+						dataChange="setArrayValue('footerColors', event.target.styleValue, 'color', 'panel'); myControlBarpanel.selected = true;" />
+					
+					<components:colorPicker dataProvider="{swatches}" pickerLabel="Background Color" selectedColor="0xFFFFFF" id="mybackgroundColorpanel"
+							dataChange="setValue('backgroundColor', event.target.selectedColor, 'color', 'panel')"  />
+					
+					<components:trueFalsePicker pickerLabel="Drop Shadow" stateLabel="Enabled" id="mydropShadowEnabledpanel"
+						styleValue="true" dataChange="setBooleanValue('dropShadowEnabled', event.target.styleValue, 'panel')" />
+					
+				</mx:Form>
+		
+				<mx:Box width="100%" styleName="conditionalBox" id="shadowItems" height="{mydropShadowEnabledpanel.styleValue == true? (88):0}" visible="{mydropShadowEnabledpanel.styleValue == true}">			
+					<mx:Form styleName="conditionalForm" width="100%" paddingLeft="3">
+					
+						<components:textSliders 
+							sliderLabel="Shadow Distance" min="-20" max="20" value="2" id="myshadowDistancepanel" padRight="0"
+							dataChange="setValue('shadowDistance', event.target.value, 'number', 'panel')" />	
+						
+						<components:shadowDirectionPicker id="myshadowDirectionpanel" 
+							dataChange="setStringValue('shadowDirection', event.target.styleValue, 'panel') " />
+						
+						<components:colorPicker dataProvider="{swatches}" pickerLabel="Drop Shadow Color" selectedColor="0x000000" id="mydropShadowColorpanel"
+							dataChange="setValue('dropShadowColor', event.target.selectedColor, 'color', 'panel')"  />
+					
+					</mx:Form>
+		
+				</mx:Box>
+		</mx:Box>
+		</mx:Canvas>
+		<mx:Canvas width="100%" height="100%" verticalScrollBarStyleName="fseVerticalScrollBar"
+				horizontalScrollPolicy="off" label="Title Styles">
+			
+				<mx:Box x="10" width="345" >
+				
+					<mx:Form width="100%">
+						
+						<components:textSliders 
+							sliderLabel="Letter Spacing" min="0" max="10" value="0" id="myletterSpacingpanel"
+							dataChange="setValue('letterSpacing', event.target.value, 'number', 'panel')"	/>	
+							
+						<components:colorPicker dataProvider="{swatches}" pickerLabel="Color" selectedColor="0x0B333C" id="mycolorpanel"
+							dataChange="setValue('color', event.target.selectedColor, 'color', 'panel')"  />
+					
+						<components:textAlign id="mytextAlignpanel" dataChange="setStringValue('textAlign', event.target.styleValue, 'panel') " />
+					
+						<components:fontPicker id="myfontFamilypanel" dataChange="setStringValue('fontFamily', event.target.styleValue, 'panel')" />
+					
+						<components:fontSizePicker id="myfontSizepanel" dataChange="setStringValue('fontSize', event.target.styleValue, 'panel')" />
+						
+						<components:textFormattingPicker id="mytextFormatpanel" dataChange="setTextFormat(event.target.styleValue, 'panel');" />
+					
+					
+					</mx:Form>
+					
+				</mx:Box>
+		
+			</mx:Canvas>
+		
+		</mx:TabNavigator>
+	
+	
+		<mx:Box width="100%"  paddingRight="5" paddingBottom="5"  horizontalAlign="right">
+	
+			<mx:LinkButton label="Restore Defaults" 
+				click="restoreItemDefaults('panel')" styleName="undoLink" />
+	
+		</mx:Box>
+	
+	</mx:VBox>
+		
+		
+		
+	
+	<!-- 
+	//********************//
+	//   SANDBOX          //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="100%" styleName="glassPods" horizontalScrollBarStyleName="fseVerticalScrollBar" >
+		<head:GlassHeaders headerTitle="SANDBOX"/>
+		<mx:Panel left="10" top="30" right="10" height="300" title="CSS Sandbox" id="mypanel" titleStyleName="myTitleStyle"  >
+			<mx:ControlBar visible="{myControlBarpanel.selected == true}" height="{myControlBarpanel.selected == true?(22):0}" />
+		</mx:Panel>
+	</mx:Canvas>
+	
+	<!-- 
+	//********************//
+	//   CSS VIEW         //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="250" styleName="glassPods" >
+		<head:GlassHeaders headerTitle="CSS"/>
+		<mx:TextArea text="{myCSS}" left="10" right="10" top="30" bottom="10" styleName="cssTextArea"  />
+	</mx:Canvas>
+	<mx:Script source="../as/panel.as" />
+
+
+
+</mx:HBox>
+
+
+
+

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:HBox width="100%" height="100%" xmlns:mx="http://www.adobe.com/2006/mxml" name="Link Button"
+	xmlns:head="layout.*"  xmlns:components="components.*" >
+	<!-- 
+	//********************//
+	//   STYLE CONTROLS   //
+	//********************//
+	-->
+	
+	<mx:VBox height="100%" width="380" styleName="glassPods"  >
+		
+		<head:GlassHeaders headerTitle="STYLE CONTROLS"/>
+		<mx:Canvas width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollBarStyleName="fseVerticalScrollBar">
+	
+		<mx:VBox x="10" width="350">
+				
+			<mx:Form width="100%"  >
+			
+					<components:textSliders 
+						sliderLabel="Corner Radius" min="0" max="20" value="4" id="mycornerRadiuslinkButton"
+						dataChange="setValue('cornerRadius', event.target.value, 'number', 'linkButton')"	/>	
+				
+					<components:textSliders 
+						sliderLabel="Padding Left" min="0" max="20" value="0" id="mypaddingLeftlinkButton"
+						dataChange="setValue('paddingLeft', event.target.value, 'number', 'linkButton')"	/>	
+					
+					<components:textSliders 
+						sliderLabel="Padding Right" min="0" max="20" value="0" id="mypaddingRightlinkButton"
+						dataChange="setValue('paddingRight', event.target.value, 'number', 'linkButton')"	/>	
+				
+					<components:textSliders 
+						sliderLabel="Letter Spacing" min="0" max="20" value="0" id="myletterSpacinglinkButton"
+						dataChange="setValue('letterSpacing', event.target.value, 'number', 'linkButton')"	/>	
+				
+					<components:colorPicker dataProvider="{swatches}" 
+						pickerLabel="Roll Over Color" selectedColor="0xAADEFF" id="myrollOverColorlinkButton"
+						dataChange="setValue('rollOverColor', event.target.selectedColor, 'color', 'linkButton')"  />
+				
+					<components:colorPicker dataProvider="{swatches}" 
+						pickerLabel="Selection Color" selectedColor="0x7FCDFE" id="myselectionColorlinkButton"
+						dataChange="setValue('selectionColor', event.target.selectedColor, 'color', 'linkButton')"  />
+				
+					<components:colorPicker dataProvider="{swatches}" 
+						pickerLabel="Color" selectedColor="0x0B333C" id="mycolorlinkButton"
+						dataChange="setValue('color', event.target.selectedColor, 'color', 'linkButton')"  />
+				
+					<components:colorPicker dataProvider="{swatches}" 
+						pickerLabel="Text Roll Over Color" selectedColor="0x2B333C" id="mytextRollOverColorlinkButton"
+						dataChange="setValue('textRollOverColor', event.target.selectedColor, 'color', 'linkButton')"  />
+				
+					<components:colorPicker dataProvider="{swatches}" 
+						pickerLabel="Text Selected Color" selectedColor="0x2B333C" id="mytextSelectedColorlinkButton"
+						dataChange="setValue('textSelectedColor', event.target.selectedColor, 'color', 'linkButton')"  />
+			
+					<components:fontPicker id="myfontFamilylinkButton" dataChange="setStringValue('fontFamily', event.target.styleValue, 'linkButton')" />
+			
+					<components:fontSizePicker id="myfontSizelinkButton" dataChange="setStringValue('fontSize', event.target.styleValue, 'linkButton')" />
+			
+					<components:textFormattingPicker id="mytextFormatlinkButton" dataChange="setTextFormat(event.target.styleValue, 'linkButton');" />
+				
+			</mx:Form>	
+			
+			
+			<mx:Box height="20" />
+		
+			<mx:Spacer height="100%" />
+			
+		
+		
+		</mx:VBox>
+		</mx:Canvas>
+		<mx:Box width="100%"  paddingRight="5" paddingBottom="5"  horizontalAlign="right">
+				<mx:LinkButton label="Restore Defaults" 
+					click="restoreItemDefaults('linkButton')" styleName="undoLink" />
+			</mx:Box>
+		</mx:VBox>
+		
+		
+		
+	
+	<!-- 
+	//********************//
+	//   SANDBOX          //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="100%" styleName="glassPods" horizontalScrollBarStyleName="fseVerticalScrollBar" >
+		<head:GlassHeaders headerTitle="SANDBOX" />
+		<mx:LinkButton id="mylinkButton" label="My Link Button" left="10" top="30"  />
+			
+	</mx:Canvas>
+	
+	<!-- 
+	//********************//
+	//   CSS VIEW         //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="250" styleName="glassPods" >
+		<head:GlassHeaders headerTitle="CSS"/>
+		<mx:TextArea text="{myCSS}" left="10" right="10" top="30" bottom="10" styleName="cssTextArea" />
+	</mx:Canvas>
+	<mx:Script source="../as/linkButton.as" />
+
+
+</mx:HBox>
+
+
+
+
