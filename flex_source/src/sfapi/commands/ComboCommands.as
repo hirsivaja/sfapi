@@ -18,10 +18,10 @@
  *	If not, see http://www.gnu.org/licenses/
  *
  */
-package net.sourceforge.seleniumflexapi.commands
+package sfapi.commands
 {
 	import mx.events.ListEvent;
-	import net.sourceforge.seleniumflexapi.utils.AppTreeParser;
+	import sfapi.core.AppTreeParser;
 	
 	public class ComboCommands
 	{

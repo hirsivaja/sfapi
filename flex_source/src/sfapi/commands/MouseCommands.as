@@ -18,16 +18,16 @@
  *	If not, see http://www.gnu.org/licenses/
  *
  */
-package net.sourceforge.seleniumflexapi.commands
+package sfapi.commands
 {
 	import flash.events.FocusEvent;
 	import flash.events.MouseEvent;
 	import mx.core.DragSource;
 	import mx.core.IUIComponent;
 	import mx.events.DragEvent;
-	import net.sourceforge.seleniumflexapi.utils.AppTreeParser;
-	import net.sourceforge.seleniumflexapi.utils.ErrorMessages;
-	import net.sourceforge.seleniumflexapi.utils.RunCommands;
+	import sfapi.core.AppTreeParser;
+	import sfapi.core.ErrorMessages;
+	import sfapi.core.RunCommands;
 	
 	public class MouseCommands
 	{

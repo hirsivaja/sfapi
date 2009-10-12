@@ -1,4 +1,4 @@
-package net.sourceforge.seleniumflexapi.utils
+package sfapi.core
 {
 	public class AppTreeNode
 	{

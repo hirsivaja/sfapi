@@ -18,7 +18,7 @@
  *	If not, see http://www.gnu.org/licenses/
  *
  */
-package net.sourceforge.seleniumflexapi.commands
+package sfapi.commands
 {
 	import com.adobe.serialization.json.JSON;
 	
@@ -28,9 +28,9 @@ package net.sourceforge.seleniumflexapi.commands
 	import mx.core.Application;
 	import mx.utils.ArrayUtil;
 	
-	import net.sourceforge.seleniumflexapi.utils.AppTreeParser;
-	import net.sourceforge.seleniumflexapi.utils.ErrorMessages;
-	import net.sourceforge.seleniumflexapi.utils.Tools;
+	import sfapi.core.AppTreeParser;
+	import sfapi.core.ErrorMessages;
+	import sfapi.core.Tools;
 	
 	public class PropertyCommands
 	{

@@ -21,7 +21,7 @@
  *  http://flexmonkey.googlecode.com/svn/trunk/FlexMonkey/src/com/gorillalogic/flexmonkey/FlexMonkey.mxml
  *
  */
-package net.sourceforge.seleniumflexapi.utils
+package sfapi.core
 {
 	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;

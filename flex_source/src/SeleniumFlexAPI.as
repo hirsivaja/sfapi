@@ -24,8 +24,8 @@ package
 	import flash.events.KeyboardEvent;
 	import flash.system.Security;
 	import mx.events.FlexEvent;
-	import net.sourceforge.seleniumflexapi.commands.Commands;
-	import net.sourceforge.seleniumflexapi.utils.AppTreeParser;
+	import sfapi.commands.Commands;
+	import sfapi.core.AppTreeParser;
 	
 	[Mixin]
 	public class SeleniumFlexAPI extends Sprite
