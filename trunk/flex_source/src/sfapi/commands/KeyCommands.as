@@ -1,8 +1,8 @@
-package net.sourceforge.seleniumflexapi.commands
+package sfapi.commands
 {
 	import mx.events.FlexEvent;
-	import net.sourceforge.seleniumflexapi.utils.AppTreeParser;
-	import net.sourceforge.seleniumflexapi.utils.ErrorMessages;
+	import sfapi.core.AppTreeParser;
+	import sfapi.core.ErrorMessages;
 	
 	public class KeyCommands
 	{

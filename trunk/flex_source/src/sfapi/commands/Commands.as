@@ -19,12 +19,12 @@
  *
  */
  
-package net.sourceforge.seleniumflexapi.commands
+package sfapi.commands
 {
 	import flash.external.ExternalInterface;
 	import mx.controls.Alert;
-	import net.sourceforge.seleniumflexapi.utils.AppTreeParser;
-	import net.sourceforge.seleniumflexapi.utils.ErrorMessages;
+	import sfapi.core.AppTreeParser;
+	import sfapi.core.ErrorMessages;
 	
 	public class Commands
 	{
@@ -84,6 +84,9 @@ package net.sourceforge.seleniumflexapi.commands
 			 **/
 			if(ExternalInterface.available)
 			{
+				/*REF
+				 * TODO: complete api reference documentation 
+				 */
 			    ExternalInterface.addCallback("getFlexSelectedItemAtIndex", 
 			    				selectCommands.getFlexSelectedItemAtIndex);
 			    				

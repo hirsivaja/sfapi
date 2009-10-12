@@ -18,7 +18,7 @@
  *	If not, see http://www.gnu.org/licenses/
  *
  */
-package net.sourceforge.seleniumflexapi.utils
+package sfapi.core
 {
 	import flash.utils.describeType;
 	import mx.core.UIComponent;

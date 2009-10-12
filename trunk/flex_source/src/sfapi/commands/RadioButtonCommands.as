@@ -18,14 +18,14 @@
  *	If not, see http://www.gnu.org/licenses/
  *
  */
-package net.sourceforge.seleniumflexapi.commands
+package sfapi.commands
 {
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	import net.sourceforge.seleniumflexapi.utils.AppTreeParser;
-	import net.sourceforge.seleniumflexapi.utils.ErrorMessages;
-	import net.sourceforge.seleniumflexapi.utils.ReferenceData;
-	import net.sourceforge.seleniumflexapi.utils.Tools;
+	import sfapi.core.AppTreeParser;
+	import sfapi.core.ErrorMessages;
+	import sfapi.core.ReferenceData;
+	import sfapi.core.Tools;
 	
 	public class RadioButtonCommands
 	{

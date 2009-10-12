@@ -18,13 +18,13 @@
  *	If not, see http://www.gnu.org/licenses/
  *
  */
-package net.sourceforge.seleniumflexapi.commands
+package sfapi.commands
 {
 	import flash.events.MouseEvent;
 	import flash.utils.describeType;
-	import net.sourceforge.seleniumflexapi.utils.AppTreeParser;
-	import net.sourceforge.seleniumflexapi.utils.ErrorMessages;
-	import net.sourceforge.seleniumflexapi.utils.ReferenceData;
+	import sfapi.core.AppTreeParser;
+	import sfapi.core.ErrorMessages;
+	import sfapi.core.ReferenceData;
 	
 	public class AlertCommands
 	{
@@ -35,6 +35,9 @@ package net.sourceforge.seleniumflexapi.commands
 			appTreeParser = aptObj;
 		}
 		
+		/*
+		 * 
+		 */
 		/**
 		 * Responds to an alert (ok, cancel, yes, no, etc...)
 		 * @param  id  The ID of the Flex object

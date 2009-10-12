@@ -18,13 +18,13 @@
  *	If not, see http://www.gnu.org/licenses/
  *
  */
-package net.sourceforge.seleniumflexapi.commands
+package sfapi.commands
 {
 	import mx.containers.HBox;
 	import mx.controls.Label;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
-	import net.sourceforge.seleniumflexapi.utils.AppTreeParser;
+	import sfapi.core.AppTreeParser;
 	
 	public class NotifyCommands
 	{

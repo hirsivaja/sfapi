@@ -18,10 +18,10 @@
  *	If not, see http://www.gnu.org/licenses/
  *
  */
-package net.sourceforge.seleniumflexapi.commands
+package sfapi.commands
 {
-	import net.sourceforge.seleniumflexapi.utils.AppTreeParser;
-	import net.sourceforge.seleniumflexapi.utils.ErrorMessages;
+	import sfapi.core.AppTreeParser;
+	import sfapi.core.ErrorMessages;
 	
 	public class WaitForCommands{
 

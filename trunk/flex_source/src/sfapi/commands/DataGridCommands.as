@@ -18,9 +18,9 @@
  *	If not, see http://www.gnu.org/licenses/
  *
  */
-package net.sourceforge.seleniumflexapi.commands
+package sfapi.commands
 {
-	import net.sourceforge.seleniumflexapi.utils.AppTreeParser;
+	import sfapi.core.AppTreeParser;
 	import flash.events.Event;
 	
 	public class DataGridCommands
