@@ -1,4 +1,3 @@
-package au.com.transurban.retailweb.regression.tests;
 
 import static org.junit.Assert.assertTrue;
 import junit.framework.AssertionFailedError;
@@ -7,8 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import au.com.transurban.retailweb.regression.DefaultSeleniumFlex;
-import au.com.transurban.retailweb.regression.SeleniumFlexTestCase;
+import DefaultSeleniumFlex;
+import SeleniumFlexTestCase;
 
 public class LoginRegTest extends SeleniumFlexTestCase {
 	private DefaultSeleniumFlex selenium;
