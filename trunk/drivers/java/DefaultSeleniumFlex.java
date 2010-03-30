@@ -20,7 +20,6 @@
  *
  */
 
-package au.com.transurban.retailweb.regression;
 
 import com.thoughtworks.selenium.DefaultSelenium;
 import com.thoughtworks.selenium.HttpCommandProcessor;
@@ -107,14 +106,10 @@ public class DefaultSeleniumFlex extends DefaultSelenium {
 	public String getFlexAlertText(String target) throws Exception { return executeCommand("getFlexAlertText", target, , "").replace("OK,", ""); }
 	public String getFlexAlertPresent(String target, String args) throws Exception { return executeCommand("getFlexAlertPresent", target, args).replace("OK,", ""); }
 	public String getFlexAlertPresent(String target) throws Exception { return executeCommand("getFlexAlertPresent", target, , "").replace("OK,", ""); }
-	public String getFlexASProperty(String target, String args) throws Exception { return executeCommand("getFlexASProperty", target, args).replace("OK,", ""); }
-	public String getFlexASProperty(String target) throws Exception { return executeCommand("getFlexASProperty", target, , "").replace("OK,", ""); }
-	public String getDataGridUIComponentLabel(String target, String args) throws Exception { return executeCommand("getDataGridUIComponentLabel", target, args).replace("OK,", ""); }
-	public String getDataGridUIComponentLabel(String target) throws Exception { return executeCommand("getDataGridUIComponentLabel", target, , "").replace("OK,", ""); }
-	public String getDataGridCellText(String target, String args) throws Exception { return executeCommand("getDataGridCellText", target, args).replace("OK,", ""); }
-	public String getDataGridCellText(String target) throws Exception { return executeCommand("getDataGridCellText", target, , "").replace("OK,", ""); }
-	public void doRefreshIDToolTips(String target, String args) throws Exception { executeCommand("doRefreshIDToolTips", target, args); }
-	public void doRefreshIDToolTips(String target) throws Exception { executeCommand("doRefreshIDToolTips", target, ""); }
+	public String getFlexDataGridUIComponentLabel(String target, String args) throws Exception { return executeCommand("getFlexDataGridUIComponentLabel", target, args).replace("OK,", ""); }
+	public String getFlexDataGridUIComponentLabel(String target) throws Exception { return executeCommand("getFlexDataGridUIComponentLabel", target, , "").replace("OK,", ""); }
+	public String getFlexDataGridCellText(String target, String args) throws Exception { return executeCommand("getFlexDataGridCellText", target, args).replace("OK,", ""); }
+	public String getFlexDataGridCellText(String target) throws Exception { return executeCommand("getFlexDataGridCellText", target, , "").replace("OK,", ""); }
 	public void flexWaitForElementVisible(String target, String args) throws Exception { executeCommand("flexWaitForElementVisible", target, args); }
 	public void flexWaitForElementVisible(String target) throws Exception { executeCommand("flexWaitForElementVisible", target, ""); }
 	public void flexWaitForElement(String target, String args) throws Exception { executeCommand("flexWaitForElement", target, args); }
@@ -145,6 +140,8 @@ public class DefaultSeleniumFlex extends DefaultSelenium {
 	public void flexProperty(String target) throws Exception { executeCommand("flexProperty", target, ""); }
 	public void flexMouseUp(String target, String args) throws Exception { executeCommand("flexMouseUp", target, args); }
 	public void flexMouseUp(String target) throws Exception { executeCommand("flexMouseUp", target, ""); }
+	public void flexMouseEvent(String target, String args) throws Exception { executeCommand("flexMouseEvent", target, args); }
+	public void flexMouseEvent(String target) throws Exception { executeCommand("flexMouseEvent", target, ""); }
 	public void flexMouseRollOver(String target, String args) throws Exception { executeCommand("flexMouseRollOver", target, args); }
 	public void flexMouseRollOver(String target) throws Exception { executeCommand("flexMouseRollOver", target, ""); }
 	public void flexMouseRollOut(String target, String args) throws Exception { executeCommand("flexMouseRollOut", target, args); }
@@ -155,6 +152,8 @@ public class DefaultSeleniumFlex extends DefaultSelenium {
 	public void flexMouseMove(String target) throws Exception { executeCommand("flexMouseMove", target, ""); }
 	public void flexMouseDown(String target, String args) throws Exception { executeCommand("flexMouseDown", target, args); }
 	public void flexMouseDown(String target) throws Exception { executeCommand("flexMouseDown", target, ""); }
+	public void flexRightMouseDown(String target, String args) throws Exception { executeCommand("flexRightMouseDown", target, args); }
+	public void flexRightMouseDown(String target) throws Exception { executeCommand("flexRightMouseDown", target, ""); }
 	public void flexDragTo(String target, String args) throws Exception { executeCommand("flexDragTo", target, args); }
 	public void flexDragTo(String target) throws Exception { executeCommand("flexDragTo", target, ""); }
 	public void flexDoubleClick(String target, String args) throws Exception { executeCommand("flexDoubleClick", target, args); }
@@ -177,4 +176,38 @@ public class DefaultSeleniumFlex extends DefaultSelenium {
 	public void flexAddSelectMatchingOnField(String target) throws Exception { executeCommand("flexAddSelectMatchingOnField", target, ""); }
 	public void flexAddSelectIndex(String target, String args) throws Exception { executeCommand("flexAddSelectIndex", target, args); }
 	public void flexAddSelectIndex(String target) throws Exception { executeCommand("flexAddSelectIndex", target, ""); }
+	public void flexNotify(String target, String args) throws Exception { executeCommand("flexNotify", target, args); }
+	public void flexNotify(String target) throws Exception { executeCommand("flexNotify", target, ""); }
+	public void flexEnterKey(String target, String args) throws Exception { executeCommand("flexEnterKey", target, args); }
+	public void flexEnterKey(String target) throws Exception { executeCommand("flexEnterKey", target, ""); }
+	public String rawFlexClickMenuBarUIComponent(String target, String args) throws Exception { return executeCommand("rawFlexClickMenuBarUIComponent", target, args).replace("OK,", ""); }
+	public String rawFlexClickMenuBarUIComponent(String target) throws Exception { return executeCommand("rawFlexClickMenuBarUIComponent", target, , "").replace("OK,", ""); }
+	public String rawFlexClickDataGridItem(String target, String args) throws Exception { return executeCommand("rawFlexClickDataGridItem", target, args).replace("OK,", ""); }
+	public String rawFlexClickDataGridItem(String target) throws Exception { return executeCommand("rawFlexClickDataGridItem", target, , "").replace("OK,", ""); }
+	public String rawFlexSetDataGridCell(String target, String args) throws Exception { return executeCommand("rawFlexSetDataGridCell", target, args).replace("OK,", ""); }
+	public String rawFlexSetDataGridCell(String target) throws Exception { return executeCommand("rawFlexSetDataGridCell", target, , "").replace("OK,", ""); }
+	public String rawFlexSelectMatchingOnField(String target, String args) throws Exception { return executeCommand("rawFlexSelectMatchingOnField", target, args).replace("OK,", ""); }
+	public String rawFlexSelectMatchingOnField(String target) throws Exception { return executeCommand("rawFlexSelectMatchingOnField", target, , "").replace("OK,", ""); }
+	public String rawFlexDataGridCell(String target, String args) throws Exception { return executeCommand("rawFlexDataGridCell", target, args).replace("OK,", ""); }
+	public String rawFlexDataGridCell(String target) throws Exception { return executeCommand("rawFlexDataGridCell", target, , "").replace("OK,", ""); }
+	public String rawFlexDataGridRowIndexForFieldValue(String target, String args) throws Exception { return executeCommand("rawFlexDataGridRowIndexForFieldValue", target, args).replace("OK,", ""); }
+	public String rawFlexDataGridRowIndexForFieldValue(String target) throws Exception { return executeCommand("rawFlexDataGridRowIndexForFieldValue", target, , "").replace("OK,", ""); }
+	public String rawFlexDataGridRowIndexForFieldLabel(String target, String args) throws Exception { return executeCommand("rawFlexDataGridRowIndexForFieldLabel", target, args).replace("OK,", ""); }
+	public String rawFlexDataGridRowIndexForFieldLabel(String target) throws Exception { return executeCommand("rawFlexDataGridRowIndexForFieldLabel", target, , "").replace("OK,", ""); }
+	public String rawFlexDataGridFieldValueForGridRow(String target, String args) throws Exception { return executeCommand("rawFlexDataGridFieldValueForGridRow", target, args).replace("OK,", ""); }
+	public String rawFlexDataGridFieldValueForGridRow(String target) throws Exception { return executeCommand("rawFlexDataGridFieldValueForGridRow", target, , "").replace("OK,", ""); }
+	public String rawFlexDataGridFieldLabelForGridRow(String target, String args) throws Exception { return executeCommand("rawFlexDataGridFieldLabelForGridRow", target, args).replace("OK,", ""); }
+	public String rawFlexDataGridFieldLabelForGridRow(String target) throws Exception { return executeCommand("rawFlexDataGridFieldLabelForGridRow", target, , "").replace("OK,", ""); }
+	public String rawFlexProperty(String target, String args) throws Exception { return executeCommand("rawFlexProperty", target, args).replace("OK,", ""); }
+	public String rawFlexProperty(String target) throws Exception { return executeCommand("rawFlexProperty", target, , "").replace("OK,", ""); }
+	public String rawFlexDataGridUIComponentLabel(String target, String args) throws Exception { return executeCommand("rawFlexDataGridUIComponentLabel", target, args).replace("OK,", ""); }
+	public String rawFlexDataGridUIComponentLabel(String target) throws Exception { return executeCommand("rawFlexDataGridUIComponentLabel", target, , "").replace("OK,", ""); }
+	public String rawFlexDataGridCellText(String target, String args) throws Exception { return executeCommand("rawFlexDataGridCellText", target, args).replace("OK,", ""); }
+	public String rawFlexDataGridCellText(String target) throws Exception { return executeCommand("rawFlexDataGridCellText", target, , "").replace("OK,", ""); }
+	public String rawFlexProperties(String target, String args) throws Exception { return executeCommand("rawFlexProperties", target, args).replace("OK,", ""); }
+	public String rawFlexProperties(String target) throws Exception { return executeCommand("rawFlexProperties", target, , "").replace("OK,", ""); }
+	public String rawFlexGlobalPosition(String target, String args) throws Exception { return executeCommand("rawFlexGlobalPosition", target, args).replace("OK,", ""); }
+	public String rawFlexGlobalPosition(String target) throws Exception { return executeCommand("rawFlexGlobalPosition", target, , "").replace("OK,", ""); }
+	public String rawFlexComboContainsLabel(String target, String args) throws Exception { return executeCommand("rawFlexComboContainsLabel", target, args).replace("OK,", ""); }
+	public String rawFlexComboContainsLabel(String target) throws Exception { return executeCommand("rawFlexComboContainsLabel", target, , "").replace("OK,", ""); }
 }
