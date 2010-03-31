@@ -59,33 +59,31 @@ package sfapi.commands
 				return String(child.dispatchEvent(new MouseEvent(MouseEvent.CLICK)));	
 			}
 
-			var objectType:String = Tools.getOjectType(child);
-
 			// for an Accordion control
-			if(objectType == ReferenceData.ACCORDION_DESCRIPTION) 
+			if(Tools.isA(child, ReferenceData.ACCORDION_DESCRIPTION))
 			{
 				return clickAccordion(child, args);
 			}
 			
 			// for a button bar control
-			if(objectType == ReferenceData.BUTTONBAR_DESCRIPTION)
+			if(Tools.isA(child, ReferenceData.BUTTONBAR_DESCRIPTION))
 			{
 				return clickButtonBar(child, args);
 			}
 
 			// for a link bar control
-			if(objectType == ReferenceData.LINKBAR_DESCRIPTION)
+			if(Tools.isA(child, ReferenceData.LINKBAR_DESCRIPTION))
 			{
 				return clickLinkBar(child, args);
 			}
 			
 			// for a Tab navigator 
-			if (objectType == ReferenceData.TABNAVIGATOR_DESCRIPTION)
+      if (Tools.isA(child, ReferenceData.TABNAVIGATOR_DESCRIPTION))
 			{
 				return clickTabNav(child, args);
 			}
 			
-			return ErrorMessages.getError(ErrorMessages.ERROR_INCOMPATABLE_CONTROL, [objectType, 'flexClick']);
+			return ErrorMessages.getError(ErrorMessages.ERROR_INCOMPATABLE_CONTROL, [Tools.getOjectType(child), 'flexClick']);
 		}
 		// TODO : comms
 		private function clickTabNav(tabNav:Object, tabLabel:String):String
