@@ -275,7 +275,7 @@ package sfapi.core
 				while(i < parent.rawChildren.numChildren)
 				{
 					child = parent.rawChildren.getChildAt(i);
-					if(isNotContentPane(child) && ! isChild(child, parent))
+					if(isNotContentPane(child) && isChild(child, parent))
 					{
 						nextNode = new AppTreeNode(child, i, true);
 						return true;
