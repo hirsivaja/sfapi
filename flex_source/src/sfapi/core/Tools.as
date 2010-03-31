@@ -34,9 +34,29 @@ package sfapi.core
 		{
 			var classInfo:XML = describeType(child);
 			classInfo =  describeType(child);
-			return classInfo.@name.toString(); 
+			return classInfo.@name.toString();
 		}
-		
+
+		public static function isA(child:Object, requiredTypeInHierarchy:String):Boolean
+		{
+			var classInfo:XML = describeType(child);
+
+      // match this exact class
+      if (classInfo.@name == requiredTypeInHierarchy) {
+        return true;
+      }
+
+      // match up in type hierarchy to match extended classes
+      for each (var clazzExtended:XML in classInfo.extendsClass) {
+        trace("checking if '"+requiredTypeInHierarchy+"'='"+clazzExtended.@type+"'");
+        if (requiredTypeInHierarchy == clazzExtended.@type) {
+          return true;
+        }
+      }
+
+			return false;
+		}
+
 		public static function setValueFromString(child:Object, property:String, setval:String):String
 		{
 			if(child[property] is String)
