@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flexLibProperties version="1">
+<includeClasses>
+<classEntry path="SeleniumFlexAPI"/>
+<classEntry path="com.adobe.serialization.json.JSON"/>
+<classEntry path="com.adobe.serialization.json.JSONDecoder"/>
+<classEntry path="com.adobe.serialization.json.JSONEncoder"/>
+<classEntry path="com.adobe.serialization.json.JSONParseError"/>
+<classEntry path="com.adobe.serialization.json.JSONToken"/>
+<classEntry path="com.adobe.serialization.json.JSONTokenType"/>
+<classEntry path="com.adobe.serialization.json.JSONTokenizer"/>
+<classEntry path="sfapi.commands.AlertCommands"/>
+<classEntry path="sfapi.commands.CheckBoxCommands"/>
+<classEntry path="sfapi.commands.ClickCommands"/>
+<classEntry path="sfapi.commands.ComboCommands"/>
+<classEntry path="sfapi.commands.Commands"/>
+<classEntry path="sfapi.commands.DataGridCommands"/>
+<classEntry path="sfapi.commands.DateCommands"/>
+<classEntry path="sfapi.commands.KeyCommands"/>
+<classEntry path="sfapi.commands.MouseCommands"/>
+<classEntry path="sfapi.commands.NotifyCommands"/>
+<classEntry path="sfapi.commands.PropertyCommands"/>
+<classEntry path="sfapi.commands.RadioButtonCommands"/>
+<classEntry path="sfapi.commands.SelectCommands"/>
+<classEntry path="sfapi.commands.StepperCommands"/>
+<classEntry path="sfapi.commands.TextCommands"/>
+<classEntry path="sfapi.commands.UtilCommands"/>
+<classEntry path="sfapi.commands.WaitForCommands"/>
+<classEntry path="sfapi.core.AppTreeNode"/>
+<classEntry path="sfapi.core.AppTreeParser"/>
+<classEntry path="sfapi.core.ErrorMessages"/>
+<classEntry path="sfapi.core.ReferenceData"/>
+<classEntry path="sfapi.core.RunCommands"/>
+<classEntry path="sfapi.core.Tools"/>
+</includeClasses>
+<includeResources/>
+<namespaceManifests/>
+</flexLibProperties>

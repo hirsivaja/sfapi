@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:HBox width="100%" height="100%" xmlns:mx="http://www.adobe.com/2006/mxml" name="Button Bar"
+	xmlns:head="layout.*"  xmlns:components="components.*" >
+	<!-- 
+	//********************//
+	//   STYLE CONTROLS   //
+	//********************//
+	-->
+	
+	<mx:VBox height="100%" width="410" styleName="glassPods" paddingLeft="10" paddingRight="10" >
+		
+		<head:GlassHeaders headerTitle="STYLE CONTROLS"/>
+	
+		<mx:TabNavigator width="100%" height="100%" horizontalScrollPolicy="off"
+			 styleName="styleControlTabNavigator" tabWidth="120" verticalScrollBarStyleName="fseVerticalScrollBar">
+		
+		<mx:Canvas width="100%" height="100%" verticalScrollBarStyleName="fseVerticalScrollBar"
+				horizontalScrollPolicy="off" label="ButtonBar">
+				
+				<mx:Box x="0" width="350" >
+				
+			<mx:Form width="100%"  >
+			
+				
+				<components:textSliders 
+					sliderLabel="Button Height" min="3" max="50" value="22" id="mybuttonHeightbuttonBar" 
+					dataChange="setValue('buttonHeight', event.target.value, 'number', 'buttonBar')"	/>	
+				
+				<components:textSliders 
+					sliderLabel="Button Width" min="3" max="200" value="75" id="mybuttonWidthbuttonBar" 
+					dataChange="setValue('buttonWidth', event.target.value, 'number', 'buttonBar')"	/>	
+				
+				<components:textSliders 
+					sliderLabel="Horizontal Gap" min="-1" max="20" value="0" id="myhorizontalGapbuttonBar" 
+					dataChange="setValue('horizontalGap', event.target.value, 'number', 'buttonBar')"	/>	
+				
+				<components:textSliders 
+					sliderLabel="Text Indent" min="0" max="20" value="0" id="mytextIndentbuttonBar" 
+					dataChange="setValue('textIndent', event.target.value, 'number', 'buttonBar')"	/>	
+				
+				<components:textSliders 
+					sliderLabel="Letter Spacing" min="0" max="10" value="0" id="myletterSpacingbuttonBar" 
+					dataChange="setValue('letterSpacing', event.target.value, 'number', 'buttonBar')"	/>	
+				
+				
+			
+			</mx:Form>	
+			
+			</mx:Box>
+			</mx:Canvas>
+			<mx:Canvas width="100%" height="100%" verticalScrollBarStyleName="fseVerticalScrollBar"
+				horizontalScrollPolicy="off" label="Button Styles">
+			
+				<mx:Box x="10" width="350" >
+				
+					<mx:Form width="100%">
+					
+					<components:textSliders 
+					sliderLabel="Left Corner Radius" min="0" max="28" value="5" id="mycornerRadiusLeftbuttonBar"
+					dataChange="setValue('cornerRadiusLeft', event.target.value, 'number', 'buttonBar')"	/>	
+				
+				<components:textSliders 
+					sliderLabel="Right Corner Radius" min="0" max="28" value="5" id="mycornerRadiusRightbuttonBar"
+					dataChange="setValue('cornerRadiusRight', event.target.value, 'number', 'buttonBar')"	/>	
+				
+						<components:doubleTextSliders
+					sliderLabel="Highlight Alphas" min="0" max="1" styleValue="[.3, 0]" id="myhighlightAlphasbuttonBar" snapInt=".01" 
+					dataChange="setArrayValue('highlightAlphas', event.target.styleValue, 'number', 'buttonBar')" />	
+					
+				<mx:Box styleName="conditionalBox" width="100%" horizontalAlign="right" toolTip="Note: This is an array of four colors, the second two being the fill colors on roll over.">
+					<mx:HBox width="100%">
+						<mx:Box  horizontalAlign="left" paddingLeft="5" paddingTop="5">
+							<mx:Image  source="{alertIcon}" />	
+						</mx:Box>
+						
+						<mx:Form styleName="conditionalForm" width="100%" paddingLeft="28">
+						
+							<components:quadTextSliders 
+								sliderLabel="Fill Alphas" min="0" max="1" styleValue="[.6, .4, .75, .65]" id="myfillAlphasbuttonBar" snapInt=".01" 
+								dataChange="setQuadArrayValue('fillAlphas', event.target.styleValue, 'number', 'buttonBar')" />	
+								
+							<components:quadColorPicker dataProvider="{swatches}" pickerLabel="Fill Colors" styleValue="[0xFFFFFF, 0xCCCCCC, 0xFFFFFF, 0xEEEEEE]" id="myfillColorsbuttonBar"
+								dataChange="setQuadArrayValue('fillColors', event.target.styleValue, 'color', 'buttonBar')" />
+								
+						</mx:Form>
+					</mx:HBox>
+				</mx:Box>
+				
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Color" selectedColor="0x0B333C" id="mycolorbuttonBar"
+					dataChange="setValue('color', event.target.selectedColor, 'color', 'buttonBar')"  />
+			
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Text Roll Over Color" selectedColor="0x0B333C" id="mytextRollOverColorbuttonBar"
+					dataChange="setValue('textRollOverColor', event.target.selectedColor, 'color', 'buttonBar')"  />
+			
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Text Selected Color" selectedColor="0x0B333C" id="mytextSelectedColorbuttonBar"
+					dataChange="setValue('textSelectedColor', event.target.selectedColor, 'color', 'buttonBar')"  />
+			
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Border Color" selectedColor="0xAAB3B3" id="myborderColorbuttonBar"
+					dataChange="setValue('borderColor', event.target.selectedColor, 'color', 'buttonBar')"  />
+			
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Theme Color" selectedColor="0x009DFF" id="mythemeColorbuttonBar"
+					dataChange="setValue('themeColor', event.target.selectedColor, 'color', 'buttonBar')"  />
+			
+				<components:fontPicker id="myfontFamilybuttonBar" dataChange="setStringValue('fontFamily', event.target.styleValue, 'buttonBar')" />
+			
+				<components:fontSizePicker id="myfontSizebuttonBar" dataChange="setStringValue('fontSize', event.target.styleValue, 'buttonBar')" />
+		
+				<components:textFormattingPicker id="mytextFormatbuttonBar" dataChange="setTextFormat(event.target.styleValue, 'buttonBar');" />
+			
+	
+	
+					</mx:Form>
+				</mx:Box>
+			</mx:Canvas>
+			</mx:TabNavigator>
+			
+		<mx:Box width="100%"  paddingRight="5" paddingBottom="5"  horizontalAlign="right">
+				<mx:LinkButton label="Restore Defaults" 
+					click="restoreItemDefaults('buttonBar')" styleName="undoLink" id="undo"/>
+			</mx:Box>
+		</mx:VBox>
+		
+		
+		
+	
+	<!-- 
+	//********************//
+	//   SANDBOX          //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="100%" styleName="glassPods" horizontalScrollBarStyleName="fseVerticalScrollBar" >
+		<head:GlassHeaders headerTitle="SANDBOX" />
+		
+		<mx:ButtonBar id="mybuttonBar" left="10" top="30" >
+            <mx:dataProvider>
+                <mx:Array>
+                    <mx:String>My Button Bar</mx:String>
+                    <mx:String>Action 2</mx:String>
+                    <mx:String>Action 3</mx:String>
+                </mx:Array>
+            </mx:dataProvider>
+        </mx:ButtonBar>
+			
+	</mx:Canvas>
+	
+	<!-- 
+	//********************//
+	//   CSS VIEW         //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="250" styleName="glassPods" >
+		<head:GlassHeaders headerTitle="CSS"/>
+		<mx:TextArea text="{myCSS}" left="10" right="10" top="30" bottom="10" styleName="cssTextArea" />
+	</mx:Canvas>
+	<mx:Script source="../as/buttonBar.as" />
+
+	
+
+
+</mx:HBox>
+
+
+
+

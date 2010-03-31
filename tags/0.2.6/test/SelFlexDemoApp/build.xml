@@ -1,0 +1,56 @@
+<project name="selben" default="deploy" basedir=".">
+	
+	<property file="${user.home}/selben.properties" />
+
+	<property name="src" value="${basedir}/src"/>
+	
+	<property name="web" value="${basedir}/web" />
+	
+	<property name="build-lib" value="${basedir}/lib/build" />
+	<property name="flex-lib" value="${basedir}/lib/flex" />
+
+	<property name="tomcat-base" value="${basedir}/deploy" />
+	
+	<property name="deploy-dir" value="${tomcat-base}/webapps/ROOT" />
+
+	<taskdef resource="flexTasks.tasks" classpath="${build-lib}/flexTasks.jar" />
+
+	<target name="compile-flex" description="Compile the Flex app">
+		<mxmlc file="${src}/selben.mxml" output="${web}/selben.swf">
+			<library-path dir="${flex-lib}" append="true">
+				<include name="*.swc" />
+			</library-path>	
+		</mxmlc>
+	</target>
+	
+	<target name="clean">
+		<delete>
+		    <fileset dir="${deploy-dir}" includes="*"/>
+		  </delete>
+	</target>
+	
+	<target name="deploy" depends="clean,compile-flex" description="Deploy the Flex app to Tomcat">
+		<copy todir="${deploy-dir}">
+		    <fileset dir="${web}" />
+		</copy>
+		<copy file="${web}/selben.html" tofile="${deploy-dir}/index.html" />
+	</target>
+
+	<target name="tomcat-start" description="Start a Tomcat instance">
+		<java jar="${tomcat.home}/bin/bootstrap.jar" fork="true" spawn="true">
+			<jvmarg value="-Dcatalina.home=${tomcat.home}" />
+			<jvmarg value="-Dcatalina.base=${tomcat-base}" />
+			<jvmarg
+				line=" -Xdebug -Xrunjdwp:transport=dt_socket,address=8888,server=y,suspend=n" />
+		</java>
+	</target>
+	
+	<target name="tomcat-stop" description="Stop the currently running Tomcat instance">
+		<java jar="${tomcat.home}/bin/bootstrap.jar" fork="true">
+			<jvmarg value="-Dcatalina.home=${tomcat.home}" />
+			<jvmarg value="-Dcatalina.base=${tomcat-base}" />	
+			<arg value="stop"/>
+		</java>
+	</target>	
+
+</project>

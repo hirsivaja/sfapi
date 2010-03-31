@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:HBox width="100%" height="100%" xmlns:mx="http://www.adobe.com/2006/mxml" name="Numeric Stepper"
+	xmlns:head="layout.*"  xmlns:components="components.*" >
+	<!-- 
+	//********************//
+	//   STYLE CONTROLS   //
+	//********************//
+	-->
+	
+	<mx:VBox height="100%" width="380" styleName="glassPods"  >
+		
+		<head:GlassHeaders headerTitle="STYLE CONTROLS"/>
+		<mx:Canvas width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollBarStyleName="fseVerticalScrollBar">
+	
+		<mx:VBox x="10" width="350">
+				
+			<mx:Form width="100%"  >
+			
+				<components:borderStylePicker id="myborderStylenumericStepper" styleValue="inset"
+					dataChange="setStringValue('borderStyle', event.target.styleValue, 'numericStepper') " />
+			
+				
+				<mx:Box styleName="conditionalBox" width="100%" visible="{myborderStylenumericStepper.styleValue != 'none'}" verticalScrollPolicy="off"
+					height="{myborderStylenumericStepper.styleValue != 'none'?(myborderStylenumericStepper.styleValue == 'solid'?(60):36):0}">			
+				
+					<mx:Form styleName="conditionalForm" width="100%" paddingLeft="5" >
+				
+						<components:colorPicker dataProvider="{swatches}" 
+							pickerLabel="Border Color" selectedColor="0xB7BABC" id="myborderColornumericStepper"
+							dataChange="setValue('borderColor', event.target.selectedColor, 'color', 'numericStepper')"  />
+						
+						<components:textSliders visible="{myborderStylenumericStepper.styleValue == 'solid'}"
+							sliderLabel="Border Thickness" min="0" max="20" value="1" id="myborderThicknessnumericStepper" padRight="0" 
+							dataChange="setValue('borderThickness', event.target.value, 'number', 'numericStepper')"	/>	
+					
+					</mx:Form>
+				</mx:Box>
+				
+				<components:textSliders 
+					sliderLabel="Background Alpha" min="0" max="1" value="1" id="mybackgroundAlphanumericStepper" snapInt=".01"
+					dataChange="setValue('backgroundAlpha', event.target.value, 'number', 'numericStepper')"	/>	
+				
+				<components:textSliders 
+					sliderLabel="Corner Radius" min="0" max="20" value="0" id="mycornerRadiusnumericStepper" 
+					dataChange="setValue('cornerRadius', event.target.value, 'number', 'numericStepper')"	/>	
+			
+				<components:textSliders 
+					sliderLabel="Text Indent" min="0" max="20" value="0" id="mytextIndentnumericStepper" 
+					dataChange="setValue('textIndent', event.target.value, 'number', 'numericStepper')"	/>	
+			
+				<components:textSliders 
+					sliderLabel="Letter Spacing" min="0" max="10" value="0" id="myletterSpacingnumericStepper" 
+					dataChange="setValue('letterSpacing', event.target.value, 'number', 'numericStepper')"	/>	
+			
+				<components:doubleTextSliders
+					sliderLabel="Highlight Alphas" min="0" max="1" styleValue="[.3, 0]" id="myhighlightAlphasnumericStepper" snapInt=".01" 
+					dataChange="setArrayValue('highlightAlphas', event.target.styleValue, 'number', 'numericStepper')" />	
+			
+				<mx:Box styleName="conditionalBox" width="100%" toolTip="Note: This is an array of four colors, the second two being the fill colors on roll over.">
+				<mx:HBox width="100%">
+				<mx:Box  horizontalAlign="left" paddingLeft="5" paddingTop="5" >
+				<mx:Image id="alert" source="{alertIcon}" />	
+				</mx:Box>
+				
+				<mx:Form styleName="conditionalForm" width="100%" paddingLeft="15">
+				
+					<components:quadTextSliders 
+						sliderLabel="Fill Alphas" min="0" max="1" styleValue="[.6, .4, .75, .65]" id="myfillAlphasnumericStepper" snapInt=".01" 
+						dataChange="setQuadArrayValue('fillAlphas', event.target.styleValue, 'number', 'numericStepper')" />	
+				
+					<components:quadColorPicker dataProvider="{swatches}" pickerLabel="Fill Colors" styleValue="[0xFFFFFF, 0xCCCCCC, 0xFFFFFF, 0xEEEEEE]" id="myfillColorsnumericStepper"
+						dataChange="setQuadArrayValue('fillColors', event.target.styleValue, 'color', 'numericStepper')" />
+				
+				</mx:Form>
+				</mx:HBox>
+				</mx:Box>
+				
+				<components:colorPicker dataProvider="{swatches}" 
+							pickerLabel="Icon Color" selectedColor="0x111111" id="myiconColornumericStepper"
+							dataChange="setValue('iconColor', event.target.selectedColor, 'color', 'numericStepper')"  />
+						
+				
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Background Color" selectedColor="0xFFFFFF" id="mybackgroundColornumericStepper"
+					dataChange="setValue('backgroundColor', event.target.selectedColor, 'color', 'numericStepper')"  />
+				
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Color" selectedColor="0x0B333C" id="mycolornumericStepper"
+					dataChange="setValue('color', event.target.selectedColor, 'color', 'numericStepper')"  />
+				
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Theme Color" selectedColor="0x009Dff" id="mythemeColornumericStepper"
+					dataChange="setValue('themeColor', event.target.selectedColor, 'color', 'numericStepper')"  />
+				
+				<components:fontPicker id="myfontFamilynumericStepper" dataChange="setStringValue('fontFamily', event.target.styleValue, 'numericStepper')" />
+			
+				<components:fontSizePicker id="myfontSizenumericStepper" dataChange="setStringValue('fontSize', event.target.styleValue, 'numericStepper')" />
+			
+				<components:textFormattingPicker id="mytextFormatnumericStepper" dataChange="setTextFormat(event.target.styleValue, 'numericStepper');" />
+				
+			
+			</mx:Form>	
+			
+			
+			<mx:Box height="20" />
+		
+			<mx:Spacer height="100%" />
+			
+		
+		
+		</mx:VBox>
+		</mx:Canvas>
+		<mx:Box width="100%"  paddingRight="5" paddingBottom="5"  horizontalAlign="right">
+				<mx:LinkButton label="Restore Defaults" 
+					click="restoreItemDefaults('numericStepper')" styleName="undoLink" />
+			</mx:Box>
+		</mx:VBox>
+		
+		
+		
+	
+	<!-- 
+	//********************//
+	//   SANDBOX          //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="100%" styleName="glassPods" >
+		<head:GlassHeaders headerTitle="SANDBOX" />
+		<mx:NumericStepper value="1" id="mynumericStepper" left="10" top="30" />
+		
+	</mx:Canvas>
+	
+	<!-- 
+	//********************//
+	//   CSS VIEW         //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="250" styleName="glassPods" horizontalScrollBarStyleName="fseVerticalScrollBar" >
+		<head:GlassHeaders headerTitle="CSS"/>
+		<mx:TextArea text="{myCSS}" left="10" right="10" top="30" bottom="10" styleName="cssTextArea" />
+	</mx:Canvas>
+	<mx:Script source="../as/numericStepper.as" />
+
+
+
+
+</mx:HBox>
+
+
+
+

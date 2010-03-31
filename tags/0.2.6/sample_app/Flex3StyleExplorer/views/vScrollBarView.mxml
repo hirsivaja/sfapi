@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:HBox width="100%" height="100%" xmlns:mx="http://www.adobe.com/2006/mxml" name="V Scroll Bar"
+	xmlns:head="layout.*"  xmlns:components="components.*" >
+	<!-- 
+	//********************//
+	//   STYLE CONTROLS   //
+	//********************//
+	-->
+	
+	<mx:VBox height="100%" width="380" styleName="glassPods"  >
+		
+		<head:GlassHeaders headerTitle="STYLE CONTROLS"/>
+		<mx:Canvas width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollBarStyleName="fseVerticalScrollBar">
+	
+		<mx:VBox x="10" width="350">
+				
+			<mx:Form width="100%"  >
+			
+				<components:textSliders 
+					sliderLabel="Corner Radius" min="0" max="16" value="4" id="mycornerRadiusvScrollBar"
+					dataChange="setValue('cornerRadius', event.target.value, 'number', 'vScrollBar')"	/>	
+				
+				<components:textSliders 
+					sliderLabel="Thumb Offset" min="-30" max="30" value="0" id="mythumbOffsetvScrollBar"
+					dataChange="setValue('thumbOffset', event.target.value, 'number', 'vScrollBar')"	/>	
+				
+				
+				<components:doubleTextSliders 
+					sliderLabel="Highlight Alphas" min="0" max="1" styleValue="[.3, 0]" id="myhighlightAlphasvScrollBar" snapInt=".01" 
+					dataChange="setArrayValue('highlightAlphas', event.target.styleValue, 'number', 'vScrollBar')" />	
+				
+				<mx:Box styleName="conditionalBox" width="100%" horizontalAlign="left" toolTip="Note: This is an array of four colors, the second two being the fill colors on roll over.">
+			
+					<mx:HBox width="100%" >
+					
+						<mx:Box horizontalAlign="left" paddingLeft="5" paddingTop="5" width="25" >
+							<mx:Image source="{alertIcon}" />	
+						</mx:Box>
+				
+						<mx:Form styleName="conditionalForm" paddingLeft="1" width="100%" >
+						
+							<components:quadTextSliders 
+								sliderLabel="Fill Alphas" min="0" max="1" styleValue="[.6, .4, .75, .65]" id="myfillAlphasvScrollBar" snapInt=".01" 
+								dataChange="setQuadArrayValue('fillAlphas', event.target.styleValue, 'number', 'vScrollBar')" />	
+							
+							<components:quadColorPicker dataProvider="{swatches}" pickerLabel="Fill Colors" styleValue="[0xFFFFFF, 0xCCCCCC, 0xFFFFFF, 0xEEEEEE]" id="myfillColorsvScrollBar"
+								dataChange="setQuadArrayValue('fillColors', event.target.styleValue, 'color', 'vScrollBar')" />
+								
+						</mx:Form>
+					</mx:HBox>
+				</mx:Box>
+		
+				<components:doubleColorPicker dataProvider="{swatches}" pickerLabel="Track Colors" styleValue="[0x94999B, 0xE7E7E7]" id="mytrackColorsvScrollBar"
+					dataChange="setArrayValue('trackColors', event.target.styleValue, 'color', 'vScrollBar')" />
+				
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Theme Color" selectedColor="0x009DFF" id="mythemeColorvScrollBar"
+					dataChange="setValue('themeColor', event.target.selectedColor, 'color', 'vScrollBar')"  />
+			
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Border Color" selectedColor="0xB7BABC" id="myborderColorvScrollBar"
+					dataChange="setValue('borderColor', event.target.selectedColor, 'color', 'vScrollBar')"  />
+					
+				<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Icon Color" selectedColor="0x111111" id="myiconColorvScrollBar"
+					dataChange="setValue('iconColor', event.target.selectedColor, 'color', 'vScrollBar')"  />
+			
+			</mx:Form>	
+			
+			
+			<mx:Box height="20" />
+		
+			<mx:Spacer height="100%" />
+			
+		
+		
+		</mx:VBox>
+		</mx:Canvas>
+		<mx:Box width="100%"  paddingRight="5" paddingBottom="5"  horizontalAlign="right">
+				<mx:LinkButton label="Restore Defaults" 
+					click="restoreItemDefaults('vScrollBar')" styleName="undoLink" />
+			</mx:Box>
+		</mx:VBox>
+		
+		
+		
+	
+	<!-- 
+	//********************//
+	//   SANDBOX          //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="100%" styleName="glassPods" >
+		<head:GlassHeaders headerTitle="SANDBOX" />
+		
+		<mx:HBox top="30" height="150" left="10" right="10" 
+			backgroundColor="#FFFFFF" backgroundAlpha=".4" verticalGap="0" 
+			horizontalAlign="right" paddingRight="0" paddingTop="0" paddingBottom="0" >
+		
+			<mx:VScrollBar id="myvScrollBar" height="100%" minScrollPosition="0" 
+				lineScrollSize="1" pageScrollSize="10" maxScrollPosition="10" 
+           		repeatDelay="50" repeatInterval="50" scrollPosition="5" pageSize="25"  />
+			
+		</mx:HBox> 
+
+			
+	</mx:Canvas>
+	
+	<!-- 
+	//********************//
+	//   CSS VIEW         //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="250" styleName="glassPods" >
+		<head:GlassHeaders headerTitle="CSS"/>
+		<mx:TextArea text="{myCSS}" left="10" right="10" top="30" bottom="10" styleName="cssTextArea" />
+	</mx:Canvas>
+	<mx:Script source="../as/vScrollBar.as" />
+	
+</mx:HBox>
+
+
+
+

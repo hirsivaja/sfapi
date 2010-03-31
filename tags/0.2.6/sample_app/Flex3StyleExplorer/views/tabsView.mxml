@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:HBox width="100%" height="100%" xmlns:mx="http://www.adobe.com/2006/mxml" name="Tabs"
+	xmlns:head="layout.*"  xmlns:components="components.*" >
+	<!-- 
+	//********************//
+	//   STYLE CONTROLS   //
+	//********************//
+	-->
+	
+	<mx:VBox height="100%" width="400" styleName="glassPods"  paddingLeft="10" paddingRight="10"  >
+		
+		<head:GlassHeaders headerTitle="STYLE CONTROLS"/>
+		
+		<mx:TabNavigator width="100%" height="100%" horizontalScrollPolicy="off"
+			 styleName="styleControlTabNavigator" tabWidth="120" verticalScrollBarStyleName="fseVerticalScrollBar">
+		
+		<mx:Canvas width="100%" height="100%" verticalScrollBarStyleName="fseVerticalScrollBar"
+				horizontalScrollPolicy="off" label="Tab Navigator">
+				
+				<mx:Box x="0" width="340" >
+				
+			<mx:Form width="100%"  >
+			
+				<components:horizontalAlignPicker id="myhorizontalAligntabNavigator" 
+					dataChange="setStringValue('horizontalAlign', event.target.styleValue, 'tabNavigator') " />
+				
+				<components:borderStylePicker id="myborderStyletabNavigator" styleValue="solid"
+					dataChange="setStringValue('borderStyle', event.target.styleValue, 'tabNavigator') " />
+				
+				<components:textSliders 
+					sliderLabel="Tab Height" min="2" max="50" value="22" id="mytabHeighttabNavigator"
+					dataChange="setValue('tabHeight', event.target.value, 'number', 'tabNavigator')"	/>	
+				
+				<components:textSliders 
+					sliderLabel="Tab Width" min="2" max="200" value="80" id="mytabWidthtabNavigator"
+					dataChange="setValue('tabWidth', event.target.value, 'number', 'tabNavigator')"	/>	
+				
+				<components:textSliders 
+					sliderLabel="Corner Radius" min="0" max="20" value="0" id="mycornerRadiustabNavigator"
+					dataChange="setValue('cornerRadius', event.target.value, 'number', 'tabNavigator')"	/>	
+				
+				<components:textSliders 
+					sliderLabel="Horizontal Gap" min="-10" max="20" value="-1" id="myhorizontalGaptabNavigator"
+					dataChange="setValue('horizontalGap', event.target.value, 'number', 'tabNavigator')"	/>	
+				
+				<components:textSliders 
+					sliderLabel="Tab Offset" min="-20" max="20" value="0" id="mytabOffsettabNavigator"
+					dataChange="setValue('tabOffset', event.target.value, 'number', 'tabNavigator')"	/>	
+				
+				<components:textSliders 
+					sliderLabel="Text Indent" min="0" max="20" value="0" id="mytextIndenttabNavigator"
+					dataChange="setValue('textIndent', event.target.value, 'number', 'tabNavigator')"	/>	
+				
+				<components:textSliders snapInt="0.01" 
+					sliderLabel="Background Alpha" min="0" max="1" value="1" id="mybackgroundAlphatabNavigator"
+				 	dataChange="setValue('backgroundAlpha', event.target.value, 'number', 'tabNavigator')"	/>	
+				
+				<components:textSliders 
+					sliderLabel="Border Thickness" min="0" max="20" value="1" id="myborderThicknesstabNavigator"
+					dataChange="setValue('borderThickness', event.target.value, 'number', 'tabNavigator')"	/>	
+				
+				<components:colorPicker dataProvider="{swatches}" pickerLabel="Background Color" selectedColor="0xFFFFFF" id="mybackgroundColortabNavigator"
+					dataChange="setValue('backgroundColor', event.target.selectedColor, 'color', 'tabNavigator')"  />
+				
+				<components:colorPicker dataProvider="{swatches}" pickerLabel="Border Color" selectedColor="0xAAB3B3" id="myborderColortabNavigator"
+					dataChange="setValue('borderColor', event.target.selectedColor, 'color', 'tabNavigator')"  />
+			
+				<components:colorPicker dataProvider="{swatches}" pickerLabel="Color" selectedColor="0x0B333C" id="mycolortabNavigator"
+					dataChange="setValue('color', event.target.selectedColor, 'color', 'tabNavigator')"  />
+				
+				<components:trueFalsePicker pickerLabel="Drop Shadow" stateLabel="Enabled" id="mydropShadowEnabledtabNavigator"
+					styleValue="false" dataChange="setBooleanValue('dropShadowEnabled', event.target.styleValue, 'tabNavigator')" />
+				
+				<mx:Box styleName="conditionalBox" visible="{mydropShadowEnabledtabNavigator.styleValue == true}"
+					height="{mydropShadowEnabledtabNavigator.styleValue == true?(90):0}" width="100%">			
+				<mx:Form styleName="conditionalForm" width="100%" paddingLeft="15">
+				
+				<components:shadowDirectionPicker id="myshadowDirectiontabNavigator" 
+					dataChange="setStringValue('shadowDirection', event.target.styleValue, 'tabNavigator') " />
+								
+				<components:textSliders 
+					sliderLabel="Shadow Distance" min="-20" max="20" value="2" id="myshadowDistancetabNavigator"
+					dataChange="setValue('shadowDistance', event.target.value, 'number', 'tabNavigator')"	/>	
+				
+				<components:colorPicker dataProvider="{swatches}" pickerLabel="Drop Shadow Color" selectedColor="0x000000" id="mydropShadowColortabNavigator"
+					dataChange="setValue('dropShadowColor', event.target.selectedColor, 'color', 'tabNavigator')"  />
+			
+				
+			
+			</mx:Form>
+			
+			
+			</mx:Box>
+			</mx:Form>
+			</mx:Box>
+			</mx:Canvas>
+			
+			<mx:Canvas width="100%" height="100%" verticalScrollBarStyleName="fseVerticalScrollBar"
+						horizontalScrollPolicy="off" label="Tab Styles">
+					
+						<mx:Box x="10" width="340" >
+						
+							<mx:Form width="100%">
+							
+								<components:textSliders 
+									sliderLabel="Corner Radius" min="0" max="20" value="4" id="mycornerRadiustab" liveDrag="false" padRight="0"
+									dataChange="setValue('cornerRadius', event.target.value, 'number', 'tab')"	/>	
+							
+								<components:textSliders 
+									sliderLabel="Letter Spacing" min="0" max="10" value="0" id="myletterSpacingtab" liveDrag="false" padRight="0"
+									dataChange="setValue('letterSpacing', event.target.value, 'number', 'tab')"	/>	
+							
+								<components:textSliders 
+									sliderLabel="Background Alpha" min="0" max="1" value="1" id="mybackgroundAlphatab"
+									liveDrag="false" padRight="0" snapInt="0.01"
+									dataChange="setValue('backgroundAlpha', event.target.value, 'number', 'tab')"	/>	
+								
+								<components:doubleTextSliders padRight="0" liveDrag="false"
+									sliderLabel="Highlight Alphas" min="0" max="1" styleValue="[.3, 0]" id="myhighlightAlphastab" snapInt=".01" 
+									dataChange="setArrayValue('highlightAlphas', event.target.styleValue, 'number', 'tab')" />	
+							
+								<components:doubleTextSliders  padRight="0" liveDrag="false"
+									sliderLabel="Fill Alphas" min="0" max="1" styleValue="[.6, .4]" id="myfillAlphastab" snapInt=".01" 
+									dataChange="setArrayValue('fillAlphas', event.target.styleValue, 'number', 'tab')" />	
+							
+								<components:doubleColorPicker dataProvider="{swatches}" pickerLabel="Fill Colors" styleValue="[0xFFFFFF, 0xCCCCCC]" id="myfillColorstab"
+									dataChange="setArrayValue('fillColors', event.target.styleValue, 'color', 'tab')" />
+								
+								<components:colorPicker dataProvider="{swatches}" 
+									pickerLabel="Background Color" selectedColor="0xFFFFFF" id="mybackgroundColortab"
+									dataChange="setValue('backgroundColor', event.target.selectedColor, 'color', 'tab')"  />
+								
+								<components:colorPicker dataProvider="{swatches}" 
+									pickerLabel="Border Color" selectedColor="0xB9BCBE" id="myborderColortab"
+									dataChange="setValue('borderColor', event.target.selectedColor, 'color', 'tab')"  />
+								
+								<components:colorPicker dataProvider="{swatches}" 
+									pickerLabel="Color" selectedColor="0x0B333C" id="mycolortab"
+									dataChange="setValue('color', event.target.selectedColor, 'color', 'tab')"  />
+								
+								<components:colorPicker dataProvider="{swatches}" 
+									pickerLabel="Text Roll Over Color" selectedColor="0x0B333C" id="mytextRollOverColortab"
+									dataChange="setValue('textRollOverColor', event.target.selectedColor, 'color', 'tab')"  />
+								
+								<components:colorPicker dataProvider="{swatches}" 
+									pickerLabel="Theme Color" selectedColor="0x009DFF" id="mythemeColortab"
+									dataChange="setValue('themeColor', event.target.selectedColor, 'color', 'tab')"  />
+						
+								<components:textAlign id="mytextAligntab" styleValue="center" dataChange="setStringValue('textAlign', event.target.styleValue, 'tab') " />
+						
+								<components:fontPicker id="myfontFamilytab" dataChange="setStringValue('fontFamily', event.target.styleValue, 'tab')" />
+						
+								<components:fontSizePicker id="myfontSizetab" dataChange="setStringValue('fontSize', event.target.styleValue, 'tab')" />
+							
+								<components:textFormattingPicker id="mytextFormattab" dataChange="setTextFormat(event.target.styleValue, 'tab');" />
+								
+						
+							</mx:Form>
+							
+						</mx:Box>
+					
+					</mx:Canvas>
+			
+			<mx:Canvas width="100%" height="100%" verticalScrollBarStyleName="fseVerticalScrollBar"
+						horizontalScrollPolicy="off" label="Selected Tab Style">
+					
+						<mx:Box x="10" width="340" >
+						
+							<mx:Form width="100%">
+							
+								<components:textSliders 
+									sliderLabel="Letter Spacing" min="0" max="10" value="0" id="myletterSpacingselectedTab" liveDrag="false" padRight="0"
+									dataChange="setValue('letterSpacing', event.target.value, 'number', 'selectedTab')"	/>	
+							
+								<components:colorPicker dataProvider="{swatches}" 
+									pickerLabel="Color" selectedColor="0x0B333C" id="mycolorselectedTab"
+									dataChange="setValue('color', event.target.selectedColor, 'color', 'selectedTab')"  />
+								
+								<components:colorPicker dataProvider="{swatches}" 
+									pickerLabel="Text Roll Over Color" selectedColor="0x0B333C" id="mytextRollOverColorselectedTab"
+									dataChange="setValue('textRollOverColor', event.target.selectedColor, 'color', 'selectedTab')"  />
+								
+								<components:textAlign id="mytextAlignselectedTab" styleValue="center" dataChange="setStringValue('textAlign', event.target.styleValue, 'selectedTab') " />
+						
+								<components:fontPicker id="myfontFamilyselectedTab" dataChange="setStringValue('fontFamily', event.target.styleValue, 'selectedTab')" />
+						
+								<components:fontSizePicker id="myfontSizeselectedTab" dataChange="setStringValue('fontSize', event.target.styleValue, 'selectedTab')" />
+							
+								<components:textFormattingPicker id="mytextFormatselectedTab" dataChange="setTextFormat(event.target.styleValue, 'selectedTab');" />
+								
+						
+							</mx:Form>
+							
+						</mx:Box>
+					
+					</mx:Canvas>
+			
+			
+			</mx:TabNavigator>
+		<mx:Box width="100%"  paddingRight="5" paddingBottom="5"  horizontalAlign="right">
+				<mx:LinkButton label="Restore Defaults" 
+					click="restoreItemDefaults('tabNavigator'); restoreItemDefaults('tab'); restoreItemDefaults('selectedTab');" styleName="undoLink" />
+			</mx:Box>
+		</mx:VBox>
+		
+		
+		
+	
+	<!-- 
+	//********************//
+	//   SANDBOX          //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="100%" styleName="glassPods" >
+		<head:GlassHeaders headerTitle="SANDBOX" />
+		
+		
+		<mx:TabNavigator left="10" top="30" right="10" id="mytabNavigator" tabStyleName="StyledTabs"
+			 selectedTabTextStyleName="SelectedStyledTabs" height="200">
+			<mx:Box label="Tab 1" />
+			<mx:Box label="Tab 2" />
+			<mx:Box label="Tab 3" />
+		</mx:TabNavigator>
+			
+		
+			
+	</mx:Canvas>
+	
+	<!-- 
+	//********************//
+	//   CSS VIEW         //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="250" styleName="glassPods" >
+		<head:GlassHeaders headerTitle="CSS"/>
+		<mx:TextArea text="{myCSS}" left="10" right="10" top="30" bottom="10" styleName="cssTextArea" />
+	</mx:Canvas>
+	<mx:Script source="../as/tabs.as" />
+
+</mx:HBox>
+
+
+
+

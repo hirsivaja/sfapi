@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:FormItem xmlns:mx="http://www.adobe.com/2006/mxml" label="Text Align" width="100%" creationComplete="setDefault()" >
+	
+	<mx:ToggleButtonBar id="togglebar" styleName="fseToggleButtons" itemClick="clickHandler(event);"
+		selectedIndex="{styleValue == 'right'?(2):styleValue == 'center'?(1):0}" >
+		<mx:dataProvider>
+			<mx:Array>
+				<mx:Object icon="{leftIcon}"  toolTip="Left Align"/>                   
+				<mx:Object icon="{centerIcon}" toolTip="Center Align"/>
+				<mx:Object icon="{rightIcon}" toolTip="Middle Align" />
+        	</mx:Array>
+		</mx:dataProvider>
+	</mx:ToggleButtonBar>
+	
+	<mx:Script>
+		<![CDATA[
+		
+			import mx.events.ItemClickEvent; 
+			import mx.events.FlexEvent;
+			include "../as/assets.as";
+			
+			[Bindable]
+			public var styleValue:String = 'left';
+		
+			private function dispatchMyEvent():void {
+                this.dispatchEvent( new Event("dataChange") );
+            }
+            
+            private function clickHandler(event:ItemClickEvent):void {
+             	if (event.index == 0) {
+               		styleValue = 'left';
+               	} else if (event.index == 1) {
+               		styleValue = 'center';
+               	} else if (event.index == 2) {
+               		styleValue = 'right';
+               	}
+               dispatchMyEvent();
+            }
+            
+              [Bindable]
+			public var defaultValue:String;
+           
+           public function setDefault():void {
+           		defaultValue = styleValue;
+           }
+           
+           public function restoreDefault():void {
+           		styleValue = defaultValue;
+           }
+           
+		]]>
+	</mx:Script>
+	
+	<mx:Metadata>
+        [Event("dataChange")]
+    </mx:Metadata>
+   
+</mx:FormItem>

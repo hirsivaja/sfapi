@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:HBox width="100%" height="100%" xmlns:mx="http://www.adobe.com/2006/mxml" name="List"
+	xmlns:head="layout.*"  xmlns:components="components.*" >
+	<!-- 
+	//********************//
+	//   STYLE CONTROLS   //
+	//********************//
+	-->
+	
+	<mx:VBox height="100%" width="380" styleName="glassPods"  >
+		
+		<head:GlassHeaders headerTitle="STYLE CONTROLS"/>
+		<mx:Canvas width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollBarStyleName="fseVerticalScrollBar">
+	
+		<mx:VBox x="10" width="350">
+				
+			<mx:Form width="100%"  >
+				
+			<components:borderStylePicker id="myborderStylelist" styleValue="solid"
+				dataChange="setStringValue('borderStyle', event.target.styleValue, 'list') " />
+					
+			<mx:Box styleName="conditionalBox" width="100%" visible="{myborderStylelist.styleValue == 'solid'}"
+				height="{myborderStylelist.styleValue == 'solid'?(80):0}" >			
+	
+				<mx:Form styleName="conditionalForm"  width="100%" paddingLeft="35">
+		
+					<components:textSliders 
+						sliderLabel="Border Thickness" min="0" max="20" value="1" id="myborderThicknesslist" padRight="0"
+						dataChange="setValue('borderThickness', event.target.value, 'number', 'list')"	/>	
+					
+					<components:textSliders 
+						sliderLabel="Corner Radius" min="0" max="20" value="0" id="mycornerRadiuslist" 
+						dataChange="setValue('cornerRadius', event.target.value, 'number', 'list')"	/>	
+					
+					<components:colorPicker dataProvider="{swatches}" 
+						pickerLabel="Border Color" selectedColor="0xB7BABC" id="myborderColorlist"
+						dataChange="setValue('borderColor', event.target.selectedColor, 'color', 'list')"  />
+					
+				</mx:Form>
+			</mx:Box>
+			
+			<components:colorPicker dataProvider="{swatches}" 
+				pickerLabel="Selection Color" selectedColor="0x7FCDFE" id="myselectionColorlist"
+				dataChange="setValue('selectionColor', event.target.selectedColor, 'color', 'list')"  />
+			
+			<components:colorPicker dataProvider="{swatches}" 
+				pickerLabel="Color" selectedColor="0x0B333C" id="mycolorlist"
+				dataChange="setValue('color', event.target.selectedColor, 'color', 'list')"  />
+		
+			<components:colorPicker dataProvider="{swatches}" 
+				pickerLabel="Text Selected Color" selectedColor="0x0B333C" id="mytextSelectedColorlist"
+				dataChange="setValue('textSelectedColor', event.target.selectedColor, 'color', 'list')"  />
+			
+			<components:colorPicker dataProvider="{swatches}" 
+					pickerLabel="Background Color" selectedColor="0xFFFFFF" id="mybackgroundColorlist"
+					dataChange="setValue('backgroundColor', event.target.selectedColor, 'color', 'list')"  />
+			
+			<components:doubleColorPicker dataProvider="{swatches}" pickerLabel="Alternating Item Colors" styleValue="[0xFFFFFF, 0xFFFFFF]" id="myalternatingItemColorslist"
+					dataChange="setArrayValue('alternatingItemColors', event.target.styleValue, 'color', 'list')" />
+			
+			<components:trueFalsePicker pickerLabel="Use Roll Over" stateLabel="True" id="myuseRollOverlist"
+				styleValue="true" dataChange="setBooleanValue('useRollOver', event.target.styleValue, 'list')" />
+		
+					<mx:Box styleName="conditionalBox" width="100%" 
+						visible="{myuseRollOverlist.styleValue == true}" 
+						height="{myuseRollOverlist.styleValue == true? (62):0}">			
+			
+						<mx:Form styleName="conditionalForm" width="100%" paddingLeft="17">
+		
+							<components:colorPicker dataProvider="{swatches}" 
+								pickerLabel="Roll Over Color" selectedColor="0xAADEFF" id="myrollOverColorlist"
+								dataChange="setValue('rollOverColor', event.target.selectedColor, 'color', 'list')"  />
+						
+							<components:colorPicker dataProvider="{swatches}" 
+								pickerLabel="Text Roll Over Color" selectedColor="0x0B333C" id="mytextRollOverColorlist"
+								dataChange="setValue('textRollOverColor', event.target.selectedColor, 'color', 'list')"  />
+						
+						</mx:Form>
+			
+					</mx:Box>
+				
+			<components:textSliders 
+				sliderLabel="Background Alpha" min="0" max="1" value="1" id="mybackgroundAlphalist" snapInt=".01"
+				dataChange="setValue('backgroundAlpha', event.target.value, 'number', 'list')"	/>	
+			
+			<components:textSliders 
+				sliderLabel="Text Indent" min="0" max="30" value="0" id="mytextIndentlist" 
+				dataChange="setValue('textIndent', event.target.value, 'number', 'list')"	/>	
+		
+			<components:textSliders 
+				sliderLabel="Letter Spacing" min="0" max="10" value="0" id="myletterSpacinglist" 
+				dataChange="setValue('letterSpacing', event.target.value, 'number', 'list')"	/>	
+		
+			<components:textSliders 
+				sliderLabel="Selection Duration" min="0" max="5000" value="250" id="myselectionDurationlist" 
+				textWidth="40" dataChange="setValue('selectionDuration', event.target.value, 'number', 'list')"	/>	
+			
+			<components:textAlign id="mytextAlignlist" dataChange="setStringValue('textAlign', event.target.styleValue, 'list') " />
+					
+			<components:fontPicker id="myfontFamilylist" dataChange="setStringValue('fontFamily', event.target.styleValue, 'list')" />
+		
+			<components:fontSizePicker id="myfontSizelist" dataChange="setStringValue('fontSize', event.target.styleValue, 'list')" />
+		
+			<components:textFormattingPicker id="mytextFormatlist" dataChange="setTextFormat(event.target.styleValue, 'list');" />
+			
+			<components:trueFalsePicker pickerLabel="Drop Shadow" stateLabel="Enabled" id="mydropShadowEnabledlist"
+				styleValue="false" dataChange="setBooleanValue('dropShadowEnabled', event.target.styleValue, 'list')" />
+			
+			<mx:Box styleName="conditionalBox" width="100%" visible="{mydropShadowEnabledlist.styleValue == true}"
+				height="{mydropShadowEnabledlist.styleValue == true?(80):0}" >			
+				<mx:Form styleName="conditionalForm" width="100%" paddingLeft="25" >
+				
+					<components:textSliders 
+						sliderLabel="Shadow Distance" min="-20" max="20" value="2" id="myshadowDistancelist"  padRight="0"
+						dataChange="setValue('shadowDistance', event.target.value, 'number', 'list')"	/>	
+					
+					<components:shadowDirectionPicker id="myshadowDirectionlist" 
+						dataChange="setStringValue('shadowDirection', event.target.styleValue, 'list') " />
+						
+					<components:colorPicker dataProvider="{swatches}" 
+						pickerLabel="Drop Shadow Color" selectedColor="0x000000" id="mydropShadowColorlist"
+						dataChange="setValue('dropShadowColor', event.target.selectedColor, 'color', 'list')"  />
+								
+				</mx:Form>
+			</mx:Box>
+				
+			
+			</mx:Form>	
+			
+			
+			<mx:Box height="20" />
+		
+			<mx:Spacer height="100%" />
+			
+		
+		
+		</mx:VBox>
+		</mx:Canvas>
+		<mx:Box width="100%"  paddingRight="5" paddingBottom="5"  horizontalAlign="right">
+				<mx:LinkButton label="Restore Defaults" 
+					click="restoreItemDefaults('list')" styleName="undoLink" />
+			</mx:Box>
+		</mx:VBox>
+		
+		
+		
+	
+	<!-- 
+	//********************//
+	//   SANDBOX          //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="100%" styleName="glassPods" >
+		<head:GlassHeaders headerTitle="SANDBOX" />
+		<mx:List id="mylist" left="10" top="30" right="10" height="200">
+			 <mx:dataProvider>
+                <mx:Array>
+                    <mx:Object label="Adobe Dreamweaver" />
+                    <mx:Object label="Adobe Flash" />
+					 <mx:Object label="Adobe Flex" />
+                    <mx:Object label="Adobe Illustrator" />
+                    <mx:Object label="Adobe Photoshop " />
+                </mx:Array>
+            </mx:dataProvider>	
+        </mx:List>
+			
+	</mx:Canvas>
+	
+	<!-- 
+	//********************//
+	//   CSS VIEW         //
+	//********************//
+	-->
+	<mx:Canvas height="100%" width="250" styleName="glassPods" horizontalScrollBarStyleName="fseVerticalScrollBar" >
+		<head:GlassHeaders headerTitle="CSS"/>
+		<mx:TextArea text="{myCSS}" left="10" right="10" top="30" bottom="10" styleName="cssTextArea" />
+	</mx:Canvas>
+	<mx:Script source="../as/list.as" />
+
+
+
+
+</mx:HBox>
+
+
+
+
