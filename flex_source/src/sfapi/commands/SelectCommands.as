@@ -77,11 +77,12 @@ package sfapi.commands
 			{
 				return -1;
 			}
-			
+
+      var labelField:String = child.labelField;
 			var i:int = 0;
 			for each(var item:Object in child.dataProvider)
 			{
-				if((item.hasOwnProperty("label") && item.label == args) || item.toString() == args)
+				if((item.hasOwnProperty(labelField) && item[labelField] == args) || item.toString() == args)
 				{
 					return i;
 				}
