@@ -1,0 +1,44 @@
+<project name="sfapi" default="build" basedir=".">
+	
+	<property file="sfapibuild.properties" />
+
+	<property name="src" value="${basedir}/flex_source/src"/>	
+	<property name="output" value="${basedir}/output" />	
+	<property name="build-lib" value="${basedir}/lib/build" />
+	<taskdef resource="flexTasks.tasks" classpath="${build-lib}/flexTasks.jar" />
+    
+	<!-- Returns list of all sfapi classes to be used for build -->
+	<target name="-resolve-class-path">
+		<path id="list_1">
+			<fileset dir="${src}">
+				<exclude name="**/Test*" />
+			</fileset>
+		</path>
+		<pathconvert property="project_classes_property" pathsep=" "
+			dirsep="." refid="list_1">
+			<map from="${basedir}/flex_source/src/" to="" />
+			<mapper>
+				<chainedmapper>
+					<globmapper from="*.as" to="*" />
+				</chainedmapper>
+			</mapper>
+		</pathconvert>
+		<echo>"${project_classes_property}"</echo>
+	</target>
+	
+	<!-- Builds sfapi, i.e. creates the swc file to be added to Flex applications for testing -->
+	<target name="build" description="Compile sfapi" depends="-resolve-class-path">
+		<compc output="${output}/SeleniumFlexAPI.swc"
+			include-classes="${project_classes_property}">
+			<source-path path-element="${src}"/>
+		</compc>
+	</target>
+	
+	<!-- Deletes the swc file -->
+	<target name="clean">
+		<delete>
+		    <fileset dir="${output}" includes="*"/>
+		</delete>
+	</target>
+
+</project>

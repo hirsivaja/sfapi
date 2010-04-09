@@ -1,3 +1,6 @@
+# This script is presently depricated due to replacement of user-extensions.js
+# with flex-playback.js. It needs a slight rewrite.
+
 # This script generates the SeleniumFlexAPI file user-extensions.js
 # The script parses the action script file Commands.js, to collect the commands available for the API
 # and generates the javascript interfaces method

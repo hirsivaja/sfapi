@@ -20,11 +20,30 @@
  */
 package sfapi.core
 {
+
+	import flash.utils.describeType;
+	
 	import flash.utils.getQualifiedClassName;
+	
+	import flash.events.Event;
+	import flash.events.TextEvent;
+	import flash.events.MouseEvent;
+	import flash.events.KeyboardEvent;
+	
+	import mx.events.FlexEvent;
+	import mx.events.DragEvent;
+	
+	import mx.controls.Alert;
+	import mx.events.ListEvent;
+	import flash.events.FocusEvent;
+	
 	
 	public class AppTreeParser
 	{
 		public var thisApp:Object;
+		public var curMouseX:int;
+		public var curMouseY:int;
+		
 		private var nextNode:AppTreeNode;
 		private var firstNode:AppTreeNode;
 		
@@ -275,7 +294,7 @@ package sfapi.core
 				while(i < parent.rawChildren.numChildren)
 				{
 					child = parent.rawChildren.getChildAt(i);
-					if(isNotContentPane(child) && isChild(child, parent))
+					if(isNotContentPane(child) && ! isChild(child, parent))
 					{
 						nextNode = new AppTreeNode(child, i, true);
 						return true;
@@ -285,6 +304,9 @@ package sfapi.core
 			}
 			return false;
 		}
+		
+
+
 		
 		/**
 		 * @param
@@ -319,6 +341,82 @@ package sfapi.core
 			
 			parents = null;
 		}
+		
+		/**Assign a listener to each element in the tree**/
+		public function assignListeners():void
+		{
+			var parents:Array = new Array();
+			var currentNode:AppTreeNode = new AppTreeNode(thisApp.parent);
+			var sibTravers:Boolean = false;
+
+			do
+			{
+				/**Check if the current node has a first child or a next node
+				  following it**/
+				var whichNode:int = 0;
+				if(hasFirstChild(currentNode) && ! sibTravers)
+				{
+					whichNode = 1;
+					parents.push(currentNode);
+					currentNode = firstNode;
+				}
+				else if(hasNextNode(currentNode, parents[parents.length - 1].child))
+				{
+					whichNode = 2;
+					currentNode = nextNode;
+					sibTravers = false;
+				}
+
+				/**If its one of the above two cases, assign these
+				 elements an event handler**/
+				if((whichNode == 2) || (whichNode ==1)) {
+					
+					var flexElement:String = describeType(currentNode.child).@name.toString();
+					
+					if(flexElement.search("mx.controls") > -1)
+					{
+						currentNode.child.addEventListener(TextEvent.TEXT_INPUT, RecordingEventHandler.handleTextEvent);
+						currentNode.child.addEventListener(TextEvent.LINK, RecordingEventHandler.handleTextEvent);
+						currentNode.child.addEventListener(KeyboardEvent.KEY_UP, RecordingEventHandler.handleKeyboardEvent);
+						currentNode.child.addEventListener(KeyboardEvent.KEY_DOWN, RecordingEventHandler.handleKeyboardEvent);
+						
+						//work around for context menu:
+						//mouse_wheel gets invoked when a user right clicks on the flex app
+						currentNode.child.addEventListener(MouseEvent.MOUSE_WHEEL, RightClick.handleRightClick);
+						
+					}
+
+					if((flexElement.search("mx.containers") > -1) ||
+					   (flexElement.search("mx.core") > -1) ||
+					   (flexElement.search("mx.controls") > -1) ||
+					   (flexElement.search("flash.display") > -1))
+					{
+
+						// True boolean here sets this event listener to only listen to the given event in the Bubbling phase.
+						// This is required because we want the target of the event to be a specific object(DateField in this case), not sysRoot.
+						// Link below explains it in details
+						// http://livedocs.adobe.com/flex/3/html/help.html?content=events_08.html
+						currentNode.child.addEventListener(mx.events.CalendarLayoutChangeEvent.CHANGE, RecordingEventHandler.handleDateChange, true);
+						currentNode.child.addEventListener(mx.events.DragEvent.DRAG_DROP, RecordingEventHandler.handleDropObject, true);
+						currentNode.child.addEventListener(mx.events.ListEvent.CHANGE, RecordingEventHandler.handleListSelection, true);
+						currentNode.child.addEventListener(MouseEvent.CLICK, RecordingEventHandler.handleMouseClicked);
+						currentNode.child.addEventListener(mx.events.ItemClickEvent.ITEM_CLICK, RecordingEventHandler.handleTabClicked, true);
+						
+						//work around for context menu:
+						//mouse_wheel gets invoked when a user right clicks on the flex app
+						currentNode.child.addEventListener(MouseEvent.MOUSE_WHEEL, RightClick.handleRightClick);
+					}
+				}
+				else
+				{
+					currentNode = parents.pop();
+					sibTravers = true;
+				}
+			} while(currentNode.child != thisApp.parent);
+
+			parents = null;
+		}
+		
 		
 		/**
 		 * 

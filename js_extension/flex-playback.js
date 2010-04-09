@@ -18,80 +18,109 @@
  *	If not, see http://www.gnu.org/licenses/
  *
  */
- 
+
 /**
- * The following is the ID for the Flex object on the html page.
- * Should be different depending on the application under test.
- * Use the command flexSetFlexObjID to set the command during runtime
+ * The following is the ID for the Flex object on the html page. Should be
+ * different depending on the application under test. Use the command
+ * flexSetFlexObjID to set the command during runtime
  */
 
-Selenium.prototype.getFlexObject =  function(){
-	var obj = (this.browserbot.locateElementByXPath('//embed', this.browserbot.getDocument())) ? this.browserbot.locateElementByXPath('//embed', this.browserbot.getDocument()) : this.browserbot.locateElementByXPath('//object', this.browserbot.getDocument());
+Selenium.prototype.getFlexObject = function() {
+	var obj = (this.browserbot.locateElementByXPath('//embed', this.browserbot
+			.getDocument())) ? this.browserbot.locateElementByXPath('//embed',
+			this.browserbot.getDocument()) : this.browserbot
+			.locateElementByXPath('//object', this.browserbot.getDocument());
 	return obj.id;
-}
+};
 
 Selenium.prototype.flashObjectLocator = null;
 
-Selenium.prototype.callFlexMethod = function (method, id, args) {
-	
-	if (this.flashObjectLocator === null){
-		this.flashObjectLocator = this.getFlexObject();
+Selenium.prototype.callFlexMethod = function(method, id, args) {
+	var dot_index = id.indexOf('.');
+	if (dot_index < 0) {
+		ids = [ null, id ];
+	} else {
+		ids = [ id.slice(0, dot_index), id.slice(dot_index + 1) ];
 	}
-	
+
+		// Flex application id is specified, so playback within that application
+	if (ids[0] !== null && ids[0] != "") {
+		this.flashObjectLocator = ids[0];
+	} else { // no application id specified so playback in default
+		// application
+		if (this.flashObjectLocator === null) {
+			this.flashObjectLocator = this.getFlexObject();
+		}
+	}
+
 	// the object that contains the exposed Flex functions
 	var funcObj = null;
 	// get the flash object
 	var flashObj = selenium.browserbot.findElement(this.flashObjectLocator);
-	
+
 	if (flashObj.wrappedJSObject) {
 		flashObj = flashObj.wrappedJSObject;
 	}
-	
+
 	// find object holding functions
-	if(typeof(flashObj[method]) == 'function')
+	if (typeof (flashObj[method]) == 'function') {
 		// for IE (will be the flash object itself)
 		funcObj = flashObj;
-	else {
+	} else {
 		// Firefox (will be a child of the flash object)
-		for(var i = 0; i < flashObj.childNodes.length; i++) {
+		for ( var i = 0; i < flashObj.childNodes.length; i++) {
 			var tmpFuncObj = flashObj.childNodes[i];
-			if(typeof(tmpFuncObj) == 'function') {
+			if (typeof (tmpFuncObj) == 'function') {
 				funcObj = tmpFuncObj;
 				break;
 			}
 		}
 	}
-	
-	// throw a error to Selenium if the exposed function could not be found
-	if(funcObj == null)
-		throw new SeleniumError('Function ' + method + ' not found on the External Interface for the flash object ' + this.flashObjectLocator);
 
-	return funcObj[method](id, args);
-}
+	// throw a error to Selenium if the exposed function could not be found
+	if (funcObj === null) {
+		throw new SeleniumError('Function ' + method +
+				' not found on the External Interface for the flash object ' +
+				this.flashObjectLocator);
+
+	} else {
+		return funcObj[method](ids[1], args);
+	}
+};
 
 Selenium.prototype.doFlexSetFlexObjID = function(flasObjID) {
-    if(null == flasObjID) throw new SeleniumError(flasObjID);
-    this.flashObjectLocator = flasObjID;
+	if (null === flasObjID) {
+		throw new SeleniumError(flasObjID);
+	}
+	this.flashObjectLocator = flasObjID;
 };
 
 Selenium.prototype.doAssertFlexAlertTextPresent = function(searchStr) {
 	var retval = this.callFlexMethod('getFlexAlertTextPresent', searchStr);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doAssertFlexAlertTextNotPresent = function(searchStr) {
 	var retval = this.callFlexMethod('getFlexAlertTextPresent', searchStr);
-	if(retval == 'true') throw new SeleniumError('The string ' + searchStr + ' was found');
+	if (retval == 'true') {
+		throw new SeleniumError('The string ' + searchStr + ' was found');
+	}
 };
 
 Selenium.prototype.doVerifyFlexAlertTextPresent = function(searchStr) {
 	var retval = this.callFlexMethod('getFlexAlertTextPresent', searchStr);
-	if(retval != 'true') LOG.error(retval);
+	if (retval != 'true') {
+		LOG.error(retval);
+	}
 };
 
 Selenium.prototype.doVerifyFlexAlertTextNotPresent = function(searchStr) {
 	var retval = this.callFlexMethod('getFlexAlertTextPresent', searchStr);
-	if(retval == 'true') LOG.error('The string ' + searchStr + ' was found');
+	if (retval == 'true') {
+		LOG.error('The string ' + searchStr + ' was found');
+	}
 };
 
 Selenium.prototype.getFlexASProperty = function(idProperty) {
@@ -227,175 +256,247 @@ Selenium.prototype.getFlexDataGridCellText = function(id) {
 
 Selenium.prototype.doFlexWaitForElementVisible = function(id, args) {
 	var retval = this.callFlexMethod('doFlexWaitForElementVisible', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexWaitForElement = function(id, args) {
 	var retval = this.callFlexMethod('doFlexWaitForElement', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexTypeAppend = function(id, args) {
 	var retval = this.callFlexMethod('doFlexTypeAppend', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexType = function(id, args) {
 	var retval = this.callFlexMethod('doFlexType', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexStepper = function(id, args) {
 	var retval = this.callFlexMethod('doFlexStepper', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexSetFocus = function(id, args) {
 	var retval = this.callFlexMethod('doFlexSetFocus', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexSetDataGridCell = function(id, args) {
 	var retval = this.callFlexMethod('doFlexSetDataGridCell', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexSelectMatchingOnField = function(id, args) {
 	var retval = this.callFlexMethod('doFlexSelectMatchingOnField', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexSelectIndex = function(id, args) {
 	var retval = this.callFlexMethod('doFlexSelectIndex', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexSelectComboByLabel = function(id, args) {
 	var retval = this.callFlexMethod('doFlexSelectComboByLabel', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexSelect = function(id, args) {
 	var retval = this.callFlexMethod('doFlexSelect', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexRefreshIDToolTips = function(id, args) {
 	var retval = this.callFlexMethod('doFlexRefreshIDToolTips', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexRadioButton = function(id, args) {
 	var retval = this.callFlexMethod('doFlexRadioButton', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexProperty = function(id, args) {
 	var retval = this.callFlexMethod('doFlexProperty', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexMouseUp = function(id, args) {
 	var retval = this.callFlexMethod('doFlexMouseUp', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexMouseEvent = function(id, args) {
 	var retval = this.callFlexMethod('doFlexMouseEvent', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexMouseRollOver = function(id, args) {
 	var retval = this.callFlexMethod('doFlexMouseRollOver', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexMouseRollOut = function(id, args) {
 	var retval = this.callFlexMethod('doFlexMouseRollOut', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexMouseOver = function(id, args) {
 	var retval = this.callFlexMethod('doFlexMouseOver', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexMouseMove = function(id, args) {
 	var retval = this.callFlexMethod('doFlexMouseMove', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexMouseDown = function(id, args) {
 	var retval = this.callFlexMethod('doFlexMouseDown', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexRightMouseDown = function(id, args) {
 	var retval = this.callFlexMethod('doFlexRightMouseDown', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexDragTo = function(id, args) {
 	var retval = this.callFlexMethod('doFlexDragTo', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexDoubleClick = function(id, args) {
 	var retval = this.callFlexMethod('doFlexDoubleClick', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexDate = function(id, args) {
 	var retval = this.callFlexMethod('doFlexDate', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexClickMenuBarUIComponent = function(id, args) {
 	var retval = this.callFlexMethod('doFlexClickMenuBarUIComponent', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexClickDataGridUIComponent = function(id, args) {
-	var retval = this.callFlexMethod('doFlexClickDataGridUIComponent', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	var retval = this
+			.callFlexMethod('doFlexClickDataGridUIComponent', id, args);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexClickDataGridItem = function(id, args) {
 	var retval = this.callFlexMethod('doFlexClickDataGridItem', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexClick = function(id, args) {
 	var retval = this.callFlexMethod('doFlexClick', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexCheckBox = function(id, args) {
 	var retval = this.callFlexMethod('doFlexCheckBox', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexAlertResponse = function(id, args) {
 	var retval = this.callFlexMethod('doFlexAlertResponse', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexAddSelectMatchingOnField = function(id, args) {
-	var retval = this.callFlexMethod('doFlexAddSelectMatchingOnField', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	var retval = this
+			.callFlexMethod('doFlexAddSelectMatchingOnField', id, args);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexAddSelectIndex = function(id, args) {
 	var retval = this.callFlexMethod('doFlexAddSelectIndex', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexNotify = function(id, args) {
 	var retval = this.callFlexMethod('doFlexNotify', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
 
 Selenium.prototype.doFlexEnterKey = function(id, args) {
 	var retval = this.callFlexMethod('doFlexEnterKey', id, args);
-	if(retval != 'true') throw new SeleniumError(retval);
+	if (retval != 'true') {
+		throw new SeleniumError(retval);
+	}
 };
