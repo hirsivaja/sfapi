@@ -113,7 +113,7 @@ Selenium.prototype.getFlexProperty = function(idProperty) {
 ";
 
 # get list of commands from Commands.js
-$commandsFile = "../SeleniumFlexAPI/src/net/sourceforge/seleniumflexapi/commands/Commands.as";
+$commandsFile = "../flex_source/src/sfapi/commands/Commands.as";
 
 open(FILE, $commandsFile) || die("Could not open file!");
 @commands;
