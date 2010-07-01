@@ -26,19 +26,20 @@ package sfapi.commands
 	import flash.utils.getQualifiedClassName;
 	
 	import mx.core.Application;
+	import mx.core.UIComponent;
 	import mx.utils.ArrayUtil;
-	
+
 	import sfapi.core.AppTreeParser;
 	import sfapi.core.ErrorMessages;
 	import sfapi.core.Tools;
-	
+
 	public class PropertyCommands extends AbstractCommand
 	{
 		public function PropertyCommands(aptObj:AppTreeParser, contextObj:Commands)
 		{
 			super(aptObj, contextObj);
 		}
-		
+
 		// todo tell vince about changes
 		// todo comm
 		public function getFlexGlobalPosition(id:String):String
@@ -47,7 +48,7 @@ package sfapi.commands
 			var pt:Point = element.localToGlobal(new Point(0, 0));
 			return String(pt.x + "," + pt.y);
 		}
-		
+
 		// todo tell vince about changes
 		// todo comm
 		public function rawFlexGlobalPosition(id:String, returnPoint:String):Object
@@ -60,7 +61,7 @@ package sfapi.commands
 			}
 			return String(pt.x + "," + pt.y);
 		}
-		
+
 		// todo comm
 		/**
 		 * Get a components info, x,y,w,h
@@ -69,10 +70,10 @@ package sfapi.commands
 		{
 			var element:Object = appTreeParser.getElement(id);
 			var pt:Object = rawFlexGlobalPosition(id, 'true');
-			var data:Array = [pt.x, pt.y, element.width, element.height];			
+			var data:Array = [pt.x, pt.y, element.width, element.height];
 			return data.join(",");
 		}
-		
+
 		/*
 		* Process a list of requests for component properties
 		* @param props the list is properties to process
@@ -88,18 +89,18 @@ package sfapi.commands
 				id = 	list[x].substring(0, list[x].indexOf("."))
 				property = list[x].substring(list[x].indexOf(".")+1, list[x].length)
 				ret.push(rawFlexProperty(id, property,false));
-				
+
 			}
-			
+
 			var data:String = JSON.encode(ret);
 			return escape(data);
 		}
-		
+
 		public function getFlexProperty(id:String, value:String):Object
 		{
 			return rawFlexProperty(id, value, false);
 		}
-		
+
 		/**
 		 * Retrieves an object Property
 		 * @param  id  The ID of the Flex object
@@ -121,10 +122,10 @@ package sfapi.commands
 			{
 				return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [id]);
 			}
-			
+
 			var props:Array = property.split(".");
 			var retval:Object = element;
-			
+
 			for (var x:Number = 0; x < props.length; x++)
 			{
 				if(retval.hasOwnProperty(props[x]))
@@ -159,7 +160,7 @@ package sfapi.commands
 			}
 			return null;
 		}
-		
+
 		/**
 		 * Set a components property
 		 * @param  id  The ID of the Flex object
@@ -172,7 +173,7 @@ package sfapi.commands
 			var locator:Array = id.split(".");
 			id = locator[0];
 			var property:String = locator[1];
-			
+
 			if(child.hasOwnProperty(property))
 			{
 				try
@@ -190,31 +191,44 @@ package sfapi.commands
 			}
 			return null;
 		}
-		
+
 		/**
 		 * Retrieves the date in a DateField control
 		 * @param  id  The ID of the Flex object
 		 * @param  args
-		 * @return  the date in the datefield or an error message if the call fails
+		 * @return   true if the component is visible
 		 */
 		public function getFlexVisible(id:String, args:String):String
 		{
 			var element:Object = appTreeParser.getElement(id);
-			if(element == null)
+			if(element == null || !element instanceof UIComponent)
 			{
 				return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [id]);
 			}
 			if(element.hasOwnProperty("visible"))
 			{
-				return element.visible.toString(); 
+				return isVisible(UIComponent(element)).toString();
 			}
-			else
-			{
-				return ErrorMessages.getError(ErrorMessages.ERROR_NO_PROPERTY, [id]);
-			}
-			return retval;
+		    return ErrorMessages.getError(ErrorMessages.ERROR_NO_PROPERTY, [id]);
 		}
-		
+
+		/**
+		 * Check a component is visible or not.
+		 * @param component  The ui component
+		 * @return  true if the component is visible
+		 */
+		public static function isVisible(component : UIComponent) : Boolean {
+			if (component == null)
+			{
+				return false;
+			}
+			if (component is Application)
+			{
+				return component.visible;
+			}
+			return component.visible && isVisible(UIComponent(component.parent));
+		}
+
 		/**
 		 * Determines if a element is enabled or not
 		 * @param  id  The ID of the Flex object
