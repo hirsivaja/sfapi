@@ -27,17 +27,15 @@ package sfapi.commands
 	import sfapi.core.ReferenceData;
 	import sfapi.core.Tools;
 	
-	public class SelectCommands
+	public class SelectCommands extends AbstractCommand
 	{
 		// TODO use reference standard for these
 		private static const PROPERTY_DATA_PROVIDER:String = "dataProvider";
 		private static const PROPERTY_SELECTED_INDEX:String = "selectedIndex";
 
-		private var appTreeParser:AppTreeParser;
-		
-		public function SelectCommands(aptObj:AppTreeParser)
+		public function SelectCommands(aptObj:AppTreeParser, contextObj:Commands)
 		{
-			appTreeParser = aptObj;
+			super(aptObj, contextObj);
 		}
 		
 		/**
@@ -68,7 +66,7 @@ package sfapi.commands
 		/**
 		 * Gets the index of a literal value of a list item in a list related control
 		 * @param  id  The ID of the Flex object
-		 * @param
+		 * @param  args
 		 * @return  'true' if the selection was made. An error message if the call fails.
 		 */
 		private function getIndexOf(args:String, child:Object):int
@@ -94,7 +92,7 @@ package sfapi.commands
 		/**
 		 * Selects an option on a list related control based on index
 		 * @param  id  The ID of the Flex object
-		 * @param
+		 * @param  args
 		 * @return  'true' if the selection was made. An error message if the call fails.
 		 */
 		public function doFlexSelectIndex(id:String, args:String):String

@@ -29,13 +29,11 @@ package sfapi.commands
 	import sfapi.core.ErrorMessages;
 	import sfapi.core.RunCommands;
 	
-	public class MouseCommands
+	public class MouseCommands extends AbstractCommand
 	{
-		private var appTreeParser:AppTreeParser;
-		
-		public function MouseCommands(aptObj:AppTreeParser)
+		public function MouseCommands(aptObj:AppTreeParser, contextObj:Commands)
 		{
-			appTreeParser = aptObj;
+			super(aptObj, contextObj);
 		}
 		
 		/**

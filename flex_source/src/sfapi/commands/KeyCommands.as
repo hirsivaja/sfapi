@@ -4,15 +4,12 @@ package sfapi.commands
 	import sfapi.core.AppTreeParser;
 	import sfapi.core.ErrorMessages;
 	
-	public class KeyCommands
+	public class KeyCommands extends AbstractCommand
 	{
-		private var appTreeParser:AppTreeParser;
-		
-		public function KeyCommands(aptObj:AppTreeParser)
+		public function KeyCommands(aptObj:AppTreeParser, contextObj:Commands)
 		{
-			appTreeParser = aptObj;
+			super(aptObj, contextObj);
 		}
-
 
 		public function doFlexEnterKey(locator:String, args:String):String
 		{

@@ -27,13 +27,11 @@ package sfapi.commands
 	import sfapi.core.ReferenceData;
 	import sfapi.core.Tools;
 	
-	public class RadioButtonCommands
+	public class RadioButtonCommands extends AbstractCommand
 	{
-		private var appTreeParser:AppTreeParser;
-		
-		public function RadioButtonCommands(aptObj:AppTreeParser)
+		public function RadioButtonCommands(aptObj:AppTreeParser, contextObj:Commands)
 		{
-			appTreeParser = aptObj;
+			super(aptObj, contextObj);
 		}
 		
 		/**

@@ -26,18 +26,15 @@ package sfapi.commands
 	import flash.utils.Timer;
 	import sfapi.core.AppTreeParser;
 	
-	public class NotifyCommands
+	public class NotifyCommands extends AbstractCommand
 	{
-		
-		private var appTreeParser:AppTreeParser;
-		
 		private var timer:Timer = null;
 		private var label:Label = null;
 		private var box:HBox = null;
 		
-		public function NotifyCommands(aptObj:AppTreeParser)
+		public function NotifyCommands(aptObj:AppTreeParser, contextObj:Commands)
 		{
-			appTreeParser = aptObj;
+			super(aptObj, contextObj);
 		}
 		
 		public function doFlexNotify(msg:String, args:String=""):String

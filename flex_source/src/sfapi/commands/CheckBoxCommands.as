@@ -27,13 +27,11 @@ package sfapi.commands
 	import flash.events.MouseEvent;
 	import flash.events.Event;
 	
-	public class CheckBoxCommands
+	public class CheckBoxCommands extends AbstractCommand
 	{
-		private var appTreeParser:AppTreeParser;
-		
-		public function CheckBoxCommands(aptObj:AppTreeParser)
+		public function CheckBoxCommands(aptObj:AppTreeParser, contextObj:Commands)
 		{
-			appTreeParser = aptObj;
+			super(aptObj, contextObj);
 		}
 		
 		/**
@@ -52,44 +50,46 @@ package sfapi.commands
 				return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [id]);
 			}
 
-			var childType:String = Tools.getOjectType(child); 
-			if(childType != ReferenceData.CHECKBOX_DESCRIPTION)
-			{
-				return ErrorMessages.getError(ErrorMessages.ERROR_TYPE_MISMATCH, [id, ReferenceData.CHECKBOX_DESCRIPTION]);
-			}
-			
-			switch(argIsCheck(args))
-			{
-				case ReferenceData.CHECKSTATE_CHECKED :
-					if(child.selected)
-					{
-						return 'true';
-					}
-					else
-					{
-						return dispatchCheckBoxEvent(child);
-					}
-					break;
-				case ReferenceData.CHECKSTATE_UNCHECKED :
-					if(child.selected)
-					{
-						return dispatchCheckBoxEvent(child);
-					}
-					else
-					{
-						return 'true';
-					}
-					break;
-				case ReferenceData.CHECKSTATE_UNKNOWN :
-					return ErrorMessages.getError(ErrorMessages.ERROR_UNKNOWN_CHECK_STATE, [id]);
-					break;
-				
-			}
-			return null;
+			return rawFlexCheckBox(child, args);
 		}
-		
+
+        public function rawFlexCheckBox(child:Object, args:String):String
+        {
+            if (!Tools.isA(child, ReferenceData.CHECKBOX_DESCRIPTION))
+            {
+                return ErrorMessages.getError(ErrorMessages.ERROR_TYPE_MISMATCH, [child, ReferenceData.CHECKBOX_DESCRIPTION]);
+            }
+            switch (argIsCheck(args))
+            {
+                case ReferenceData.CHECKSTATE_CHECKED :
+                    if (child.selected)
+                    {
+                        return 'true';
+                    }
+                    else
+                    {
+                        return dispatchCheckBoxEvent(child);
+                    }
+                    break;
+                case ReferenceData.CHECKSTATE_UNCHECKED :
+                    if (child.selected)
+                    {
+                        return dispatchCheckBoxEvent(child);
+                    }
+                    else
+                    {
+                        return 'true';
+                    }
+                    break;
+                case ReferenceData.CHECKSTATE_UNKNOWN :
+                    return ErrorMessages.getError(ErrorMessages.ERROR_UNKNOWN_CHECK_STATE, [child]);
+                    break;
+
+            }
+            return null;
+        }
 		/**
-		 * Determine if a checkbox is checkde or unchecked
+		 * Determine if a checkbox is checked or unchecked
 		 * @param  id  The ID of the Flex object
 		 * @param  args  nothing
 		 * @return	the check state of a checkbox. An error message if the call fails.
@@ -97,20 +97,26 @@ package sfapi.commands
 		public function getFlexCheckBoxChecked(id:String, args:String):String
 		{
 			var child:Object = appTreeParser.getElement(id);
-			// get the XML type description of the child node
-			var childType:String = Tools.getOjectType(child);
-			
-			if(childType == ReferenceData.CHECKBOX_DESCRIPTION)
-			{
-				return child.selected.toString();
-			}
-			else
-			{
-				return ErrorMessages.getError(ErrorMessages.ERROR_TYPE_MISMATCH, [id, ReferenceData.CHECKBOX_DESCRIPTION]);
-			}
-			return null;
+			return getFlexCheckBoxStatus(child);
 		}
-		
+
+        /**
+         * Get checkbox status
+         * @param object - Check box widget
+         * @return
+         */
+        public function getFlexCheckBoxStatus(object:Object):String
+        {
+            if (Tools.isA(object, ReferenceData.CHECKBOX_DESCRIPTION))
+            {
+                return object.selected.toString();
+            }
+            else
+            {
+                return ErrorMessages.getError(ErrorMessages.ERROR_TYPE_MISMATCH, [object, ReferenceData.CHECKBOX_DESCRIPTION]);
+            }
+            return null;
+        }
 		/**
 		 * return if a string specifies a particular check state for a check box
 		 * @param  arg  the check state string

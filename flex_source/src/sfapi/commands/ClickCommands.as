@@ -20,20 +20,18 @@
  */
 package sfapi.commands
 {
-	import flash.events.MouseEvent;
+    import flash.events.MouseEvent;
+
+    import sfapi.core.AppTreeParser;
+    import sfapi.core.ErrorMessages;
+    import sfapi.core.ReferenceData;
+    import sfapi.core.Tools;
 	
-	import sfapi.core.AppTreeParser;
-	import sfapi.core.ErrorMessages;
-	import sfapi.core.ReferenceData;
-	import sfapi.core.Tools;
-	
-	public class ClickCommands
+	public class ClickCommands extends AbstractCommand
 	{
-		private var appTreeParser:AppTreeParser;
-		
-		public function ClickCommands(aptObj:AppTreeParser)
+		public function ClickCommands(aptObj:AppTreeParser, contextObj:Commands)
 		{
-			appTreeParser = aptObj;
+			super(aptObj, contextObj);
 		}
 
 		/**
@@ -72,19 +70,19 @@ package sfapi.commands
 			}
 
 			// for a link bar control
-			if(Tools.isA(child, ReferenceData.LINKBAR_DESCRIPTION))
-			{
-				return clickLinkBar(child, args);
-			}
-			
-			// for a Tab navigator 
-      if (Tools.isA(child, ReferenceData.TABNAVIGATOR_DESCRIPTION))
-			{
-				return clickTabNav(child, args);
-			}
-			
-			return ErrorMessages.getError(ErrorMessages.ERROR_INCOMPATABLE_CONTROL, [Tools.getOjectType(child), 'flexClick']);
-		}
+            if (Tools.isA(child, ReferenceData.LINKBAR_DESCRIPTION))
+            {
+                return clickLinkBar(child, args);
+            }
+
+            // for a Tab navigator
+            if (Tools.isA(child, ReferenceData.TABNAVIGATOR_DESCRIPTION))
+            {
+                return clickTabNav(child, args);
+            }
+
+            return ErrorMessages.getError(ErrorMessages.ERROR_INCOMPATABLE_CONTROL, [Tools.getOjectType(child), 'flexClick']);
+        }
 		// TODO : comms
 		private function clickTabNav(tabNav:Object, tabLabel:String):String
 		{
@@ -212,10 +210,10 @@ package sfapi.commands
 		 */
 		public function doFlexClickMenuBarUIComponent(id:String, value:String):String
 		{
-			var args:Array = value.split("'");
+			var args:Array = value.split(",");
 			var menuBarItemIndex:String = args[0];
 			var menuItemRowIndex:String = args[1];
-			var menuItemColIndex:String = args[2]
+			var menuItemColIndex:String = args[2];
 			var componentIndexInCell:String = args[3];
 			
 			return rawFlexClickMenuBarUIComponent(id, menuBarItemIndex, menuItemRowIndex, menuItemColIndex, componentIndexInCell);
@@ -343,5 +341,23 @@ package sfapi.commands
 			}
 			return ErrorMessages.getError(ErrorMessages.ERROR_TEXT_NOT_FOUND, [itemText,colIndex]);
 		}
+
+
+        /**
+         * Dispatches a ListEvent.ITEM_DOUBLE_CLICK (MouseEvent.DOUBLE_CLICK) Event on the UIComponent of a Datagrid at a given
+         * row and column index.  If the cell at the given row and column has multiple
+         * UIComponents provid the componentIndexInCell in the function signature.
+         *
+         * @param  id  The ID of the Datagrid object
+         * @param  value       Takes the form "<DataGridRowIndex>,<DataGridColIndex>"
+         * @return    'true' if the button was clicked. An error message if the call fails.
+         */
+        public function doFlexDoubleClickDataGridUIComponent(id:String, value:String):String {
+            var args:Array = value.split(",");
+            var dataGridRowIndex:String = args[0];
+            var dataGridColIndex:String = args[1];
+
+            return context.dataGridCommands.rawFlexDoubleClickDataGridUIComponent(id, dataGridRowIndex, dataGridColIndex);
+        }
 	}
 }
