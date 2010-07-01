@@ -32,13 +32,11 @@ package sfapi.commands
 	import sfapi.core.ErrorMessages;
 	import sfapi.core.Tools;
 	
-	public class PropertyCommands
+	public class PropertyCommands extends AbstractCommand
 	{
-		private var appTreeParser:AppTreeParser;
-		
-		public function PropertyCommands(aptObj:AppTreeParser)
+		public function PropertyCommands(aptObj:AppTreeParser, contextObj:Commands)
 		{
-			appTreeParser = aptObj;
+			super(aptObj, contextObj);
 		}
 		
 		// todo tell vince about changes
@@ -196,7 +194,7 @@ package sfapi.commands
 		/**
 		 * Retrieves the date in a DateField control
 		 * @param  id  The ID of the Flex object
-		 * @param
+		 * @param  args
 		 * @return  the date in the datefield or an error message if the call fails
 		 */
 		public function getFlexVisible(id:String, args:String):String
@@ -244,7 +242,7 @@ package sfapi.commands
 		/**
 		 * Retrieves the date in a DateField control
 		 * @param  id  The ID of the Flex object
-		 * @param
+		 * @param  args
 		 * @return  the date in the datefield or an error message if the call fails
 		 */
 		public function getFlexErrorString(id:String, args:String):String

@@ -23,54 +23,54 @@ package sfapi.commands
 	import mx.events.ListEvent;
 	import sfapi.core.AppTreeParser;
 	
-	public class ComboCommands
+	public class ComboCommands extends AbstractCommand
 	{
-		private var appTreeParser:AppTreeParser;
-		
-		public function ComboCommands(aptObj:AppTreeParser)
+		public function ComboCommands(aptObj:AppTreeParser, contextObj:Commands)
 		{
-			appTreeParser = aptObj;
+			super(aptObj, contextObj);
 		}
 
 		// todo comm
-		public function doFlexSelectComboByLabel(id:String, value:String) : String {
-			var result:String;
-		
-			try
-			{
-				var widget:Object = appTreeParser.getWidgetById(id);
-				var provider:Object = widget.dataProvider;
-				var index:int = -1;
-				var i:int = 0;
-				for each (var row:Object in provider)
-				{
-					var rowLabel:String = widget.itemToLabel(row);
-					if (value == rowLabel)
-					{
-						index = i;
-						break;
-					}			
-					i++;
-				}
-				if (index > -1)
-				{
-					widget.selectedIndex = index;	
-					result = String(widget.dispatchEvent(new ListEvent(ListEvent.ITEM_CLICK)) && widget.dispatchEvent(new ListEvent(ListEvent.CHANGE)));
-				}
-				else
-				{
-					// todo standard err
-					throw new Error("Could not select label '" + value + "'");
-				}
-			}
-			catch (e:Error)
-			{
-				// todo standard err
-				result = "ERROR: Widget '" + id + "': " + e.message;
-			}
-			return result;
-		}
-		
+        public function doFlexSelectComboByLabel(id:String, value:String):String {
+            var widget:Object = appTreeParser.getWidgetById(id);
+            return rawFlexSelectComboByLabel(widget, value);
+        }
+
+        public function rawFlexSelectComboByLabel(widget:Object, value:String):String {
+            var result:String;
+            try
+            {
+                var provider:Object = widget.dataProvider;
+                var index:int = -1;
+                var i:int = 0;
+                for each (var row:Object in provider)
+                {
+                    var rowLabel:String = widget.itemToLabel(row);
+                    if (value == rowLabel)
+                    {
+                        index = i;
+                        break;
+                    }
+                    i++;
+                }
+                if (index > -1)
+                {
+                    widget.selectedIndex = index;
+                    result = String(widget.dispatchEvent(new ListEvent(ListEvent.ITEM_CLICK)) && widget.dispatchEvent(new ListEvent(ListEvent.CHANGE)));
+                }
+                else
+                {
+                    // todo standard err
+                    throw new Error("Could not select label '" + value + "'");
+                }
+            }
+            catch (e:Error)
+            {
+                // todo standard err
+                result = "ERROR: Widget '" + widget + "': " + e.message;
+            }
+            return result;
+        }
 		// todo comms
 		public function getFlexComboContainsLabel(value:String):String
 		{

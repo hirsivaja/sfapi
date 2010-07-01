@@ -28,41 +28,41 @@ package sfapi.commands
 	
 	public class Commands
 	{
-		private var alertCommands:AlertCommands;
-		private var checkBoxCommands:CheckBoxCommands;
-		private var clickCommands:ClickCommands;
-		private var dateCommands:DateCommands;
-		private var propertyCommands:PropertyCommands;
-		private var radioButtonCommands:RadioButtonCommands;
-		private var selectCommands:SelectCommands;
-		private var stepperCommands:StepperCommands;
-		private var textCommands:TextCommands;
-		private var utilCommands:UtilCommands;
-		private var waitCommands:WaitForCommands;
-		private var mouseCommands:MouseCommands;
-		private var comboCommands:ComboCommands;
-		private var dataGridCommands:DataGridCommands;
-		private var notifyCommands:NotifyCommands;
-		private var keyCommads:KeyCommands;
+		public var alertCommands:AlertCommands;
+		public var checkBoxCommands:CheckBoxCommands;
+		public var clickCommands:ClickCommands;
+		public var dateCommands:DateCommands;
+		public var propertyCommands:PropertyCommands;
+		public var radioButtonCommands:RadioButtonCommands;
+		public var selectCommands:SelectCommands;
+		public var stepperCommands:StepperCommands;
+		public var textCommands:TextCommands;
+		public var utilCommands:UtilCommands;
+		public var waitCommands:WaitForCommands;
+		public var mouseCommands:MouseCommands;
+		public var comboCommands:ComboCommands;
+		public var dataGridCommands:DataGridCommands;
+		public var notifyCommands:NotifyCommands;
+		public var keyCommads:KeyCommands;
 		
 		public function Commands(aptObj:AppTreeParser)
 		{
-			alertCommands = new AlertCommands(aptObj);
-			checkBoxCommands = new CheckBoxCommands(aptObj);
-			clickCommands = new ClickCommands(aptObj);
-			dateCommands = new DateCommands(aptObj);
-			propertyCommands = new PropertyCommands(aptObj);
-			radioButtonCommands = new RadioButtonCommands(aptObj);
-			selectCommands = new SelectCommands(aptObj);
-			stepperCommands = new StepperCommands(aptObj);
-			textCommands = new TextCommands(aptObj);
-			utilCommands = new UtilCommands(aptObj);
-			waitCommands = new WaitForCommands(aptObj);
-			mouseCommands = new MouseCommands(aptObj);
-			comboCommands = new ComboCommands(aptObj);
-			dataGridCommands = new DataGridCommands(aptObj);
-			notifyCommands = new NotifyCommands(aptObj);
-			keyCommads = new KeyCommands(aptObj);
+			alertCommands = new AlertCommands(aptObj, this);
+			checkBoxCommands = new CheckBoxCommands(aptObj, this);
+			clickCommands = new ClickCommands(aptObj, this);
+			dateCommands = new DateCommands(aptObj, this);
+			propertyCommands = new PropertyCommands(aptObj, this);
+			radioButtonCommands = new RadioButtonCommands(aptObj, this);
+			selectCommands = new SelectCommands(aptObj, this);
+			stepperCommands = new StepperCommands(aptObj, this);
+			textCommands = new TextCommands(aptObj, this);
+			utilCommands = new UtilCommands(aptObj, this);
+			waitCommands = new WaitForCommands(aptObj, this);
+			mouseCommands = new MouseCommands(aptObj, this);
+			comboCommands = new ComboCommands(aptObj, this);
+			dataGridCommands = new DataGridCommands(aptObj, this);
+			notifyCommands = new NotifyCommands(aptObj, this);
+			keyCommads = new KeyCommands(aptObj, this);
 			
 			/**
 			 * NOTE: When adding a command make sure it conforms to the standard of beginning 
@@ -179,7 +179,12 @@ package sfapi.commands
 							  
 				ExternalInterface.addCallback("getFlexDataGridCellText", 
 							 	  textCommands.getFlexDataGridCellText);
-				
+
+                ExternalInterface.addCallback("getFlexDataGridCheckBoxChecked",
+                        dataGridCommands.getFlexDataGridCheckBoxChecked);
+
+                ExternalInterface.addCallback("getFlexDataGridRowIndexForFieldLabel",
+                        dataGridCommands.getFlexDataGridRowIndexForFieldLabel);
 				// Action commands
 				
 				ExternalInterface.addCallback("doFlexWaitForElementVisible", 
@@ -286,7 +291,18 @@ package sfapi.commands
 				
 				ExternalInterface.addCallback("doFlexEnterKey", 
 							 	keyCommads.doFlexEnterKey);
-							 				 	
+
+                ExternalInterface.addCallback("doFlexDoubleClickDataGridUIComponent",
+                        clickCommands.doFlexDoubleClickDataGridUIComponent);
+                ExternalInterface.addCallback("doFlexDataGridDate",
+                        dataGridCommands.doFlexDataGridDate);
+                ExternalInterface.addCallback("doFlexDataGridCheckBox",
+                        dataGridCommands.doFlexDataGridCheckBox);
+                ExternalInterface.addCallback("doFlexDataGridClickColumnHeader",
+                        dataGridCommands.doFlexDataGridClickColumnHeader);
+                ExternalInterface.addCallback("doFlexDataGridSelectComboByLabel",
+                        dataGridCommands.doFlexDataGridSelectComboByLabel);
+
 				// Raw commands
 				
 				ExternalInterface.addCallback("rawFlexClickMenuBarUIComponent",
@@ -333,6 +349,7 @@ package sfapi.commands
 			  	
 			  	ExternalInterface.addCallback("rawFlexComboContainsLabel", 
 			  					 comboCommands.rawFlexComboContainsLabel);
+
 			}
 			else
 			{

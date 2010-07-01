@@ -26,13 +26,11 @@ package sfapi.commands
 	import sfapi.core.Tools;
 	import flash.events.Event;
 	
-	public class TextCommands
+	public class TextCommands extends AbstractCommand
 	{
-		private var appTreeParser:AppTreeParser;
-		
-		public function TextCommands(aptObj:AppTreeParser)
+		public function TextCommands(aptObj:AppTreeParser, contextObj:Commands)
 		{
-			appTreeParser = aptObj;
+			super(aptObj, contextObj);
 		}
 		
 		/**

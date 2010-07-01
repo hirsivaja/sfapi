@@ -30,13 +30,11 @@ package sfapi.commands
 	import sfapi.core.ReferenceData;
 	import sfapi.core.Tools;
 	
-	public class DateCommands
+	public class DateCommands extends AbstractCommand
 	{
-		private var appTreeParser:AppTreeParser;
-		
-		public function DateCommands(aptObj:AppTreeParser)
+		public function DateCommands(aptObj:AppTreeParser, contextObj:Commands)
 		{
-			appTreeParser = aptObj;
+			super(aptObj, contextObj);
 		}
 		
 		/**
@@ -54,28 +52,25 @@ package sfapi.commands
 				return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [id]);
 			}
 			
-			var objectType:String = Tools.getOjectType(child);
-			
-			if(objectType == ReferenceData.DATECHOOSER_DESCRIPTION || objectType == ReferenceData.DATEFIELD_DESCRIPTION)
-			{
-
-				if(objectType == ReferenceData.DATECHOOSER_DESCRIPTION)
-				{
-					return setDateChooser(child, args);
-				}
-				else
-				{
-					return setDateField(child, args);
-				}
-			}
-			else
-			{
-				return ErrorMessages.getError(ErrorMessages.ERROR_TYPE_MISMATCH, 
-						[id, ReferenceData.DATEFIELD_DESCRIPTION + " or " +	ReferenceData.DATECHOOSER_DESCRIPTION]);
-			}
-			return null;
+            return rawSetFlexDate(child, args);
 		}
-		
+
+        public function rawSetFlexDate(child:Object, args:String):String
+        {
+            var isDateChooser:Boolean = Tools.isA(child, ReferenceData.DATECHOOSER_DESCRIPTION);
+            var isDateField:Boolean = Tools.isA(child, ReferenceData.DATEFIELD_DESCRIPTION);
+            if (isDateChooser)
+            {
+                return setDateChooser(child, args);
+            }
+            else if (isDateField)
+            {
+                return setDateField(child, args);
+            }
+            return ErrorMessages.getError(ErrorMessages.ERROR_TYPE_MISMATCH,
+                    [child, ReferenceData.DATEFIELD_DESCRIPTION + " or " + ReferenceData.DATECHOOSER_DESCRIPTION]);
+        }
+
 		private function setDateChooser(child:Object, dateString:String):String
 		{
 			child.selectedDate = compileDateValue(dateString, "None");
@@ -111,7 +106,7 @@ package sfapi.commands
 		/**
 		 * Retrieves the date in a Date related control control
 		 * @param  id  The ID of the Flex object
-		 * @param
+		 * @param  args
 		 * @return  the date in the control or an error message if the call fails
 		 */
 		public function getFlexDate(id:String, args:String):String

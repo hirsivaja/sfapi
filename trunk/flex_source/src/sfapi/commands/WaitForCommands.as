@@ -23,13 +23,11 @@ package sfapi.commands
 	import sfapi.core.AppTreeParser;
 	import sfapi.core.ErrorMessages;
 	
-	public class WaitForCommands{
-
-		private var appTreeParser:AppTreeParser;
-
-		public function WaitForCommands(aptObj:AppTreeParser)
+	public class WaitForCommands extends AbstractCommand
+	{
+		public function WaitForCommands(aptObj:AppTreeParser, contextObj:Commands)
 		{
-			appTreeParser = aptObj;
+			super(aptObj, contextObj);
 		}
 		
 		// TODO comments

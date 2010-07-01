@@ -25,13 +25,11 @@ package sfapi.commands
 	import sfapi.core.AppTreeParser;
 	import sfapi.core.ErrorMessages;
 	
-	public class StepperCommands
+	public class StepperCommands extends AbstractCommand
 	{
-		private var appTreeParser:AppTreeParser;
-		
-		public function StepperCommands(aptObj:AppTreeParser)
+		public function StepperCommands(aptObj:AppTreeParser, contextObj:Commands)
 		{
-			appTreeParser = aptObj;
+			super(aptObj, contextObj);
 		}
 		/**
 		 * Sets the value of a numeric stepper control

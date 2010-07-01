@@ -26,13 +26,11 @@ package sfapi.commands
 	import sfapi.core.ErrorMessages;
 	import sfapi.core.ReferenceData;
 	
-	public class AlertCommands
+	public class AlertCommands extends AbstractCommand
 	{
-		private var appTreeParser:AppTreeParser;
-		
-		public function AlertCommands(aptObj:AppTreeParser)
+		public function AlertCommands(aptObj:AppTreeParser, contextObj:Commands)
 		{
-			appTreeParser = aptObj;
+			super(aptObj, contextObj);
 		}
 		
 		/*
@@ -40,8 +38,8 @@ package sfapi.commands
 		 */
 		/**
 		 * Responds to an alert (ok, cancel, yes, no, etc...)
-		 * @param  id  The ID of the Flex object
-		 * @param
+		 * @param id  The ID of the Flex object
+		 * @param args
 		 * @return  'true' if the response was successful, otherwise an error message
 		 */
 		public function doFlexAlertResponse(response:String, args:String):String

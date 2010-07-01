@@ -22,13 +22,11 @@ package sfapi.commands
 {
 	import sfapi.core.AppTreeParser;
 	
-	public class UtilCommands
+	public class UtilCommands extends AbstractCommand
 	{
-		private var appTreeParser:AppTreeParser;
-		
-		public function UtilCommands(aptObj:AppTreeParser)
+		public function UtilCommands(aptObj:AppTreeParser, contextObj:Commands)
 		{
-			appTreeParser = aptObj;
+			super(aptObj, contextObj);
 		}
 		
 		/**
