@@ -163,7 +163,7 @@ package sfapi.commands
 							 	 comboCommands.getFlexComboContainsLabel);
 							  
 				ExternalInterface.addCallback("getFlexCheckBoxChecked", 
-							  checkBoxCommands.getFlexCheckBoxChecked);
+							 	 checkBoxCommands.getFlexCheckBoxChecked);
 							  
 				ExternalInterface.addCallback("getFlexAlertTextPresent", 
 							 	 alertCommands.getFlexAlertTextPresent);
@@ -173,18 +173,12 @@ package sfapi.commands
 							  
 				ExternalInterface.addCallback("getFlexAlertPresent", 
 							 	 alertCommands.getFlexAlertPresent);
-							  
-				ExternalInterface.addCallback("getFlexDataGridUIComponentLabel", 
-							 	  textCommands.getFlexDataGridUIComponentLabel);
-							  
-				ExternalInterface.addCallback("getFlexDataGridCellText", 
-							 	  textCommands.getFlexDataGridCellText);
 
-                ExternalInterface.addCallback("getFlexDataGridCheckBoxChecked",
-                        dataGridCommands.getFlexDataGridCheckBoxChecked);
+				ExternalInterface.addCallback("getFlexDataGridCheckBoxChecked",
+							 	 dataGridCommands.getFlexDataGridCheckBoxChecked);
 
-                ExternalInterface.addCallback("getFlexDataGridRowIndexForFieldLabel",
-                        dataGridCommands.getFlexDataGridRowIndexForFieldLabel);
+				ExternalInterface.addCallback("getFlexDataGridRowIndexForFieldLabel",
+							 	 dataGridCommands.getFlexDataGridRowIndexForFieldLabel);
 				// Action commands
 				
 				ExternalInterface.addCallback("doFlexWaitForElementVisible", 

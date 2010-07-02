@@ -404,14 +404,38 @@ public class DataGridCommands extends AbstractCommand
 			return result;
 		}
 		
-		// todo comm
-		public function getFlexDataGridRowCount(id:String):String
+		/**
+		 * Get row count in a datagrid
+		 * <br/>
+		 * Command:  getFlexDataGridRowCount
+		 * Target:   myDataGridItem
+		 * Value:  args - not used
+		 * <br/>
+		 * Breakdown:
+		 * <br/>
+		 * Command:  <command>
+		 * Target:   <datagrid id>
+		 * <br/>
+		 * All fields are compulsory
+		 * <br/>
+		 * @param  target  takes the form <datagrid id>
+		 * @return  row count
+		 */
+		public function getFlexDataGridRowCount(id:String, args:String):String
 		{
 			var result:String;
 			try
 			{
 				var widget:Object = appTreeParser.getWidgetById(id);
+				if (widget == null)
+				{
+				    return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [id]);
+				}
 				var provider:Object = widget.dataProvider;
+				if (provider == null)
+				{
+				    return "0";
+				}
 				result = String(provider.length);
 			}
 			catch (e:Error)
@@ -447,9 +471,12 @@ public class DataGridCommands extends AbstractCommand
             var dataGridColIndex:String = args[1];
             var date:String = args[2];
             var object:Object = getDataGridCellComponent(target, dataGridRowIndex, dataGridColIndex);
-            var array:Array;
             if (object == null) {
                 return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [target]);
+            }
+            else if (object is String)
+            {
+                return String(object);
             }
 
             return context.dateCommands.rawSetFlexDate(object, date);
@@ -580,7 +607,7 @@ public class DataGridCommands extends AbstractCommand
 
         }
 
-        public function getDataGridCellComponent(id:String, rowIndex:String, colIndex:String):Object
+        public function getDataGridCellComponent(id:String, rowIndex:String, colIndex:String, componentIndexInCell:String = "0"):Object
         {
             var child:Object = appTreeParser.getElement(id);
             if (child == null)
@@ -593,9 +620,21 @@ public class DataGridCommands extends AbstractCommand
                     ReferenceData.LISTBASECONTENTHOLDER_DESCRIPTION)[0];
 
             if (dgContentList.listItems.length > int(rowIndex) && dgContentList.listItems[int(rowIndex)].length > int(colIndex)) {
-                return dgContentList.listItems[int(rowIndex)][int(colIndex)];
+                if (int(componentIndexInCell) > 0)
+                {
+                    var cell:Object = dgContentList.listItems[int(rowIndex)][int(colIndex)];
+                    var cellChildren:Array = cell.getChildren();
+                    if (cellChildren.length > int(componentIndexInCell))
+                    {
+                        return cellChildren[componentIndexInCell];
+                    }
+                }
+                else
+                {
+                    return dgContentList.listItems[int(rowIndex)][int(colIndex)];
+                }
             }
-            return ErrorMessages.getError(ErrorMessages.ERROR_NO_CHILD_UICOMPONENT, [id,rowIndex,colIndex]);
+            return ErrorMessages.getError(ErrorMessages.ERROR_NO_CHILD_UICOMPONENT, [id,rowIndex,colIndex,componentIndexInCell]);
         }
     
         /**
