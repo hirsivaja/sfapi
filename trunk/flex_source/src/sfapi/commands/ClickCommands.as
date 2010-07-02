@@ -157,33 +157,30 @@ package sfapi.commands
 		 * UIComponents provid the componentIndexInCell in the function signature.
 		 * 
 		 * @param  datagridId  The ID of the Datagrid object
-		 * @param  rowIndex  The row index of the Component in the Datagrid
-		 * @param  colIndex  The colum index of the Component in the Datagrid
-		 * @param  componentIndexInCell The index of the column within the rowIndex and columnIndex
+		 * @param  value takes the form <rowIndex>,<colIndex>,<componentIndexInCell>
+         *         rowIndex  The row index of the Component in the Datagrid
+         *         colIndex  The colum index of the Component in the Datagrid
+		 *         componentIndexInCell The index of the column within the rowIndex and columnIndex
 		 * @return	'true' if the button was clicked. An error message if the call fails.
 		 */
-		public function doFlexClickDataGridUIComponent(datagridId:String, rowIndex:String, colIndex:String, componentIndexInCell:String = "0"):String
+		public function doFlexClickDataGridUIComponent(datagridId:String, value:String):String
 		{
-			var child:Object = appTreeParser.getElement(datagridId);
-			
-			if(child == null)
+			var args:Array = value.split(",");
+			var rowIndex:String = args[0];
+			var colIndex:String = args[1];
+			var componentIndexInCell:String = args[2];
+
+			var component:Object = context.dataGridCommands.getDataGridCellComponent(datagridId, rowIndex, colIndex, componentIndexInCell);
+
+			if (component is String)
 			{
-				return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [datagridId]);
+				// Got error message
+				return String(component);
 			}
-			
-			// Assumes the DataGrid has only one ListBaseContentHolder
-			var dgContentList:Object = Tools.getChildrenOfTypeFromContainer(child, ReferenceData.LISTBASECONTENTHOLDER_DESCRIPTION)[0];
-			
-			// Make certain the rowIndex and colIndex do not exceed the length of the 
-			// Datagrid ListBaseContentHolders rows and columns.
-			if(dgContentList.listItems.length > int(rowIndex) && dgContentList.listItems[int(rowIndex)].length > int(colIndex))
+			else
 			{
-				var cell:Object = dgContentList.listItems[int(rowIndex)][int(colIndex)];
-				var cellChildren:Array = cell.getChildren();
-					
-				return String(cellChildren[componentIndexInCell].dispatchEvent(new MouseEvent(MouseEvent.CLICK)));
+				return String(component.dispatchEvent(new MouseEvent(MouseEvent.CLICK)));
 			}
-			
 			return ErrorMessages.getError(ErrorMessages.ERROR_NO_CHILD_UICOMPONENT, [datagridId,rowIndex,colIndex]);
 		}
 		
