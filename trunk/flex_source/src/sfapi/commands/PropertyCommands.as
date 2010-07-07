@@ -220,7 +220,7 @@ package sfapi.commands
 		public static function isVisible(component : Object) : Boolean {
 			if (component == null || !component is UIComponent)
 			{
-				return false;
+				return true;
 			}
 			if (component is Application)
 			{
