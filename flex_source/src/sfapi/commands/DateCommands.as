@@ -143,7 +143,7 @@ package sfapi.commands
 		 * @param  args  The date specifier. 
 		 * @return  a date represented by a string value
 		 */
-		private function compileDateValue(args:String, dateFormat:String):Date
+		public function compileDateValue(args:String, dateFormat:String):Date
 		{
 			var retval:Date = new Date();
 			if(ReferenceData.TODAY.indexOf(args.toLowerCase()) >= 0)

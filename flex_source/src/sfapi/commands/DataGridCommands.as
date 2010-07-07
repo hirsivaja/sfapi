@@ -1,9 +1,9 @@
 /*	
- *	License
+ *  License
  *	
- *	This file is part of The SeleniumFlex-API.
+ *  This file is part of The SeleniumFlex-API.
  *	
- *	The SeleniumFlex-API is free software: you can redistribute it and/or
+ *  The SeleniumFlex-API is free software: you can redistribute it and/or
  *  modify it  under  the  terms  of  the  GNU  General Public License as 
  *  published  by  the  Free  Software Foundation,  either  version  3 of 
  *  the License, or any later version.
@@ -21,12 +21,13 @@
 package sfapi.commands
 {
 import flash.events.Event;
-
 import flash.events.MouseEvent;
 
 import mx.controls.CheckBox;
+import mx.controls.DataGrid;
+import mx.controls.dataGridClasses.DataGridColumn;
+import mx.controls.listClasses.IListItemRenderer;
 import mx.events.DataGridEvent;
-
 import mx.events.ListEvent;
 
 import sfapi.core.AppTreeParser;
@@ -98,7 +99,7 @@ public class DataGridCommands extends AbstractCommand
 		 * Breakdown:
 		 * <br/>
 		 * Command:	<command>
-		 * Target:	<menubar id>
+		 * Target:	<datagrid id>
 		 * Value:	<rowIndex>,<colIndex>,<data value>
 		 * <br/>
 		 * All fields are compulsory
@@ -206,12 +207,12 @@ public class DataGridCommands extends AbstractCommand
 		 * <br/>
 		 * Command:	<command>
 		 * target:	<grid id>, <fieldName>,<value>
-         * value:  args
+		 * value:  args
 		 * <br/>
 		 * All fields are compulsory
 		 * <br/>
 		 * @param  target  takes the form "<id><fieldName>,<value>"
-         * @param  args
+	         * @param  args
 		 * @return  a string of row index for cell containing the label
 		 */
 		public function getFlexDataGridRowIndexForFieldLabel(target:String, value:String):String
@@ -305,7 +306,8 @@ public class DataGridCommands extends AbstractCommand
 		 * @param field the name of the field in the object whose data is required
 		 * @param rowNum the required row number (numbering starts at 0)
 		 */
-		public function rawFlexDataGridFieldValueForGridRow(id:String, field:String, rowNum:String) : String {
+		public function rawFlexDataGridFieldValueForGridRow(id:String, field:String, rowNum:String) : String 
+		{
 			var result:String = "";
 			try
 			{
@@ -446,42 +448,69 @@ public class DataGridCommands extends AbstractCommand
 			return result;
 		}
 
-        /**
-         * Sets a date value in a datagrid cell
-         * <br/>
-         * Command:    flexDataGridDate
-         * Target:    myDataGridItem
-         * Value:    1,2,this data
-         * <br/>
-         * Breakdown:
-         * <br/>
-         * Command:    <command>
-         * Target:    <menubar id>
-         * Value:    <rowIndex>,<colIndex>,<data value>
-         * <br/>
-         * All fields are compulsory
-         * <br/>
-         * @param  value  takes the form <rowIndex>,<colIndex>,<data>
-         * @return  'true' if successfully set, error if not
-         */
-        public function doFlexDataGridDate(target:String, value:String):String
-        {
-            var args:Array = value.split(",");
-            var dataGridRowIndex:String = args[0];
-            var dataGridColIndex:String = args[1];
-            var date:String = args[2];
-            var object:Object = getDataGridCellComponent(target, dataGridRowIndex, dataGridColIndex);
-            if (object == null) {
-                return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [target]);
-            }
-            else if (object is String)
-            {
-                return String(object);
-            }
+	        /**
+	         * Sets a date value in a datagrid cell
+	         * <br/>
+	         * Command:    flexDataGridDate
+	         * Target:    myDataGridItem
+	         * Value:    1,2,this data
+	         * <br/>
+	         * Breakdown:
+	         * <br/>
+	         * Command:    <command>
+	         * Target:    <menubar id>
+	         * Value:    <rowIndex>,<colIndex>,<data value>
+	         * <br/>
+	         * All fields are compulsory
+	         * <br/>
+	         * @param  value  takes the form <rowIndex>,<colIndex>,<data>
+	         * @return  'true' if successfully set, error if not
+	         */
+	        public function doFlexDataGridDate(target:String, value:String):String
+	        {
+			var args:Array = value.split(",");
+			var dataGridRowIndex:String = args[0];
+			var dataGridColIndex:String = args[1];
+			var date:String = args[2];
+			var datagrid:Object = appTreeParser.getElement(target);
+			if (datagrid == null || !datagrid is DataGrid)
+			{
+				return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [target]);
+			}
+			var object:Object = getDataGridCellComponent(target, dataGridRowIndex, dataGridColIndex);
+			if (object == null) {
+				return ErrorMessages.getError(ErrorMessages.ERROR_NO_CHILD_UICOMPONENT, [target, dataGridRowIndex, dataGridColIndex]);
+			}
+			else if (object is String){
+				return String(object);
+			}
+						
+			var columnIndex:int = getColumnIndexFromDisplayableColumnIndex(DataGrid(datagrid) ,dataGridColIndex);
+			if (columnIndex == -1){
+				return ErrorMessages.getError(ErrorMessages.ERROR_NO_CHILD_UICOMPONENT, [target, dataGridRowIndex, dataGridColIndex]);
+			}
+			var row:Object = datagrid.dataProvider[int(dataGridRowIndex)];
+			var col:Object = datagrid.columns[int(columnIndex)];
+			row[col.dataField] = context.dateCommands.compileDateValue(date, object.formatString);
+			return String(datagrid.dataProvider.dispatchEvent(new Event(Event.CHANGE)));			
+        	}
 
-            return context.dateCommands.rawSetFlexDate(object, date);
-        }
-
+		private function getColumnIndexFromDisplayableColumnIndex(datagrid:DataGrid, displayColumnIndex:String):int{
+			// Not able to use displayableColumns because it's not public
+			// datagrid.displayableColumns[displayColumnIndex].colNum
+			var index:int = 0;
+			for (var columnNo:int = 0; columnNo < datagrid.columns.length ; columnNo++){
+				var column:DataGridColumn = datagrid.columns[columnNo];
+				if (column.visible){
+					index++;
+				}
+				if (index-1  == int(displayColumnIndex)){					
+					return columnNo;
+				}
+			}
+			return -1;
+		}
+		
         /**
          * Sets checkbox state in a datagrid cell
          * <br/>
