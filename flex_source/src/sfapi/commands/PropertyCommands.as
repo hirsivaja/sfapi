@@ -201,13 +201,13 @@ package sfapi.commands
 		public function getFlexVisible(id:String, args:String):String
 		{
 			var element:Object = appTreeParser.getElement(id);
-			if(element == null || !element instanceof UIComponent)
+			if(element == null || !element is UIComponent)
 			{
 				return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [id]);
 			}
 			if(element.hasOwnProperty("visible"))
 			{
-				return isVisible(UIComponent(element)).toString();
+				return isVisible(element).toString();
 			}
 		    return ErrorMessages.getError(ErrorMessages.ERROR_NO_PROPERTY, [id]);
 		}
@@ -217,8 +217,8 @@ package sfapi.commands
 		 * @param component  The ui component
 		 * @return  true if the component is visible
 		 */
-		public static function isVisible(component : UIComponent) : Boolean {
-			if (component == null)
+		public static function isVisible(component : Object) : Boolean {
+			if (component == null || !component is UIComponent)
 			{
 				return false;
 			}
@@ -226,7 +226,7 @@ package sfapi.commands
 			{
 				return component.visible;
 			}
-			return component.visible && isVisible(UIComponent(component.parent));
+			return component.visible && isVisible(component.parent);
 		}
 
 		/**
