@@ -636,7 +636,17 @@ public class DataGridCommands extends AbstractCommand
 
         }
 
-        public function getDataGridCellComponent(id:String, rowIndex:String, colIndex:String, componentIndexInCell:String = "0"):Object
+		/**
+		 * Return the component in a datagrid cell
+		 * @param  id  - Data grid id
+		 * @param  rowIndex  - row index
+		 * @param  colIndex  - column index
+		 * @param  componentIndexInCell  - component index in cell. 
+		 * 	 Default to -1, returns cell itself
+		 *   0 , returns the first component in cell 
+		 * @return  component if successfully found, ERROR_NO_CHILD_UICOMPONENT error if not found.
+		 */ 
+        public function getDataGridCellComponent(id:String, rowIndex:String, colIndex:String, componentIndexInCell:String = "-1"):Object
         {
             var child:Object = appTreeParser.getElement(id);
             if (child == null)
@@ -648,8 +658,9 @@ public class DataGridCommands extends AbstractCommand
             var dgContentList:Object = Tools.getChildrenOfTypeFromContainer(child,
                     ReferenceData.LISTBASECONTENTHOLDER_DESCRIPTION)[0];
 
-            if (dgContentList.listItems.length > int(rowIndex) && dgContentList.listItems[int(rowIndex)].length > int(colIndex)) {
-                if (int(componentIndexInCell) > 0)
+            if (dgContentList.listItems.length > int(rowIndex) && dgContentList.listItems[int(rowIndex)].length > int(colIndex)) 
+            {
+                if (int(componentIndexInCell) > -1)
                 {
                     var cell:Object = dgContentList.listItems[int(rowIndex)][int(colIndex)];
                     var cellChildren:Array = cell.getChildren();
