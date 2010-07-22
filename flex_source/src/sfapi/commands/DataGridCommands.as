@@ -660,7 +660,7 @@ public class DataGridCommands extends AbstractCommand
 
             if (dgContentList.listItems.length > int(rowIndex) && dgContentList.listItems[int(rowIndex)].length > int(colIndex)) 
             {
-                if (int(componentIndexInCell) > -1)
+                if (componentIndexInCell != null && int(componentIndexInCell) > -1)
                 {
                     var cell:Object = dgContentList.listItems[int(rowIndex)][int(colIndex)];
                     var cellChildren:Array = cell.getChildren();
