@@ -33,6 +33,7 @@ package sfapi.core
 	import mx.events.FlexEvent;
 	import mx.events.DragEvent;
 	
+	import mx.containers.ControlBar;
 	import mx.controls.Alert;
 	import mx.events.ListEvent;
 	import flash.events.FocusEvent;
@@ -294,7 +295,7 @@ package sfapi.core
 				while(i < parent.rawChildren.numChildren)
 				{
 					child = parent.rawChildren.getChildAt(i);
-					if(isNotContentPane(child) && ! isChild(child, parent))
+					if(isNotContentPane(child) && (!isChild(child, parent) || child is ControlBar))
 					{
 						nextNode = new AppTreeNode(child, i, true);
 						return true;
