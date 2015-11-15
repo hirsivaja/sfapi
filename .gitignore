@@ -1,4 +1,6 @@
 target/
 .idea/
 sfapi.as3proj
+/test/Flex3Tester/obj
+/test/Flex3Tester/bin
 sfapi.lxml

@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+	creationComplete="initSeleniumFlexAPI(this)"
+	xmlns:a="*"
+	>
+
+<mx:Script>
+	<![CDATA[
+		import mx.collections.ArrayCollection;
+		import mx.controls.Alert;
+		
+		import Element;
+		
+		private var numberOfClicks:int = 0;
+		
+		private function initSeleniumFlexAPI(app:Object):void {
+			SeleniumFlexAPI.init(app);
+		}
+		
+		private function buttonClick(): void {
+			buttonClicks.text = "Number of clicks: " + ++numberOfClicks;
+		}
+		
+		private function resetClick(): void {
+			numberOfClicks = 0;
+			buttonClicks.text = "Number of clicks: " + numberOfClicks;
+		}
+		
+		private function alertClick(): void {
+			Alert.show('Alert! ' + alertText.text);
+		}
+		
+		private function showInvisibleButton(): void {
+			invisibleButton.visible = true;
+		}
+		
+		private function hideInvisibleButton(): void {
+			invisibleButton.visible = false;
+		}
+		
+		private function radioSelected(): void {
+			selectedRadioButton.text = "Selected value: " + radioButtonGroup.selectedValue;
+		}
+		
+		private function comboBoxChange(): void {
+			selectedComboItem.text = "Selected label: " + comboBox.selectedLabel;
+		}
+		
+		private function checkBoxChange(): void {
+			selectedCheckBoxItem.text = checkBox.selected ? "CheckBox is checked" : "CheckBox is not checked";
+		}
+		
+		private function dateChange(): void {
+			selectedDate.text = "Selected date: " + dateField.selectedDate.getDate() + 
+				"/" + (dateField.selectedDate.getMonth() + 1) +
+				"/" + dateField.selectedDate.getFullYear();
+		}
+		
+		private function dataGridClick(): void {
+			selectedGridItem.text = "Selected item: " + Element(dataGrid.selectedItem).toString();
+		}
+		
+		private var element1:Element = new Element("Element1", 1, true);
+		private var element2:Element = new Element("Element2", 2, false);
+		private var element3:Element = new Element("Element3", 3, true);
+		[Bindable]
+		private var elements:ArrayCollection = new ArrayCollection([element1, element2, element3]);
+	]]>
+</mx:Script>
+
+<mx:Style>
+Application{
+	font-size: 16px;
+	background-color: #B0C4DE;
+}
+</mx:Style>
+
+<mx:HBox paddingLeft="50" paddingTop="50">
+	<mx:ButtonBar id="buttonBar"
+		direction="vertical"
+		dataProvider="{viewStack}"
+		themeColor="haloOrange"
+		fontSize="16"
+		width="200"
+		height="200" />
+
+	<mx:ViewStack id="viewStack"
+			backgroundColor="white"
+			width="800"
+			height="800">
+
+		<mx:Form id="buttons"
+				label="Buttons view">
+			<mx:HBox>
+				<mx:Button id="clickButton" label="Click" click="buttonClick();"/>
+				<mx:Button id="resetButton" label="Reset" click="resetClick();"/>
+				<mx:Button id="disabledButton" enabled="false" label="Disabled button" click="buttonClick();"/>
+				<mx:Button id="invisibleButton" focusIn="showInvisibleButton()" focusOut="hideInvisibleButton()" visible="false" label="Invisible button" click="buttonClick();"/>
+				<mx:Label id="buttonClicks" text="Number of clicks: 0"/>
+			</mx:HBox>
+			<mx:HBox>
+				<mx:Button id="alertButton" label="Alert" click="alertClick()"/>
+				<mx:TextInput id="alertText" text="The world has ended!" width="100" maxChars="10" />
+			</mx:HBox>
+		</mx:Form>
+				
+		<mx:Form id="radioButtons"
+				label="RadioButtons view">
+			<mx:VBox>
+				<mx:RadioButtonGroup id="radioButtonGroup" change="radioSelected();"/>
+				<mx:RadioButton groupName="radioButtonGroup" id="radioButton1" value="1" 
+					label="Button 1" width="150" />
+				<mx:RadioButton groupName="radioButtonGroup" id="radioButton2" value="2" 
+					label="Button 2" width="150" />
+				<mx:RadioButton groupName="radioButtonGroup" id="radioButton3" value="3" 
+					label="Button 3" width="150" />
+				<mx:Label id="selectedRadioButton" text="Selected value: "/>
+			</mx:VBox>
+		</mx:Form>
+		<mx:Form id="comboBoxes"
+				label="ComboBox view">
+			<mx:VBox>
+				<mx:ComboBox id="comboBox" dataProvider="{elements}" labelField="item" change="comboBoxChange();"/>
+				<mx:Label id="selectedComboItem" text="" />
+			</mx:VBox>
+		</mx:Form>
+		<mx:Form id="checkBoxes"
+				label="CheckBox view">
+			<mx:HBox>
+				<mx:CheckBox id="checkBox" selected="true" change="checkBoxChange()"/>
+				<mx:Label id="selectedCheckBoxItem" text="CheckBox is checked" />
+			</mx:HBox>
+		</mx:Form>
+		<mx:Form id="dates"
+				label="Date view">
+			<mx:HBox>
+				<mx:DateField id="dateField" formatString="DD/MM/YYYY" editable="true" change="dateChange()"/>
+				<mx:Label id="selectedDate" text="Selected date: " />
+			</mx:HBox>
+		</mx:Form>
+		<mx:Form id="dataGrids"
+				label="DataGrid view">
+			<mx:HBox>
+				<mx:DataGrid id="dataGrid" dataProvider="{elements}" itemClick="dataGridClick()">
+					<mx:columns>
+						<mx:DataGridColumn dataField="attribute1" headerText="Attribute 1"/>
+						<mx:DataGridColumn dataField="attribute2" headerText="Attribute 2"/>
+						<mx:DataGridColumn dataField="attribute3" headerText="Attribute 3"/>
+					</mx:columns>
+				</mx:DataGrid>
+				<mx:Label id="selectedGridItem" text="Selected item: " />
+			</mx:HBox>
+		</mx:Form>
+		<mx:Form id="tabs"
+				label="TabNavigator view">
+			<mx:TabNavigator id="tabNavigator" borderStyle="solid">
+				<mx:VBox label="Tab 1" width="300" height="300">
+					<mx:Label id="tab1Label" text="Tab 1"/>
+				</mx:VBox>
+				<mx:VBox label="Tab 2" width="300" height="300">
+					<mx:Label id="tab2Label" text="Tab 2"/>
+				</mx:VBox>
+				<mx:VBox label="Tab 3" width="300" height="300">
+					<mx:Label id="tab3Label" text="Tab 3"/>
+				</mx:VBox>
+			</mx:TabNavigator>
+		</mx:Form>
+		<mx:Form id="steppers"
+				label="Stepper view">
+			<mx:HBox>
+				<mx:NumericStepper minimum="-100" maximum="100" stepSize="10" id="stepper" />
+			</mx:HBox>
+		</mx:Form>
+	</mx:ViewStack>
+</mx:HBox>
+</mx:Application>
