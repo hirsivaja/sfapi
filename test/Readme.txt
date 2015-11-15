@@ -1,1 +1,0 @@
-Tests for testing the integrity of the SeleniumFlexAPI
