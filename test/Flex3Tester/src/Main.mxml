@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
-	creationComplete="initSeleniumFlexAPI(this)"
+	creationComplete="init(this)"
 	xmlns:a="*"
 	>
 
@@ -8,13 +8,18 @@
 	<![CDATA[
 		import mx.collections.ArrayCollection;
 		import mx.controls.Alert;
+		import mx.events.FlexEvent;
 		
 		import Element;
 		
 		private var numberOfClicks:int = 0;
 		
-		private function initSeleniumFlexAPI(app:Object):void {
+		private function init(app:Object):void {
 			SeleniumFlexAPI.init(app);
+		}
+		
+		public function mouseEvent(event:MouseEvent):void {
+			Alert.show('Mouse event: ' + event.type);
 		}
 		
 		private function buttonClick(): void {
@@ -169,6 +174,20 @@ Application{
 				label="Stepper view">
 			<mx:HBox>
 				<mx:NumericStepper minimum="-100" maximum="100" stepSize="10" id="stepper" />
+			</mx:HBox>
+		</mx:Form>
+		<mx:Form id="mouseEvents"
+				label="Mouse view">
+			<mx:HBox>
+				<mx:Button id="mouseEventCatcher" label="Event catcher" 
+						   mouseUp="mouseEvent(event)" 
+						   mouseDown="mouseEvent(event)" 
+						   mouseOver="mouseEvent(event)" 
+						   mouseOut="mouseEvent(event)" 
+						   mouseMove="mouseEvent(event)" 
+						   rollOut="mouseEvent(event)" 
+						   rollOver="mouseEvent(event)" 
+						   />
 			</mx:HBox>
 		</mx:Form>
 	</mx:ViewStack>
