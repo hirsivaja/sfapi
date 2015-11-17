@@ -186,9 +186,25 @@ Application{
 						   mouseOut="mouseEvent(event)" 
 						   mouseMove="mouseEvent(event)" 
 						   rollOut="mouseEvent(event)" 
-						   rollOver="mouseEvent(event)" 
+						   rollOver="mouseEvent(event)"
 						   />
 			</mx:HBox>
+			<mx:DataGrid id="dataGrid1" dataProvider="{elements}" dragEnabled="true" dragMoveEnabled="true" dropEnabled="true"
+						 doubleClickEnabled="true" doubleClick="mouseEvent(event)">
+				<mx:columns>
+					<mx:DataGridColumn dataField="attribute1" headerText="Attribute 1"/>
+					<mx:DataGridColumn dataField="attribute2" headerText="Attribute 2"/>
+					<mx:DataGridColumn dataField="attribute3" headerText="Attribute 3"/>
+				</mx:columns>
+			</mx:DataGrid>
+			<mx:DataGrid id="dataGrid2" dragEnabled="true" dragMoveEnabled="true" dropEnabled="true" 
+						 doubleClickEnabled="true" doubleClick="mouseEvent(event)">
+				<mx:columns>
+					<mx:DataGridColumn dataField="attribute1" headerText="Attribute 1"/>
+					<mx:DataGridColumn dataField="attribute2" headerText="Attribute 2"/>
+					<mx:DataGridColumn dataField="attribute3" headerText="Attribute 3"/>
+				</mx:columns>
+			</mx:DataGrid>
 		</mx:Form>
 	</mx:ViewStack>
 </mx:HBox>
