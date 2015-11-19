@@ -283,8 +283,11 @@ package sfapi.commands
 				ExternalInterface.addCallback("doFlexNotify", 
 							 	notifyCommands.doFlexNotify);
 				
-				ExternalInterface.addCallback("doFlexEnterKey", 
-							 	keyCommads.doFlexEnterKey);
+				ExternalInterface.addCallback("doFlexKeyDown", 
+							 	keyCommads.doFlexKeyDown);
+				
+				ExternalInterface.addCallback("doFlexKeyUp", 
+							 	keyCommads.doFlexKeyUp);
 
                 ExternalInterface.addCallback("doFlexDoubleClickDataGridUIComponent",
                         clickCommands.doFlexDoubleClickDataGridUIComponent);

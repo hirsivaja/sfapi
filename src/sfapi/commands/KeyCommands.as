@@ -1,6 +1,6 @@
 package sfapi.commands
 {
-	import mx.events.FlexEvent;
+	import flash.events.KeyboardEvent;
 	import sfapi.core.AppTreeParser;
 	import sfapi.core.ErrorMessages;
 	
@@ -11,14 +11,26 @@ package sfapi.commands
 			super(aptObj, contextObj);
 		}
 
-		public function doFlexEnterKey(locator:String, args:String):String
+		public function doFlexKeyDown(locator:String, args:String):String
 		{
 			var child:Object =  appTreeParser.getElement(locator);
+			var keyCode:int = parseInt(args);
 			if(child == null)
 			{
 				return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [locator]);
 			}
-			return String(child.dispatchEvent(new FlexEvent(FlexEvent.ENTER)));
+			return String(child.dispatchEvent(new KeyboardEvent(KeyboardEvent.KEY_DOWN, true, false, 0, keyCode)));
+		}
+		
+		public function doFlexKeyUp(locator:String, args:String):String
+		{
+			var child:Object =  appTreeParser.getElement(locator);
+			var keyCode:int = parseInt(args);
+			if(child == null)
+			{
+				return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [locator]);
+			}
+			return String(child.dispatchEvent(new KeyboardEvent(KeyboardEvent.KEY_UP, true, false, 0, keyCode)));
 		}
 	}
 }

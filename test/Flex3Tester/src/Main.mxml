@@ -22,6 +22,10 @@
 			Alert.show('Mouse event: ' + event.type);
 		}
 		
+		public function keyEvent(event:KeyboardEvent):void {
+			Alert.show('Key event: ' + event.type + ", " + event.keyCode);
+		}
+		
 		private function buttonClick(): void {
 			buttonClicks.text = "Number of clicks: " + ++numberOfClicks;
 		}
@@ -179,7 +183,7 @@ Application{
 		<mx:Form id="mouseEvents"
 				label="Mouse view">
 			<mx:HBox>
-				<mx:Button id="mouseEventCatcher" label="Event catcher" 
+				<mx:Button id="mouseEventCatcher" label="Mouse event catcher" 
 						   mouseUp="mouseEvent(event)" 
 						   mouseDown="mouseEvent(event)" 
 						   mouseOver="mouseEvent(event)" 
@@ -187,6 +191,8 @@ Application{
 						   mouseMove="mouseEvent(event)" 
 						   rollOut="mouseEvent(event)" 
 						   rollOver="mouseEvent(event)"
+						   />
+				<mx:Button id="keyboardEventCatcher" label="Keyboard event catcher" keyUp="keyEvent(event)" 
 						   />
 			</mx:HBox>
 			<mx:DataGrid id="dataGrid1" dataProvider="{elements}" dragEnabled="true" dragMoveEnabled="true" dropEnabled="true"
