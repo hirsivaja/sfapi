@@ -1,10 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+<s:Application 
+	xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:mx="library://ns.adobe.com/flex/mx" 
+	xmlns:s="library://ns.adobe.com/flex/spark" 
 	creationComplete="init(this)"
-	xmlns:a="*"
-	>
+>
 
-<mx:Script>
+<fx:Script>
 	<![CDATA[
 		import mx.collections.ArrayCollection;
 		import mx.controls.Alert;
@@ -75,20 +77,25 @@
 		[Bindable]
 		private var elements:ArrayCollection = new ArrayCollection([element1, element2, element3]);
 	]]>
-</mx:Script>
+</fx:Script>
 
-<mx:Style>
-Application{
-	font-size: 16px;
-	background-color: #B0C4DE;
-}
-</mx:Style>
-<mx:Panel layout="absolute" title="Flex 3 test application">
-	<mx:HBox paddingLeft="50" paddingTop="50">
+
+<fx:Style>
+	@namespace s "library://ns.adobe.com/flex/spark";
+	
+	s|Application{
+		font-size: 16px;
+		background-color: #B0C4DE;
+	}
+</fx:Style>
+<s:Panel title="Flex 4 test application">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<s:HGroup paddingLeft="50" paddingTop="50" >
 		<mx:ButtonBar id="buttonBar"
 			direction="vertical"
 			dataProvider="{viewStack}"
-			themeColor="haloOrange"
 			fontSize="16"
 			width="200"
 			height="200" />
@@ -213,6 +220,6 @@ Application{
 				</mx:DataGrid>
 			</mx:Form>
 		</mx:ViewStack>
-	</mx:HBox>
-</mx:Panel>
-</mx:Application>
+	</s:HGroup>
+</s:Panel>
+</s:Application>
