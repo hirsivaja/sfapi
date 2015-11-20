@@ -9,8 +9,10 @@
 <fx:Script>
 	<![CDATA[
 		import mx.collections.ArrayCollection;
+		import mx.collections.XMLListCollection;
 		import mx.controls.Alert;
 		import mx.events.FlexEvent;
+		import mx.events.MenuEvent;
 		
 		import Element;
 		
@@ -71,11 +73,29 @@
 			selectedGridItem.text = "Selected item: " + Element(dataGrid.selectedItem).toString();
 		}
 		
+		private function menuHandler(evt:MenuEvent):void  {
+				Alert.show("Clicked: " + evt.item.@label);
+		}
+		
 		private var element1:Element = new Element("Element1", 1, true);
 		private var element2:Element = new Element("Element2", 2, false);
 		private var element3:Element = new Element("Element3", 3, true);
 		[Bindable]
 		private var elements:ArrayCollection = new ArrayCollection([element1, element2, element3]);
+		
+		private var menubarXML:XMLList =
+			<>
+			<menuitem label="Views" data="views">
+				<menuitem label="Buttons view" data="buttonsMenuItem"/>
+				<menuitem label="Radio buttons view" data="radioButtonsMenuItem"/>
+				<menuitem label="Comboboxes view" data="comboboxesMenuItem"/>
+			</menuitem>
+			<menuitem label="Help" data="help">
+				<menuitem label="About" data="about"/>
+			</menuitem>
+			</>;
+		[Bindable]
+		private var menuItemCollection:XMLListCollection = new XMLListCollection(menubarXML);
 	]]>
 </fx:Script>
 
@@ -88,138 +108,144 @@
 		background-color: #B0C4DE;
 	}
 </fx:Style>
+<s:layout>
+	<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" />
+</s:layout>
 <s:Panel title="Flex 4 test application">
-	<s:layout>
-		<s:BasicLayout/>
-	</s:layout>
-	<s:HGroup paddingLeft="50" paddingTop="50" >
-		<mx:ButtonBar id="buttonBar"
-			direction="vertical"
-			dataProvider="{viewStack}"
-			fontSize="16"
-			width="200"
-			height="200" />
+	<s:VGroup>
+		<mx:MenuBar id="menuBar"
+				labelField="@label" 
+				dataProvider="{menuItemCollection}" 
+				itemClick="menuHandler(event);" />
+		<s:HGroup paddingLeft="10" paddingTop="10" >
+			<mx:ButtonBar id="buttonBar"
+				direction="vertical"
+				dataProvider="{viewStack}"
+				fontSize="16"
+				width="200"
+				height="200" />
 
-		<mx:ViewStack id="viewStack"
-				backgroundColor="white"
-				width="800"
-				height="800">
+			<mx:ViewStack id="viewStack"
+					backgroundColor="white"
+					width="800"
+					height="800">
 
-			<mx:Form id="buttons"
-					label="Buttons view">
-				<mx:HBox>
-					<mx:Button id="clickButton" label="Click" click="buttonClick();"/>
-					<mx:Button id="resetButton" label="Reset" click="resetClick();"/>
-					<mx:Button id="disabledButton" enabled="false" label="Disabled button" click="buttonClick();"/>
-					<mx:Button id="invisibleButton" focusIn="showInvisibleButton()" focusOut="hideInvisibleButton()" visible="false" label="Invisible button" click="buttonClick();"/>
-					<mx:Label id="buttonClicks" text="Number of clicks: 0"/>
-				</mx:HBox>
-				<mx:HBox>
-					<mx:Button id="alertButton" label="Alert" click="alertClick()"/>
-					<mx:TextInput id="alertText" text="The world has ended!" width="100" maxChars="10" />
-				</mx:HBox>
-			</mx:Form>
-					
-			<mx:Form id="radioButtons"
-					label="RadioButtons view">
-				<mx:VBox>
-					<mx:RadioButtonGroup id="radioButtonGroup" change="radioSelected();"/>
-					<mx:RadioButton groupName="radioButtonGroup" id="radioButton1" value="1" 
-						label="Button 1" width="150" />
-					<mx:RadioButton groupName="radioButtonGroup" id="radioButton2" value="2" 
-						label="Button 2" width="150" />
-					<mx:RadioButton groupName="radioButtonGroup" id="radioButton3" value="3" 
-						label="Button 3" width="150" />
-					<mx:Label id="selectedRadioButton" text="Selected value: "/>
-				</mx:VBox>
-			</mx:Form>
-			<mx:Form id="comboBoxes"
-					label="ComboBox view">
-				<mx:VBox>
-					<mx:ComboBox id="comboBox" dataProvider="{elements}" labelField="item" change="comboBoxChange();"/>
-					<mx:Label id="selectedComboItem" text="" />
-				</mx:VBox>
-			</mx:Form>
-			<mx:Form id="checkBoxes"
-					label="CheckBox view">
-				<mx:HBox>
-					<mx:CheckBox id="checkBox" selected="true" change="checkBoxChange()"/>
-					<mx:Label id="selectedCheckBoxItem" text="CheckBox is checked" />
-				</mx:HBox>
-			</mx:Form>
-			<mx:Form id="dates"
-					label="Date view">
-				<mx:HBox>
-					<mx:DateField id="dateField" formatString="DD/MM/YYYY" editable="true" change="dateChange()"/>
-					<mx:Label id="selectedDate" text="Selected date: " />
-				</mx:HBox>
-			</mx:Form>
-			<mx:Form id="dataGrids"
-					label="DataGrid view">
-				<mx:HBox>
-					<mx:DataGrid id="dataGrid" dataProvider="{elements}" itemClick="dataGridClick()">
+				<mx:Form id="buttons"
+						label="Buttons view">
+					<mx:HBox>
+						<mx:Button id="clickButton" label="Click" click="buttonClick();"/>
+						<mx:Button id="resetButton" label="Reset" click="resetClick();"/>
+						<mx:Button id="disabledButton" enabled="false" label="Disabled button" click="buttonClick();"/>
+						<mx:Button id="invisibleButton" focusIn="showInvisibleButton()" focusOut="hideInvisibleButton()" visible="false" label="Invisible button" click="buttonClick();"/>
+						<mx:Label id="buttonClicks" text="Number of clicks: 0"/>
+					</mx:HBox>
+					<mx:HBox>
+						<mx:Button id="alertButton" label="Alert" click="alertClick()"/>
+						<mx:TextInput id="alertText" text="The world has ended!" width="100" maxChars="10" />
+					</mx:HBox>
+				</mx:Form>
+						
+				<mx:Form id="radioButtons"
+						label="RadioButtons view">
+					<mx:VBox>
+						<mx:RadioButtonGroup id="radioButtonGroup" change="radioSelected();"/>
+						<mx:RadioButton groupName="radioButtonGroup" id="radioButton1" value="1" 
+							label="Button 1" width="150" />
+						<mx:RadioButton groupName="radioButtonGroup" id="radioButton2" value="2" 
+							label="Button 2" width="150" />
+						<mx:RadioButton groupName="radioButtonGroup" id="radioButton3" value="3" 
+							label="Button 3" width="150" />
+						<mx:Label id="selectedRadioButton" text="Selected value: "/>
+					</mx:VBox>
+				</mx:Form>
+				<mx:Form id="comboBoxes"
+						label="ComboBox view">
+					<mx:VBox>
+						<mx:ComboBox id="comboBox" dataProvider="{elements}" labelField="item" change="comboBoxChange();"/>
+						<mx:Label id="selectedComboItem" text="" />
+					</mx:VBox>
+				</mx:Form>
+				<mx:Form id="checkBoxes"
+						label="CheckBox view">
+					<mx:HBox>
+						<mx:CheckBox id="checkBox" selected="true" change="checkBoxChange()"/>
+						<mx:Label id="selectedCheckBoxItem" text="CheckBox is checked" />
+					</mx:HBox>
+				</mx:Form>
+				<mx:Form id="dates"
+						label="Date view">
+					<mx:HBox>
+						<mx:DateField id="dateField" formatString="DD/MM/YYYY" editable="true" change="dateChange()"/>
+						<mx:Label id="selectedDate" text="Selected date: " />
+					</mx:HBox>
+				</mx:Form>
+				<mx:Form id="dataGrids"
+						label="DataGrid view">
+					<mx:HBox>
+						<mx:DataGrid id="dataGrid" dataProvider="{elements}" itemClick="dataGridClick()">
+							<mx:columns>
+								<mx:DataGridColumn dataField="attribute1" headerText="Attribute 1"/>
+								<mx:DataGridColumn dataField="attribute2" headerText="Attribute 2"/>
+								<mx:DataGridColumn dataField="attribute3" headerText="Attribute 3"/>
+							</mx:columns>
+						</mx:DataGrid>
+						<mx:Label id="selectedGridItem" text="Selected item: " />
+					</mx:HBox>
+				</mx:Form>
+				<mx:Form id="tabs"
+						label="TabNavigator view">
+					<mx:TabNavigator id="tabNavigator" borderStyle="solid">
+						<mx:VBox label="Tab 1" width="300" height="300">
+							<mx:Label id="tab1Label" text="Tab 1"/>
+						</mx:VBox>
+						<mx:VBox label="Tab 2" width="300" height="300">
+							<mx:Label id="tab2Label" text="Tab 2"/>
+						</mx:VBox>
+						<mx:VBox label="Tab 3" width="300" height="300">
+							<mx:Label id="tab3Label" text="Tab 3"/>
+						</mx:VBox>
+					</mx:TabNavigator>
+				</mx:Form>
+				<mx:Form id="steppers"
+						label="Stepper view">
+					<mx:HBox>
+						<mx:NumericStepper minimum="-100" maximum="100" stepSize="10" id="stepper" />
+					</mx:HBox>
+				</mx:Form>
+				<mx:Form id="mouseEvents"
+						label="Mouse view">
+					<mx:HBox>
+						<mx:Button id="mouseEventCatcher" label="Mouse event catcher" 
+								   mouseUp="mouseEvent(event)" 
+								   mouseDown="mouseEvent(event)" 
+								   mouseOver="mouseEvent(event)" 
+								   mouseOut="mouseEvent(event)" 
+								   mouseMove="mouseEvent(event)" 
+								   rollOut="mouseEvent(event)" 
+								   rollOver="mouseEvent(event)"
+								   />
+						<mx:Button id="keyboardEventCatcher" label="Keyboard event catcher" keyUp="keyEvent(event)" 
+								   />
+					</mx:HBox>
+					<mx:DataGrid id="dataGrid1" dataProvider="{elements}" dragEnabled="true" dragMoveEnabled="true" dropEnabled="true"
+								 doubleClickEnabled="true" doubleClick="mouseEvent(event)">
 						<mx:columns>
 							<mx:DataGridColumn dataField="attribute1" headerText="Attribute 1"/>
 							<mx:DataGridColumn dataField="attribute2" headerText="Attribute 2"/>
 							<mx:DataGridColumn dataField="attribute3" headerText="Attribute 3"/>
 						</mx:columns>
 					</mx:DataGrid>
-					<mx:Label id="selectedGridItem" text="Selected item: " />
-				</mx:HBox>
-			</mx:Form>
-			<mx:Form id="tabs"
-					label="TabNavigator view">
-				<mx:TabNavigator id="tabNavigator" borderStyle="solid">
-					<mx:VBox label="Tab 1" width="300" height="300">
-						<mx:Label id="tab1Label" text="Tab 1"/>
-					</mx:VBox>
-					<mx:VBox label="Tab 2" width="300" height="300">
-						<mx:Label id="tab2Label" text="Tab 2"/>
-					</mx:VBox>
-					<mx:VBox label="Tab 3" width="300" height="300">
-						<mx:Label id="tab3Label" text="Tab 3"/>
-					</mx:VBox>
-				</mx:TabNavigator>
-			</mx:Form>
-			<mx:Form id="steppers"
-					label="Stepper view">
-				<mx:HBox>
-					<mx:NumericStepper minimum="-100" maximum="100" stepSize="10" id="stepper" />
-				</mx:HBox>
-			</mx:Form>
-			<mx:Form id="mouseEvents"
-					label="Mouse view">
-				<mx:HBox>
-					<mx:Button id="mouseEventCatcher" label="Mouse event catcher" 
-							   mouseUp="mouseEvent(event)" 
-							   mouseDown="mouseEvent(event)" 
-							   mouseOver="mouseEvent(event)" 
-							   mouseOut="mouseEvent(event)" 
-							   mouseMove="mouseEvent(event)" 
-							   rollOut="mouseEvent(event)" 
-							   rollOver="mouseEvent(event)"
-							   />
-					<mx:Button id="keyboardEventCatcher" label="Keyboard event catcher" keyUp="keyEvent(event)" 
-							   />
-				</mx:HBox>
-				<mx:DataGrid id="dataGrid1" dataProvider="{elements}" dragEnabled="true" dragMoveEnabled="true" dropEnabled="true"
-							 doubleClickEnabled="true" doubleClick="mouseEvent(event)">
-					<mx:columns>
-						<mx:DataGridColumn dataField="attribute1" headerText="Attribute 1"/>
-						<mx:DataGridColumn dataField="attribute2" headerText="Attribute 2"/>
-						<mx:DataGridColumn dataField="attribute3" headerText="Attribute 3"/>
-					</mx:columns>
-				</mx:DataGrid>
-				<mx:DataGrid id="dataGrid2" dragEnabled="true" dragMoveEnabled="true" dropEnabled="true" 
-							 doubleClickEnabled="true" doubleClick="mouseEvent(event)">
-					<mx:columns>
-						<mx:DataGridColumn dataField="attribute1" headerText="Attribute 1"/>
-						<mx:DataGridColumn dataField="attribute2" headerText="Attribute 2"/>
-						<mx:DataGridColumn dataField="attribute3" headerText="Attribute 3"/>
-					</mx:columns>
-				</mx:DataGrid>
-			</mx:Form>
-		</mx:ViewStack>
-	</s:HGroup>
+					<mx:DataGrid id="dataGrid2" dragEnabled="true" dragMoveEnabled="true" dropEnabled="true" 
+								 doubleClickEnabled="true" doubleClick="mouseEvent(event)">
+						<mx:columns>
+							<mx:DataGridColumn dataField="attribute1" headerText="Attribute 1"/>
+							<mx:DataGridColumn dataField="attribute2" headerText="Attribute 2"/>
+							<mx:DataGridColumn dataField="attribute3" headerText="Attribute 3"/>
+						</mx:columns>
+					</mx:DataGrid>
+				</mx:Form>
+			</mx:ViewStack>
+		</s:HGroup>
+	</s:VGroup>
 </s:Panel>
 </s:Application>
