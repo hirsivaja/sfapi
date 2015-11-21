@@ -20,8 +20,6 @@
  */
 package sfapi.commands
 {
-	import com.adobe.serialization.json.JSON;
-	
 	import flash.geom.Point;
 	import flash.utils.getQualifiedClassName;
 	
@@ -76,29 +74,22 @@ package sfapi.commands
 
 		/*
 		* Process a list of requests for component properties
-		* @param props the list is properties to process
+		* @param id the id of the element
+		* @param args comma-separated list of properties
 		*/
-		public function rawFlexProperties(props:String, args:String=null):String
+		public function rawFlexProperties(id:String, args:String):String
 		{
-			props = unescape(props);
 			var ret:Array = [];
-			var list:Array = ArrayUtil.toArray(JSON.decode(props));
-			var id:String;
-			var property:String;
-			for (var x:int=0; x < list.length;x++){
-				id = 	list[x].substring(0, list[x].indexOf("."))
-				property = list[x].substring(list[x].indexOf(".")+1, list[x].length)
-				ret.push(rawFlexProperty(id, property,false));
-
+			var props:Array = args.split(",");
+			for (var x:int = 0; x < props.length; x++) {
+				ret.push(rawFlexProperty(id, props[x]));
 			}
-
-			var data:String = JSON.encode(ret);
-			return escape(data);
+			return ret.join();
 		}
 
 		public function getFlexProperty(id:String, value:String):Object
 		{
-			return rawFlexProperty(id, value, false);
+			return rawFlexProperty(id, value);
 		}
 
 		/**
@@ -107,7 +98,7 @@ package sfapi.commands
 		 * @param  property of the element to check
 		 * @return  the string value of the property
 		 */
-		public function rawFlexProperty(id:String, property:String, json:Boolean = true):Object
+		public function rawFlexProperty(id:String, property:String):Object
 		{
 			var element:Object
 			if(Application.application.hasOwnProperty(id))
@@ -150,10 +141,6 @@ package sfapi.commands
 				}
 				if(className == 'Object')
 				{
-					if(json)
-					{
-						return JSON.encode(retval);
-					}
 					return retval;
 				}
 				return retval.toString();
