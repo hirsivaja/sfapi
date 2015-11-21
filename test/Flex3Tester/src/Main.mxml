@@ -71,8 +71,12 @@
 			selectedGridItem.text = "Selected item: " + Element(dataGrid.selectedItem).toString();
 		}
 		
+		public function dataGridButtonClick(): void {
+			Alert.show("Clicked button on dataGrid");
+		}
+		
 		private function menuHandler(evt:MenuEvent):void  {
-				Alert.show("Clicked: " + evt.item.@label);
+			Alert.show("Clicked: " + evt.item.@label);
 		}
 		
 		private var element1:Element = new Element("Element1", 1, true);
@@ -178,8 +182,20 @@ Application{
 						<mx:DataGrid id="dataGrid" dataProvider="{elements}" itemClick="dataGridClick()">
 							<mx:columns>
 								<mx:DataGridColumn dataField="attribute1" headerText="Attribute 1"/>
-								<mx:DataGridColumn dataField="attribute2" headerText="Attribute 2"/>
-								<mx:DataGridColumn dataField="attribute3" headerText="Attribute 3"/>
+								<mx:DataGridColumn dataField="attribute2" headerText="Attribute 2">
+									<mx:itemRenderer>
+										<mx:Component>
+											<mx:Button click="outerDocument.dataGridButtonClick()" label="{data.attribute2}"/>
+										</mx:Component>
+									</mx:itemRenderer>
+								</mx:DataGridColumn>
+								<mx:DataGridColumn dataField="attribute3" headerText="Attribute 3">
+									<mx:itemRenderer>
+										<mx:Component>
+											<mx:CheckBox click="{data.attribute3 = !data.attribute3; label = data.attribute3}" label="{data.attribute3}" selected="{data.attribute3}"/>
+										</mx:Component>
+									</mx:itemRenderer>
+								</mx:DataGridColumn>
 							</mx:columns>
 						</mx:DataGrid>
 						<mx:Label id="selectedGridItem" text="Selected item: " />

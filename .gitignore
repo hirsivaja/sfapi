@@ -5,4 +5,5 @@ sfapi.as3proj
 /test/Flex3Tester/bin
 /test/Flex4Tester/bin
 /test/Flex4Tester/obj
+/obj
 sfapi.lxml
