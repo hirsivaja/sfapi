@@ -3,7 +3,7 @@
 	xmlns:fx="http://ns.adobe.com/mxml/2009" 
 	xmlns:mx="library://ns.adobe.com/flex/mx" 
 	xmlns:s="library://ns.adobe.com/flex/spark" 
-	creationComplete="init(this)"
+	applicationComplete="init(this)"
 >
 
 <fx:Script>
@@ -16,10 +16,14 @@
 		
 		import Element;
 		
+		import org.flex_pilot.FPBootstrap;
+		
 		private var numberOfClicks:int = 0;
 		
 		private function init(app:Object):void {
 			SeleniumFlexAPI.init(app);
+			FPBootstrap.flex_pilotLibPath = 'FlexPilot-4-stable.swf';
+			FPBootstrap.init(stage);
 		}
 		
 		public function mouseEvent(event:MouseEvent):void {
@@ -41,6 +45,14 @@
 		
 		private function alertClick(): void {
 			Alert.show('Alert! ' + alertText.text);
+		}
+		
+		private function errorClick(): void {
+			if (errorButton.errorString == "") {
+				errorButton.errorString = "I have an error!";
+			}else {
+				errorButton.errorString = "";
+			}
 		}
 		
 		private function showInvisibleButton(): void {
@@ -142,6 +154,7 @@
 					<mx:HBox>
 						<mx:Button id="alertButton" label="Alert" click="alertClick()"/>
 						<mx:TextInput id="alertText" text="The world has ended!" width="100" maxChars="10" />
+						<mx:Button id="errorButton" label="Error" click="errorClick();" />
 					</mx:HBox>
 				</mx:Form>
 						
