@@ -330,7 +330,7 @@ package sfapi.commands
 				var cell:Object = dgContentList.listItems[int(rowIndex)][int(colIndex)];
 				var cellChildren:Array = cell.getChildren();
 				
-				if((cellChildren[componentIndexInCell]).hasOwnProperty("label"));
+				if((cellChildren[componentIndexInCell]).hasOwnProperty("label"))
 				{
 					return String(cellChildren[componentIndexInCell].label);
 				}

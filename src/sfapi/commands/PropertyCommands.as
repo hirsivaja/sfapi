@@ -273,5 +273,69 @@ package sfapi.commands
 		{
 			return appTreeParser.getElement(id) ? 'true' : 'false';
 		}
+		
+		/**
+		 * Get a list of all the direct child elements
+		 * @param	id  The id of the object which children we want
+		 * @param	getFullPath  Return full path or only the last identifier
+		 * @param	visible  Return only visible children
+		 * @return  Paths of the child elements
+		 */
+		public function getFlexChildren(id:String, getFullPath:String, visible:String):String
+		{
+			var element:Object;
+			if(Application.application.hasOwnProperty(id))
+			{
+				element = Application.application[id];
+			}
+			else
+			{
+				element = appTreeParser.getElement(id);
+			}
+			if(!element)
+			{
+				return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [id]);
+			}
+			
+			var children:Array = new Array();
+			var child:Object;
+			for (var childNr:int = 0;  childNr < element.numChildren; childNr++) 
+			{
+				child = element.getChildAt(childNr);
+				if (child.visible || visible == 'false') 
+				{
+					if (getFullPath == 'false') 
+					{
+						children.push(child.toString().split(".").pop());
+					} 
+					else 
+					{
+						children.push(child);
+					}
+				}
+			}
+			return children.toString();
+		}
+		
+		/**
+		 * Retrieves child label of tab navigator by it's id
+		 * @param id The ID of the Flex object to find
+		 * @return child elements as a String separated by ","
+		 */
+		public function getFlexTabLabels(id:String):String {
+			var childs:String = "";
+			var child:Object = appTreeParser.getElement(id);
+
+			for(var i:int = 0; i < child.numChildren; i++) {
+				var tab:Object = child.getTabAt(i);
+				if (i+1 != child.numChildren) {
+					childs += tab.label + ",";
+				}
+				else {
+					childs += tab.label;
+				}
+			}
+			return childs;
+		}
 	}
 }

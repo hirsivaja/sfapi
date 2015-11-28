@@ -23,7 +23,7 @@ package sfapi.core
 	public class ReferenceData
 	{
 		public static const TRUE_STRING:String = "true";
-		public static const FLASE_STRING:String = "false";
+		public static const FALSE_STRING:String = "false";
 		
 		public static const TODAY:Array = ["", "", "today"];
 		
@@ -41,7 +41,8 @@ package sfapi.core
 		public static const DATEFIELD_DESCRIPTION:String = "mx.controls::DateField";
 		public static const DATECHOOSER_DESCRIPTION:String = "mx.controls::DateChooser";
 		public static const TABNAVIGATOR_DESCRIPTION:String = "mx.containers::TabNavigator";
-		public static const LISTBASECONTENTHOLDER_DESCRIPTION:String = "mx.controls.listClasses::ListBaseContentHolder"
+		public static const LISTBASECONTENTHOLDER_DESCRIPTION:String = "mx.controls.listClasses::ListBaseContentHolder";
+		public static const MENUBAR_DESCRIPTION:String = "mx.controls::MenuBar";
 		
 		public static const MILLISECONDS_IN_DAY:int = 86400000;
 		

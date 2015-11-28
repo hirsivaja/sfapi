@@ -135,6 +135,9 @@ package sfapi.commands
 				ExternalInterface.addCallback("getFlexEnabled", 
 							  propertyCommands.getFlexEnabled);
 							  
+				ExternalInterface.addCallback("getFlexChildren", 
+							  propertyCommands.getFlexChildren);
+							  
 				ExternalInterface.addCallback("getFlexDate", 
 							 	  dateCommands.getFlexDate);
 							  
@@ -179,6 +182,9 @@ package sfapi.commands
 
 				ExternalInterface.addCallback("getFlexDataGridRowIndexForFieldLabel",
 							 	 dataGridCommands.getFlexDataGridRowIndexForFieldLabel);
+								 
+				ExternalInterface.addCallback("getFlexTabLabels", 
+								  propertyCommands.getFlexTabLabels);
 				// Action commands
 				
 				ExternalInterface.addCallback("doFlexWaitForElementVisible", 

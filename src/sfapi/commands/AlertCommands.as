@@ -112,7 +112,7 @@ package sfapi.commands
 			}
 			else
 			{
-				retval = ReferenceData.FLASE_STRING;
+				retval = ReferenceData.FALSE_STRING;
 			}
 			return retval;
 		}

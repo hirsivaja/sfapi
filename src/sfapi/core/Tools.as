@@ -91,7 +91,7 @@ package sfapi.core
 		 */
 		public static function getChildrenOfTypeFromContainer(container:Object, clsName:String):Array
 		{
-			var childrenByType:Array = new Array;
+			var childrenByType:Array = new Array();
 
 			for (var i:int; i < container.numChildren; i++)
 			{

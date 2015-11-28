@@ -50,7 +50,7 @@ package sfapi.core
 		
 		/**
 		 * Find a Object using its id attribute, wherever it is in the application
-		 * @param  id  id attribute of the Object to return
+		 * @param  target  locator of the Object to return
 		 * @return  The Object corresponding to the id, or null if not found
 		 */
 		public function getElement(target:String):Object
@@ -164,6 +164,18 @@ package sfapi.core
 			
 			while(isNotTargetNode(element, property, currentNode.child))
 			{
+				if (property == 'child' || property == 'getChildAt')
+				{
+					if (currentNode.child.numChildren > element)
+					{
+						currentNode.child = currentNode.child.getChildAt(element);
+						break;
+					}
+					else 
+					{
+						return null;
+					}
+				}
 				if(hasFirstChild(currentNode) && ! sibTravers)
 				{
 					parents.push(currentNode);
@@ -417,7 +429,6 @@ package sfapi.core
 
 			parents = null;
 		}
-		
 		
 		/**
 		 * 
