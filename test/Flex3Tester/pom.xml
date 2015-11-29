@@ -3,10 +3,10 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.thoughtworks.selenium</groupId>
-  <artifactId>sfapi</artifactId>
-  <version>0.2.8-SNAPSHOT</version>
-  <packaging>swc</packaging>
+  <groupId>com.github.hirsivaja</groupId>
+  <artifactId>Flex3Tester</artifactId>
+  <version>1.0.0</version>
+  <packaging>swf</packaging>
   <pluginRepositories>
     <pluginRepository>
         <id>flex-mojos-plugin-repository</id>
@@ -62,7 +62,7 @@
             <strict>true</strict>
             <verifyDigests>true</verifyDigests>
             <debug>false</debug>
-            <targetPlayer>10.0.0</targetPlayer>
+            <targetPlayer>9.0.0</targetPlayer>
             <useM2Home>true</useM2Home>
             <showWarnings>true</showWarnings>
             <warnings>
@@ -74,16 +74,9 @@
   </build>
   <dependencies>
     <dependency>
-      <groupId>com.adobe.flexunit</groupId>
-      <artifactId>flexunit</artifactId>
-      <version>0.85</version>
-      <type>swc</type>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>com.adobe.flex.framework</groupId>
       <artifactId>playerglobal</artifactId>
-      <classifier>10</classifier>
+      <classifier>9</classifier>
       <type>swc</type>
       <version>${flexcompiler-version}</version>
     </dependency>
@@ -100,11 +93,12 @@
         </exclusions>
     </dependency>
 	<dependency>
-		<groupId>com.adobe.flex.framework</groupId>
-		<artifactId>datavisualization</artifactId>
-		<type>swc</type>
-		<version>3.6.0.16995</version>
-	</dependency>
+      <groupId>com.thoughtworks.selenium</groupId>
+      <artifactId>sfapi</artifactId>
+      <type>swc</type>
+      <version>0.2.8-SNAPSHOT</version>
+	  <scope>merged</scope>
+    </dependency>
   </dependencies>
   <properties>
     <flexmojos-maven-plugin.version>3.6.1</flexmojos-maven-plugin.version>

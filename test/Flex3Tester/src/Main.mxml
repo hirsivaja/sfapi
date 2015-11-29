@@ -91,6 +91,10 @@
 			Alert.show("Clicked: " + evt.item.@label);
 		}
 		
+		public function treeChanged(evt:Event):void {
+			selectedTreeItem.text = "Selected item: " + Tree(evt.currentTarget).selectedItem.node;
+		}
+		
 		private var element1:Element = new Element("Element1", 1, true);
 		private var element2:Element = new Element("Element2", 2, false);
 		private var element3:Element = new Element("Element3", 3, true);
@@ -110,6 +114,27 @@
 			</>;
 		[Bindable]
 		private var menuItemCollection:XMLListCollection = new XMLListCollection(menubarXML);
+		
+		public var arrayCollectionTree:ArrayCollection = new ArrayCollection([
+			{node:"Node1", children: new ArrayCollection
+				([
+					{ node: "Node1Item1" },
+					{ node: "Node1Item2" },
+					{ node: "Node1Item3", children: new ArrayCollection([
+							{ node: "Node1Item3SubItem1" },
+							{ node: "Node1Item3SubItem2" }
+						])
+					}
+				])
+			},
+			{node:"Node2", children: new ArrayCollection([
+					{ node: "Node2Item1" },
+					{ node: "Node2Item2" }
+				])
+			}, 
+			{node:"Node3"},
+			{node:"Node4"}
+		]);
 	]]>
 </mx:Script>
 
@@ -265,6 +290,16 @@ Application{
 							<mx:DataGridColumn dataField="attribute3" headerText="Attribute 3"/>
 						</mx:columns>
 					</mx:DataGrid>
+				</mx:Form>
+				<mx:Form id="treeForm"
+						label="Tree view">
+					<mx:HBox>
+						<mx:Tree id="tree" width="300" labelField="node" 
+								 showRoot="false" dataProvider="{arrayCollectionTree}" change="treeChanged(event);"/>
+					</mx:HBox>
+					<mx:HBox>
+						<mx:Label id="selectedTreeItem" text="Selected item: " />
+					</mx:HBox>
 				</mx:Form>
 			</mx:ViewStack>
 		</mx:HBox>

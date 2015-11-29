@@ -211,8 +211,17 @@ package sfapi.commands
 				ExternalInterface.addCallback("doFlexSelectMatchingOnField", 
 							    selectCommands.doFlexSelectMatchingOnField);
 							  
+				ExternalInterface.addCallback("doFlexSelectTreeItem", 
+							    selectCommands.doFlexSelectTreeItem);
+
+				ExternalInterface.addCallback("doFlexClickSelectedDataGridItem", 
+							    selectCommands.doFlexClickSelectedDataGridItem);
+							
 				ExternalInterface.addCallback("doFlexSelectIndex", 
 							    selectCommands.doFlexSelectIndex);
+								
+				ExternalInterface.addCallback("doFlexSelectDataGridIndex",
+								selectCommands.doFlexSelectDataGridIndex);
 							  
 				ExternalInterface.addCallback("doFlexSelectComboByLabel", 
 								 comboCommands.doFlexSelectComboByLabel);
@@ -297,12 +306,16 @@ package sfapi.commands
 
                 ExternalInterface.addCallback("doFlexDoubleClickDataGridUIComponent",
                         clickCommands.doFlexDoubleClickDataGridUIComponent);
+						
                 ExternalInterface.addCallback("doFlexDataGridDate",
                         dataGridCommands.doFlexDataGridDate);
+						
                 ExternalInterface.addCallback("doFlexDataGridCheckBox",
                         dataGridCommands.doFlexDataGridCheckBox);
+						
                 ExternalInterface.addCallback("doFlexDataGridClickColumnHeader",
                         dataGridCommands.doFlexDataGridClickColumnHeader);
+						
                 ExternalInterface.addCallback("doFlexDataGridSelectComboByLabel",
                         dataGridCommands.doFlexDataGridSelectComboByLabel);
 

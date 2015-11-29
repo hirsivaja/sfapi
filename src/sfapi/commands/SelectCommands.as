@@ -27,6 +27,10 @@ package sfapi.commands
 	import sfapi.core.ReferenceData;
 	import sfapi.core.Tools;
 	
+	import mx.controls.Tree;
+	import mx.collections.ArrayCollection;
+	import mx.controls.AdvancedDataGrid;
+	
 	public class SelectCommands extends AbstractCommand
 	{
 		// TODO use reference standard for these
@@ -76,7 +80,7 @@ package sfapi.commands
 				return -1;
 			}
 
-      var labelField:String = child.labelField;
+			var labelField:String = child.labelField;
 			var i:int = 0;
 			for each(var item:Object in child.dataProvider)
 			{
@@ -194,7 +198,192 @@ package sfapi.commands
 			
 			return result;
 		}
-		
+
+		/**
+		 * Goes thru a Tree (which should use ArrayCollection as a backend OR AdvancedDataGrid as frontend) 
+		 * and opens the branches and selects one or more items.
+		 * @param	id  Locator for the tree item
+		 * @param	args  First the property to use in searching separated with '|,|' from a list of search words.
+		 * The search words must be separated with '#,#'. Example:
+		 * node|,|word1#,#word2
+		 * @return
+		 */
+		public function doFlexSelectTreeItem(id:String, args:String) : String {
+			var result:String;
+			result = "";
+			
+			try
+			{
+				var argsAr:Array = args.split("|,|");
+				var propertyName:String = argsAr[0];
+				var searchWord:String = argsAr[1];
+				
+				result = result + "args: "+args+" propertyName: "+propertyName+" searchWord: "+searchWord;
+				
+				// TreeItems = array for multiple selections
+				var treeItems:Array = new Array();
+				var searchWords:Array = new Array();
+				if (searchWord.indexOf("#,#") != -1) {
+					searchWords = searchWord.split("#,#");
+				}
+				
+				var myTree:Object = appTreeParser.getWidgetById(id);
+				var myNode:Object = myTree.dataProvider;
+				
+				// If there is an arraycollection behind the tree
+				if (myNode is ArrayCollection) {
+					for (var i:Number = 0; i<myNode.length; i++) {
+						var objValue:Object = raw_findTreeNode(myTree, myNode.getItemAt(i), propertyName, searchWord);
+						result = result+"1-: "+objValue;
+						if (objValue != null) {
+							result = result+"1: "+objValue;
+							if (searchWords.length > 0) {
+								result = result+"1.1: "+objValue;
+								treeItems.push(objValue);
+							}
+							else {
+								result = result+"1.2: "+objValue;
+								myTree.selectedItem = objValue;
+								myTree.dispatchEvent(new ListEvent(ListEvent.CHANGE));
+								return result+"true"+objValue;
+							}
+						}
+					}
+				}
+				// If the tree is a AdvancedDataGrid pseudo-tree 
+				else if (myTree is AdvancedDataGrid) {
+					myTree.collapseAll();
+					// This means we search with parent and with the child
+					if (searchWords.length == 2) {
+						return ""+advancedDataGrid_selectTreeItem(myTree, searchWords[0], searchWords[1]);
+					}
+					// We search only with child
+					else {
+						result = result + "2.3:";
+						myTree.expandAll();
+						myTree.validateNow();
+						result = result + "2.4:";
+						if (myTree.findString(searchWord) == false) {
+							result = result+" Error: child not found!";
+							return result;
+						}
+						myTree.validateNow();
+						// This is just a test, remove this line if any problems arise:
+						return result + myTree.selectedItem;
+					}
+				}
+				
+				if (treeItems.length > 0) {
+					myTree.selectedItems = treeItems;
+					myTree.dispatchEvent(new ListEvent(ListEvent.CHANGE));
+					return result+"true";
+				}
+				return result+"false";				
+			}
+			catch (e:Error)
+			{
+				// TODO use error standard
+				result = result + "ERROR: Widget '" + id + "': " + e.message;
+			}
+			
+			return result;		
+		}
+	
+		/**
+		 * TODO method description
+		 * @param	myTree
+		 * @param	parent
+		 * @param	child
+		 * @return
+		 */
+		private function advancedDataGrid_selectTreeItem(myTree:Object, parent:String, child:String):Boolean {
+			var foundParent:Boolean = true;
+			var lastIndex:int = 0;
+			
+			while (foundParent != false) {
+				foundParent = myTree.findString(parent);
+				// If lastIndex is bigger than myTree.selectedindex
+				// the findString didn't find anything and went around the whole tree and started at beginning
+				if (lastIndex > myTree.selectedIndex) {
+					foundParent = false;
+					break;
+				}
+				lastIndex = myTree.selectedIndex;
+				if (myTree.itemToLabel(myTree.selectedItem) == parent) {
+					foundParent = true;
+					break;
+				}
+			}
+			if (foundParent == false) {
+				return false;						
+			}
+			// Now the parent is selected, we want to open it up
+			myTree.expandItem(myTree.selectedItem, true);
+			
+			myTree.validateNow();
+			var foundChild:Boolean = true;
+			myTree.validateNow();
+			lastIndex = 0;
+			while (foundChild != false) {
+				foundChild = myTree.findString(child);
+											
+				if (lastIndex > myTree.selectedIndex) {
+					foundChild = false;
+					break;
+				}
+				
+				lastIndex = myTree.selectedIndex;
+				if (myTree.itemToLabel(myTree.selectedItem) == child) {
+					foundChild = true;
+					break;
+				}
+			}
+
+			if (foundChild == false) {
+				return false;
+			}
+			myTree.validateNow();
+			myTree.dispatchEvent(new ListEvent(ListEvent.CHANGE));
+			return true;
+		}
+
+		/**
+		 * TODO method description
+		 * @param	myTree
+		 * @param	myNode
+		 * @param	propertyName
+		 * @param	searchWord
+		 * @return
+		 */
+		private function raw_findTreeNode(myTree:Object, myNode:Object, propertyName:String, searchWord:String):Object {
+			if (propertyName != "") {
+				if (myNode.hasOwnProperty(propertyName)) {
+					if (myNode[propertyName] == searchWord) {
+						return myNode;
+					}
+				}
+			} // If propertyName is not supplied, go thru all the properties
+			else {
+				for(var id:String in myNode) {
+					var value:Object = myNode[id];
+					if (value == searchWord) {
+						return myNode;
+					}
+				}
+			}
+			if (myNode.hasOwnProperty("children")) {
+				for (var i:Number = 0; i<myNode.children.length; i++) {
+					var objValue:Object = raw_findTreeNode(myTree, myNode.children[i], propertyName, searchWord);
+					if (objValue != null) {
+						// Open this branch, because it clearly has children
+						myTree.expandItem(myNode, true);
+						return objValue;
+					}
+				}
+			}
+			return null;
+		}
+
 		public function doFlexAddSelectMatchingOnField(id:String, field:String, value:String) : String {
 			var result:String;
 		
@@ -371,5 +560,53 @@ package sfapi.commands
 			}
 			return null;
 		}
+
+		/**
+		 * Selected the given row from a data grid
+		 * @param	id The data grid in question
+		 * @param	rowNr The row to select
+		 * @return
+		 */
+		public function doFlexSelectDataGridIndex(id:String, rowNr:String = "0"):String
+		{
+			var result:String;
+			result = "";
+			try
+			{
+				var widget:Object = appTreeParser.getWidgetById(id);
+				var row:int = parseInt(rowNr);				
+				widget.selectedIndex = row;
+				widget.validateNow();
+				widget.scrollToIndex(row);
+				result = "true";
+			}
+			catch (e:Error)
+			{
+				result = "ERROR: Widget '" + id + "': " + e.message;
+			}
+			return result;
+		}	
+		
+		/**
+		 * Clicks the selected item of the data grid. Use for example 'doFlexSelectDataGridIndex'
+		 * to select the item beforehand.
+		 * @param	id Id of the element to click
+		 * @param	args Not used
+		 * @return
+		 */
+		public function doFlexClickSelectedDataGridItem(id:String, args:String) : String {
+			var result:String = "";
+			try {
+				var myObj:Object = appTreeParser.getWidgetById(id);
+				
+				return String(myObj.dispatchEvent(new ListEvent(ListEvent.ITEM_CLICK)));
+			}
+			catch (e:Error) {
+				// TODO use error standard
+				result = "ERROR: Widget '" + id + "': " + e.message;
+			}
+			return result;
+		}
+		
 	}
 }

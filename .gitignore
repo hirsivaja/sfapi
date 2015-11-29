@@ -6,4 +6,6 @@ sfapi.as3proj
 /test/Flex4Tester/bin
 /test/Flex4Tester/obj
 /obj
+/test/Flex3Tester/target
+/test/Flex4Tester/target
 sfapi.lxml
