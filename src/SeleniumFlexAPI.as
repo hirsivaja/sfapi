@@ -43,26 +43,31 @@ package
 	public class SeleniumFlexAPI extends Sprite
 	{
 		private static var seleniumFlexAPI:SeleniumFlexAPI;
+		private static var enableToolTips:Boolean;
+		private static var enableRecorder:Boolean;
+		private static var applicationCompleted:Boolean;
 		public static var sysRoot:Object;
 		public var appTreeParser:AppTreeParser;
 		private var commands:Commands;
 		
 		public function SeleniumFlexAPI(app:Object)
 		{
-	       	super();
+		   	super();
 			app.addEventListener(FlexEvent.APPLICATION_COMPLETE, applicationCompleteHandler);
-	    }
+		}
 		
-	    /**
-	     * Initialisation function 
-	     */
-	    public static function init(app:Object):void
-	    {
-	    	if(!seleniumFlexAPI)
-	    	{
-		    	sysRoot = app;
-		    	seleniumFlexAPI = new SeleniumFlexAPI(app);
-	    	}
+		/**
+		 * Initialisation function 
+		 */
+		public static function init(app:Object, enableToolTips:Boolean = false, enableRecorder:Boolean = false):void
+		{
+			if(!SeleniumFlexAPI.applicationCompleted)
+			{
+				SeleniumFlexAPI.enableToolTips = enableToolTips;
+				SeleniumFlexAPI.enableRecorder = enableRecorder;
+				sysRoot = app;
+				seleniumFlexAPI = new SeleniumFlexAPI(app);
+			}
 		}
 		
 		/**
@@ -73,30 +78,35 @@ package
 			sysRoot.removeEventListener(FlexEvent.APPLICATION_COMPLETE, applicationCompleteHandler);
 			appTreeParser = new AppTreeParser();
 			appTreeParser.thisApp = sysRoot.getChildAt(0);
-			seleniumFlexAPI = this;						
-			appTreeParser.setTooltipsToID();
-			appTreeParser.thisApp.addEventListener(KeyboardEvent.KEY_UP, refreshToolTips);
+			seleniumFlexAPI = this;
 			commands = new Commands(appTreeParser);
 			
-			sysRoot.addEventListener(MouseEvent.CLICK, RecordingEventHandler.handleMouseClicked);
-			appTreeParser.thisApp.addEventListener(KeyboardEvent.KEY_UP, refreshToolTips);			
-			appTreeParser.thisApp.addEventListener(MouseEvent.MOUSE_MOVE, updateMousePosition);
-			commands = new Commands(appTreeParser);
+			if (SeleniumFlexAPI.enableToolTips) {
+				appTreeParser.setTooltipsToID();
+				appTreeParser.thisApp.addEventListener(KeyboardEvent.KEY_UP, refreshToolTips);
+			}
 			
-			/** This line injects JavaScript into the container that will insert
-			 * a <SPAN> element with the id isSWFReady. The
-			 * waitForElementPresent Selenium test we insert will pause flex
-			 * tests until it crops up, preventing our race condition from
-			 * ticket #21 in DrProject.
-			 */
-			ExternalInterface.call("function () { var bob = " +
-				"document.createElement('span'); bob.id = 'isSWFReady';" +
-				"document.getElementsByTagName('html')[0].appendChild(bob);" +
-				"}");
+			if (SeleniumFlexAPI.enableRecorder) {
+				sysRoot.addEventListener(MouseEvent.CLICK, RecordingEventHandler.handleMouseClicked);
+				appTreeParser.thisApp.addEventListener(KeyboardEvent.KEY_UP, refreshToolTips);
+				appTreeParser.thisApp.addEventListener(MouseEvent.MOUSE_MOVE, updateMousePosition);
 				
-			appTreeParser.curMouseX = 0;
-			appTreeParser.curMouseY = 0;	
-			initContextMenu();		
+				/** This line injects JavaScript into the container that will insert
+				 * a <SPAN> element with the id isSWFReady. The
+				 * waitForElementPresent Selenium test we insert will pause flex
+				 * tests until it crops up, preventing our race condition from
+				 * ticket #21 in DrProject.
+				 */
+				ExternalInterface.call("function () { var bob = " +
+					"document.createElement('span'); bob.id = 'isSWFReady';" +
+					"document.getElementsByTagName('html')[0].appendChild(bob);" +
+					"}");
+					
+				appTreeParser.curMouseX = 0;
+				appTreeParser.curMouseY = 0;
+				initContextMenu();
+			}
+			SeleniumFlexAPI.applicationCompleted = true;
 		}
 		
 		private function updateMousePosition(event:MouseEvent):void {
@@ -131,41 +141,41 @@ package
 			appId = appId.substring(0, appId.length-1);
 			
 			var myJavaScript:XML = <script>
-        		<![CDATA[
-        		    function(id){
-            	
-                		flexApp = id;
-                		curMouseX = 0;
-                		curMouseY = 0;
-                		
-                		contextMenuIsVisible = false;
-                		var menu = document.createElement("div");
+				<![CDATA[
+					function(id){
+				
+						flexApp = id;
+						curMouseX = 0;
+						curMouseY = 0;
+						
+						contextMenuIsVisible = false;
+						var menu = document.createElement("div");
 						menu.setAttribute('id', 'sel-flex-context-menu');
 						menu.setAttribute('class', 'right-click-menu');
 						menu.style.position = "absolute";
 						menu.style.visibility = "hidden";
 						document.body.appendChild(menu);
-                		
-                		doOnClick = function (event) {
-                			if (event.button != 0 && event.target.id == flexApp) {
-                				killEvents(event);
-		    					curMouseX = event.clientX;
-		    					curMouseY = event.clientY;
-                			
-                				contextMenuIsVisible = true;
-                				var flashObj = document.getElementById(flexApp);
-                				flashObj["doFlexRightClick"]("","");
-		    				} else if (event.button == 0 && event.target.id == flexApp && contextMenuIsVisible) {
-		    					killEvents(event);
-		    					var rightMenu = document.getElementById("sel-flex-context-menu");
+						
+						doOnClick = function (event) {
+							if (event.button != 0 && event.target.id == flexApp) {
+								killEvents(event);
+								curMouseX = event.clientX;
+								curMouseY = event.clientY;
+							
+								contextMenuIsVisible = true;
+								var flashObj = document.getElementById(flexApp);
+								flashObj["doFlexRightClick"]("","");
+							} else if (event.button == 0 && event.target.id == flexApp && contextMenuIsVisible) {
+								killEvents(event);
+								var rightMenu = document.getElementById("sel-flex-context-menu");
 								rightMenu.style.visibility = "hidden";
 								contextMenuIsVisible = false;
-		    				}
-                		}
-                		
-                		sendToSeIDE = function (event, objId, command) {
-                			killEvents(event);
-                			var rightMenu = document.getElementById("sel-flex-context-menu");
+							}
+						}
+						
+						sendToSeIDE = function (event, objId, command) {
+							killEvents(event);
+							var rightMenu = document.getElementById("sel-flex-context-menu");
 							rightMenu.style.visibility = "hidden";
 							var evt = document.createEvent('MutationEvents');
 							evt.initMutationEvent('flexSendCommandToSeIDE', true, true, document.createTextNode(''), objId, command , 'value', MutationEvent.MODIFICATION); 
@@ -177,18 +187,18 @@ package
 							if (event.stopPropagation) { event.stopPropagation(); }
 							if (event.preventDefault) { event.preventDefault(); }
 							if (event.preventCapture) { event.preventCapture(); }
-		    				if (event.preventBubble) { event.preventBubble(); }	
+							if (event.preventBubble) { event.preventBubble(); }
 						}
 						
 						document.getElementById(flexApp).wmode = "transparent";
-                		document.addEventListener("mousedown", doOnClick, true);
-                		
-               	}
-        		]]>
-    		</script> 
+						document.addEventListener("mousedown", doOnClick, true);
+						
+				}
+				]]>
+			</script> 
 			
 			ExternalInterface.call(myJavaScript , appId);
-		 
+			
 		 }
 	}
 }

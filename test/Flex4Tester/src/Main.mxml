@@ -18,10 +18,13 @@
 		
 		import org.flex_pilot.FPBootstrap;
 		
+		private var enableToolTips:Boolean = true;
+		private var enableRecorder:Boolean = false;
+		
 		private var numberOfClicks:int = 0;
 		
 		private function init(app:Object):void {
-			SeleniumFlexAPI.init(app);
+			SeleniumFlexAPI.init(app, enableToolTips, enableRecorder);
 			FPBootstrap.flex_pilotLibPath = 'FlexPilot-4-stable.swf';
 			FPBootstrap.init(stage);
 		}
