@@ -29,10 +29,12 @@ package sfapi.core
 		
 		public static const CHECKSTATE_UNCHECKED:int = 0;
 		public static const CHECKSTATE_CHECKED:int = 1;
+		public static const CHECKSTATE_NO_CHANGE:int = -1;
 		public static const CHECKSTATE_UNKNOWN:int = 2;
 		
 		public static const ALERT_DESCRIPTION:String = "mx.controls::Alert";
 		public static const CHECKBOX_DESCRIPTION:String = "mx.controls::CheckBox";
+		public static const TRI_CHECKBOX_DESCRIPTION:String = "::ThreeStateCheckBox";
 		public static const RADIOBUTTON_DESCRIPTION:String = "mx.controls::RadioButton";
 		public static const ACCORDION_DESCRIPTION:String = "mx.containers::Accordion";		
 		public static const BUTTONBAR_DESCRIPTION:String = "mx.controls::ButtonBar";

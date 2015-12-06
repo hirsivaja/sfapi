@@ -42,9 +42,8 @@ package sfapi.commands
 		 */
 		public function doFlexCheckBox(id:String, args:String):String
 		{
-			var element:Object;
 			var child:Object = appTreeParser.getElement(id);
-			
+
 			if(child == null)
 			{
 				return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [id]);
@@ -57,8 +56,16 @@ package sfapi.commands
         {
             if (!Tools.isA(child, ReferenceData.CHECKBOX_DESCRIPTION))
             {
-                return ErrorMessages.getError(ErrorMessages.ERROR_TYPE_MISMATCH, [child, ReferenceData.CHECKBOX_DESCRIPTION]);
-            }
+				if (Tools.isA(child, ReferenceData.TRI_CHECKBOX_DESCRIPTION, true))
+				{
+					// Handle a tri-state checkbox:
+					return rawFlexTristateCheckBox(child, args);
+				}
+				// Not a checkbox?
+				return ErrorMessages.getError(ErrorMessages.ERROR_TYPE_MISMATCH, [child, ReferenceData.CHECKBOX_DESCRIPTION]);
+
+			}
+			// Normal checkbox:
             switch (argIsCheck(args))
             {
                 case ReferenceData.CHECKSTATE_CHECKED :
@@ -88,6 +95,19 @@ package sfapi.commands
             }
             return null;
         }
+		private function rawFlexTristateCheckBox(child:Object, args:String):String
+		{
+			var state:int = argIsCheck(args);
+			switch (state)
+			{
+				case ReferenceData.CHECKSTATE_UNKNOWN :
+                    return ErrorMessages.getError(ErrorMessages.ERROR_UNKNOWN_CHECK_STATE, [child]);
+				default:
+					child.state = state;
+					return 'true';
+			}
+			return null;
+		}
 		/**
 		 * Determine if a checkbox is checked or unchecked
 		 * @param  id  The ID of the Flex object
@@ -97,6 +117,10 @@ package sfapi.commands
 		public function getFlexCheckBoxChecked(id:String, args:String):String
 		{
 			var child:Object = appTreeParser.getElement(id);
+			if (child == null)
+			{
+				return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [id]);
+			}
 			return getFlexCheckBoxStatus(child);
 		}
 
@@ -107,15 +131,36 @@ package sfapi.commands
          */
         public function getFlexCheckBoxStatus(object:Object):String
         {
-            if (Tools.isA(object, ReferenceData.CHECKBOX_DESCRIPTION))
-            {
-                return object.selected.toString();
-            }
-            else
-            {
-                return ErrorMessages.getError(ErrorMessages.ERROR_TYPE_MISMATCH, [object, ReferenceData.CHECKBOX_DESCRIPTION]);
-            }
-            return null;
+            try
+			{
+				if (Tools.isA(object, ReferenceData.TRI_CHECKBOX_DESCRIPTION))
+				{
+					// Custom tri-state box:
+					switch (object.state)
+					{
+						case 1:
+							return "true";
+						case 0:
+							return "false";
+						case -1:
+							return "no change";
+					}
+				}
+				// Normal - or unknown - checkbox: return the old, normal, way.
+				if (object.selected)
+				{
+					return "true";
+				}
+				else
+				{
+					return "false";
+				}
+			}
+			catch (error:Error)
+			{
+				return "Error: " + error.message;
+			}
+			return "unknown";
         }
 		/**
 		 * return if a string specifies a particular check state for a check box
@@ -131,6 +176,10 @@ package sfapi.commands
 			else if(arg == 'false' || arg.toLowerCase() == 'unchecked' || arg.toLowerCase() == 'uncheck' || arg == '0')
 			{
 				return ReferenceData.CHECKSTATE_UNCHECKED;
+			}
+			else if (arg.toLowerCase() == 'no change' || arg =='-1')
+			{
+				return ReferenceData.CHECKSTATE_NO_CHANGE;
 			}
 			return ReferenceData.CHECKSTATE_UNKNOWN;
 		}

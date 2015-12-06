@@ -21,6 +21,7 @@
 package sfapi.commands
 {
 	import mx.events.ListEvent;
+	import mx.events.DropdownEvent;
 	import sfapi.core.AppTreeParser;
 	
 	public class ComboCommands extends AbstractCommand
@@ -40,7 +41,16 @@ package sfapi.commands
             var result:String;
             try
             {
-                var provider:Object = widget.dataProvider;
+                var provider:Object;
+				if (widget.hasOwnProperty("dataProvider")) {
+					provider = widget.dataProvider;
+				}
+				else if (widget.hasOwnProperty("data")) {
+					provider = widget.data;
+				}
+				else {
+					return "Error: widget does not have dataProvider or data";
+				}
                 var index:int = -1;
                 var i:int = 0;
                 for each (var row:Object in provider)
@@ -112,6 +122,59 @@ package sfapi.commands
 			return 'false';
 		}
 
+		/**
+		 * Dispatches a dropdown event to given object
+		 * @param	id  The ID of the Flex object
+		 * @param	event  "open" or "close"
+		 */
+		public function doFlexComboSendEvent(id:String, event:String):String {
+			var widget:Object = appTreeParser.getWidgetById(id);
+			if (event == "open") {
+				return widget.dispatchEvent(new DropdownEvent(DropdownEvent.OPEN));
+			}
+			else if (event == "close") {
+				return widget.dispatchEvent(new DropdownEvent(DropdownEvent.CLOSE));
+			}
+			return "Unknown dropdown event type: " + event;
+		}
+
+		/**
+		 * Returns the values from a combobox, separated with "#;#"
+		 * @param	id  The ID of the Flex object
+		 * @return  Example: item1#;#item2#;#item3
+		 */
+		public function getFlexComboValues(id:String):String {
+	        var result:String = "";
+			var widget:Object = appTreeParser.getWidgetById(id);
+            try
+            {
+				var values:Array = new Array();
+				var provider:Object;
+				if (widget.hasOwnProperty("dataProvider")) {
+					provider = widget.dataProvider;
+				}
+				else if (widget.hasOwnProperty("data")) {
+					provider = widget.data;
+				}
+				else {
+					return "Error: widget does not have dataProvider or data";
+				}
+
+                for each (var row:Object in provider)
+                {
+                    var rowLabel:String = widget.itemToLabel(row);
+                    values.push(rowLabel);
+                }
+				
+				result = values.join("#;#");
+            }
+            catch (e:Error)
+            {
+                // todo standard err
+                result = result+"ERROR: Widget '" + widget + "': " + e.message;
+            }
+            return result;
+		}
 	}
 
 }

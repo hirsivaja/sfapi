@@ -165,6 +165,9 @@ package sfapi.commands
 				ExternalInterface.addCallback("getFlexComboContainsLabel", 
 							 	 comboCommands.getFlexComboContainsLabel);
 							  
+				ExternalInterface.addCallback("getFlexComboValues", 
+							 	 comboCommands.getFlexComboValues);
+				
 				ExternalInterface.addCallback("getFlexCheckBoxChecked", 
 							 	 checkBoxCommands.getFlexCheckBoxChecked);
 							  
@@ -229,6 +232,9 @@ package sfapi.commands
 				ExternalInterface.addCallback("doFlexSelect", 
 							    selectCommands.doFlexSelect);
 							  
+				ExternalInterface.addCallback("doFlexComboSendEvent", 
+							 	  comboCommands.doFlexComboSendEvent);
+				
 				ExternalInterface.addCallback("doFlexRefreshIDToolTips", 
 							 	  utilCommands.doFlexRefreshIDToolTips);
 							  

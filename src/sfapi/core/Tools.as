@@ -37,23 +37,24 @@ package sfapi.core
 			return classInfo.@name.toString();
 		}
 
-		public static function isA(child:Object, requiredTypeInHierarchy:String):Boolean
+		public static function isA(child:Object, requiredTypeInHierarchy:String, partialMatch:Boolean = false):Boolean
 		{
 			var classInfo:XML = describeType(child);
-
-      // match this exact class
-      if (classInfo.@name == requiredTypeInHierarchy) {
-        return true;
-      }
-
-      // match up in type hierarchy to match extended classes
-      for each (var clazzExtended:XML in classInfo.extendsClass) {
-        trace("checking if '"+requiredTypeInHierarchy+"'='"+clazzExtended.@type+"'");
-        if (requiredTypeInHierarchy == clazzExtended.@type) {
-          return true;
-        }
-      }
-
+			// match this exact class
+			if (classInfo.@name == requiredTypeInHierarchy) {
+				return true;
+			} else if (partialMatch && classInfo.@name.toString().indexOf(requiredTypeInHierarchy)>-1) {
+				return true;
+			}
+			// match up in type hierarchy to match extended classes
+			for each (var clazzExtended:XML in classInfo.extendsClass) {
+				trace("checking if '"+requiredTypeInHierarchy+"'='"+clazzExtended.@type+"'");
+				if (requiredTypeInHierarchy == clazzExtended.@type) {
+					return true;
+				} else if (partialMatch && classInfo.@name.toString().indexOf(requiredTypeInHierarchy)>-1) {
+					return true;
+				}
+			}
 			return false;
 		}
 
