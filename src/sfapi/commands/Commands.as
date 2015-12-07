@@ -186,6 +186,15 @@ package sfapi.commands
 				ExternalInterface.addCallback("getFlexDataGridRowIndexForFieldLabel",
 							 	 dataGridCommands.getFlexDataGridRowIndexForFieldLabel);
 								 
+				ExternalInterface.addCallback("getFlexDataGridValues",
+							  dataGridCommands.getFlexDataGridValues);
+							  
+				ExternalInterface.addCallback("getFlexDataGridColCount", 
+							  dataGridCommands.getFlexDataGridColCount);
+							  
+				ExternalInterface.addCallback("getFlexDataGridColDataFields", 
+							  dataGridCommands.getFlexDataGridColDataFields);
+								 
 				ExternalInterface.addCallback("getFlexTabLabels", 
 								  propertyCommands.getFlexTabLabels);
 				// Action commands
@@ -319,6 +328,12 @@ package sfapi.commands
                 ExternalInterface.addCallback("doFlexDataGridCheckBox",
                         dataGridCommands.doFlexDataGridCheckBox);
 						
+				ExternalInterface.addCallback("doFlexDataGridExpandAll", 
+							  dataGridCommands.doFlexDataGridExpandAll);
+
+				ExternalInterface.addCallback("doFlexDataGridSearchValue",
+                							  dataGridCommands.doFlexDataGridSearchValue);
+						
                 ExternalInterface.addCallback("doFlexDataGridClickColumnHeader",
                         dataGridCommands.doFlexDataGridClickColumnHeader);
 						
@@ -344,6 +359,12 @@ package sfapi.commands
 
 				ExternalInterface.addCallback("rawFlexDataGridRowIndexForFieldValue",
 							  dataGridCommands.rawFlexDataGridRowIndexForFieldValue);
+
+				ExternalInterface.addCallback("rawFlexDataGridFieldValuesForColumn",
+							  dataGridCommands.rawFlexDataGridFieldValuesForColumn);
+
+				ExternalInterface.addCallback("rawFlexDataGridFieldAllValues",
+                							  dataGridCommands.rawFlexDataGridFieldAllValues);
 
 				ExternalInterface.addCallback("rawFlexDataGridRowIndexForFieldLabel",
 							  dataGridCommands.rawFlexDataGridRowIndexForFieldLabel);

@@ -59,7 +59,9 @@ package sfapi.commands
         {
             var isDateChooser:Boolean = Tools.isA(child, ReferenceData.DATECHOOSER_DESCRIPTION);
             var isDateField:Boolean = Tools.isA(child, ReferenceData.DATEFIELD_DESCRIPTION);
-            if (isDateChooser)
+			var isBigButtonsDateChooser:Boolean = Tools.isA(child, "BigButtonsDateChooser", true);
+			var isDateTimeField:Boolean = Tools.isA(child, "DateTimeField", true);
+            if (isDateChooser || isBigButtonsDateChooser || isDateTimeField)
             {
                 return setDateChooser(child, args);
             }
@@ -119,15 +121,18 @@ package sfapi.commands
 
 			var objectType:String = Tools.getOjectType(child);
 			
-			if(objectType == ReferenceData.DATECHOOSER_DESCRIPTION || objectType == ReferenceData.DATEFIELD_DESCRIPTION)
+			if(objectType == ReferenceData.DATECHOOSER_DESCRIPTION || 
+				objectType == ReferenceData.DATEFIELD_DESCRIPTION || 
+				objectType.indexOf("BigButtonsDateChooser") >= 0 || 
+				objectType.indexOf("DateTimeField") >= 0)
 			{
-				if(objectType == ReferenceData.DATECHOOSER_DESCRIPTION)
+				if(objectType == ReferenceData.DATEFIELD_DESCRIPTION)
 				{
-					return child.selectedDate;
+					return DateField.dateToString(child.selectedDate, child.formatString);
 				}
 				else
 				{			        
-				    return DateField.dateToString(child.selectedDate, child.formatString);
+				    return child.selectedDate;
 				}
 			}
 			else

@@ -62,9 +62,12 @@ package
 		public static function init(app:Object, enableToolTips:Boolean = false, enableRecorder:Boolean = false):void
 		{
 			if(!SeleniumFlexAPI.applicationCompleted)
+        	{
+        		SeleniumFlexAPI.enableToolTips = enableToolTips;
+                SeleniumFlexAPI.enableRecorder = enableRecorder;
+        	}
+			if(!SeleniumFlexAPI.seleniumFlexAPI)
 			{
-				SeleniumFlexAPI.enableToolTips = enableToolTips;
-				SeleniumFlexAPI.enableRecorder = enableRecorder;
 				sysRoot = app;
 				seleniumFlexAPI = new SeleniumFlexAPI(app);
 			}

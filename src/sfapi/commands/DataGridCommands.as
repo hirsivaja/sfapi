@@ -29,6 +29,9 @@ import mx.controls.dataGridClasses.DataGridColumn;
 import mx.controls.listClasses.IListItemRenderer;
 import mx.events.DataGridEvent;
 import mx.events.ListEvent;
+import mx.collections.IHierarchicalCollectionViewCursor;
+
+import mx.utils.StringUtil;
 
 import sfapi.core.AppTreeParser;
 import sfapi.core.ErrorMessages;
@@ -708,5 +711,355 @@ public class DataGridCommands extends AbstractCommand
             }
             return ErrorMessages.getError(ErrorMessages.ERROR_NO_CHILD_UICOMPONENT, [datagridId,rowIndex,columnIndex]);
         }
+		
+		/**
+		 * Returns the data values of a column. The values are separated with "#;#"
+		 * @param id the id of the Data Grid
+		 * @param field the name of the column/field
+		 */
+		public function rawFlexDataGridFieldValuesForColumn(id:String, colIndex:String) : String {
+			var result:String = "";
+			try
+			{
+				var widget:Object = appTreeParser.getWidgetById(id);
+				var provider:Object = widget.dataProvider;
+				var values:Array = new Array();
+				for (var row:int = 0; row<provider.length; row++) {
+					var rowValues:Object = provider[row];
+					var col:Object = widget.columns[parseInt(colIndex)];
+					var value:Object = col.itemToLabel(rowValues);
+					if ((value == null) || (value == "")) 
+					{
+						// col.itemToLabel might return empty string, thought it is reasonable to return empty datagrid cells too,
+						// since there is a row in the provider.
+						value = " ";
+					}
+					values.push(value);
+				}
+				result = values.join("#;#");
+			}
+			catch (e:Error)
+			{
+				// todo use standard err
+				result = "ERROR: Widget '" + id + "': " + e.message;
+			}
+			return result;
+		}
+
+		/**
+		 * Expand all elements in a tree
+		 * @param	id  the id of the Data Grid
+		 * @return
+		 */
+		public function doFlexDataGridExpandAll(id:String):String {
+			try {
+				var widget:Object = appTreeParser.getWidgetById(id);
+				var provider:Object = widget.dataProvider;
+				
+				var dp:Object=provider;
+				var cursor:IHierarchicalCollectionViewCursor=dp.createCursor();
+				var allOpen:Boolean = false;
+				var maxDepth:Number = 4;
+				while (!allOpen) {
+					widget.validateNow();
+					cursor=widget.dataProvider.createCursor();
+					allOpen = true;
+					while (!cursor.afterLast)
+					{
+						if (!widget.isItemOpen(cursor.current)) {
+							widget.expandItem(cursor.current, true);
+							allOpen = false;
+						}
+						cursor.moveNext();
+					}
+					maxDepth--;
+					if (maxDepth <= 0)
+						break;
+				}
+			}
+			catch (e:Error) {
+				trace("SFAPI-ERROR: Widget '" + id + "': " + e.message);
+				return "ERROR: Widget '" + id + "': " + e.message;
+			}
+			return "";
+		}
+
+		/**
+		 * Expands all tree items and searches for item with specified name and property value
+		 * @param	id  The id of the Data Grid
+		 * @param	args  Tree item name, item property, property value
+		 * @return  True if item is found, false if not.
+		 */
+		public function doFlexDataGridSearchValue(id:String, args:String):String
+		{
+			try
+			{
+				var argsAr:Array = args.split(",");
+				var searchWord:String = argsAr[0];
+				var propertyName:String = argsAr[1];
+				var propertyValue:String = argsAr[2];
+				var checked:Array = new Array();
+				var myTree:Object = appTreeParser.getWidgetById(id);
+				// Clear selection and start from the start:
+				myTree.selectedIndex = -1;
+				while (checked.indexOf(myTree.selectedIndex) < 0)
+				{
+					// Not found, lets push the selected index to checked
+					// array and continue if plausible.
+					checked.push(myTree.selectedIndex);
+					var found:Boolean = myTree.findString(searchWord);
+					if (!found) 
+					{
+						// Nothing matched, all hope is lost:
+						return "false";
+					}
+					var candidate:Object = myTree.selectedItem;
+					if (candidate.hasOwnProperty(propertyName))
+					{
+						if (candidate[propertyName] == propertyValue)
+						{
+							// All matches and the item has been selected already
+							return "true";
+						}
+					}
+				}
+			}
+			catch (e:Error)
+			{
+				// TODO use error standard
+				return "ERROR: Widget '" + id + "': " + e.message;
+			}
+			return "false";
+		}
+
+		/**
+         * Returns all the data of one (Advanced)DataGrid column.
+		 * The returned value will have the following syntax for every row:
+		 * If addExtraRowData = true: parentName#;#itemName#;#index
+		 * If addExtraRowData = false: itemName
+		 * String "#,#" will mark line break (= new row start)
+		 * @param	id  Data grid id
+		 * @param	field  Field index
+		 * @param	addExtraRowData  Return extra data for each row
+		 * @return
+		 */
+		public function rawFlexDataGridFieldAllValues(id:String, field:String, addExtraRowData:String):String {
+			var result:String = "";
+			try
+			{
+				var widget:Object = appTreeParser.getWidgetById(id);
+				var provider:Object = widget.dataProvider;
+				var dp:Object=provider;
+				var cursor:IHierarchicalCollectionViewCursor=dp.createCursor(); // IViewCursor ?
+				var itemName:String = "";
+				var rowData:Array = new Array();
+				var currentRow:String = "";
+				var index:Number = 0;
+				var fieldColumn:Object;
+				if (field)
+				{
+					for each (var column:Object in widget.columns)
+					{
+						if (column.dataField == field)
+						{
+							fieldColumn = column;
+							break;
+						}
+					}
+					if (!fieldColumn)
+					{
+						return "FATAL ERROR: Could not find column for field '" + field + "' from widget '" + id + "'.";
+					}
+				}
+				while (!cursor.afterLast)
+				{
+					currentRow = "";
+					if (fieldColumn)
+					{
+						itemName = fieldColumn.itemToLabel(cursor.current);
+					}
+					else
+					{
+						itemName = widget.itemToLabel(cursor.current);
+					}
+					if (addExtraRowData == "true")
+					{
+						// Select only child nodes, not the branches. Get the parent name also
+						if (!widget.isItemOpen(cursor.current)) 
+						{
+							currentRow = getParents(widget, fieldColumn, cursor.current) + itemName + "#;#" + index;
+						}
+					}
+					else 
+					{
+						currentRow = itemName;
+					}
+					// Put the data to the array (if it contains something)
+					if (currentRow.length > 0)
+					{
+						rowData.push(currentRow);
+					}
+					cursor.moveNext();
+					index++;
+				}
+				// If the rowData contains something, join the values together using #,# as separator
+				if (rowData.length > 0)
+				{
+					result = rowData.join("#,#");
+				}
+			}
+			catch (e:Error)
+			{
+				result = result + " FATAL ERROR: Widget '" + id + "': " + e.message;
+			}
+			return result;
+		}
+		
+		private function getParents(widget:Object, column:Object, element:Object):String
+		{
+			var parent:Object = widget.getParentItem(element);
+			var parentName:String;
+			if (column)
+			{
+				// Use column widget to label:
+				parentName = column.itemToLabel(parent);
+			}
+			if (!parentName)
+			{
+				// Column not set or no label, let's try the widget:
+				parentName = widget.itemToLabel(parent);
+			}
+			if (StringUtil.trim(parentName) == "") 
+			{
+				// No parents.. Sad :(
+				return "";
+			}
+			if (parent == widget) 
+			{
+				// Reached the wanted "root element":
+				return parentName + "#;#";
+			}
+			return getParents(widget, column, parent) + parentName + "#;#";
+		}
+		
+		/**
+         * Get all values from a data grid
+         * @param	id  Data grid id
+         * @param	onlyVisible  Only values that are visible to user
+         * @return
+         */
+		public function getFlexDataGridValues(id:String, onlyVisible:String="false"):String
+		{
+			var result:Array = new Array();
+			var rowSeparator:String = "##ROW##";
+			var itemSeparator:String = "##ITEM##";
+			try
+			{
+				var widget:Object = appTreeParser.getWidgetById(id);
+				var provider:Object = widget.dataProvider;
+				for (var row:int = 0; row<provider.length; row++) 
+				{
+					var rowItem:Object = provider[row];
+					for each (var column:Object in widget.columns) 
+					{
+						if (column.visible || onlyVisible == "false") 
+						{
+							var item:String = column.itemToLabel(rowItem);
+							if (!item)
+							{
+								item = " ";
+							}
+							result.push(item);
+						} 
+						else 
+						{
+							break;
+						}
+					}
+					result.push(rowSeparator);
+				}
+				if (result.length > 0) 
+				{
+					// Remove last rowSeparator to make parsing more sane:
+					result.pop();
+				}
+			}
+			catch (e:Error)
+			{
+				return "ERROR: Widget '" + id + "': " + e.message;
+			}
+			return result.join(itemSeparator);
+		}
+		
+		/**
+		 * Returns the count of columns in a data grid
+		 * @param	id  Data grid id
+		 * @param	onlyVisible  Only visible columns
+		 * @return
+		 */
+		public function getFlexDataGridColCount(id:String, onlyVisible:String = "true"):String
+		{
+			var result:String;
+			try
+			{
+				var widget:Object = appTreeParser.getWidgetById(id);
+				var colCount:int = 0;
+				for each (var candidate:Object in widget.columns)
+				{
+					if (onlyVisible == "true") {
+						if (candidate.visible == true)
+						{
+							colCount = colCount + 1;
+						}
+					}
+					else {
+						colCount = colCount + 1;
+					}
+				}
+				result = String(colCount);
+			}
+			catch (e:Error)
+			{
+				result = "ERROR: Widget '" + id + "': " + e.message;
+			}
+			return result;
+		}
+		
+		/**
+		 * Get list of column data fields
+		 * @param	id  Data grid id
+		 * @param	onlyVisible  Only visible columns
+		 * @return
+		 */
+		public function getFlexDataGridColDataFields(id:String, onlyVisible:String = "true"):String
+		{
+			var result:String;
+			result = "";
+			try
+			{
+				var widget:Object = appTreeParser.getWidgetById(id);
+				for each (var candidate:Object in widget.columns)
+				{
+					if (onlyVisible == "true") {
+						if (candidate.visible == true)
+						{
+							result = result+String(candidate.dataField)+"|";
+						}
+					}
+					else {
+						result = result+String(candidate.dataField)+"|";
+					}
+				}
+			}
+			catch (e:Error)
+			{
+				result = "ERROR: Widget '" + id + "': " + e.message;
+			}
+			
+			if (result.charAt(result.length-1) == "|") {
+				result = result.substr(0, (result.length-1));
+			}
+			return result;
+		}
 	}
 }
