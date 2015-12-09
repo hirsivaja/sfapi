@@ -833,7 +833,7 @@ public class DataGridCommands extends AbstractCommand
 		}
 
 		/**
-         * Returns all the data of one (Advanced)DataGrid column.
+		 * Returns all the data of one (Advanced)DataGrid column.
 		 * The returned value will have the following syntax for every row:
 		 * If addExtraRowData = true: parentName#;#itemName#;#index
 		 * If addExtraRowData = false: itemName
@@ -943,11 +943,11 @@ public class DataGridCommands extends AbstractCommand
 		}
 		
 		/**
-         * Get all values from a data grid
-         * @param	id  Data grid id
-         * @param	onlyVisible  Only values that are visible to user
-         * @return
-         */
+		 * Get all values from a data grid
+		 * @param	id  Data grid id
+		 * @param	onlyVisible  Only values that are visible to user
+		 * @return
+		 */
 		public function getFlexDataGridValues(id:String, onlyVisible:String="false"):String
 		{
 			var result:Array = new Array();

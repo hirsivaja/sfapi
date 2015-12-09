@@ -21,6 +21,7 @@
 package sfapi.commands
 {
 	import sfapi.core.AppTreeParser;
+	import sfapi.core.ReferenceData;
 	
 	public class UtilCommands extends AbstractCommand
 	{
@@ -39,6 +40,15 @@ package sfapi.commands
 		{
 			appTreeParser.setTooltipsToID();
 			return 'true';
+		}
+		
+		/**
+		 * Get the version of the API. Since version 0.28.
+		 * @return  API version
+		 */
+		public function getFlexAPIVersion():String
+		{
+			return ReferenceData.SELENIUM_FLEX_API_VERSION;
 		}
 	}
 }

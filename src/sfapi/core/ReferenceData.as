@@ -22,6 +22,8 @@ package sfapi.core
 {
 	public class ReferenceData
 	{
+		public static const SELENIUM_FLEX_API_VERSION = "0.28";
+		
 		public static const TRUE_STRING:String = "true";
 		public static const FALSE_STRING:String = "false";
 		

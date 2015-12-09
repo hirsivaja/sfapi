@@ -197,6 +197,10 @@ package sfapi.commands
 								 
 				ExternalInterface.addCallback("getFlexTabLabels", 
 								  propertyCommands.getFlexTabLabels);
+								  
+				ExternalInterface.addCallback("getFlexAPIVersion", 
+							 	  utilCommands.getFlexAPIVersion);
+				
 				// Action commands
 				
 				ExternalInterface.addCallback("doFlexWaitForElementVisible", 
@@ -339,7 +343,7 @@ package sfapi.commands
 						
                 ExternalInterface.addCallback("doFlexDataGridSelectComboByLabel",
                         dataGridCommands.doFlexDataGridSelectComboByLabel);
-
+				
 				// Raw commands
 				
 				ExternalInterface.addCallback("rawFlexClickMenuBarUIComponent",
