@@ -1,9 +1,9 @@
-/*	
- *	License
- *	
- *	This file is part of The SeleniumFlex-API.
- *	
- *	The SeleniumFlex-API is free software: you can redistribute it and/or
+/*  
+ *  License
+ *  
+ *  This file is part of The SeleniumFlex-API.
+ *  
+ *  The SeleniumFlex-API is free software: you can redistribute it and/or
  *  modify it  under  the  terms  of  the  GNU  General Public License as 
  *  published  by  the  Free  Software Foundation,  either  version  3 of 
  *  the License, or any later version.
@@ -15,7 +15,7 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with The SeleniumFlex-API.
- *	If not, see http://www.gnu.org/licenses/
+ *  If not, see http://www.gnu.org/licenses/
  *
  */
 package sfapi.commands
@@ -96,7 +96,7 @@ package sfapi.commands
 		/**
 		 * Selects an option on a list related control based on index
 		 * @param  id  The ID of the Flex object
-		 * @param  args
+		 * @param  args  Not used
 		 * @return  'true' if the selection was made. An error message if the call fails.
 		 */
 		public function doFlexSelectIndex(id:String, args:String):String
@@ -168,7 +168,7 @@ package sfapi.commands
 			else
 			{
 				return ErrorMessages.getError(ErrorMessages.ERROR_NO_PROPERTY, [id]);
-			}		
+			}
 			return null;
 		}
 		
@@ -278,7 +278,7 @@ package sfapi.commands
 					myTree.dispatchEvent(new ListEvent(ListEvent.CHANGE));
 					return result+"true";
 				}
-				return result+"false";				
+				return result+"false";
 			}
 			catch (e:Error)
 			{
@@ -286,7 +286,7 @@ package sfapi.commands
 				result = result + "ERROR: Widget '" + id + "': " + e.message;
 			}
 			
-			return result;		
+			return result;
 		}
 	
 		/**
@@ -315,7 +315,7 @@ package sfapi.commands
 				}
 			}
 			if (foundParent == false) {
-				return false;						
+				return false;
 			}
 			// Now the parent is selected, we want to open it up
 			myTree.expandItem(myTree.selectedItem, true);
@@ -326,7 +326,7 @@ package sfapi.commands
 			lastIndex = 0;
 			while (foundChild != false) {
 				foundChild = myTree.findString(child);
-											
+
 				if (lastIndex > myTree.selectedIndex) {
 					foundChild = false;
 					break;
@@ -384,6 +384,13 @@ package sfapi.commands
 			return null;
 		}
 
+		/**
+		 * Adds to the selection a item on a list based on a matching value on one of its fields in its dataProvider
+		 * @param  id  id of the control
+		 * @param  field  field to search
+		 * @param  value  the value to match
+		 * @return  'true' if successfully set, error if not  
+		 */
 		public function doFlexAddSelectMatchingOnField(id:String, field:String, value:String) : String {
 			var result:String;
 		
@@ -403,7 +410,7 @@ package sfapi.commands
 							break;
 						}
 					} 
-					i++;			
+					i++;
 				}
 				
 				if (index > -1)
@@ -414,12 +421,12 @@ package sfapi.commands
 					selected.push(index);
 					widget.selectedIndices = selected;
 					result = String(widget.dispatchEvent(new ListEvent(ListEvent.CHANGE)));			
-				}	
+				}
 				else
 				{
 					// TODO use error standard
 					throw new Error("No row with a value of '" + value + "' for field '" + field + "'");
-				}	
+				}
 			}
 			catch(e:Error)
 			{
@@ -458,7 +465,13 @@ package sfapi.commands
 			return rawFlexSelectMatchingOnField(id, field, data);
 		}
 		
-		// TODO com
+		/**
+		 * Sets an item on a list based on a matching value on one of its fields in its dataProvider
+		 * @param  id  id of the control
+		 * @param  field  field to search
+		 * @param  value  the value to match
+		 * @return  'true' if successfully set, error if not  
+		 */
 		public function rawFlexSelectMatchingOnField(id:String, field:String, value:String):String
 		{
 			var result:String;
@@ -488,8 +501,8 @@ package sfapi.commands
 							break;
 						}
 					} 
-					i++;			
-				}		
+					i++;
+				}
 				if(index > -1)
 				{
 					widget[PROPERTY_SELECTED_INDEX] = i;
@@ -510,7 +523,11 @@ package sfapi.commands
 			return result;
 		}
 		
-		// TODO comm
+		/**
+		 * Get the number of selected items from given control
+		 * @param  id  id of the control
+		 * @return  Number of selected items
+		 */
 		public function getFlexNumSelectedItems(id:String) : String {
 			var result:String;
 		
@@ -528,7 +545,14 @@ package sfapi.commands
 			return result;
 		}
 		
-		// TODO comm	
+		/**
+		 * Get the item in the given position in the list of selected items.
+		 * For example if the object has 3 selected items you can retrieve item #2 with:
+		 * getFlexSelectedItemAtIndex(object, 1)
+		 * @param  id  id of the control
+		 * @param  index  The index of the item in the list of selected items. Indexing starts from 0.
+		 * @return  'true' if successfully set, error if not  
+		 */
 		public function getFlexSelectedItemAtIndex(id:String, index:String) : String {
 			var result:String;
 		
@@ -548,7 +572,7 @@ package sfapi.commands
 		// TODO comm
 		private function dispatchIndexChangeEvent(child:Object):String
 		{
-			var comtype:String = Tools.getOjectType(child);
+			var comtype:String = Tools.getObjectType(child);
 			switch(comtype)
 			{
 				case ReferenceData.TABNAVIGATOR_DESCRIPTION :
@@ -563,9 +587,9 @@ package sfapi.commands
 
 		/**
 		 * Selected the given row from a data grid
-		 * @param	id The data grid in question
-		 * @param	rowNr The row to select
-		 * @return
+		 * @param  id The data grid in question
+		 * @param  rowNr The row to select
+		 * @return  'true' if success
 		 */
 		public function doFlexSelectDataGridIndex(id:String, rowNr:String = "0"):String
 		{
@@ -574,7 +598,7 @@ package sfapi.commands
 			try
 			{
 				var widget:Object = appTreeParser.getWidgetById(id);
-				var row:int = parseInt(rowNr);				
+				var row:int = parseInt(rowNr);
 				widget.selectedIndex = row;
 				widget.validateNow();
 				widget.scrollToIndex(row);
@@ -585,14 +609,14 @@ package sfapi.commands
 				result = "ERROR: Widget '" + id + "': " + e.message;
 			}
 			return result;
-		}	
+		}
 		
 		/**
 		 * Clicks the selected item of the data grid. Use for example 'doFlexSelectDataGridIndex'
 		 * to select the item beforehand.
-		 * @param	id Id of the element to click
-		 * @param	args Not used
-		 * @return
+		 * @param  id Id of the element to click
+		 * @param  args Not used
+		 * @return  'true' if success
 		 */
 		public function doFlexClickSelectedDataGridItem(id:String, args:String) : String {
 			var result:String = "";

@@ -1,9 +1,9 @@
-/*	
- *	License
- *	
- *	This file is part of The SeleniumFlex-API.
- *	
- *	The SeleniumFlex-API is free software: you can redistribute it and/or
+/*  
+ *  License
+ *  
+ *  This file is part of The SeleniumFlex-API.
+ *  
+ *  The SeleniumFlex-API is free software: you can redistribute it and/or
  *  modify it  under  the  terms  of  the  GNU  General Public License as 
  *  published  by  the  Free  Software Foundation,  either  version  3 of 
  *  the License, or any later version.
@@ -15,7 +15,7 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with The SeleniumFlex-API.
- *	If not, see http://www.gnu.org/licenses/
+ *  If not, see http://www.gnu.org/licenses/
  *
  */
 package sfapi.commands
@@ -100,7 +100,6 @@ package sfapi.commands
 			{
 				return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [id]);
 			}
-
 			switch(locator.length)
 			{
 				case 1 : 
@@ -157,7 +156,7 @@ package sfapi.commands
 			}
 			return null;
 		}
-			
+		
 		/**
 		 * Returns the text from a grid based object such as a ComboBox
 		 */
@@ -254,7 +253,7 @@ package sfapi.commands
 			}
 			return null;
 		}
-				
+		
 		/**
 		 * Retrieves an integer from the text or label text value of a control, list control or grid based control
 		 * @param  id  The ID of the Flex object

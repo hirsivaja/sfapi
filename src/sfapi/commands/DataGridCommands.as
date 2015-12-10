@@ -1,8 +1,8 @@
-/*	
+/*  
  *  License
- *	
+ *  
  *  This file is part of The SeleniumFlex-API.
- *	
+ *  
  *  The SeleniumFlex-API is free software: you can redistribute it and/or
  *  modify it  under  the  terms  of  the  GNU  General Public License as 
  *  published  by  the  Free  Software Foundation,  either  version  3 of 
@@ -15,7 +15,7 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with The SeleniumFlex-API.
- *	If not, see http://www.gnu.org/licenses/
+ *  If not, see http://www.gnu.org/licenses/
  *
  */
 package sfapi.commands
@@ -49,15 +49,15 @@ public class DataGridCommands extends AbstractCommand
 		/**
 		 * Returns a value in a grid given the row and column
 		 * <br/>
-		 * Command:	flexDataGridCell
-		 * Target:	myGridControl
-		 * Value:	1,2
+		 * Command: flexDataGridCell
+		 * Target:  myGridControl
+		 * Value:   1,2
 		 * <br/>
 		 * Breakdown:
 		 * <br/>
-		 * Command:	<command>
-		 * Target:	<grid id>
-		 * Value:	<row>,<col>
+		 * Command: <command>
+		 * Target:  <grid id>
+		 * Value:   <row>,<col>
 		 * <br/>
 		 * All fields are compulsory
 		 * <br/>
@@ -74,7 +74,13 @@ public class DataGridCommands extends AbstractCommand
 			return rawFlexDataGridCell(id, rowIndex, colIndex);
 		}
 		
-		// todo comm
+		/**
+		 * Returns a value in a grid given the row and column
+		 * @param  id  id of the control
+		 * @param  rowIndex  index of the row of the cell
+		 * @param  colIndex  index of the column of the cell
+		 * @return  a string of the value set in the grid cell   
+		 */
 		public function rawFlexDataGridCell(id:String, rowIndex:String, colIndex:String):String {
 			var result:String;
 			try
@@ -86,7 +92,7 @@ public class DataGridCommands extends AbstractCommand
 			}
 			catch (e:Error)
 			{
-				// todo use atandard err
+				// todo use standard err
 				result = "ERROR: Widget '" + id + "': " + e.message;
 			}
 			return result;
@@ -95,15 +101,15 @@ public class DataGridCommands extends AbstractCommand
 		/**
 		 * Sets a text value in a datagrid cell
 		 * <br/>
-		 * Command:	flexSetDataGridCell
-		 * Target:	myDataGridItem
-		 * Value:	1,2,this data
+		 * Command: flexSetDataGridCell
+		 * Target:  myDataGridItem
+		 * Value:   1,2,this data
 		 * <br/>
 		 * Breakdown:
 		 * <br/>
-		 * Command:	<command>
-		 * Target:	<datagrid id>
-		 * Value:	<rowIndex>,<colIndex>,<data value>
+		 * Command: <command>
+		 * Target:  <datagrid id>
+		 * Value:   <rowIndex>,<colIndex>,<data value>
 		 * <br/>
 		 * All fields are compulsory
 		 * <br/>
@@ -119,7 +125,14 @@ public class DataGridCommands extends AbstractCommand
 			return rawFlexSetDataGridCell(id, rowIndex, colIndex, value);
 		}
 		
-		// todo comm
+		/**
+		 * Sets a text value in a datagrid cell
+		 * @param  id  Id of the data grid
+		 * @param  rowIndex  index of the row of the cell
+		 * @param  colIndex  index of the column of the cell
+		 * @param  data  The value to set in cell
+		 * @return  'true' if successfully set, error if not  
+		 */
 		public function rawFlexSetDataGridCell(id:String, rowIndex:String, colIndex:String, data:String):String
 		{
 			var result:String;
@@ -133,7 +146,7 @@ public class DataGridCommands extends AbstractCommand
 			}
 			catch(e:Error)
 			{
-				// todo use atandard err
+				// todo use standard err
 				result = "ERROR: Widget '" + id + "': " + e.message;
 			}
 			return result;
@@ -142,15 +155,15 @@ public class DataGridCommands extends AbstractCommand
 		/**
 		 * Returns the row index of a given value in a certain field on a grid
 		 * <br/>
-		 * Command:	flexDataGridRowIndexForFieldValue
-		 * Target:	myGridControl
-		 * Value:	theField,hello
+		 * Command: flexDataGridRowIndexForFieldValue
+		 * Target:  myGridControl
+		 * Value:   theField,hello
 		 * <br/>
 		 * Breakdown:
 		 * <br/>
-		 * Command:	<command>
-		 * Target:	<grid id>
-		 * Value:	<fieldName>,<data>
+		 * Command: <command>
+		 * Target:  <grid id>
+		 * Value:   <fieldName>,<data>
 		 * <br/>
 		 * All fields are compulsory
 		 * <br/>
@@ -168,7 +181,13 @@ public class DataGridCommands extends AbstractCommand
 			return rawFlexDataGridRowIndexForFieldValue(id, fieldName, data);
 		}
 		
-		// todo comm
+		/**
+		 * Returns the row index of a given value in a certain field on a grid
+		 * @param  id  id of the control
+		 * @param  fieldName  Name of the field/column
+		 * @param  data  The value to look for in field
+		 * @return  a string of row index for cell containing the data
+		 */
 		public function rawFlexDataGridRowIndexForFieldValue(id:String, fieldName:String, data:String):String
 		{
 			var result:String;
@@ -194,7 +213,7 @@ public class DataGridCommands extends AbstractCommand
 			}
 			catch (e:Error)
 			{
-				// todo use atandard err
+				// todo use standard err
 				result = "ERROR: Widget '" + id + "': " + e.message;
 			}
 			return result;
@@ -203,19 +222,19 @@ public class DataGridCommands extends AbstractCommand
 		/**
 		 * Returns the row index of a given label in a certain field on a grid
 		 * <br/>
-		 * Command:	flexDataGridRowIndexForFieldLabel
-		 * Target:	myGridControl,theField,myLabelValue
+		 * Command: flexDataGridRowIndexForFieldLabel
+		 * Target:  myGridControl,theField,myLabelValue
 		 * <br/>
 		 * Breakdown:
 		 * <br/>
-		 * Command:	<command>
-		 * target:	<grid id>, <fieldName>,<value>
+		 * Command: <command>
+		 * target:  <grid id>, <fieldName>,<value>
 		 * value:  args
 		 * <br/>
 		 * All fields are compulsory
 		 * <br/>
 		 * @param  target  takes the form "<id><fieldName>,<value>"
-	         * @param  args
+		 * @param  args
 		 * @return  a string of row index for cell containing the label
 		 */
 		public function getFlexDataGridRowIndexForFieldLabel(target:String, value:String):String
@@ -228,7 +247,13 @@ public class DataGridCommands extends AbstractCommand
 			return rawFlexDataGridRowIndexForFieldLabel(id, fieldName, value);
 		}
 
-		// todo comm
+		/**
+		 * Returns the row index of a given label in a certain field on a grid
+		 * @param  id  id of the control
+		 * @param  fieldName  Name of the field/column
+		 * @param  data  The label to look for in field
+		 * @return  a string of row index for cell containing the label
+		 */
 		public function rawFlexDataGridRowIndexForFieldLabel(id:String, fieldName:String, data:String):String
 		{
 			var result:String;
@@ -246,12 +271,12 @@ public class DataGridCommands extends AbstractCommand
 				}
 				if(! column)
 				{
-					// todo use atandard err
+					// todo use standard err
 					throw new Error("No column for field '" + fieldName + "'");
 				}
 				
 				var index:int = -1;
-				var i:int = 0;		
+				var i:int = 0;
 				var provider:Object = widget.dataProvider;
 				for each(var row:Object in provider)
 				{
@@ -268,7 +293,7 @@ public class DataGridCommands extends AbstractCommand
 			}
 			catch (e:Error)
 			{
-				// todo use atandard err
+				// todo use standard err
 				result = "ERROR: Widget '" + id + "': " + e.message;
 			}
 			return result;
@@ -319,7 +344,7 @@ public class DataGridCommands extends AbstractCommand
 				var index:int = parseInt(rowNum);
 				if((index < 0) || (index >= provider.length))
 				{
-					// todo use atandard err
+					// todo use standard err
 					throw new Error("Row index '" + index + "' out of bounds for dataProvider");
 				}
 				
@@ -333,7 +358,7 @@ public class DataGridCommands extends AbstractCommand
 			}
 			catch (e:Error)
 			{
-				// todo use atandard err
+				// todo use standard err
 				result = "ERROR: Widget '" + id + "': " + e.message;
 			}
 			return result;
@@ -368,7 +393,13 @@ public class DataGridCommands extends AbstractCommand
 			return rawFlexDataGridFieldLabelForGridRow(id, field, rowNum);
 		}
 		
-		// todo comm
+		/**
+		 * Returns the label value of a field of the object that populates a row of a data grid.
+		 * @param  id  id of the control
+		 * @param  field  name of the field
+		 * @param  rowNum  number of the row
+		 * @return  a string of the label set in the grid cell   
+		 */
 		public function rawFlexDataGridFieldLabelForGridRow(id:String, field:String, rowNum:String):String
 		{
 			var result:String = "";
@@ -379,7 +410,7 @@ public class DataGridCommands extends AbstractCommand
 				var index:int = parseInt(rowNum);
 				if ((index < 0) || (index >= provider.length))
 				{
-					// todo use atandard err
+					// todo use standard err
 					throw new Error("Row index '" + index + "' out of bounds for dataProvider");
 				}
 				var column:Object;
@@ -393,7 +424,7 @@ public class DataGridCommands extends AbstractCommand
 				}
 				if(! column)
 				{
-					// todo use atandard err
+					// todo use standard err
 					throw new Error("No column for field '" + field + "'");
 				}
 				
@@ -403,7 +434,7 @@ public class DataGridCommands extends AbstractCommand
 			}
 			catch (e:Error)
 			{
-				// todo use atandard err
+				// todo use standard err
 				result = "ERROR: Widget '" + id + "': " + e.message;
 			}
 			return result;
@@ -434,43 +465,43 @@ public class DataGridCommands extends AbstractCommand
 				var widget:Object = appTreeParser.getWidgetById(id);
 				if (widget == null)
 				{
-				    return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [id]);
+					return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [id]);
 				}
 				var provider:Object = widget.dataProvider;
 				if (provider == null)
 				{
-				    return "0";
+					return "0";
 				}
 				result = String(provider.length);
 			}
 			catch (e:Error)
 			{
-				// todo use atandard err
+				// todo use standard err
 				result = "ERROR: Widget '" + id + "': " + e.message;
 			}
 			return result;
 		}
 
-	        /**
-	         * Sets a date value in a datagrid cell
-	         * <br/>
-	         * Command:    flexDataGridDate
-	         * Target:    myDataGridItem
-	         * Value:    1,2,this data
-	         * <br/>
-	         * Breakdown:
-	         * <br/>
-	         * Command:    <command>
-	         * Target:    <menubar id>
-	         * Value:    <rowIndex>,<colIndex>,<data value>
-	         * <br/>
-	         * All fields are compulsory
-	         * <br/>
-	         * @param  value  takes the form <rowIndex>,<colIndex>,<data>
-	         * @return  'true' if successfully set, error if not
-	         */
-	        public function doFlexDataGridDate(target:String, value:String):String
-	        {
+		/**
+		 * Sets a date value in a datagrid cell
+		 * <br/>
+		 * Command: flexDataGridDate
+		 * Target:  myDataGridItem
+		 * Value:   1,2,this data
+		 * <br/>
+		 * Breakdown:
+		 * <br/>
+		 * Command: <command>
+		 * Target:  <menubar id>
+		 * Value:   <rowIndex>,<colIndex>,<data value>
+		 * <br/>
+		 * All fields are compulsory
+		 * <br/>
+		 * @param  value  takes the form <rowIndex>,<colIndex>,<data>
+		 * @return  'true' if successfully set, error if not
+		 */
+		public function doFlexDataGridDate(target:String, value:String):String
+		{
 			var args:Array = value.split(",");
 			var dataGridRowIndex:String = args[0];
 			var dataGridColIndex:String = args[1];
@@ -496,7 +527,7 @@ public class DataGridCommands extends AbstractCommand
 			var col:Object = datagrid.columns[int(columnIndex)];
 			row[col.dataField] = context.dateCommands.compileDateValue(date, object.formatString);
 			return String(datagrid.dataProvider.dispatchEvent(new Event(Event.CHANGE)));			
-        	}
+		}
 
 		private function getColumnIndexFromDisplayableColumnIndex(datagrid:DataGrid, displayColumnIndex:String):int{
 			// Not able to use displayableColumns because it's not public
@@ -514,130 +545,130 @@ public class DataGridCommands extends AbstractCommand
 			return -1;
 		}
 		
-        /**
-         * Sets checkbox state in a datagrid cell
-         * <br/>
-         * Command:    flexDataGridCellCheckbox
-         * Target:    myDataGridItem
-         * Value:    1,2,this data
-         * <br/>
-         * Breakdown:
-         * <br/>
-         * Command:    <command>
-         * Target:    <datagrid id>
-         * Value:    <rowIndex>,<colIndex>,<check box state>
-         * <br/>
-         * All fields are compulsory
-         * <br/>
-         * @param  value  takes the form <rowIndex>,<colIndex>,<check box state>
-         * @return  'true' if successfully set, error if not
-         */
-        public function doFlexDataGridCheckBox(target:String, value:String):String
-        {
-            var args:Array = value.split(",");
-            var dataGridRowIndex:String = args[0];
-            var dataGridColIndex:String = args[1];
-            var checkBoxState:String = args[2];
-            var object:Object = getDataGridCellComponent(target, dataGridRowIndex, dataGridColIndex);
-            if (object == null) {
-                return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [target]);
-            }
+		/**
+		 * Sets checkbox state in a datagrid cell
+		 * <br/>
+		 * Command: flexDataGridCellCheckbox
+		 * Target:  myDataGridItem
+		 * Value:   1,2,this data
+		 * <br/>
+		 * Breakdown:
+		 * <br/>
+		 * Command: <command>
+		 * Target:  <datagrid id>
+		 * Value:   <rowIndex>,<colIndex>,<check box state>
+		 * <br/>
+		 * All fields are compulsory
+		 * <br/>
+		 * @param  value  takes the form <rowIndex>,<colIndex>,<check box state>
+		 * @return  'true' if successfully set, error if not
+		 */
+		public function doFlexDataGridCheckBox(target:String, value:String):String
+		{
+			var args:Array = value.split(",");
+			var dataGridRowIndex:String = args[0];
+			var dataGridColIndex:String = args[1];
+			var checkBoxState:String = args[2];
+			var object:Object = getDataGridCellComponent(target, dataGridRowIndex, dataGridColIndex);
+			if (object == null) {
+				return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [target]);
+			}
 
-            return context.checkBoxCommands.rawFlexCheckBox(object, checkBoxState);
-        }
+			return context.checkBoxCommands.rawFlexCheckBox(object, checkBoxState);
+		}
 
-        /**
-         * Get checkbox state in a datagrid cell
-         * <br/>
-         * Command:  getFlexDataGridCheckBoxChecked
-         * Target:   myDataGridItem,1,2
-         * Value:  args - not used
-         * <br/>
-         * Breakdown:
-         * <br/>
-         * Command:  <command>
-         * Target:   <datagrid id>,<rowIndex>,<colIndex>
-         * <br/>
-         * All fields are compulsory
-         * <br/>
-         * @param  target  takes the form <datagrid id>,<rowIndex>,<colIndex>
-         * @return  'checkbox state
-         */
-        public function getFlexDataGridCheckBoxChecked(target:String, value:String):String
-        {
-            var args:Array = target.split(",");
-            var dataGridId:String = args[0];
-            var dataGridRowIndex:String = args[1];
-            var dataGridColIndex:String = args[2];
-            var object:Object = getDataGridCellComponent(dataGridId, dataGridRowIndex, dataGridColIndex);
-            if (object == null) {
-                return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [dataGridId]);
-            }
+		/**
+		 * Get checkbox state in a datagrid cell
+		 * <br/>
+		 * Command: getFlexDataGridCheckBoxChecked
+		 * Target:  myDataGridItem,1,2
+		 * Value:   args - not used
+		 * <br/>
+		 * Breakdown:
+		 * <br/>
+		 * Command:  <command>
+		 * Target:   <datagrid id>,<rowIndex>,<colIndex>
+		 * <br/>
+		 * All fields are compulsory
+		 * <br/>
+		 * @param  target  takes the form <datagrid id>,<rowIndex>,<colIndex>
+		 * @return  'checkbox state
+		 */
+		public function getFlexDataGridCheckBoxChecked(target:String, value:String):String
+		{
+			var args:Array = target.split(",");
+			var dataGridId:String = args[0];
+			var dataGridRowIndex:String = args[1];
+			var dataGridColIndex:String = args[2];
+			var object:Object = getDataGridCellComponent(dataGridId, dataGridRowIndex, dataGridColIndex);
+			if (object == null) {
+				return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [dataGridId]);
+			}
 
-            return context.checkBoxCommands.getFlexCheckBoxStatus(object);
-        }
+			return context.checkBoxCommands.getFlexCheckBoxStatus(object);
+		}
 
-        /**
-         * Select combo box by label in a datagrid cell
-         * <br/>
-         * Command:  doFlexDataGridSelectComboByLabel
-         * Target:   myDataGridItem
-         * Value:    1,2,label
-         * <br/>
-         * Breakdown:
-         * <br/>
-         * Command:  <command>
-         * Target:   <datagrid id>
-         * Value:    <rowIndex>,<colIndex>,label
-         * <br/>
-         * All fields are compulsory
-         * <br/>
-         * @param  value  takes the form <rowIndex>,<colIndex>,<label>
-         * @return  'true' if successfully set, error if not
-         */
-        public function doFlexDataGridSelectComboByLabel(target:String, value:String):String
-        {
-            var args:Array = value.split(",");
-            var dataGridRowIndex:String = args[0];
-            var dataGridColIndex:String = args[1];
-            var comboBoxLabel:String = args[2];
-            var object:Object = getDataGridCellComponent(target, dataGridRowIndex, dataGridColIndex);
-            if (object == null) {
-                return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [target]);
-            }
+		/**
+		 * Select combo box by label in a datagrid cell
+		 * <br/>
+		 * Command: doFlexDataGridSelectComboByLabel
+		 * Target:  myDataGridItem
+		 * Value:   1,2,label
+		 * <br/>
+		 * Breakdown:
+		 * <br/>
+		 * Command: <command>
+		 * Target:  <datagrid id>
+		 * Value:   <rowIndex>,<colIndex>,label
+		 * <br/>
+		 * All fields are compulsory
+		 * <br/>
+		 * @param  value  takes the form <rowIndex>,<colIndex>,<label>
+		 * @return  'true' if successfully set, error if not
+		 */
+		public function doFlexDataGridSelectComboByLabel(target:String, value:String):String
+		{
+			var args:Array = value.split(",");
+			var dataGridRowIndex:String = args[0];
+			var dataGridColIndex:String = args[1];
+			var comboBoxLabel:String = args[2];
+			var object:Object = getDataGridCellComponent(target, dataGridRowIndex, dataGridColIndex);
+			if (object == null) {
+				return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [target]);
+			}
 
-            return context.comboCommands.rawFlexSelectComboByLabel(object, comboBoxLabel);
-        }
+			return context.comboCommands.rawFlexSelectComboByLabel(object, comboBoxLabel);
+		}
 
-        /**
-         * Click header in a datagrid cell
-         * <br/>
-         * Command:   flexDataGridClickColumnHeader
-         * Target:    myDataGridItem
-         * Value:     1
-         * <br/>
-         * Breakdown:
-         * <br/>
-         * Command:    <command>
-         * Target:    <datagrid id>
-         * colIndex:     <colIndex>
-         * <br/>
-         * All fields are compulsory
-         * <br/>
-         * @param  colIndex  takes the form <colIndex>
-         * @return  'true' if successfully set, error if not
-         */
-        public function doFlexDataGridClickColumnHeader(target:String, colIndex:String):String
-        {
-            var child:Object = appTreeParser.getElement(target);
-            if (child == null)
-            {
-                return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [target]);
-            }
-            return child.dispatchEvent(new DataGridEvent(DataGridEvent.HEADER_RELEASE, false, false,
-                    int(colIndex), child.columns[int(colIndex)].dataField));
+		/**
+		 * Click header in a datagrid cell
+		 * <br/>
+		 * Command: flexDataGridClickColumnHeader
+		 * Target:  myDataGridItem
+		 * Value:   1
+		 * <br/>
+		 * Breakdown:
+		 * <br/>
+		 * Command:  <command>
+		 * Target:   <datagrid id>
+		 * colIndex: <colIndex>
+		 * <br/>
+		 * All fields are compulsory
+		 * <br/>
+		 * @param  colIndex  takes the form <colIndex>
+		 * @return  'true' if successfully set, error if not
+		 */
+		public function doFlexDataGridClickColumnHeader(target:String, colIndex:String):String
+		{
+			var child:Object = appTreeParser.getElement(target);
+			if (child == null)
+			{
+				return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [target]);
+			}
+			return child.dispatchEvent(new DataGridEvent(DataGridEvent.HEADER_RELEASE, false, false,
+					int(colIndex), child.columns[int(colIndex)].dataField));
 
-        }
+		}
 
 		/**
 		 * Return the component in a datagrid cell
@@ -645,72 +676,72 @@ public class DataGridCommands extends AbstractCommand
 		 * @param  rowIndex  - row index
 		 * @param  colIndex  - column index
 		 * @param  componentIndexInCell  - component index in cell. 
-		 * 	 Default to -1, returns cell itself
+		 *   Default to -1, returns cell itself
 		 *   0 , returns the first component in cell 
 		 * @return  component if successfully found, ERROR_NO_CHILD_UICOMPONENT error if not found.
 		 */ 
-        public function getDataGridCellComponent(id:String, rowIndex:String, colIndex:String, componentIndexInCell:String = "-1"):Object
-        {
-            var child:Object = appTreeParser.getElement(id);
-            if (child == null)
-            {
-                return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [id]);
-            }
+		public function getDataGridCellComponent(id:String, rowIndex:String, colIndex:String, componentIndexInCell:String = "-1"):Object
+		{
+			var child:Object = appTreeParser.getElement(id);
+			if (child == null)
+			{
+				return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [id]);
+			}
 
-            // Assumes the DataGrid has only one ListBaseContentHolder
-            var dgContentList:Object = Tools.getChildrenOfTypeFromContainer(child,
-                    ReferenceData.LISTBASECONTENTHOLDER_DESCRIPTION)[0];
+			// Assumes the DataGrid has only one ListBaseContentHolder
+			var dgContentList:Object = Tools.getChildrenOfTypeFromContainer(child,
+					ReferenceData.LISTBASECONTENTHOLDER_DESCRIPTION)[0];
 
-            if (dgContentList.listItems.length > int(rowIndex) && dgContentList.listItems[int(rowIndex)].length > int(colIndex)) 
-            {
-                if (componentIndexInCell != null && int(componentIndexInCell) > -1)
-                {
-                    var cell:Object = dgContentList.listItems[int(rowIndex)][int(colIndex)];
-                    var cellChildren:Array = cell.getChildren();
-                    if (cellChildren.length > int(componentIndexInCell))
-                    {
-                        return cellChildren[componentIndexInCell];
-                    }
-                }
-                else
-                {
-                    return dgContentList.listItems[int(rowIndex)][int(colIndex)];
-                }
-            }
-            return ErrorMessages.getError(ErrorMessages.ERROR_NO_CHILD_UICOMPONENT, [id,rowIndex,colIndex,componentIndexInCell]);
-        }
-    
-        /**
-         * Dispatches a ListEvent.ITEM_DOUBLE_CLICK Event on the UIComponent of a Datagrid at a given
-         * row and column index.  If the cell at the given row and column has multiple
-         * UIComponents provid the componentIndexInCell in the function signature.
-         *
-         * @param  datagridId  The ID of the Datagrid object
-         * @param  rowIndex    The row index of the Component in the Datagrid
-         * @param  columnIndex The colum index of the Component in the Datagrid
-         * @return    'true' if the button was clicked. An error message if the call fails.
-         */
-        public function rawFlexDoubleClickDataGridUIComponent(datagridId:String, rowIndex:String, columnIndex:String):String
-        {
-            var child:Object = appTreeParser.getElement(datagridId);
+			if (dgContentList.listItems.length > int(rowIndex) && dgContentList.listItems[int(rowIndex)].length > int(colIndex)) 
+			{
+				if (componentIndexInCell != null && int(componentIndexInCell) > -1)
+				{
+					var cell:Object = dgContentList.listItems[int(rowIndex)][int(colIndex)];
+					var cellChildren:Array = cell.getChildren();
+					if (cellChildren.length > int(componentIndexInCell))
+					{
+						return cellChildren[componentIndexInCell];
+					}
+				}
+				else
+				{
+					return dgContentList.listItems[int(rowIndex)][int(colIndex)];
+				}
+			}
+			return ErrorMessages.getError(ErrorMessages.ERROR_NO_CHILD_UICOMPONENT, [id,rowIndex,colIndex,componentIndexInCell]);
+		}
+	
+		/**
+		 * Dispatches a ListEvent.ITEM_DOUBLE_CLICK Event on the UIComponent of a Datagrid at a given
+		 * row and column index.  If the cell at the given row and column has multiple
+		 * UIComponents provid the componentIndexInCell in the function signature.
+		 *
+		 * @param  datagridId  The ID of the Datagrid object
+		 * @param  rowIndex	The row index of the Component in the Datagrid
+		 * @param  columnIndex The colum index of the Component in the Datagrid
+		 * @return  'true' if the button was clicked. An error message if the call fails.
+		 */
+		public function rawFlexDoubleClickDataGridUIComponent(datagridId:String, rowIndex:String, columnIndex:String):String
+		{
+			var child:Object = appTreeParser.getElement(datagridId);
 
-            if (child == null) {
-                return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [datagridId]);
-            }
+			if (child == null) {
+				return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [datagridId]);
+			}
 
-            // Assumes the DataGrid has only one ListBaseContentHolder
-            var dgContentList:Object = Tools.getChildrenOfTypeFromContainer(child, ReferenceData.LISTBASECONTENTHOLDER_DESCRIPTION)[0];
+			// Assumes the DataGrid has only one ListBaseContentHolder
+			var dgContentList:Object = Tools.getChildrenOfTypeFromContainer(child, ReferenceData.LISTBASECONTENTHOLDER_DESCRIPTION)[0];
 
-            // Make certain the rowIndex and colIndex do not exceed the length of the
-            // Datagrid ListBaseContentHolders rows and columns.
-            if (dgContentList.listItems.length > int(rowIndex) && dgContentList.listItems[int(rowIndex)].length > int(columnIndex)) {
-//                var event:ListEvent = new ListEvent(ListEvent.ITEM_DOUBLE_CLICK, false, false, int(columnIndex), int(rowIndex));
-//                return String(child.dispatchEvent(event));
-                var cell:Object = dgContentList.listItems[int(rowIndex)][int(columnIndex)];
-                return String(cell.dispatchEvent(new MouseEvent(MouseEvent.DOUBLE_CLICK)));
-            }
-            return ErrorMessages.getError(ErrorMessages.ERROR_NO_CHILD_UICOMPONENT, [datagridId,rowIndex,columnIndex]);
-        }
+			// Make certain the rowIndex and colIndex do not exceed the length of the
+			// Datagrid ListBaseContentHolders rows and columns.
+			if (dgContentList.listItems.length > int(rowIndex) && dgContentList.listItems[int(rowIndex)].length > int(columnIndex)) {
+				// var event:ListEvent = new ListEvent(ListEvent.ITEM_DOUBLE_CLICK, false, false, int(columnIndex), int(rowIndex));
+				// return String(child.dispatchEvent(event));
+				var cell:Object = dgContentList.listItems[int(rowIndex)][int(columnIndex)];
+				return String(cell.dispatchEvent(new MouseEvent(MouseEvent.DOUBLE_CLICK)));
+			}
+			return ErrorMessages.getError(ErrorMessages.ERROR_NO_CHILD_UICOMPONENT, [datagridId,rowIndex,columnIndex]);
+		}
 		
 		/**
 		 * Returns the data values of a column. The values are separated with "#;#"
@@ -748,7 +779,7 @@ public class DataGridCommands extends AbstractCommand
 
 		/**
 		 * Expand all elements in a tree
-		 * @param	id  the id of the Data Grid
+		 * @param id  the id of the Data Grid
 		 * @return
 		 */
 		public function doFlexDataGridExpandAll(id:String):String {

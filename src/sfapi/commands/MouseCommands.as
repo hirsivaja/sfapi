@@ -1,9 +1,9 @@
-/*	
- *	License
- *	
- *	This file is part of The SeleniumFlex-API.
- *	
- *	The SeleniumFlex-API is free software: you can redistribute it and/or
+/*  
+ *  License
+ *  
+ *  This file is part of The SeleniumFlex-API.
+ *  
+ *  The SeleniumFlex-API is free software: you can redistribute it and/or
  *  modify it  under  the  terms  of  the  GNU  General Public License as 
  *  published  by  the  Free  Software Foundation,  either  version  3 of 
  *  the License, or any later version.
@@ -15,7 +15,7 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with The SeleniumFlex-API.
- *	If not, see http://www.gnu.org/licenses/
+ *  If not, see http://www.gnu.org/licenses/
  *
  */
 package sfapi.commands
@@ -39,7 +39,7 @@ package sfapi.commands
 		/**
 		 * Dispatches a Mouse event on an Element
 		 * @param  id  The ID of the Flex object
-		 * @return	'true' if the event disptached. An error message if the call fails.
+		 * @return	'true' if the event dispatched. An error message if the call fails.
 		 */
 		public function doFlexMouseEvent(id:String, args:String):String
 		{
@@ -50,12 +50,12 @@ package sfapi.commands
 				return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [id]);
 			}
 			return String(child.dispatchEvent(new MouseEvent(args, true, false, 0, 0, null, false, false, false, true )));
-		} 
+		}
 		
 		/**
 		 * Dispatches a Mouse Down event on an Element
 		 * @param  id  The ID of the Flex object
-		 * @return	'true' if the event disptached. An error message if the call fails.
+		 * @return	'true' if the event dispatched. An error message if the call fails.
 		 */
 		public function doFlexMouseDown(id:String, args:String):String
 		{
@@ -66,12 +66,12 @@ package sfapi.commands
 				return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [id]);
 			}
 			return String(child.dispatchEvent(new MouseEvent(MouseEvent.MOUSE_DOWN, true, false, 0, 0, null, false, false, false, true )));
-		} 
+		}
 		
 		/**
 		 * Dispatches a Right Mouse Down event on an Element
 		 * @param  id  The ID of the Flex object
-		 * @return	'true' if the event disptached. An error message if the call fails.
+		 * @return	'true' if the event dispatched. An error message if the call fails.
 		 */
 		public function doFlexRightMouseDown(id:String, args:String):String
 		{
@@ -87,7 +87,7 @@ package sfapi.commands
 		/**
 		 * Dispatches a Mouse Up event on an Element
 		 * @param  id  The ID of the Flex object
-		 * @return	'true' if the event disptached. An error message if the call fails.
+		 * @return	'true' if the event dispatched. An error message if the call fails.
 		 */
 		public function doFlexMouseUp(id:String, args:String):String
 		{
@@ -98,12 +98,12 @@ package sfapi.commands
 				return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [id]);
 			}
 			return String(child.dispatchEvent(new MouseEvent(MouseEvent.MOUSE_UP)));
-		} 	
+		}
 
 		/**
 		 * Dispatches a Mouse Over event on an Element
 		 * @param  id  The ID of the Flex object
-		 * @return	'true' if the event disptached. An error message if the call fails.
+		 * @return	'true' if the event dispatched. An error message if the call fails.
 		 */
 		public function doFlexMouseOver(id:String, args:String):String
 		{
@@ -120,7 +120,7 @@ package sfapi.commands
 		 * Dispatches a Mouse move event on an Element, moving the mouse to aposition as specified by pos
 		 * @param  id  The ID of the Flex object
 		 * @param  pos	the x, y coordinates to move the mouse to
-		 * @return	'true' if the event disptached. An error message if the call fails.
+		 * @return	'true' if the event dispatched. An error message if the call fails.
 		 */
 		public function doFlexMouseMove(id:String, pos:String):String
 		{
@@ -141,7 +141,7 @@ package sfapi.commands
 		/**
 		 * Dispatches a Mouse Roll Over event on an Element
 		 * @param  id  The ID of the Flex object
-		 * @return	'true' if the event disptached. An error message if the call fails.
+		 * @return	'true' if the event dispatched. An error message if the call fails.
 		 */
 		public function doFlexMouseRollOver(id:String, args:String):String
 		{
@@ -152,12 +152,12 @@ package sfapi.commands
 				return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [id]);
 			}
 			return String(child.dispatchEvent(new MouseEvent(MouseEvent.ROLL_OVER)));
-		} 
+		}
 		
 		/**
 		 * Dispatches a Mouse Roll Out on an Element
 		 * @param  id  The ID of the Flex object
-		 * @return	'true' if the event disptached. An error message if the call fails.
+		 * @return	'true' if the event dispatched. An error message if the call fails.
 		 */
 		public function doFlexMouseRollOut(id:String, args:String):String
 		{
@@ -175,7 +175,7 @@ package sfapi.commands
 		 * The element needs to to have the mouseMoveDragHandler function
 		 * @param  id  The ID of the Flex object
 		 * @param  pos the X,Y destination
-		 * @return 'true' if the event disptached. An error message if the call fails.
+		 * @return 'true' if the event dispatched. An error message if the call fails.
 		 */
 		public function doFlexDragTo(id:String, pos:String):String
 		{
@@ -209,9 +209,14 @@ package sfapi.commands
 			
 			// dispatch a DragComplete event 
 			var dragComplete:DragEvent = new DragEvent(DragEvent.DRAG_COMPLETE, false, true, child as IUIComponent, child as DragSource, null, false, false, false);
-		    return String(child.dispatchEvent(dragComplete));
+			return String(child.dispatchEvent(dragComplete));
 		}
-	
+		
+		/**
+		 * Dispatches a FOCUS_IN FocusEvent on an Element
+		 * @param  id  The ID of the Flex object
+		 * @return	'true' if the event dispatched. An error message if the call fails.
+		 */
 		public function doFlexSetFocus(id:String) : String {
 			var result:String;
 		

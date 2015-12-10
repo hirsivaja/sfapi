@@ -1,9 +1,9 @@
-/*	
- *	License
- *	
- *	This file is part of The SeleniumFlex-API.
- *	
- *	The SeleniumFlex-API is free software: you can redistribute it and/or
+/*  
+ *  License
+ *  
+ *  This file is part of The SeleniumFlex-API.
+ *  
+ *  The SeleniumFlex-API is free software: you can redistribute it and/or
  *  modify it  under  the  terms  of  the  GNU  General Public License as 
  *  published  by  the  Free  Software Foundation,  either  version  3 of 
  *  the License, or any later version.
@@ -15,7 +15,7 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with The SeleniumFlex-API.
- *	If not, see http://www.gnu.org/licenses/
+ *  If not, see http://www.gnu.org/licenses/
  *
  */
 package sfapi.commands
@@ -52,26 +52,32 @@ package sfapi.commands
 				return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [id]);
 			}
 			
-            return rawSetFlexDate(child, args);
+			return rawSetFlexDate(child, args);
 		}
 
-        public function rawSetFlexDate(child:Object, args:String):String
-        {
-            var isDateChooser:Boolean = Tools.isA(child, ReferenceData.DATECHOOSER_DESCRIPTION);
-            var isDateField:Boolean = Tools.isA(child, ReferenceData.DATEFIELD_DESCRIPTION);
+		/**
+		 * Sets the date in a date control
+		 * @param  child  The Flex date object
+		 * @param  args	the date string
+		 * @return  'true' if the DateField is set. An error message if the call fails.
+		 */
+		public function rawSetFlexDate(child:Object, args:String):String
+		{
+			var isDateChooser:Boolean = Tools.isA(child, ReferenceData.DATECHOOSER_DESCRIPTION);
+			var isDateField:Boolean = Tools.isA(child, ReferenceData.DATEFIELD_DESCRIPTION);
 			var isBigButtonsDateChooser:Boolean = Tools.isA(child, "BigButtonsDateChooser", true);
 			var isDateTimeField:Boolean = Tools.isA(child, "DateTimeField", true);
-            if (isDateChooser || isBigButtonsDateChooser || isDateTimeField)
-            {
-                return setDateChooser(child, args);
-            }
-            else if (isDateField)
-            {
-                return setDateField(child, args);
-            }
-            return ErrorMessages.getError(ErrorMessages.ERROR_TYPE_MISMATCH,
-                    [child, ReferenceData.DATEFIELD_DESCRIPTION + " or " + ReferenceData.DATECHOOSER_DESCRIPTION]);
-        }
+			if (isDateChooser || isBigButtonsDateChooser || isDateTimeField)
+			{
+				return setDateChooser(child, args);
+			}
+			else if (isDateField)
+			{
+				return setDateField(child, args);
+			}
+			return ErrorMessages.getError(ErrorMessages.ERROR_TYPE_MISMATCH,
+					[child, ReferenceData.DATEFIELD_DESCRIPTION + " or " + ReferenceData.DATECHOOSER_DESCRIPTION]);
+		}
 
 		private function setDateChooser(child:Object, dateString:String):String
 		{
@@ -104,11 +110,11 @@ package sfapi.commands
 			}
 			return retval;
 		}
-				
+		
 		/**
 		 * Retrieves the date in a Date related control control
 		 * @param  id  The ID of the Flex object
-		 * @param  args
+		 * @param  args  Not used
 		 * @return  the date in the control or an error message if the call fails
 		 */
 		public function getFlexDate(id:String, args:String):String
@@ -119,7 +125,7 @@ package sfapi.commands
 				return ErrorMessages.getError(ErrorMessages.ERROR_ELEMENT_NOT_FOUND, [id]);
 			}
 
-			var objectType:String = Tools.getOjectType(child);
+			var objectType:String = Tools.getObjectType(child);
 			
 			if(objectType == ReferenceData.DATECHOOSER_DESCRIPTION || 
 				objectType == ReferenceData.DATEFIELD_DESCRIPTION || 
@@ -131,8 +137,8 @@ package sfapi.commands
 					return DateField.dateToString(child.selectedDate, child.formatString);
 				}
 				else
-				{			        
-				    return child.selectedDate;
+				{
+					return child.selectedDate;
 				}
 			}
 			else

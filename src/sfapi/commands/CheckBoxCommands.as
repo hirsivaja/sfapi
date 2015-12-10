@@ -1,9 +1,9 @@
-/*	
- *	License
- *	
- *	This file is part of The SeleniumFlex-API.
- *	
- *	The SeleniumFlex-API is free software: you can redistribute it and/or
+/*  
+ *  License
+ *  
+ *  This file is part of The SeleniumFlex-API.
+ *  
+ *  The SeleniumFlex-API is free software: you can redistribute it and/or
  *  modify it  under  the  terms  of  the  GNU  General Public License as 
  *  published  by  the  Free  Software Foundation,  either  version  3 of 
  *  the License, or any later version.
@@ -15,7 +15,7 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with The SeleniumFlex-API.
- *	If not, see http://www.gnu.org/licenses/
+ *  If not, see http://www.gnu.org/licenses/
  *
  */
 package sfapi.commands
@@ -38,7 +38,7 @@ package sfapi.commands
 		 * Change the check state of a checkbox to checked or unchecked
 		 * @param  id  The ID of the Flex object
 		 * @param  args  check state ['true', 'false']['checked', 'unchecked']['check', 'uncheck']['1', '1']
-		 * @return	'true' if the call succeeded. An error message if the call fails.
+		 * @return  'true' if the call succeeded. An error message if the call fails.
 		 */
 		public function doFlexCheckBox(id:String, args:String):String
 		{
@@ -51,11 +51,17 @@ package sfapi.commands
 
 			return rawFlexCheckBox(child, args);
 		}
-
-        public function rawFlexCheckBox(child:Object, args:String):String
-        {
-            if (!Tools.isA(child, ReferenceData.CHECKBOX_DESCRIPTION))
-            {
+		
+		/**
+		 * Change the check state of a checkbox to checked or unchecked
+		 * @param  child  Flex object which state to change
+		 * @param  args  check state ['true', 'false']['checked', 'unchecked']['check', 'uncheck']['1', '1']
+		 * @return  'true' if the call succeeded. An error message if the call fails.
+		 */
+		public function rawFlexCheckBox(child:Object, args:String):String
+		{
+			if (!Tools.isA(child, ReferenceData.CHECKBOX_DESCRIPTION))
+			{
 				if (Tools.isA(child, ReferenceData.TRI_CHECKBOX_DESCRIPTION, true))
 				{
 					// Handle a tri-state checkbox:
@@ -66,42 +72,42 @@ package sfapi.commands
 
 			}
 			// Normal checkbox:
-            switch (argIsCheck(args))
-            {
-                case ReferenceData.CHECKSTATE_CHECKED :
-                    if (child.selected)
-                    {
-                        return 'true';
-                    }
-                    else
-                    {
-                        return dispatchCheckBoxEvent(child);
-                    }
-                    break;
-                case ReferenceData.CHECKSTATE_UNCHECKED :
-                    if (child.selected)
-                    {
-                        return dispatchCheckBoxEvent(child);
-                    }
-                    else
-                    {
-                        return 'true';
-                    }
-                    break;
-                case ReferenceData.CHECKSTATE_UNKNOWN :
-                    return ErrorMessages.getError(ErrorMessages.ERROR_UNKNOWN_CHECK_STATE, [child]);
-                    break;
+			switch (argIsCheck(args))
+			{
+				case ReferenceData.CHECKSTATE_CHECKED :
+					if (child.selected)
+					{
+						return 'true';
+					}
+					else
+					{
+						return dispatchCheckBoxEvent(child);
+					}
+					break;
+				case ReferenceData.CHECKSTATE_UNCHECKED :
+					if (child.selected)
+					{
+						return dispatchCheckBoxEvent(child);
+					}
+					else
+					{
+						return 'true';
+					}
+					break;
+				case ReferenceData.CHECKSTATE_UNKNOWN :
+					return ErrorMessages.getError(ErrorMessages.ERROR_UNKNOWN_CHECK_STATE, [child]);
+					break;
 
-            }
-            return null;
-        }
+			}
+			return null;
+		}
 		private function rawFlexTristateCheckBox(child:Object, args:String):String
 		{
 			var state:int = argIsCheck(args);
 			switch (state)
 			{
 				case ReferenceData.CHECKSTATE_UNKNOWN :
-                    return ErrorMessages.getError(ErrorMessages.ERROR_UNKNOWN_CHECK_STATE, [child]);
+					return ErrorMessages.getError(ErrorMessages.ERROR_UNKNOWN_CHECK_STATE, [child]);
 				default:
 					child.state = state;
 					return 'true';
@@ -112,7 +118,7 @@ package sfapi.commands
 		 * Determine if a checkbox is checked or unchecked
 		 * @param  id  The ID of the Flex object
 		 * @param  args  nothing
-		 * @return	the check state of a checkbox. An error message if the call fails.
+		 * @return  the check state of a checkbox. An error message if the call fails.
 		 */
 		public function getFlexCheckBoxChecked(id:String, args:String):String
 		{
@@ -124,14 +130,14 @@ package sfapi.commands
 			return getFlexCheckBoxStatus(child);
 		}
 
-        /**
-         * Get checkbox status
-         * @param object - Check box widget
-         * @return
-         */
-        public function getFlexCheckBoxStatus(object:Object):String
-        {
-            try
+		/**
+		 * Get checkbox status
+		 * @param object  Check box widget
+		 * @return  The status, 'true', 'false', 'no change' or 'unkwnown'.
+		 */
+		public function getFlexCheckBoxStatus(object:Object):String
+		{
+			try
 			{
 				if (Tools.isA(object, ReferenceData.TRI_CHECKBOX_DESCRIPTION))
 				{
@@ -161,11 +167,11 @@ package sfapi.commands
 				return "Error: " + error.message;
 			}
 			return "unknown";
-        }
+		}
 		/**
 		 * return if a string specifies a particular check state for a check box
 		 * @param  arg  the check state string
-		 * @return	checked or unchecked or null
+		 * @return  checked or unchecked or null
 		 */
 		private function argIsCheck(arg:String):int
 		{
@@ -187,7 +193,7 @@ package sfapi.commands
 		/**
 		 * dispatch a click and change event for when a checkbox state is changing
 		 * @param  element  the target check box
-		 * @return	'true' or 'false'
+		 * @return  'true' or 'false'
 		 */
 		private function dispatchCheckBoxEvent(element:Object):String
 		{

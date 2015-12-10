@@ -1,9 +1,9 @@
-/*	
- *	License
- *	
- *	This file is part of The SeleniumFlex-API.
- *	
- *	The SeleniumFlex-API is free software: you can redistribute it and/or
+/*  
+ *  License
+ *  
+ *  This file is part of The SeleniumFlex-API.
+ *  
+ *  The SeleniumFlex-API is free software: you can redistribute it and/or
  *  modify it  under  the  terms  of  the  GNU  General Public License as 
  *  published  by  the  Free  Software Foundation,  either  version  3 of 
  *  the License, or any later version.
@@ -15,7 +15,7 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with The SeleniumFlex-API.
- *	If not, see http://www.gnu.org/licenses/
+ *  If not, see http://www.gnu.org/licenses/
  *
  */
 package sfapi.commands
@@ -37,13 +37,20 @@ package sfapi.commands
 			super(aptObj, contextObj);
 		}
 		
+		/**
+		 * Adds a notification text to the UI
+		 * @param  msg  The text to show
+		 * @param  args  Not used
+		 * @return  'true'
+		 */
 		public function doFlexNotify(msg:String, args:String=""):String
 		{
 			
 			var w:int = appTreeParser.thisApp.width;
 			var h:int = appTreeParser.thisApp.height;
 			
-			if (label == null){
+			if (label == null)
+			{
 				box = new HBox();
 				
 				label = new Label();
@@ -64,24 +71,25 @@ package sfapi.commands
 				box.addChild(label);
 				
 				appTreeParser.thisApp.addChild(box);
-						
 			}
 			
 			label.text = msg;
 			
-			if (timer == null){
+			if (timer == null)
+			{
 				timer = new Timer(6000, 1);
 				timer.addEventListener(TimerEvent.TIMER_COMPLETE, clear);
 				timer.start();
-			}else{
+			}
+			else
+			{
 				timer.delay = 3000;
 			}
-			
 			return "true";
-			
 		}
 		
-		private function clear(evt:TimerEvent):void{
+		private function clear(evt:TimerEvent):void
+		{
 			if (label){
 				appTreeParser.thisApp.removeChild(box);
 				label = null;
@@ -89,7 +97,5 @@ package sfapi.commands
 				box = null;
 			}
 		}
-		
-		
 	}
 }

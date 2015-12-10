@@ -1,9 +1,9 @@
-/*	
- *	License
- *	
- *	This file is part of The SeleniumFlex-API.
- *	
- *	The SeleniumFlex-API is free software: you can redistribute it and/or
+/*  
+ *  License
+ *  
+ *  This file is part of The SeleniumFlex-API.
+ *  
+ *  The SeleniumFlex-API is free software: you can redistribute it and/or
  *  modify it  under  the  terms  of  the  GNU  General Public License as 
  *  published  by  the  Free  Software Foundation,  either  version  3 of 
  *  the License, or any later version.
@@ -15,14 +15,14 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with The SeleniumFlex-API.
- *	If not, see http://www.gnu.org/licenses/
+ *  If not, see http://www.gnu.org/licenses/
  *
  */
 package sfapi.core
 {
 	public class ReferenceData
 	{
-		public static const SELENIUM_FLEX_API_VERSION = "0.28";
+		public static const SELENIUM_FLEX_API_VERSION:String = "0.28";
 		
 		public static const TRUE_STRING:String = "true";
 		public static const FALSE_STRING:String = "false";
@@ -52,6 +52,6 @@ package sfapi.core
 		
 		public function ReferenceData()
 		{
-		}		
+		}
 	}
 }

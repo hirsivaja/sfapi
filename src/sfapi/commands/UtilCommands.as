@@ -1,9 +1,9 @@
-/*	
- *	License
- *	
- *	This file is part of The SeleniumFlex-API.
- *	
- *	The SeleniumFlex-API is free software: you can redistribute it and/or
+/*  
+ *  License
+ *  
+ *  This file is part of The SeleniumFlex-API.
+ *  
+ *  The SeleniumFlex-API is free software: you can redistribute it and/or
  *  modify it  under  the  terms  of  the  GNU  General Public License as 
  *  published  by  the  Free  Software Foundation,  either  version  3 of 
  *  the License, or any later version.
@@ -15,7 +15,7 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with The SeleniumFlex-API.
- *	If not, see http://www.gnu.org/licenses/
+ *  If not, see http://www.gnu.org/licenses/
  *
  */
 package sfapi.commands
@@ -34,6 +34,8 @@ package sfapi.commands
 		 * Refresh setting the tooltips when can be called by selenium.
 		 * This is designed to catch the IDs of any popups that are created dynamically
 		 * at runtime, plus it refreshes all of the tooltips
+		 * @param id  Not used
+		 * @param args  Not used
 		 * @return  'true'
 		 */
 		public function doFlexRefreshIDToolTips(id:String, args:String):String

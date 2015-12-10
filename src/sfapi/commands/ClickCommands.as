@@ -1,9 +1,9 @@
-/*	
- *	License
- *	
- *	This file is part of The SeleniumFlex-API.
- *	
- *	The SeleniumFlex-API is free software: you can redistribute it and/or
+/*  
+ *  License
+ *  
+ *  This file is part of The SeleniumFlex-API.
+ *  
+ *  The SeleniumFlex-API is free software: you can redistribute it and/or
  *  modify it  under  the  terms  of  the  GNU  General Public License as 
  *  published  by  the  Free  Software Foundation,  either  version  3 of 
  *  the License, or any later version.
@@ -15,17 +15,17 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with The SeleniumFlex-API.
- *	If not, see http://www.gnu.org/licenses/
+ *  If not, see http://www.gnu.org/licenses/
  *
  */
 package sfapi.commands
 {
-    import flash.events.MouseEvent;
+	import flash.events.MouseEvent;
 
-    import sfapi.core.AppTreeParser;
-    import sfapi.core.ErrorMessages;
-    import sfapi.core.ReferenceData;
-    import sfapi.core.Tools;
+	import sfapi.core.AppTreeParser;
+	import sfapi.core.ErrorMessages;
+	import sfapi.core.ReferenceData;
+	import sfapi.core.Tools;
 	
 	public class ClickCommands extends AbstractCommand
 	{
@@ -39,7 +39,7 @@ package sfapi.commands
 		 * Can also click a button on a ButtonBar based on it's label 
 		 * @param  id  The ID of the Flex object
 		 * @param  args  The label of the buttonBar button to click
-		 * @return	'true' if the button was clicked. An error message if the call fails.
+		 * @return  'true' if the button was clicked. An error message if the call fails.
 		 */
 		public function doFlexClick(id:String, args:String):String 
 		{
@@ -81,7 +81,7 @@ package sfapi.commands
 				return clickTabNav(child, args);
 			}
 
-			return ErrorMessages.getError(ErrorMessages.ERROR_INCOMPATABLE_CONTROL, [Tools.getOjectType(child), 'flexClick']);
+			return ErrorMessages.getError(ErrorMessages.ERROR_INCOMPATABLE_CONTROL, [Tools.getObjectType(child), 'flexClick']);
 		}
 		// TODO : comms
 		private function clickTabNav(tabNav:Object, tabLabel:String):String
@@ -135,7 +135,12 @@ package sfapi.commands
 			}
 			return ErrorMessages.getError(ErrorMessages.ERROR_CANNOT_FIND_BUTTON, [linkBarLabel]);
 		}
-		// TODO : comms
+		/**
+		 * Dispatches a DOUBLE_CLICK MouseEvent to an element that has property doubleClickEnabled as true
+		 * @param  id  The ID of the Flex object
+		 * @param  args  Not used
+		 * @return  'true' if the double click succeeded. An error message if the call fails.
+		 */
 		public function doFlexDoubleClick(id:String, args:String):String
 		{
 			var child:Object = appTreeParser.getElement(id);
@@ -158,12 +163,12 @@ package sfapi.commands
 		 * 
 		 * @param  datagridId  The ID of the Datagrid object
 		 * @param  value takes the form <rowIndex>,<colIndex>,<componentIndexInCell>
-		 *         rowIndex  The row index of the Component in the Datagrid
-		 *         colIndex  The colum index of the Component in the Datagrid
-		 *         componentIndexInCell The index of the column within the rowIndex and columnIndex
-		 * 			-1 return the cell itself
-		 * 			0  return the first component on the cell
-		 * @return	'true' if the button was clicked. An error message if the call fails.
+		 *   rowIndex  The row index of the Component in the Datagrid
+		 *   colIndex  The colum index of the Component in the Datagrid
+		 *   componentIndexInCell The index of the column within the rowIndex and columnIndex
+		 *      -1 return the cell itself
+		 *       0 return the first component on the cell
+		 * @return  'true' if the button was clicked. An error message if the call fails.
 		 */
 		public function doFlexClickDataGridUIComponent(datagridId:String, value:String):String
 		{
@@ -190,15 +195,15 @@ package sfapi.commands
 		 * 
 		 * Example of the value parameter as passed from Selenium IDE
 		 * 
-		 * Command:	flexClickMenuBarUIComponent
-		 * Target:	myMenuBar
-		 * Value:	1,2,2,0
+		 * Command: flexClickMenuBarUIComponent
+		 * Target:  myMenuBar
+		 * Value:   1,2,2,0
 		 * 
 		 * Breakdown:
 		 * 
-		 * Command:	<command>
-		 * Target:	<menubar id>
-		 * Value:	<menuBarItemIndex>,<menuItemRowIndex>,<menuItemColIndex>,<componentIndexInCell>
+		 * Command: <command>
+		 * Target:  <menubar id>
+		 * Value:   <menuBarItemIndex>,<menuItemRowIndex>,<menuItemColIndex>,<componentIndexInCell>
 		 * 
 		 * All fields are compulsory
 		 * 
@@ -231,7 +236,7 @@ package sfapi.commands
 		 * @param  menuItemRowIndex  The row index within the Menu containing the Component to be clicked
 		 * @param  menuItemColIndex  The column index within the Menu containing the Component to be clicked
 		 * @param  componentIndexInCell The index of the component within the menuItemRowIndex and menuItemColIndex
-		 * @return	'true' if the component was clicked. An error message if the call fails.
+		 * @return  'true' if the component was clicked. An error message if the call fails.
 		 */
 		public function rawFlexClickMenuBarUIComponent(menuBarId:String, menuBarItemIndex:String, menuItemRowIndex:String, 
 			menuItemColIndex:String, componentIndexInCell:String = "0"):String
@@ -274,15 +279,15 @@ package sfapi.commands
 		 * Clicks a Component based on its label at a given column index.
 		 * Example of the value parameter as passed from Selenium IDE
 		 * 
-		 * Command:	flexClickDataGridItem
-		 * Target:	myDataGridItem
-		 * Value:	1,2
+		 * Command: flexClickDataGridItem
+		 * Target:  myDataGridItem
+		 * Value:   1,2
 		 * 
 		 * Breakdown:
 		 * 
-		 * Command:	<command>
-		 * Target:	<menubar id>
-		 * Value:	<colIndex>,<itemText>
+		 * Command: <command>
+		 * Target:  <menubar id>
+		 * Value:   <colIndex>,<itemText>
 		 * 
 		 * All fields are compulsory
 		 * 
@@ -342,22 +347,22 @@ package sfapi.commands
 		}
 
 
-	        /**
-	         * Dispatches a ListEvent.ITEM_DOUBLE_CLICK (MouseEvent.DOUBLE_CLICK) Event on the UIComponent of a Datagrid at a given
-	         * row and column index.  If the cell at the given row and column has multiple
-	         * UIComponents provid the componentIndexInCell in the function signature.
-	         *
-	         * @param  id  The ID of the Datagrid object
-	         * @param  value       Takes the form "<DataGridRowIndex>,<DataGridColIndex>"
-	         * @return    'true' if the button was clicked. An error message if the call fails.
-	         */
-	        public function doFlexDoubleClickDataGridUIComponent(id:String, value:String):String 
+		/**
+		 * Dispatches a ListEvent.ITEM_DOUBLE_CLICK (MouseEvent.DOUBLE_CLICK) Event on the UIComponent of a Datagrid at a given
+		 * row and column index.  If the cell at the given row and column has multiple
+		 * UIComponents provid the componentIndexInCell in the function signature.
+		 *
+		 * @param  id  The ID of the Datagrid object
+		 * @param  value  Takes the form "<DataGridRowIndex>,<DataGridColIndex>"
+		 * @return  'true' if the button was clicked. An error message if the call fails.
+		 */
+		public function doFlexDoubleClickDataGridUIComponent(id:String, value:String):String 
 		{
-	            var args:Array = value.split(",");
-	            var dataGridRowIndex:String = args[0];
-	            var dataGridColIndex:String = args[1];
+			var args:Array = value.split(",");
+			var dataGridRowIndex:String = args[0];
+			var dataGridColIndex:String = args[1];
 
-        	    return context.dataGridCommands.rawFlexDoubleClickDataGridUIComponent(id, dataGridRowIndex, dataGridColIndex);
-	        }
+			return context.dataGridCommands.rawFlexDoubleClickDataGridUIComponent(id, dataGridRowIndex, dataGridColIndex);
+		}
 	}
 }

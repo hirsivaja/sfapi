@@ -1,9 +1,9 @@
-/*	
- *	License
- *	
- *	This file is part of The SeleniumFlex-API.
- *	
- *	The SeleniumFlex-API is free software: you can redistribute it and/or
+/*  
+ *  License
+ *  
+ *  This file is part of The SeleniumFlex-API.
+ *  
+ *  The SeleniumFlex-API is free software: you can redistribute it and/or
  *  modify it  under  the  terms  of  the  GNU  General Public License as 
  *  published  by  the  Free  Software Foundation,  either  version  3 of 
  *  the License, or any later version.
@@ -15,7 +15,7 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with The SeleniumFlex-API.
- *	If not, see http://www.gnu.org/licenses/
+ *  If not, see http://www.gnu.org/licenses/
  *
  */
 package sfapi.commands
@@ -30,7 +30,12 @@ package sfapi.commands
 			super(aptObj, contextObj);
 		}
 		
-		// TODO comments
+		/**
+		 * Wait for an element to become visible 
+		 * @param  id  The ID of the Flex object
+		 * @param  timeout The number of loops to wait
+		 * @return  'true' if the element is visible
+		 */
 		public function doFlexWaitForElementVisible(id:String, timeout:Number):String
 		{
 			var child:Object = appTreeParser.getElement(id);
@@ -55,7 +60,7 @@ package sfapi.commands
 		 * Wait for an element to exist 
 		 * @param  id  The ID of the Flex object
 		 * @param  timeout The number of loops to wait
-		 * @return	'true' if the element if found
+		 * @return  'true' if the element if found
 		 */
 		public function doFlexWaitForElement(id:String, timeout:Number):String
 		{

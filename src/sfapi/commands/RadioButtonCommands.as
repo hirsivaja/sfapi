@@ -1,9 +1,9 @@
-/*	
- *	License
- *	
- *	This file is part of The SeleniumFlex-API.
- *	
- *	The SeleniumFlex-API is free software: you can redistribute it and/or
+/*  
+ *  License
+ *  
+ *  This file is part of The SeleniumFlex-API.
+ *  
+ *  The SeleniumFlex-API is free software: you can redistribute it and/or
  *  modify it  under  the  terms  of  the  GNU  General Public License as 
  *  published  by  the  Free  Software Foundation,  either  version  3 of 
  *  the License, or any later version.
@@ -15,7 +15,7 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with The SeleniumFlex-API.
- *	If not, see http://www.gnu.org/licenses/
+ *  If not, see http://www.gnu.org/licenses/
  *
  */
 package sfapi.commands
@@ -44,7 +44,7 @@ package sfapi.commands
 		{
 			var child:Object = appTreeParser.getElement(id);
 			
-			if(Tools.getOjectType(child) != ReferenceData.RADIOBUTTON_DESCRIPTION)
+			if(Tools.getObjectType(child) != ReferenceData.RADIOBUTTON_DESCRIPTION)
 			{
 				return ErrorMessages.getError(ErrorMessages.ERROR_TYPE_MISMATCH, [id, ReferenceData.RADIOBUTTON_DESCRIPTION]);
 			}
@@ -86,7 +86,7 @@ package sfapi.commands
 		public function getFlexRadioButton(id:String, args:String):String
 		{
 			var child:Object = appTreeParser.getElement(id);
-			if(Tools.getOjectType(child) == ReferenceData.RADIOBUTTON_DESCRIPTION)
+			if(Tools.getObjectType(child) == ReferenceData.RADIOBUTTON_DESCRIPTION)
 			{
 				return String(child.selected);
 			}

@@ -1,9 +1,9 @@
-/*	
- *	License
- *	
- *	This file is part of The SeleniumFlex-API.
- *	
- *	The SeleniumFlex-API is free software: you can redistribute it and/or
+/*  
+ *  License
+ *  
+ *  This file is part of The SeleniumFlex-API.
+ *  
+ *  The SeleniumFlex-API is free software: you can redistribute it and/or
  *  modify it  under  the  terms  of  the  GNU  General Public License as 
  *  published  by  the  Free  Software Foundation,  either  version  3 of 
  *  the License, or any later version.
@@ -15,7 +15,7 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with The SeleniumFlex-API.
- *	If not, see http://www.gnu.org/licenses/
+ *  If not, see http://www.gnu.org/licenses/
  *
  */
 package sfapi.core
@@ -35,7 +35,7 @@ package sfapi.core
 		public static const ERROR_NO_MATCH:String = 								"Error: Did not find a match";
 		public static const ERROR_NO_SELECTION:String = 							"Error: Did not find selection for '{0}' on control {1}";
 		public static const ERROR_NO_PROPERTY:String = 								"Error: There is no '{0}' property for the element '{1}'";
-		public static const ERROR_ALERT_BUTTON:String = 							"Error: The {0} button wass not found on the alert control";
+		public static const ERROR_ALERT_BUTTON:String = 							"Error: The {0} button was not found on the alert control";
 		public static const ERROR_NO_ALERT:String = 								"Error: Alert not found";
 		public static const ERROR_ALERT_TEXT:String = 								"Error: Cannot find Alert text control";
 		public static const ERROR_UNKNOWN_STATE:String = 							"Error: Unknown state type {0} for {1}";

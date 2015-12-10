@@ -1,9 +1,9 @@
-/*	
- *	License
- *	
- *	This file is part of The SeleniumFlex-API.
- *	
- *	The SeleniumFlex-API is free software: you can redistribute it and/or
+/*  
+ *  License
+ *  
+ *  This file is part of The SeleniumFlex-API.
+ *  
+ *  The SeleniumFlex-API is free software: you can redistribute it and/or
  *  modify it  under  the  terms  of  the  GNU  General Public License as 
  *  published  by  the  Free  Software Foundation,  either  version  3 of 
  *  the License, or any later version.
@@ -15,7 +15,7 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with The SeleniumFlex-API.
- *	If not, see http://www.gnu.org/licenses/
+ *  If not, see http://www.gnu.org/licenses/
  *
  */
 package sfapi.commands
@@ -33,13 +33,10 @@ package sfapi.commands
 			super(aptObj, contextObj);
 		}
 		
-		/*
-		 * 
-		 */
 		/**
 		 * Responds to an alert (ok, cancel, yes, no, etc...)
-		 * @param id  The ID of the Flex object
-		 * @param args
+		 * @param response  The response to choose. For example 'OK'.
+		 * @param args  Not used
 		 * @return  'true' if the response was successful, otherwise an error message
 		 */
 		public function doFlexAlertResponse(response:String, args:String):String
@@ -58,7 +55,7 @@ package sfapi.commands
 				}
 				else
 				{
-					retval = ErrorMessages.getError(ErrorMessages.ERROR_ALERT_BUTTON, [args]);
+					retval = ErrorMessages.getError(ErrorMessages.ERROR_ALERT_BUTTON, [response]);
 				}
 			}
 			else
@@ -71,6 +68,7 @@ package sfapi.commands
 		/**
 		 * Determines if a string is part of an Alerts text or label property
 		 * @param  searchStr  the string to search for in the control
+		 * @param args  Not used
 		 * @return  'true' if searchStr is present, 'false' if not
 		 */
 		public function getFlexAlertTextPresent(searchStr:String, args:String):String
@@ -101,7 +99,7 @@ package sfapi.commands
 		 * Checks if an Alert is being displayed
 		 * @return  'true' if an alert is present, 'false' if not.
 		 */
-		public function getFlexAlertPresent(args:String, args2:String):String
+		public function getFlexAlertPresent(args:String = "", args2:String = ""):String
 		{
 			// get the alert object
 			var alertNode:Object = getAlert();

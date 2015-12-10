@@ -1,9 +1,9 @@
-/*	
- *	License
- *	
- *	This file is part of The SeleniumFlex-API.
- *	
- *	The SeleniumFlex-API is free software: you can redistribute it and/or
+/*  
+ *  License
+ *  
+ *  This file is part of The SeleniumFlex-API.
+ *  
+ *  The SeleniumFlex-API is free software: you can redistribute it and/or
  *  modify it  under  the  terms  of  the  GNU  General Public License as 
  *  published  by  the  Free  Software Foundation,  either  version  3 of 
  *  the License, or any later version.
@@ -15,10 +15,9 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with The SeleniumFlex-API.
- *	If not, see http://www.gnu.org/licenses/
+ *  If not, see http://www.gnu.org/licenses/
  *
  */
- 
 package sfapi.commands
 {
 	import flash.external.ExternalInterface;
@@ -84,319 +83,317 @@ package sfapi.commands
 			 **/
 			if(ExternalInterface.available)
 			{
-				/*REF
-				 * TODO: complete api reference documentation 
-				 */
-			    ExternalInterface.addCallback("getFlexSelectedItemAtIndex", 
-			    				selectCommands.getFlexSelectedItemAtIndex);
-			    				
-			    ExternalInterface.addCallback("getFlexNumSelectedItems", 
-			    				selectCommands.getFlexNumSelectedItems);
-			    				
+				// Get commands
+
+				ExternalInterface.addCallback("getFlexSelectedItemAtIndex", 
+						selectCommands.getFlexSelectedItemAtIndex);
+						
+				ExternalInterface.addCallback("getFlexNumSelectedItems", 
+						selectCommands.getFlexNumSelectedItems);
+						
 				ExternalInterface.addCallback("getFlexVisible",
-							  propertyCommands.getFlexVisible);
-							  
+						propertyCommands.getFlexVisible);
+						
 				ExternalInterface.addCallback("getFlexTextPresent",
-								  textCommands.getFlexTextPresent);
-								  
+						textCommands.getFlexTextPresent);
+						
 				ExternalInterface.addCallback("getFlexText",
-								  textCommands.getFlexText);
-								  
+						textCommands.getFlexText);
+						
 				ExternalInterface.addCallback("getFlexStepper", 
-							   stepperCommands.getFlexStepper);
-							   
+						stepperCommands.getFlexStepper);
+						
 				ExternalInterface.addCallback("getFlexSelectionIndex",
-								selectCommands.getFlexSelectionIndex);
-								
+						selectCommands.getFlexSelectionIndex);
+						
 				ExternalInterface.addCallback("getFlexSelection",
-								selectCommands.getFlexSelection);
-								
+						selectCommands.getFlexSelection);
+						
 				ExternalInterface.addCallback("getFlexRadioButton",
-						   radioButtonCommands.getFlexRadioButton);
-						   
+						radioButtonCommands.getFlexRadioButton);
+						
 				ExternalInterface.addCallback("getFlexProperty",
-							  propertyCommands.getFlexProperty);
-							  
+						propertyCommands.getFlexProperty);
+						
 				ExternalInterface.addCallback("getFlexParseInt", 
-							 	  textCommands.getFlexParseInt);
-							  
+						textCommands.getFlexParseInt);
+						
 				ExternalInterface.addCallback("getFlexNumeric", 
-							 	  textCommands.getFlexNumeric);
-							  
+						textCommands.getFlexNumeric);
+						
 				ExternalInterface.addCallback("getFlexGlobalPosition", 
-							  propertyCommands.getFlexGlobalPosition);
-							  
+						propertyCommands.getFlexGlobalPosition);
+						
 				ExternalInterface.addCallback("getFlexExists", 
-							  propertyCommands.getFlexExists);
-							  
+						propertyCommands.getFlexExists);
+						
 				ExternalInterface.addCallback("getFlexErrorString", 
-							  propertyCommands.getFlexErrorString);
-							  
+						propertyCommands.getFlexErrorString);
+						
 				ExternalInterface.addCallback("getFlexEnabled", 
-							  propertyCommands.getFlexEnabled);
-							  
+						propertyCommands.getFlexEnabled);
+						
 				ExternalInterface.addCallback("getFlexChildren", 
-							  propertyCommands.getFlexChildren);
-							  
+						propertyCommands.getFlexChildren);
+						
 				ExternalInterface.addCallback("getFlexDate", 
-							 	  dateCommands.getFlexDate);
-							  
+						dateCommands.getFlexDate);
+						
 				ExternalInterface.addCallback("getFlexDataGridUIComponentLabel", 
-							 	  textCommands.getFlexDataGridUIComponentLabel);
-							  
+						textCommands.getFlexDataGridUIComponentLabel);
+						
 				ExternalInterface.addCallback("getFlexDataGridRowIndexForFieldValue", 
-							  dataGridCommands.getFlexDataGridRowIndexForFieldValue);
-							  
+						dataGridCommands.getFlexDataGridRowIndexForFieldValue);
+						
 				ExternalInterface.addCallback("getFlexDataGridRowCount", 
-							  dataGridCommands.getFlexDataGridRowCount);
-							  
+						dataGridCommands.getFlexDataGridRowCount);
+						
 				ExternalInterface.addCallback("getFlexDataGridFieldValueForGridRow", 
-							  dataGridCommands.getFlexDataGridFieldValueForGridRow);
-							  
+						dataGridCommands.getFlexDataGridFieldValueForGridRow);
+						
 				ExternalInterface.addCallback("getFlexDataGridCellText", 
-							 	  textCommands.getFlexDataGridCellText);
-							  
+						textCommands.getFlexDataGridCellText);
+						
 				ExternalInterface.addCallback("getFlexDataGridCell", 
-							  dataGridCommands.getFlexDataGridCell);
-							  
+						dataGridCommands.getFlexDataGridCell);
+						
 				ExternalInterface.addCallback("getFlexComponentInfo", 
-							  propertyCommands.getFlexComponentInfo);
-							  
+						propertyCommands.getFlexComponentInfo);
+						
 				ExternalInterface.addCallback("getFlexComboContainsLabel", 
-							 	 comboCommands.getFlexComboContainsLabel);
-							  
+						comboCommands.getFlexComboContainsLabel);
+						
 				ExternalInterface.addCallback("getFlexComboValues", 
-							 	 comboCommands.getFlexComboValues);
-				
+						comboCommands.getFlexComboValues);
+						
 				ExternalInterface.addCallback("getFlexCheckBoxChecked", 
-							 	 checkBoxCommands.getFlexCheckBoxChecked);
-							  
+						checkBoxCommands.getFlexCheckBoxChecked);
+						
 				ExternalInterface.addCallback("getFlexAlertTextPresent", 
-							 	 alertCommands.getFlexAlertTextPresent);
-							  
+						alertCommands.getFlexAlertTextPresent);
+						
 				ExternalInterface.addCallback("getFlexAlertText", 
-							 	 alertCommands.getFlexAlertText);
-							  
+						alertCommands.getFlexAlertText);
+						
 				ExternalInterface.addCallback("getFlexAlertPresent", 
-							 	 alertCommands.getFlexAlertPresent);
-
+						alertCommands.getFlexAlertPresent);
+						
 				ExternalInterface.addCallback("getFlexDataGridCheckBoxChecked",
-							 	 dataGridCommands.getFlexDataGridCheckBoxChecked);
-
+						dataGridCommands.getFlexDataGridCheckBoxChecked);
+						
 				ExternalInterface.addCallback("getFlexDataGridRowIndexForFieldLabel",
-							 	 dataGridCommands.getFlexDataGridRowIndexForFieldLabel);
-								 
+						dataGridCommands.getFlexDataGridRowIndexForFieldLabel);
+						
 				ExternalInterface.addCallback("getFlexDataGridValues",
-							  dataGridCommands.getFlexDataGridValues);
-							  
+						dataGridCommands.getFlexDataGridValues);
+						
 				ExternalInterface.addCallback("getFlexDataGridColCount", 
-							  dataGridCommands.getFlexDataGridColCount);
-							  
+						dataGridCommands.getFlexDataGridColCount);
+						
 				ExternalInterface.addCallback("getFlexDataGridColDataFields", 
-							  dataGridCommands.getFlexDataGridColDataFields);
-								 
+						dataGridCommands.getFlexDataGridColDataFields);
+						
 				ExternalInterface.addCallback("getFlexTabLabels", 
-								  propertyCommands.getFlexTabLabels);
-								  
+						propertyCommands.getFlexTabLabels);
+						
 				ExternalInterface.addCallback("getFlexAPIVersion", 
-							 	  utilCommands.getFlexAPIVersion);
-				
+						utilCommands.getFlexAPIVersion);
+
 				// Action commands
-				
+
 				ExternalInterface.addCallback("doFlexWaitForElementVisible", 
-							 	  waitCommands.doFlexWaitForElementVisible);
-							  
+						waitCommands.doFlexWaitForElementVisible);
+						
 				ExternalInterface.addCallback("doFlexWaitForElement", 
-							 	  waitCommands.doFlexWaitForElement);
-							  
+						waitCommands.doFlexWaitForElement);
+						
 				ExternalInterface.addCallback("doFlexTypeAppend", 
-							 	  textCommands.doFlexTypeAppend);
-							  
+						textCommands.doFlexTypeAppend);
+						
 				ExternalInterface.addCallback("doFlexType", 
-							 	  textCommands.doFlexType);
-							  
+						textCommands.doFlexType);
+						
 				ExternalInterface.addCallback("doFlexStepper", 
-							   stepperCommands.doFlexStepper);
-							  
+						stepperCommands.doFlexStepper);
+						
 				ExternalInterface.addCallback("doFlexSetFocus", 
-								 mouseCommands.doFlexSetFocus);
-				
+						mouseCommands.doFlexSetFocus);
+						
 				ExternalInterface.addCallback("doFlexSetDataGridCell", 
-							  dataGridCommands.doFlexSetDataGridCell);
-							  
+						dataGridCommands.doFlexSetDataGridCell);
+						
 				ExternalInterface.addCallback("doFlexSelectMatchingOnField", 
-							    selectCommands.doFlexSelectMatchingOnField);
-							  
+						selectCommands.doFlexSelectMatchingOnField);
+						
 				ExternalInterface.addCallback("doFlexSelectTreeItem", 
-							    selectCommands.doFlexSelectTreeItem);
-
+						selectCommands.doFlexSelectTreeItem);
+						
 				ExternalInterface.addCallback("doFlexClickSelectedDataGridItem", 
-							    selectCommands.doFlexClickSelectedDataGridItem);
-							
+						selectCommands.doFlexClickSelectedDataGridItem);
+						
 				ExternalInterface.addCallback("doFlexSelectIndex", 
-							    selectCommands.doFlexSelectIndex);
-								
+						selectCommands.doFlexSelectIndex);
+						
 				ExternalInterface.addCallback("doFlexSelectDataGridIndex",
-								selectCommands.doFlexSelectDataGridIndex);
-							  
+						selectCommands.doFlexSelectDataGridIndex);
+						
 				ExternalInterface.addCallback("doFlexSelectComboByLabel", 
-								 comboCommands.doFlexSelectComboByLabel);
-							  
+						comboCommands.doFlexSelectComboByLabel);
+						
 				ExternalInterface.addCallback("doFlexSelect", 
-							    selectCommands.doFlexSelect);
-							  
+						selectCommands.doFlexSelect);
+						
 				ExternalInterface.addCallback("doFlexComboSendEvent", 
-							 	  comboCommands.doFlexComboSendEvent);
-				
+						comboCommands.doFlexComboSendEvent);
+						
 				ExternalInterface.addCallback("doFlexRefreshIDToolTips", 
-							 	  utilCommands.doFlexRefreshIDToolTips);
-							  
+						utilCommands.doFlexRefreshIDToolTips);
+						
 				ExternalInterface.addCallback("doFlexRadioButton", 
-						   radioButtonCommands.doFlexRadioButton);
-							  
+						radioButtonCommands.doFlexRadioButton);
+						
 				ExternalInterface.addCallback("doFlexProperty", 
-							  propertyCommands.doFlexProperty);
-							  
+						propertyCommands.doFlexProperty);
+						
 				ExternalInterface.addCallback("doFlexMouseUp", 
-							 	 mouseCommands.doFlexMouseUp);
-							  
+						mouseCommands.doFlexMouseUp);
+						
 				ExternalInterface.addCallback("doFlexMouseEvent", 
-							 	 mouseCommands.doFlexMouseEvent);
-							  
+						mouseCommands.doFlexMouseEvent);
+						
 				ExternalInterface.addCallback("doFlexMouseRollOver",
-							 	 mouseCommands.doFlexMouseRollOver);
-							  
+						mouseCommands.doFlexMouseRollOver);
+						
 				ExternalInterface.addCallback("doFlexMouseRollOut",
-							  	 mouseCommands.doFlexMouseRollOut);
-							  
+						mouseCommands.doFlexMouseRollOut);
+						
 				ExternalInterface.addCallback("doFlexMouseOver", 
-							 	 mouseCommands.doFlexMouseOver);
-							  
+						mouseCommands.doFlexMouseOver);
+						
 				ExternalInterface.addCallback("doFlexMouseMove", 
-							 	 mouseCommands.doFlexMouseMove);
-							  
+						mouseCommands.doFlexMouseMove);
+						
 				ExternalInterface.addCallback("doFlexMouseDown", 
-							 	 mouseCommands.doFlexMouseDown);
-							  
+						mouseCommands.doFlexMouseDown);
+						
 				ExternalInterface.addCallback("doFlexRightMouseDown", 
-							 	 mouseCommands.doFlexRightMouseDown);
-							  
+						mouseCommands.doFlexRightMouseDown);
+						
 				ExternalInterface.addCallback("doFlexDragTo",
-							 	 mouseCommands.doFlexDragTo);
-							  
+						mouseCommands.doFlexDragTo);
+						
 				ExternalInterface.addCallback("doFlexDoubleClick", 
-							 	 clickCommands.doFlexDoubleClick);
-							  
+						clickCommands.doFlexDoubleClick);
+						
 				ExternalInterface.addCallback("doFlexDate", 
-							 	  dateCommands.doFlexDate);
-							  
+						dateCommands.doFlexDate);
+						
 				ExternalInterface.addCallback("doFlexClickMenuBarUIComponent", 
-							 	 clickCommands.doFlexClickMenuBarUIComponent);
-							  
+						clickCommands.doFlexClickMenuBarUIComponent);
+						
 				ExternalInterface.addCallback("doFlexClickDataGridUIComponent", 
-							 	 clickCommands.doFlexClickDataGridUIComponent);
-							  
+						clickCommands.doFlexClickDataGridUIComponent);
+						
 				ExternalInterface.addCallback("doFlexClickDataGridItem", 
-							 	 clickCommands.doFlexClickDataGridItem);
-							  
+						clickCommands.doFlexClickDataGridItem);
+						
 				ExternalInterface.addCallback("doFlexClick", 
-							 	 clickCommands.doFlexClick);
-							  
+						clickCommands.doFlexClick);
+						
 				ExternalInterface.addCallback("doFlexCheckBox", 
-							  checkBoxCommands.doFlexCheckBox);
-							  
+						checkBoxCommands.doFlexCheckBox);
+						
 				ExternalInterface.addCallback("doFlexAlertResponse", 
-							 	 alertCommands.doFlexAlertResponse);
-							  
+						alertCommands.doFlexAlertResponse);
+						
 				ExternalInterface.addCallback("doFlexAddSelectMatchingOnField", 
-							 	selectCommands.doFlexAddSelectMatchingOnField);
-							  
+						selectCommands.doFlexAddSelectMatchingOnField);
+						
 				ExternalInterface.addCallback("doFlexAddSelectIndex", 
-							 	selectCommands.doFlexAddSelectIndex);
-							  
+						selectCommands.doFlexAddSelectIndex);
+						
 				ExternalInterface.addCallback("doFlexNotify", 
-							 	notifyCommands.doFlexNotify);
-				
+						notifyCommands.doFlexNotify);
+						
 				ExternalInterface.addCallback("doFlexKeyDown", 
-							 	keyCommads.doFlexKeyDown);
-				
+						keyCommads.doFlexKeyDown);
+						
 				ExternalInterface.addCallback("doFlexKeyUp", 
-							 	keyCommads.doFlexKeyUp);
-
-                ExternalInterface.addCallback("doFlexDoubleClickDataGridUIComponent",
-                        clickCommands.doFlexDoubleClickDataGridUIComponent);
+						keyCommads.doFlexKeyUp);
 						
-                ExternalInterface.addCallback("doFlexDataGridDate",
-                        dataGridCommands.doFlexDataGridDate);
+				ExternalInterface.addCallback("doFlexDoubleClickDataGridUIComponent",
+						clickCommands.doFlexDoubleClickDataGridUIComponent);
 						
-                ExternalInterface.addCallback("doFlexDataGridCheckBox",
-                        dataGridCommands.doFlexDataGridCheckBox);
+				ExternalInterface.addCallback("doFlexDataGridDate",
+						dataGridCommands.doFlexDataGridDate);
+						
+				ExternalInterface.addCallback("doFlexDataGridCheckBox",
+						dataGridCommands.doFlexDataGridCheckBox);
 						
 				ExternalInterface.addCallback("doFlexDataGridExpandAll", 
-							  dataGridCommands.doFlexDataGridExpandAll);
-
+						dataGridCommands.doFlexDataGridExpandAll);
+						
 				ExternalInterface.addCallback("doFlexDataGridSearchValue",
-                							  dataGridCommands.doFlexDataGridSearchValue);
+						dataGridCommands.doFlexDataGridSearchValue);
 						
-                ExternalInterface.addCallback("doFlexDataGridClickColumnHeader",
-                        dataGridCommands.doFlexDataGridClickColumnHeader);
+				ExternalInterface.addCallback("doFlexDataGridClickColumnHeader",
+						dataGridCommands.doFlexDataGridClickColumnHeader);
 						
-                ExternalInterface.addCallback("doFlexDataGridSelectComboByLabel",
-                        dataGridCommands.doFlexDataGridSelectComboByLabel);
-				
+				ExternalInterface.addCallback("doFlexDataGridSelectComboByLabel",
+						dataGridCommands.doFlexDataGridSelectComboByLabel);
+
 				// Raw commands
-				
+
 				ExternalInterface.addCallback("rawFlexClickMenuBarUIComponent",
-							 	 clickCommands.rawFlexClickMenuBarUIComponent);
-
+						clickCommands.rawFlexClickMenuBarUIComponent);
+						
 				ExternalInterface.addCallback("rawFlexClickDataGridItem",
-							 	 clickCommands.rawFlexClickDataGridItem);
-
+						clickCommands.rawFlexClickDataGridItem);
+						
+				ExternalInterface.addCallback("rawFlexComboContainsLabel", 
+						comboCommands.rawFlexComboContainsLabel);
+						
 				ExternalInterface.addCallback("rawFlexSetDataGridCell",
-							  dataGridCommands.rawFlexSetDataGridCell);
-
-				ExternalInterface.addCallback("rawFlexSelectMatchingOnField",
-							 	selectCommands.rawFlexSelectMatchingOnField);
-
+						dataGridCommands.rawFlexSetDataGridCell);
+						
 				ExternalInterface.addCallback("rawFlexDataGridCell",
-							  dataGridCommands.rawFlexDataGridCell);
-
+						dataGridCommands.rawFlexDataGridCell);
+						
 				ExternalInterface.addCallback("rawFlexDataGridRowIndexForFieldValue",
-							  dataGridCommands.rawFlexDataGridRowIndexForFieldValue);
-
+						dataGridCommands.rawFlexDataGridRowIndexForFieldValue);
+						
 				ExternalInterface.addCallback("rawFlexDataGridFieldValuesForColumn",
-							  dataGridCommands.rawFlexDataGridFieldValuesForColumn);
-
+						dataGridCommands.rawFlexDataGridFieldValuesForColumn);
+						
 				ExternalInterface.addCallback("rawFlexDataGridFieldAllValues",
-                							  dataGridCommands.rawFlexDataGridFieldAllValues);
-
+						dataGridCommands.rawFlexDataGridFieldAllValues);
+						
 				ExternalInterface.addCallback("rawFlexDataGridRowIndexForFieldLabel",
-							  dataGridCommands.rawFlexDataGridRowIndexForFieldLabel);
-
+						dataGridCommands.rawFlexDataGridRowIndexForFieldLabel);
+						
 				ExternalInterface.addCallback("rawFlexDataGridFieldValueForGridRow",
-							  dataGridCommands.rawFlexDataGridFieldValueForGridRow);
-
+						dataGridCommands.rawFlexDataGridFieldValueForGridRow);
+						
 				ExternalInterface.addCallback("rawFlexDataGridFieldLabelForGridRow",
-							  dataGridCommands.rawFlexDataGridFieldLabelForGridRow);
-
+						dataGridCommands.rawFlexDataGridFieldLabelForGridRow);
+						
 				ExternalInterface.addCallback("rawFlexProperty",
-							  propertyCommands.rawFlexProperty);
-
-				ExternalInterface.addCallback("rawFlexDataGridUIComponentLabel",
-							 	  textCommands.rawFlexDataGridUIComponentLabel);
-
-				ExternalInterface.addCallback("rawFlexDataGridCellText",
-							 	  textCommands.rawFlexDataGridCellText);
-				
+						propertyCommands.rawFlexProperty);
+						
 				ExternalInterface.addCallback("rawFlexProperties", 
-			  					  propertyCommands.rawFlexProperties);
-			  	
-			  	ExternalInterface.addCallback("rawFlexGlobalPosition", 
-			  					  propertyCommands.rawFlexGlobalPosition);
-			  	
-			  	ExternalInterface.addCallback("rawFlexComboContainsLabel", 
-			  					 comboCommands.rawFlexComboContainsLabel);
-
+						propertyCommands.rawFlexProperties);
+						
+				ExternalInterface.addCallback("rawFlexGlobalPosition", 
+						propertyCommands.rawFlexGlobalPosition);
+						
+				ExternalInterface.addCallback("rawFlexSelectMatchingOnField",
+						selectCommands.rawFlexSelectMatchingOnField);
+						
+				ExternalInterface.addCallback("rawFlexDataGridUIComponentLabel",
+						textCommands.rawFlexDataGridUIComponentLabel);
+						
+				ExternalInterface.addCallback("rawFlexDataGridCellText",
+						textCommands.rawFlexDataGridCellText);
 			}
 			else
 			{

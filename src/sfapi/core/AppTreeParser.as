@@ -1,9 +1,9 @@
-/*	
- *	License
- *	
- *	This file is part of The SeleniumFlex-API.
- *	
- *	The SeleniumFlex-API is free software: you can redistribute it and/or
+/*  
+ *  License
+ *  
+ *  This file is part of The SeleniumFlex-API.
+ *  
+ *  The SeleniumFlex-API is free software: you can redistribute it and/or
  *  modify it  under  the  terms  of  the  GNU  General Public License as 
  *  published  by  the  Free  Software Foundation,  either  version  3 of 
  *  the License, or any later version.
@@ -15,7 +15,7 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with The SeleniumFlex-API.
- *	If not, see http://www.gnu.org/licenses/
+ *  If not, see http://www.gnu.org/licenses/
  *
  */
 package sfapi.core
@@ -134,8 +134,7 @@ package sfapi.core
 		}
 		
 		/**
-		 * @param
-		 * @return
+		 * Find element by property value
 		 */
 		public function getElementByProperty(searchPath:Array, property:String, searchScope:Object):Object
 		{
@@ -152,10 +151,6 @@ package sfapi.core
 			return searchForTarget(searchPath[searchPath.length - 1], property, searchScope);
 		}
 		
-		/**
-		 * @param
-		 * @return
-		 */
 		private function searchForTarget(element:String, property:String, root:Object):Object
 		{
 			var parents:Array = new Array();
@@ -204,19 +199,11 @@ package sfapi.core
 			return currentNode.child;
 		}
 		
-		/**
-		 * @param
-		 * @return
-		 */
 		private function isNotTargetNode(element:String, property:String, node:Object):Boolean
 		{
 			return ! ((node.hasOwnProperty(property) && node[property] == element) || node.name == element);
 		}
 		
-		/**
-		 * @param
-		 * @return
-		 */
 		private function hasFirstChild(node:AppTreeNode):Boolean
 		{
 			if(node.child.hasOwnProperty("numChildren") && node.child.numChildren > 0)
@@ -322,8 +309,7 @@ package sfapi.core
 
 		
 		/**
-		 * @param
-		 * @return
+		 * Set tooltip property of all elements to the id property of the element
 		 */
 		public function setTooltipsToID():void
 		{
@@ -355,7 +341,9 @@ package sfapi.core
 			parents = null;
 		}
 		
-		/**Assign a listener to each element in the tree**/
+		/**
+		 * Assign a listener to each element in the tree
+		 */
 		public function assignListeners():void
 		{
 			var parents:Array = new Array();
@@ -430,12 +418,6 @@ package sfapi.core
 			parents = null;
 		}
 		
-		/**
-		 * 
-		 * @param
-		 * @return
-		 * 
-		 */
 		private function assignID(node:Object):void
 		{
 			if(node.hasOwnProperty("id") && node.hasOwnProperty("toolTip"))
@@ -453,7 +435,7 @@ package sfapi.core
 		 * Find a UIComponent using its id attribute, wherever it is in the application
 		 * @param  id  id attribute of the UIComponent to return
 		 * @return  The UIComponent corresponding to the id, or null if not found
-		 */		
+		 */
 		public function getWidgetById(id:String):Object
 		{
 			var component:Object = getElement(id);

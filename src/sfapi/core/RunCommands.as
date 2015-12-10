@@ -1,22 +1,22 @@
-/*	
- *	License
- *	
- *	This file is part of The SeleniumFlex-API.
- *	
- *	The SeleniumFlex-API is free software: you can redistribute it and/or
+/*  
+ *  License
+ *  
+ *  This file is part of The SeleniumFlex-API.
+ *  
+ *  The SeleniumFlex-API is free software: you can redistribute it and/or
  *  modify it  under  the  terms  of  the  GNU  General Public License as 
  *  published  by  the  Free  Software Foundation,  either  version  3 of 
  *  the License, or any later version.
- *
+ *  
  *  The SeleniumFlex-API is distributed in the hope that it will be useful,
  *  but  WITHOUT  ANY  WARRANTY;  without  even the  implied  warranty  of
  *  MERCHANTABILITY   or   FITNESS   FOR  A  PARTICULAR  PURPOSE.  See the
  *  GNU General Public License for more details.
- *
+ *  
  *  You should have received a copy of the GNU General Public License
  *  along with The SeleniumFlex-API.
- *	If not, see http://www.gnu.org/licenses/
- *
+ *  If not, see http://www.gnu.org/licenses/
+ *  
  *  The Base for RunCommands is from Flexmonkey
  *  http://flexmonkey.googlecode.com/svn/trunk/FlexMonkey/src/com/gorillalogic/flexmonkey/FlexMonkey.mxml
  *
@@ -34,7 +34,7 @@ package sfapi.core
 		
 		public function RunCommands(drag:Object, timeout:Number=500)
 		{
-			Drag = drag;	
+			Drag = drag;
 			TimeOut = timeout;
 		}
 		

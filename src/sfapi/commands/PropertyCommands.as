@@ -1,9 +1,9 @@
-/*	
- *	License
- *	
- *	This file is part of The SeleniumFlex-API.
- *	
- *	The SeleniumFlex-API is free software: you can redistribute it and/or
+/*  
+ *  License
+ *  
+ *  This file is part of The SeleniumFlex-API.
+ *  
+ *  The SeleniumFlex-API is free software: you can redistribute it and/or
  *  modify it  under  the  terms  of  the  GNU  General Public License as 
  *  published  by  the  Free  Software Foundation,  either  version  3 of 
  *  the License, or any later version.
@@ -15,7 +15,7 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with The SeleniumFlex-API.
- *	If not, see http://www.gnu.org/licenses/
+ *  If not, see http://www.gnu.org/licenses/
  *
  */
 package sfapi.commands
@@ -38,8 +38,11 @@ package sfapi.commands
 			super(aptObj, contextObj);
 		}
 
-		// todo tell vince about changes
-		// todo comm
+		/*
+		* Get the global position of the Flex object
+		* @param id the id of the element
+		* @return x and y coordinates of the object
+		*/
 		public function getFlexGlobalPosition(id:String):String
 		{
 			var element:Object = appTreeParser.getElement(id);
@@ -47,8 +50,12 @@ package sfapi.commands
 			return String(pt.x + "," + pt.y);
 		}
 
-		// todo tell vince about changes
-		// todo comm
+		/*
+		* Get the global position of the Flex object
+		* @param id  the id of the element
+		* @param returnPoint  Return a Point object
+		* @return x and y coordinates of the object or a Point object
+		*/
 		public function rawFlexGlobalPosition(id:String, returnPoint:String):Object
 		{
 			var element:Object = appTreeParser.getElement(id);
@@ -60,9 +67,10 @@ package sfapi.commands
 			return String(pt.x + "," + pt.y);
 		}
 
-		// todo comm
 		/**
 		 * Get a components info, x,y,w,h
+		 * @param id  the id of the element
+		 * @return x and y coordinates of the object. Object width and height.
 		 */
 		public function getFlexComponentInfo(id:String):String
 		{
@@ -76,6 +84,7 @@ package sfapi.commands
 		* Process a list of requests for component properties
 		* @param id the id of the element
 		* @param args comma-separated list of properties
+		* @return List of property values
 		*/
 		public function rawFlexProperties(id:String, args:String):String
 		{
@@ -87,6 +96,12 @@ package sfapi.commands
 			return ret.join();
 		}
 
+		/**
+		 * Retrieves an object Property
+		 * @param  id  The ID of the Flex object
+		 * @param  value  Property of the element to check
+		 * @return  the string value of the property
+		 */
 		public function getFlexProperty(id:String, value:String):Object
 		{
 			return rawFlexProperty(id, value);
@@ -150,8 +165,8 @@ package sfapi.commands
 
 		/**
 		 * Set a components property
-		 * @param  id  The ID of the Flex object
-		 * @param  property of the element to set
+		 * @param  id  The ID of the Flex object AND the property to set. For example: 'button1.text'
+		 * @param  setval  the value to set
 		 * @return  true if success otherwise an error message
 		 */
 		public function doFlexProperty(id:String, setval:String):String
@@ -180,9 +195,9 @@ package sfapi.commands
 		}
 
 		/**
-		 * Retrieves the date in a DateField control
+		 * Retrieves the value of 'visible' property
 		 * @param  id  The ID of the Flex object
-		 * @param  args
+		 * @param  args  Not used
 		 * @return   true if the component is visible
 		 */
 		public function getFlexVisible(id:String, args:String):String
@@ -241,10 +256,10 @@ package sfapi.commands
 		}
 		
 		/**
-		 * Retrieves the date in a DateField control
+		 * Retrieves the 'errorString' property
 		 * @param  id  The ID of the Flex object
-		 * @param  args
-		 * @return  the date in the datefield or an error message if the call fails
+		 * @param  args  Not used
+		 * @return  the error string or an error message if the call fails
 		 */
 		public function getFlexErrorString(id:String, args:String):String
 		{
@@ -265,8 +280,9 @@ package sfapi.commands
 		}
 		
 		/**
-		 * Retrieves whether a cotrol exists or not
+		 * Retrieves whether a control exists or not
 		 * @param  id  The ID of the Flex object to find
+		 * @param  args  Not used
 		 * @return  'true' if object exists, 'false' if not
 		 */
 		public function getFlexExists(id:String, args:String):String

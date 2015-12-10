@@ -17,7 +17,7 @@ package {
 		{
 		
 			event.stopImmediatePropagation();
-			var objectType:String = Tools.getOjectType(event.currentTarget);
+			var objectType:String = Tools.getObjectType(event.currentTarget);
 			
 			if (objectType.indexOf("Text") > -1) {
 				objectType = "textbox";

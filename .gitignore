@@ -8,4 +8,6 @@ sfapi.as3proj
 /obj
 /test/Flex3Tester/target
 /test/Flex4Tester/target
+/sfapi.docproj
+/doc
 sfapi.lxml
