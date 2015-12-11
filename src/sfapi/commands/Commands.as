@@ -150,6 +150,9 @@ package sfapi.commands
 						
 				ExternalInterface.addCallback("getFlexDataGridFieldValueForGridRow", 
 						dataGridCommands.getFlexDataGridFieldValueForGridRow);
+				
+				ExternalInterface.addCallback("getFlexDataGridFieldLabelForGridRow", 
+						dataGridCommands.getFlexDataGridFieldLabelForGridRow);
 						
 				ExternalInterface.addCallback("getFlexDataGridCellText", 
 						textCommands.getFlexDataGridCellText);
