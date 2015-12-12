@@ -1,0 +1,1232 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../print.css" type="text/css" media="print">
+<meta content="DataGridCommands,sfapi.commands.DataGridCommands,doFlexDataGridCheckBox,doFlexDataGridDate,doFlexDataGridSelectComboByLabel,doFlexSetDataGridCell,flexDataGridClickHeader,flexDataGridExpandAll,flexDataGridSearchValue,getDataGridCellComponent,getDataGridValues,getFlexDataGridCell,getFlexDataGridCheckBoxChecked,getFlexDataGridColCount,getFlexDataGridColDataFields,getFlexDataGridFieldAllValues,getFlexDataGridFieldValueForGridRow,getFlexDataGridRowCount,getFlexDataGridRowIndexForFieldValue,rawFlexDataGridCell,rawFlexDataGridFieldLabelForGridRow,rawFlexDataGridFieldValueForGridRow,rawFlexDataGridFieldValuesForColumn,rawFlexDataGridRowIndexForFieldLabel,rawFlexDataGridRowIndexForFieldValue,rawFlexSetDataGridCell" name="keywords">
+<title>sfapi.commands.DataGridCommands</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'DataGridCommands - API Documentation';
+				var baseRef = '../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">sfapi</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../all-classes.html')" href="../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../all-classes.html')" href="../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../index-list.html')" href="../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../index.html?sfapi/commands/DataGridCommands.html&amp;sfapi/commands/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;DataGridCommands</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class DataGridCommands"); titleBar_setSubNav(false,false,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">sfapi.commands</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class DataGridCommands</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">DataGridCommands <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../images/inherit-arrow.gif"> sfapi.commands.AbstractCommand</td>
+</tr>
+</table>
+<p></p>
+<p></p>
+<br>
+<hr>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#DataGridCommands()">DataGridCommands</a>(aptObj:AppTreeParser, contextObj:Commands)</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">DataGridCommands</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#doFlexDataGridCheckBox()">doFlexDataGridCheckBox</a>(target:String, value:String):String</div>
+<div class="summaryTableDescription">
+         Sets checkbox state in a datagrid cell
+         <br/>
+         Command:    flexDataGridCellCheckbox
+         Target:    myDataGridItem
+         Value:    1,2,this data
+         <br/>
+         Breakdown:
+         <br/>
+         Command:    <command>
+         Target:    <datagrid id>
+         Value:    <rowIndex>,<colIndex>,<check box state>
+         <br/>
+         All fields are compulsory
+         <br/>
+         </div>
+</td><td class="summaryTableOwnerCol">DataGridCommands</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#doFlexDataGridDate()">doFlexDataGridDate</a>(target:String, value:String):String</div>
+<div class="summaryTableDescription">
+   Sets a date value in a datagrid cell
+   <br/>
+   Command:    flexDataGridDate
+   Target:    myDataGridItem
+   Value:    1,2,this data
+   <br/>
+   Breakdown:
+   <br/>
+   Command:    <command>
+   Target:    <menubar id>
+   Value:    <rowIndex>,<colIndex>,<data value>
+   <br/>
+   All fields are compulsory
+   <br/>
+   </div>
+</td><td class="summaryTableOwnerCol">DataGridCommands</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#doFlexDataGridSelectComboByLabel()">doFlexDataGridSelectComboByLabel</a>(gridid:String, value:String):String</div>
+<div class="summaryTableDescription">
+         Select combo box by label in a datagrid cell
+         <br/>
+         Command:  doFlexDataGridSelectComboByLabel
+         Target:   myDataGridItem
+         Value:    1,2,label
+         <br/>
+         Breakdown:
+         <br/>
+         Command:  <command>
+         Target:   <datagrid id>
+         Value:    <rowIndex>,<colIndex>,label
+         <br/>
+         All fields are compulsory
+         <br/>
+         </div>
+</td><td class="summaryTableOwnerCol">DataGridCommands</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#doFlexSetDataGridCell()">doFlexSetDataGridCell</a>(target:String, value:String):String</div>
+<div class="summaryTableDescription">
+   Sets a text value in a datagrid cell
+   <br/>
+   Command: flexSetDataGridCell
+   Target: myDataGridItem
+   Value: 1,2,this data
+   <br/>
+   Breakdown:
+   <br/>
+   Command: <command>
+   Target: <menubar id>
+   Value: <rowIndex>,<colIndex>,<data value>
+   <br/>
+   All fields are compulsory
+   <br/>
+   </div>
+</td><td class="summaryTableOwnerCol">DataGridCommands</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#flexDataGridClickHeader()">flexDataGridClickHeader</a>(id:String, value:String):String</div>
+<div class="summaryTableDescription">
+  This method clicks datagrid header and thus sorts the datagrid.</div>
+</td><td class="summaryTableOwnerCol">DataGridCommands</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#flexDataGridExpandAll()">flexDataGridExpandAll</a>(id:String):String</div>
+<div class="summaryTableDescription">
+   Expand all elements in a tree
+   TODO method description
+   </div>
+</td><td class="summaryTableOwnerCol">DataGridCommands</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#flexDataGridSearchValue()">flexDataGridSearchValue</a>(id:String, args:String):String</div>
+<div class="summaryTableDescription">
+   Expands all tree items and searches for item with specified name and property value
+   TODO method description
+   </div>
+</td><td class="summaryTableOwnerCol">DataGridCommands</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getDataGridCellComponent()">getDataGridCellComponent</a>(id:String, rowIndex:String, colIndex:String, componentIndexInCell:String = "-1"):Object</div>
+<div class="summaryTableDescription">
+   Return the component in a datagrid cell
+   </div>
+</td><td class="summaryTableOwnerCol">DataGridCommands</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getDataGridValues()">getDataGridValues</a>(id:String, onlyVisible:String = "false"):String</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">DataGridCommands</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getFlexDataGridCell()">getFlexDataGridCell</a>(value:String):String</div>
+<div class="summaryTableDescription">
+   Returns a value in a grid given the row and column
+   <br/>
+   Command: flexDataGridCell
+   Target: myGridControl
+   Value: 1,2
+   <br/>
+   Breakdown:
+   <br/>
+   Command: <command>
+   Target: <grid id>
+   Value: <row>,<column>
+   <br/>
+   All fields are compulsory
+   <br/>
+   </div>
+</td><td class="summaryTableOwnerCol">DataGridCommands</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getFlexDataGridCheckBoxChecked()">getFlexDataGridCheckBoxChecked</a>(target:String, value:String):String</div>
+<div class="summaryTableDescription">
+         Get checkbox state in a datagrid cell
+         <br/>
+         Command:  getFlexDataGridCheckBoxChecked
+         Target:   myDataGridItem,1,2
+         Value:  args - not used
+         <br/>
+         Breakdown:
+         <br/>
+         Command:  <command>
+         Target:   <datagrid id>,<rowIndex>,<colIndex>
+         <br/>
+         All fields are compulsory
+         <br/>
+         </div>
+</td><td class="summaryTableOwnerCol">DataGridCommands</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getFlexDataGridColCount()">getFlexDataGridColCount</a>(id:String, onlyVisible:String = "true"):String</div>
+<div class="summaryTableDescription">
+   TODO method description
+   </div>
+</td><td class="summaryTableOwnerCol">DataGridCommands</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getFlexDataGridColDataFields()">getFlexDataGridColDataFields</a>(id:String, onlyVisible:String = "true"):String</div>
+<div class="summaryTableDescription">
+   TODO method description
+   </div>
+</td><td class="summaryTableOwnerCol">DataGridCommands</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getFlexDataGridFieldAllValues()">getFlexDataGridFieldAllValues</a>(value:String):String</div>
+<div class="summaryTableDescription">
+   TODO method description
+   </div>
+</td><td class="summaryTableOwnerCol">DataGridCommands</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getFlexDataGridFieldValueForGridRow()">getFlexDataGridFieldValueForGridRow</a>(value:String):String</div>
+<div class="summaryTableDescription">
+   Returns the data value of a field of the object that populates a row of a data grid.</div>
+</td><td class="summaryTableOwnerCol">DataGridCommands</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getFlexDataGridRowCount()">getFlexDataGridRowCount</a>(id:String):String</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">DataGridCommands</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getFlexDataGridRowIndexForFieldValue()">getFlexDataGridRowIndexForFieldValue</a>(value:String):String</div>
+<div class="summaryTableDescription">
+   Returns the row index of a given value in a certain field on a grid
+   <br/>
+   Command: flexDataGridRowIndexForFieldValue
+   Target: myGridControl
+   Value: theField,hello
+   <br/>
+   Breakdown:
+   <br/>
+   Command: <command>
+   Target: <grid id>
+   Value: <fieldName>,<data>
+   <br/>
+   All fields are compulsory
+   <br/>
+   </div>
+</td><td class="summaryTableOwnerCol">DataGridCommands</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#rawFlexDataGridCell()">rawFlexDataGridCell</a>(id:String, rowIndex:String, colIndex:String):String</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">DataGridCommands</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#rawFlexDataGridFieldLabelForGridRow()">rawFlexDataGridFieldLabelForGridRow</a>(id:String, field:String, rowNum:String):String</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">DataGridCommands</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#rawFlexDataGridFieldValueForGridRow()">rawFlexDataGridFieldValueForGridRow</a>(id:String, field:String, rowNum:String):String</div>
+<div class="summaryTableDescription">
+   Returns the data value of a field of the object that populates a row of a data grid.</div>
+</td><td class="summaryTableOwnerCol">DataGridCommands</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#rawFlexDataGridFieldValuesForColumn()">rawFlexDataGridFieldValuesForColumn</a>(id:String, colIndex:String):String</div>
+<div class="summaryTableDescription">
+   Returns the data values of a column.</div>
+</td><td class="summaryTableOwnerCol">DataGridCommands</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#rawFlexDataGridRowIndexForFieldLabel()">rawFlexDataGridRowIndexForFieldLabel</a>(id:String, fieldName:String, data:String):String</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">DataGridCommands</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#rawFlexDataGridRowIndexForFieldValue()">rawFlexDataGridRowIndexForFieldValue</a>(id:String, fieldName:String, data:String):String</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">DataGridCommands</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#rawFlexSetDataGridCell()">rawFlexSetDataGridCell</a>(id:String, rowToSet:String, colToSet:String, dataToSet:String):String</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">DataGridCommands</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="DataGridCommands()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">DataGridCommands</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function DataGridCommands(aptObj:AppTreeParser, contextObj:Commands)</code><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">aptObj</span>:AppTreeParser</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">contextObj</span>:Commands</code></td>
+</tr>
+</table>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="doFlexDataGridCheckBox()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">doFlexDataGridCheckBox</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function doFlexDataGridCheckBox(target:String, value:String):String</code><p>
+         Sets checkbox state in a datagrid cell
+         <br/>
+         Command:    flexDataGridCellCheckbox
+         Target:    myDataGridItem
+         Value:    1,2,this data
+         <br/>
+         Breakdown:
+         <br/>
+         Command:    <command>
+         Target:    <datagrid id>
+         Value:    <rowIndex>,<colIndex>,<check box state>
+         <br/>
+         All fields are compulsory
+         <br/>
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">target</span>:String</code> &mdash; value  takes the form <rowIndex>,<colIndex>,<check box state>
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">value</span>:String</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code> &mdash;  'true' if successfully set, error if not
+         </td>
+</tr>
+</table>
+</div>
+<a name="doFlexDataGridDate()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">doFlexDataGridDate</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function doFlexDataGridDate(target:String, value:String):String</code><p>
+   Sets a date value in a datagrid cell
+   <br/>
+   Command:    flexDataGridDate
+   Target:    myDataGridItem
+   Value:    1,2,this data
+   <br/>
+   Breakdown:
+   <br/>
+   Command:    <command>
+   Target:    <menubar id>
+   Value:    <rowIndex>,<colIndex>,<data value>
+   <br/>
+   All fields are compulsory
+   <br/>
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">target</span>:String</code> &mdash; value  takes the form <rowIndex>,<colIndex>,<data>
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">value</span>:String</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code> &mdash;  'true' if successfully set, error if not
+   </td>
+</tr>
+</table>
+</div>
+<a name="doFlexDataGridSelectComboByLabel()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">doFlexDataGridSelectComboByLabel</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function doFlexDataGridSelectComboByLabel(gridid:String, value:String):String</code><p>
+         Select combo box by label in a datagrid cell
+         <br/>
+         Command:  doFlexDataGridSelectComboByLabel
+         Target:   myDataGridItem
+         Value:    1,2,label
+         <br/>
+         Breakdown:
+         <br/>
+         Command:  <command>
+         Target:   <datagrid id>
+         Value:    <rowIndex>,<colIndex>,label
+         <br/>
+         All fields are compulsory
+         <br/>
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">gridid</span>:String</code> &mdash; value  takes the form <rowIndex>,<colIndex>,<label>
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">value</span>:String</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code> &mdash;  'true' if successfully set, error if not
+         </td>
+</tr>
+</table>
+</div>
+<a name="doFlexSetDataGridCell()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">doFlexSetDataGridCell</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function doFlexSetDataGridCell(target:String, value:String):String</code><p>
+   Sets a text value in a datagrid cell
+   <br/>
+   Command: flexSetDataGridCell
+   Target: myDataGridItem
+   Value: 1,2,this data
+   <br/>
+   Breakdown:
+   <br/>
+   Command: <command>
+   Target: <menubar id>
+   Value: <rowIndex>,<colIndex>,<data value>
+   <br/>
+   All fields are compulsory
+   <br/>
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">target</span>:String</code> &mdash; value  takes the form <rowIndex>,<colIndex>,<data>
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">value</span>:String</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code> &mdash;  'true' if successfully set, error if not  
+   </td>
+</tr>
+</table>
+</div>
+<a name="flexDataGridClickHeader()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">flexDataGridClickHeader</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function flexDataGridClickHeader(id:String, value:String):String</code><p>
+  This method clicks datagrid header and thus sorts the datagrid.
+    
+  id = id for the data grid
+  value = <headerindex>,<descorasc>
+   headerindex is the column index
+   descorasc is String "DESC" or "ASC" deciding the sortdir
+  </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">id</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">value</span>:String</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code></td>
+</tr>
+</table>
+</div>
+<a name="flexDataGridExpandAll()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">flexDataGridExpandAll</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function flexDataGridExpandAll(id:String):String</code><p>
+   Expand all elements in a tree
+   TODO method description
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">id</span>:String</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code></td>
+</tr>
+</table>
+</div>
+<a name="flexDataGridSearchValue()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">flexDataGridSearchValue</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function flexDataGridSearchValue(id:String, args:String):String</code><p>
+   Expands all tree items and searches for item with specified name and property value
+   TODO method description
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">id</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">args</span>:String</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code></td>
+</tr>
+</table>
+</div>
+<a name="getDataGridCellComponent()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getDataGridCellComponent</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getDataGridCellComponent(id:String, rowIndex:String, colIndex:String, componentIndexInCell:String = "-1"):Object</code><p>
+   Return the component in a datagrid cell
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">id</span>:String</code> &mdash; id  - Data grid id
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">rowIndex</span>:String</code> &mdash; rowIndex  - row index
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">colIndex</span>:String</code> &mdash; colIndex  - column index
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">componentIndexInCell</span>:String</code> (default = "<code>-1</code>")<code></code> &mdash; componentIndexInCell  - component index in cell. 
+     Default to -1, returns cell itself
+     0 , returns the first component in cell 
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Object</code> &mdash;  component if successfully found, ERROR_NO_CHILD_UICOMPONENT error if not found.
+   </td>
+</tr>
+</table>
+</div>
+<a name="getDataGridValues()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getDataGridValues</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getDataGridValues(id:String, onlyVisible:String = "false"):String</code><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">id</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">onlyVisible</span>:String</code> (default = "<code>false</code>")<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code></td>
+</tr>
+</table>
+</div>
+<a name="getFlexDataGridCell()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getFlexDataGridCell</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getFlexDataGridCell(value:String):String</code><p>
+   Returns a value in a grid given the row and column
+   <br/>
+   Command: flexDataGridCell
+   Target: myGridControl
+   Value: 1,2
+   <br/>
+   Breakdown:
+   <br/>
+   Command: <command>
+   Target: <grid id>
+   Value: <row>,<column>
+   <br/>
+   All fields are compulsory
+   <br/>
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">value</span>:String</code> &mdash; id  id of the control
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code> &mdash;  a string of the value set in the grid cell   
+   </td>
+</tr>
+</table>
+</div>
+<a name="getFlexDataGridCheckBoxChecked()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getFlexDataGridCheckBoxChecked</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getFlexDataGridCheckBoxChecked(target:String, value:String):String</code><p>
+         Get checkbox state in a datagrid cell
+         <br/>
+         Command:  getFlexDataGridCheckBoxChecked
+         Target:   myDataGridItem,1,2
+         Value:  args - not used
+         <br/>
+         Breakdown:
+         <br/>
+         Command:  <command>
+         Target:   <datagrid id>,<rowIndex>,<colIndex>
+         <br/>
+         All fields are compulsory
+         <br/>
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">target</span>:String</code> &mdash; target  takes the form <datagrid id>,<rowIndex>,<colIndex>
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">value</span>:String</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code> &mdash;  'checkbox state
+         </td>
+</tr>
+</table>
+</div>
+<a name="getFlexDataGridColCount()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getFlexDataGridColCount</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getFlexDataGridColCount(id:String, onlyVisible:String = "true"):String</code><p>
+   TODO method description
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">id</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">onlyVisible</span>:String</code> (default = "<code>true</code>")<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code></td>
+</tr>
+</table>
+</div>
+<a name="getFlexDataGridColDataFields()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getFlexDataGridColDataFields</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getFlexDataGridColDataFields(id:String, onlyVisible:String = "true"):String</code><p>
+   TODO method description
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">id</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">onlyVisible</span>:String</code> (default = "<code>true</code>")<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code></td>
+</tr>
+</table>
+</div>
+<a name="getFlexDataGridFieldAllValues()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getFlexDataGridFieldAllValues</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getFlexDataGridFieldAllValues(value:String):String</code><p>
+   TODO method description
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">value</span>:String</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code></td>
+</tr>
+</table>
+</div>
+<a name="getFlexDataGridFieldValueForGridRow()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getFlexDataGridFieldValueForGridRow</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getFlexDataGridFieldValueForGridRow(value:String):String</code><p>
+   Returns the data value of a field of the object that populates a row of a data grid.
+   <br/>
+   Command: flexDataGridCell
+   Target: myGridControl
+   Value: fieldName,2
+   <br/>
+   Breakdown:
+   <br/>
+   Command: <command>
+   Target: <grid id>
+   Value: <field>,<row>
+   <br/>
+   All fields are compulsory
+   <br/>
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">value</span>:String</code> &mdash; id  id of the control
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code> &mdash;  a string of the value set in the grid cell   
+   </td>
+</tr>
+</table>
+</div>
+<a name="getFlexDataGridRowCount()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getFlexDataGridRowCount</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getFlexDataGridRowCount(id:String):String</code><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">id</span>:String</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code></td>
+</tr>
+</table>
+</div>
+<a name="getFlexDataGridRowIndexForFieldValue()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getFlexDataGridRowIndexForFieldValue</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getFlexDataGridRowIndexForFieldValue(value:String):String</code><p>
+   Returns the row index of a given value in a certain field on a grid
+   <br/>
+   Command: flexDataGridRowIndexForFieldValue
+   Target: myGridControl
+   Value: theField,hello
+   <br/>
+   Breakdown:
+   <br/>
+   Command: <command>
+   Target: <grid id>
+   Value: <fieldName>,<data>
+   <br/>
+   All fields are compulsory
+   <br/>
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">value</span>:String</code> &mdash; id  id of the control
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code> &mdash;  a string of row index for cell containing the data
+   </td>
+</tr>
+</table>
+</div>
+<a name="rawFlexDataGridCell()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">rawFlexDataGridCell</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function rawFlexDataGridCell(id:String, rowIndex:String, colIndex:String):String</code><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">id</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">rowIndex</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">colIndex</span>:String</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code></td>
+</tr>
+</table>
+</div>
+<a name="rawFlexDataGridFieldLabelForGridRow()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">rawFlexDataGridFieldLabelForGridRow</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function rawFlexDataGridFieldLabelForGridRow(id:String, field:String, rowNum:String):String</code><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">id</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">field</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">rowNum</span>:String</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code></td>
+</tr>
+</table>
+</div>
+<a name="rawFlexDataGridFieldValueForGridRow()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">rawFlexDataGridFieldValueForGridRow</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function rawFlexDataGridFieldValueForGridRow(id:String, field:String, rowNum:String):String</code><p>
+   Returns the data value of a field of the object that populates a row of a data grid.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">id</span>:String</code> &mdash; the id of the Data Grid
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">field</span>:String</code> &mdash; the name of the field in the object whose data is required
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">rowNum</span>:String</code> &mdash; the required row number (numbering starts at 0)
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code></td>
+</tr>
+</table>
+</div>
+<a name="rawFlexDataGridFieldValuesForColumn()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">rawFlexDataGridFieldValuesForColumn</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function rawFlexDataGridFieldValuesForColumn(id:String, colIndex:String):String</code><p>
+   Returns the data values of a column. The values are separated with "#;#"
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">id</span>:String</code> &mdash; the id of the Data Grid
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">colIndex</span>:String</code> &mdash; the name of the column/field
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code></td>
+</tr>
+</table>
+</div>
+<a name="rawFlexDataGridRowIndexForFieldLabel()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">rawFlexDataGridRowIndexForFieldLabel</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function rawFlexDataGridRowIndexForFieldLabel(id:String, fieldName:String, data:String):String</code><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">id</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">fieldName</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">data</span>:String</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code></td>
+</tr>
+</table>
+</div>
+<a name="rawFlexDataGridRowIndexForFieldValue()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">rawFlexDataGridRowIndexForFieldValue</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function rawFlexDataGridRowIndexForFieldValue(id:String, fieldName:String, data:String):String</code><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">id</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">fieldName</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">data</span>:String</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code></td>
+</tr>
+</table>
+</div>
+<a name="rawFlexSetDataGridCell()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">rawFlexSetDataGridCell</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function rawFlexSetDataGridCell(id:String, rowToSet:String, colToSet:String, dataToSet:String):String</code><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">id</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">rowToSet</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">colToSet</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">dataToSet</span>:String</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code></td>
+</tr>
+</table>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> 
+</center>
+</div>
+</body>
+</html>
+<!-- -->
