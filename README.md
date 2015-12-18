@@ -18,3 +18,5 @@ The Flex3Tester project found under test/Flex3Tester can be used to test the lib
 The Flex4Tester project found under test/Flex4Tester can be used to test the library.in the same way. Flex4Tester also
 supports FlexPilot (https://github.com/mde/flex-pilot). Make sure to copy FlexPilot-4-stable.swf into the web server in
 the same folder as Flex4Tester. This can be found from the assets folder and https://github.com/mde/flex-pilot/downloads
+
+The API documentation can be found from: http://hirsivaja.github.io/sfapi/
