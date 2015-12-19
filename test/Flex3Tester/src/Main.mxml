@@ -72,6 +72,10 @@
 			selectedComboItem.text = "Selected label: " + comboBox.selectedLabel;
 		}
 		
+		public function dataGridComboBoxChange(): void {
+			Alert.show("Data grid combo value changed!");
+		}
+		
 		private function checkBoxChange(): void {
 			selectedCheckBoxItem.text = checkBox.selected ? "CheckBox is checked" : "CheckBox is not checked";
 		}
@@ -83,7 +87,10 @@
 		}
 		
 		private function dataGridClick(): void {
-			selectedGridItem.text = "Selected item: " + Element(dataGrid.selectedItem).toString();
+			if(dataGrid.selectedItem != null)
+			{
+				selectedGridItem.text = "Selected item: " + Element(dataGrid.selectedItem).toString();
+			}
 		}
 		
 		public function dataGridButtonClick(): void {
@@ -98,9 +105,9 @@
 			selectedTreeItem.text = "Selected item: " + Tree(evt.currentTarget).selectedItem.node;
 		}
 		
-		private var element1:Element = new Element("Element1", 1, true);
-		private var element2:Element = new Element("Element2", 2, false);
-		private var element3:Element = new Element("Element3", 3, true);
+		private var element1:Element = new Element("Element1", 1, true, new Date(2000, 0, 1));
+		private var element2:Element = new Element("Element2", 2, false, new Date(2001, 1, 2));
+		private var element3:Element = new Element("Element3", 3, true, new Date(2002, 2, 3));
 		[Bindable]
 		private var elements:ArrayCollection = new ArrayCollection([element1, element2, element3]);
 		
@@ -240,6 +247,36 @@ Application{
 							</mx:columns>
 						</mx:DataGrid>
 						<mx:Label id="selectedGridItem" text="Selected item: " />
+					</mx:HBox>
+					<mx:HBox>
+						<mx:DataGrid id="dataGrid0" dataProvider="{elements}">
+							<mx:columns>
+								<mx:DataGridColumn dataField="attribute1" headerText="Attribute 1"/>
+								<mx:DataGridColumn dataField="attribute4" headerText="Attribute 4">
+									<mx:itemRenderer>
+										<mx:Component>
+											<mx:DateField editable="true" />
+										</mx:Component>
+									</mx:itemRenderer>
+								</mx:DataGridColumn>
+								<mx:DataGridColumn dataField="attribute3" headerText="Attribute 5">
+									<mx:itemRenderer>
+										<mx:Component>
+											<mx:ComboBox change="outerDocument.dataGridComboBoxChange()">
+												<mx:dataProvider>
+													<mx:String>Option1</mx:String>
+													<mx:String>Option2</mx:String>
+													<mx:String>Option3</mx:String>
+													<mx:String>Option4</mx:String>
+													<mx:String>Option5</mx:String>
+												</mx:dataProvider>
+											</mx:ComboBox>
+										</mx:Component>
+									</mx:itemRenderer>
+								</mx:DataGridColumn>
+							</mx:columns>
+						</mx:DataGrid>
+						<mx:Label id="selectedGridItem0" text="Selected item: " />
 					</mx:HBox>
 				</mx:Form>
 				<mx:Form id="tabs"

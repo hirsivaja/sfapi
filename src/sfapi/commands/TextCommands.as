@@ -327,11 +327,15 @@ package sfapi.commands
 			if(dgContentList.listItems.length > int(rowIndex) && dgContentList.listItems[int(rowIndex)].length > int(colIndex))
 			{
 				var cell:Object = dgContentList.listItems[int(rowIndex)][int(colIndex)];
-				var cellChildren:Array = cell.getChildren();
-				
-				if((cellChildren[componentIndexInCell]).hasOwnProperty("label"))
-				{
-					return String(cellChildren[componentIndexInCell].label);
+				if (cell.hasOwnProperty("getChildren")) {
+					var cellChildren:Array = cell.getChildren();
+					
+					if((cellChildren[componentIndexInCell]).hasOwnProperty("label"))
+					{
+						return String(cellChildren[componentIndexInCell].label);
+					}
+				} else {
+					return ErrorMessages.getError(ErrorMessages.ERROR_PROPERTY_NOT_FOUND, ["getChildren",cell]);
 				}
 			}
 			return ErrorMessages.getError(ErrorMessages.ERROR_DATAGRID_UICOMPONENT_LABEL_NOT_FOUND, [datagridId,rowIndex,colIndex]);
