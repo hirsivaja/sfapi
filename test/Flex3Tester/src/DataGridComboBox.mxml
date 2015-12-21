@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:ComboBox xmlns:mx="http://www.adobe.com/2006/mxml"
+			 change="this.parentDocument.dataGridComboBoxChange()">
+	<mx:dataProvider>
+		<mx:String>Option1</mx:String>
+		<mx:String>Option2</mx:String>
+		<mx:String>Option3</mx:String>
+		<mx:String>Option4</mx:String>
+		<mx:String>Option5</mx:String>
+	</mx:dataProvider>
+</mx:ComboBox> 

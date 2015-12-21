@@ -8,6 +8,7 @@
 	<![CDATA[
 		import mx.collections.ArrayCollection;
 		import mx.collections.XMLListCollection;
+		import mx.collections.ListCollectionView;
 		import mx.controls.Alert;
 		import mx.events.FlexEvent;
 		import mx.events.MenuEvent;
@@ -73,7 +74,14 @@
 		}
 		
 		public function dataGridComboBoxChange(): void {
-			Alert.show("Data grid combo value changed!");
+			var selectedRow:int = dataGrid0.selectedIndex;
+			if (selectedRow > -1) {
+				var lcview:ListCollectionView = ListCollectionView(dataGrid0.dataProvider);
+				selectedGridItem0.text = "Selected item: " + lcview.getItemAt(selectedRow).attribute1 + 
+				", " + lcview.getItemAt(selectedRow).attribute4 + ", " + lcview.getItemAt(selectedRow).attribute3;
+			} else {
+				selectedGridItem0.text = "Selected item: ";
+			}
 		}
 		
 		private function checkBoxChange(): void {
@@ -226,58 +234,26 @@ Application{
 				</mx:Form>
 				<mx:Form id="dataGrids"
 						label="DataGrid view">
-					<mx:HBox>
+					<mx:VBox>
 						<mx:DataGrid id="dataGrid" dataProvider="{elements}" itemClick="dataGridClick()">
 							<mx:columns>
-								<mx:DataGridColumn dataField="attribute1" headerText="Attribute 1"/>
-								<mx:DataGridColumn dataField="attribute2" headerText="Attribute 2">
-									<mx:itemRenderer>
-										<mx:Component>
-											<mx:Button click="outerDocument.dataGridButtonClick()" label="{data.attribute2}"/>
-										</mx:Component>
-									</mx:itemRenderer>
-								</mx:DataGridColumn>
-								<mx:DataGridColumn dataField="attribute3" headerText="Attribute 3">
-									<mx:itemRenderer>
-										<mx:Component>
-											<mx:CheckBox click="{data.attribute3 = !data.attribute3; label = data.attribute3}" label="{data.attribute3}" selected="{data.attribute3}"/>
-										</mx:Component>
-									</mx:itemRenderer>
-								</mx:DataGridColumn>
+								<mx:DataGridColumn width="120" dataField="attribute1" headerText="Attribute 1"/>
+								<mx:DataGridColumn width="120" dataField="attribute2" headerText="Attribute 2" itemRenderer="DataGridButton" />
+								<mx:DataGridColumn width="120" dataField="attribute3" headerText="Attribute 3" itemRenderer="DataGridCheckBox"/>
 							</mx:columns>
 						</mx:DataGrid>
 						<mx:Label id="selectedGridItem" text="Selected item: " />
-					</mx:HBox>
-					<mx:HBox>
+					</mx:VBox>
+					<mx:VBox>
 						<mx:DataGrid id="dataGrid0" dataProvider="{elements}">
 							<mx:columns>
-								<mx:DataGridColumn dataField="attribute1" headerText="Attribute 1"/>
-								<mx:DataGridColumn dataField="attribute4" headerText="Attribute 4">
-									<mx:itemRenderer>
-										<mx:Component>
-											<mx:DateField editable="true" />
-										</mx:Component>
-									</mx:itemRenderer>
-								</mx:DataGridColumn>
-								<mx:DataGridColumn dataField="attribute3" headerText="Attribute 5">
-									<mx:itemRenderer>
-										<mx:Component>
-											<mx:ComboBox change="outerDocument.dataGridComboBoxChange()">
-												<mx:dataProvider>
-													<mx:String>Option1</mx:String>
-													<mx:String>Option2</mx:String>
-													<mx:String>Option3</mx:String>
-													<mx:String>Option4</mx:String>
-													<mx:String>Option5</mx:String>
-												</mx:dataProvider>
-											</mx:ComboBox>
-										</mx:Component>
-									</mx:itemRenderer>
-								</mx:DataGridColumn>
+								<mx:DataGridColumn width="120" dataField="attribute1" headerText="Attribute 1"/>
+								<mx:DataGridColumn width="120" itemRenderer="DataGridDate" dataField="attribute4" headerText="Attribute 4" />
+								<mx:DataGridColumn width="120" itemRenderer="DataGridComboBox" dataField="attribute3" headerText="Attribute 5" />
 							</mx:columns>
 						</mx:DataGrid>
 						<mx:Label id="selectedGridItem0" text="Selected item: " />
-					</mx:HBox>
+					</mx:VBox>
 				</mx:Form>
 				<mx:Form id="tabs"
 						label="TabNavigator view">
