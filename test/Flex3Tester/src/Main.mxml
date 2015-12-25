@@ -113,11 +113,21 @@
 			selectedTreeItem.text = "Selected item: " + Tree(evt.currentTarget).selectedItem.node;
 		}
 		
+		private function dataGridTreeClick(): void {
+			if(dataGridTree.selectedItem != null)
+			{
+				selectedTreeGridItem.text = "Selected item: " + dataGridTree.selectedItem.toString();
+			}
+		}
+		
 		private var element1:Element = new Element("Element1", 1, true, new Date(2000, 0, 1));
 		private var element2:Element = new Element("Element2", 2, false, new Date(2001, 1, 2));
 		private var element3:Element = new Element("Element3", 3, true, new Date(2002, 2, 3));
 		[Bindable]
 		private var elements:ArrayCollection = new ArrayCollection([element1, element2, element3]);
+		
+		[Bindable]
+		private var oneCollection:ArrayCollection = new ArrayCollection([new String("One")]);
 		
 		private var menubarXML:XMLList =
 			<>
@@ -316,6 +326,14 @@ Application{
 					<mx:HBox>
 						<mx:Label id="selectedTreeItem" text="Selected item: " />
 					</mx:HBox>
+					<mx:VBox>
+						<mx:DataGrid id="dataGridTree" dataProvider="{oneCollection}" itemClick="dataGridTreeClick()">
+							<mx:columns>
+								<mx:DataGridColumn width="360" dataField="length" headerText="Tree" itemRenderer="DataGridTree"/>
+							</mx:columns>
+						</mx:DataGrid>
+						<mx:Label id="selectedTreeGridItem" text="Selected item: " />
+					</mx:VBox>
 				</mx:Form>
 			</mx:ViewStack>
 		</mx:HBox>
