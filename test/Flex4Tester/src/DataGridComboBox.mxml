@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:MXItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+                  xmlns:mx="library://ns.adobe.com/flex/mx"
+                  xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:ComboBox change="this.parentDocument.dataGridComboBoxChange()">
+        <s:dataProvider>
+            <s:String>Option1</mx:String>
+            <s:String>Option2</mx:String>
+            <s:String>Option3</mx:String>
+            <s:String>Option4</mx:String>
+            <s:String>Option5</mx:String>
+        </s:dataProvider>
+    </s:ComboBox>
+</s:MXItemRenderer>
